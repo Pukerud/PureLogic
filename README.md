@@ -39,6 +39,12 @@ python tui/gvs5h_tui.py --run "<problem>" --mode harness --spec code --iters 4
 python tui/gvs5h_tui.py --run "<problem>" --mode harness --json   # machine-readable result
 ```
 
+Windows: `powershell -File tui\start_tui.ps1` — finds a Python 3 (`python` → `py -3` →
+`python3`), installs `rich` once if it is missing, switches the console to UTF-8 so the
+glyphs render, and launches the TUI from the repo root; extra args pass straight through
+(e.g. `powershell -File tui\start_tui.ps1 --mode harness --iters 4`). The original console
+code page is restored on exit.
+
 It is prewired to the local llama.cpp server (Qwen3.8-27B-Uncensored-HauhauCS Q8_K_P,
 256k context): base `http://192.168.1.69:8080/v1`, model id exactly as served by the
 endpoint. Everything is overridable — CLI flag > env > built-in default:
@@ -91,6 +97,10 @@ Q8_K_P @ `http://192.168.1.69:8080/v1`, 256k context) with the prewired defaults
   then showed `8 calls · 8,693 output tokens · 0 truncated` — the +1 call / +409 tokens being the
   finalize call that landed after the live snapshot, confirming the counters track the workspace
   transcript as it fills. `answer.md`: `156`, cross-checked two independent ways.
+- **Windows launcher.** `powershell -File tui\start_tui.ps1 --run "Say hi in exactly three words"`
+  streamed the reply and exited 0 (Python discovery, rich check, UTF-8 console and arg
+  passthrough all exercised); an interactive launch in a console rendered the full TUI (banner,
+  model/endpoint, status bar) and `/quit` exited cleanly with 0.
 
 Evidence artifacts in `tui/evidence/`: `out_e2e_general.json` / `out_e2e_code.json` (the `--json`
 results above, incl. workspace path, call and token counts), `out_e2e_general.log` / `out_e2e_code.log`
