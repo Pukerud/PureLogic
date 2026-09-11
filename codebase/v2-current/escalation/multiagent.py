@@ -81,16 +81,16 @@ def _slug(text):
 
 def _read(ws, name):
     p = os.path.join(ws, name)
-    return open(p).read() if os.path.exists(p) else ""
+    return open(p, encoding="utf-8").read() if os.path.exists(p) else ""
 
 
 def _write(ws, name, content):
-    with open(os.path.join(ws, name), "w") as f:
+    with open(os.path.join(ws, name), "w", encoding="utf-8") as f:
         f.write(content)
 
 
 def _append(ws, name, content):
-    with open(os.path.join(ws, name), "a") as f:
+    with open(os.path.join(ws, name), "a", encoding="utf-8") as f:
         f.write(content)
 
 
@@ -100,7 +100,9 @@ def _append(ws, name, content):
 # {role, request, response, reasoning, discarded, token counts}.
 
 def _record(ws, rec):
-    with open(os.path.join(ws, "transcript.jsonl"), "a") as f:
+    # utf-8: the thinking text contains characters (e.g. superscript digits) that the
+    # Windows cp1252 default codec cannot encode, which would crash mid-run.
+    with open(os.path.join(ws, "transcript.jsonl"), "a", encoding="utf-8") as f:
         f.write(json.dumps(rec) + "\n")
 
 
@@ -543,6 +545,8 @@ def multiagent_solve(problem_text, spec, log=None, status_out=None, tests=None):
     _write(ws, "task.md", problem_text)
     _record(ws, {"_meta": True, "t": time.time(), "model": MODEL,
                  "kind": spec["kind"], "max_iters": MAX_ITERS, "problem": problem_text})
+    if status_out is not None:
+        status_out["ws"] = ws  # expose early so live UIs can track the workspace as it fills
 
     tasks = _primary_plan(problem_text, spec, ws, log)
     proposals = _ideation_worker(problem_text, spec, ws, log)

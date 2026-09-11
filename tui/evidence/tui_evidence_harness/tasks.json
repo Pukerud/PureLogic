@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "desc": "Produce only the final concise Python source for `fib(n)`, using an iterative two-variable loop and a short doctest with `fib(0)`, `fib(1)`, and `fib(6)`.",
+    "status": "done",
+    "result": ""
+  },
+  {
+    "id": 2,
+    "desc": "Verify the final source is under 15 lines, uses no unnecessary imports, and the doctest examples pass.",
+    "status": "done",
+    "result": ""
+  }
+]

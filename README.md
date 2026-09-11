@@ -16,6 +16,91 @@ environment-driven; supply your own keys.
 
 ---
 
+## 0. `tui/` — GVS5H harness TUI (PureLogic)
+
+A terminal chat + agent harness pre-wired to a local LLM (llama.cpp, OpenAI-compatible),
+driving the v2 manager–worker scaffold from §2. You type prompts in a live terminal:
+
+- **chat** — streaming chat REPL against the local model; the model's thinking is shown
+  dim, the answer is rendered as markdown.
+- **harness** — your prompt goes through the full GVS5H loop (`multiagent_solve`):
+  manager plan → ideation worker → manager/worker iterations over a shared workspace
+  (`plan.md`, `notes.md`, `solution.py`/`answer.md`, `tasks.json`) → finalize. A live
+  panel tracks the iteration budget, call count, output tokens, task list and current
+  phase; the result panel renders the final artifact (code highlighted, or the answer as
+  markdown).
+
+Quick start (repo root; Python 3.10+, `rich` for the interactive UI):
+
+```
+python tui/gvs5h_tui.py                        # interactive TUI (chat mode)
+python tui/gvs5h_tui.py --run "Say hi"         # one prompt, non-interactive (streams)
+python tui/gvs5h_tui.py --run "<problem>" --mode harness --spec code --iters 4
+python tui/gvs5h_tui.py --run "<problem>" --mode harness --json   # machine-readable result
+```
+
+It is prewired to the local llama.cpp server (Qwen3.8-27B-Uncensored-HauhauCS Q8_K_P,
+256k context): base `http://192.168.1.69:8080/v1`, model id exactly as served by the
+endpoint. Everything is overridable — CLI flag > env > built-in default:
+
+| flag | env | default | meaning |
+|------|-----|---------|---------|
+| `--base` | `GVS5H_BASE` | local llama.cpp URL | any OpenAI-compatible base URL |
+| `--model` | `GVS5H_MODEL` | local Qwen3.8-27B gguf path | model id sent to the endpoint |
+| `--iters` | `GVS5H_ITERS` | 6 | manager iteration budget (`MULTIAGENT_MAX_ITERS`) |
+| `--cap` | `GVS5H_CAP` | 8192 | max output tokens per model call |
+| `--temp` | `GVS5H_TEMP` | 0.3 | temperature |
+| `--no-think` | — | off | disable thinking (`chat_template_kwargs.enable_thinking=false`) |
+
+Harness specs: `--spec general|code|math` (default `general`; `code`/`math` use the
+scaffold's `CODE_SPEC`/`MATH_SPEC` verbatim). Interactive commands: `/help`, `/mode`,
+`/spec`, `/iters`, `/cap`, `/temp`, `/model`, `/think on|off`, `/new`, `/ws`, `/tasks`,
+`/transcript`, `/save`, `/quit`.
+
+Wiring: the TUI sets the scaffold's env vars and routes model names with the `local:`
+prefix, dispatched in `escalation/orchestrator.py` (`chat()`) to any OpenAI-compatible
+`/v1/chat/completions` endpoint — llama.cpp included (its `reasoning_content` field is
+captured into the transcript like the other providers'). Per-prompt workspaces land in
+`tui_workspaces/<md5(prompt)>/` (gitignored), each with the full `transcript.jsonl` of
+every model call.
+
+### Verified end-to-end (2026-09-11)
+
+All of the below was run live against the llama.cpp server (Qwen3.8-27B-Uncensored-HauhauCS-Aggressive
+Q8_K_P @ `http://192.168.1.69:8080/v1`, 256k context) with the prewired defaults:
+
+- **Endpoint probe.** Non-streaming 183-token completion in 6.7 s (~27 tok/s); SSE streaming emits
+  `content` + `reasoning_content` deltas and terminates on `[DONE]` (66 chunks).
+- **Non-interactive chat.** `python tui/gvs5h_tui.py --run "Say hi"` streams and exits 0.
+- **Harness, general spec** (`--run "What is 17 * 243? Give the decimal result and the same value in
+  hexadecimal (0x...)." --spec general --json`). Full loop — manager plan → ideation → worker → finalize —
+  in 955 s, 5 calls / 5 407 output tokens; final answer `4131 (decimal), 0x1023 (hex)`, verified by
+  two independent methods in the transcript. The log also caught the scaffold's retry loop working:
+  13+ consecutive `URLError` retries while the local server was briefly unreachable, then clean recovery.
+- **Harness, code spec** (`--run "Write a complete, self-contained Python program that reads one
+  integer n from standard input and prints the sum of the first n positive integers on a single line.
+  If n is 0 or negative, print 0." --spec code --json`). 294 s, 7 calls / 1 693 output tokens; produced
+  a working `sys.stdin`-reading program (`n*(n+1)//2`); both worker tasks marked solved.
+- **Interactive TUI.** Chat mode streams the model's thinking (dim) and renders the answer as markdown
+  (5-line haiku request; saved transcript below). Harness mode runs the same loop in a background
+  thread with a live status bar — iteration budget, elapsed time, call/token counts, phase and task
+  list — and a result panel with the final artifact and workspace paths.
+- **Live status bar, interactive.** In the TUI: `/spec general`, `/mode harness`, `/iters 2`, `/cap 4096`,
+  then `What is 12 * 13? Answer with just the final integer.` While the run was in flight the status
+  bar ticked (elapsed `03:53` → `03:56`, `7 calls · 8,284 tok`, tasks `✓ ✓ • (2/3)`); the result panel
+  then showed `8 calls · 8,693 output tokens · 0 truncated` — the +1 call / +409 tokens being the
+  finalize call that landed after the live snapshot, confirming the counters track the workspace
+  transcript as it fills. `answer.md`: `156`, cross-checked two independent ways.
+
+Evidence artifacts in `tui/evidence/`: `out_e2e_general.json` / `out_e2e_code.json` (the `--json`
+results above, incl. workspace path, call and token counts), `out_e2e_general.log` / `out_e2e_code.log`
+(the live run logs), `tui_evidence_chat.md` (saved interactive chat transcript),
+`tui_evidence_harness/` (a full in-TUI harness run: `transcript.jsonl`, `solution.py`, `plan.md`,
+`tasks.json`), and `tui_evidence_live156/` (the live in-TUI 12×13 run: `answer.md`, `tasks.json`,
+`plan.md`, `NOTES.md` with the observed status-bar values).
+
+---
+
 ## 1. `paper/`
 
 `zero_shot_self_orchestration_with_ledger_based_control_for_improved_llm_coding_performance_2026-08-25.tex` and the PDF built from

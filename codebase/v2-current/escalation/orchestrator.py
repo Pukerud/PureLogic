@@ -96,6 +96,17 @@ DASHSCOPE_URL = os.environ.get(
 DASHSCOPE_THINKING_BUDGET = int(os.environ.get("ESCALATION_DASHSCOPE_THINKING_BUDGET", "0"))
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+# Local OpenAI-compatible server (llama.cpp / vLLM / TabbyAPI / ...): a model entry like
+# "local:my-model.gguf" routes here. No key required by default. ESCALATION_LOCAL_EXTRA may
+# hold extra JSON body fields, e.g. '{"chat_template_kwargs": {"enable_thinking": false}}'.
+LOCAL_API_KEY = os.environ.get("ESCALATION_LOCAL_KEY", "local")
+LOCAL_URL = os.environ.get(
+    "ESCALATION_LOCAL_BASE", "http://127.0.0.1:8080/v1/chat/completions")
+try:
+    LOCAL_EXTRA = json.loads(os.environ.get("ESCALATION_LOCAL_EXTRA", "") or "{}")
+except ValueError:
+    LOCAL_EXTRA = {}
+
 # Opus 5 caps output at 128K regardless of what CLOUD_MAX_TOKENS asks for, so this arm
 # cannot match a 200k cap; the call clamps rather than 400s, and records that it did.
 ANTHROPIC_MAX_OUTPUT = 128000
@@ -539,6 +550,9 @@ def chat(model, messages, temperature=0.2, num_ctx=16384, meta=None):
             extra["reasoning"] = {"max_tokens": int(OPENROUTER_REASONING.split(":", 1)[1])}
         # any other value (e.g. "default") -> send nothing; model reasons at its default
         return openai_chat(OPENROUTER_URL, OPENROUTER_API_KEY, model[len("openrouter:"):], messages, temperature, extra, meta)
+    if model.startswith("local:"):  # any OpenAI-compatible local server
+        return openai_chat(LOCAL_URL, LOCAL_API_KEY, model[len("local"):], messages,
+                           temperature, LOCAL_EXTRA or None, meta)
     return ollama_chat(model, messages, temperature=temperature, num_ctx=num_ctx, meta=meta)
 
 

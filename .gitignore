@@ -16,6 +16,11 @@ paper_plot_script/check_nature_specs.py
 iclr-2027-style-files.zip
 iclr2027/
 
+# TUI harness: per-prompt agent workspaces (artifacts + transcripts)
+tui_workspaces/
+# ...except the small tracked in-TUI evidence transcript (README §0).
+!tui/evidence/tui_evidence_harness/transcript.jsonl
+
 # Python
 __pycache__/
 *.py[cod]
@@ -27,6 +32,8 @@ venv/
 # LaTeX build artifacts
 *.aux
 *.log
+# ...except the small TUI e2e run logs (README §0).
+!tui/evidence/*.log
 *.out
 *.toc
 *.synctex.gz
