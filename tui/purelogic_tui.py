@@ -21,8 +21,8 @@ Modes
 Working directory
   Artifacts are written to a `Workspace` subfolder of the directory you launch
   from (override with --workspace-dir or GVS5H_WS_DIR). Each run gets its own
-  subfolder with task.md, plan.md, tasks.json, notes.md, answer.md / solution.py,
-  any files the agent wrote, and transcript.jsonl (every model call).
+  subfolder with requested files and concise result artifacts. Runtime planning
+  files and transcripts are disposable unless explicitly retained.
 
 Screenshots
   Set PURELOGIC_SHOT_DIR=<dir> and the TUI renders the live activity panel to
@@ -144,9 +144,9 @@ def parse_args(argv=None):
     p.add_argument("--vision", choices=["auto", "required", "off"], default=None,
                    help="visual screenshot review policy (default: auto)")
     p.add_argument("--vision-base", default=None,
-                   help="OpenAI-compatible vision endpoint base URL")
+                   help="optional separate vision endpoint; defaults to --base")
     p.add_argument("--vision-model", default=None,
-                   help="vision-capable model id")
+                   help="optional separate vision model; defaults to --model")
     p.add_argument("--vision-cap", type=int, default=None,
                    help="max output tokens for vision review (default 1024)")
     p.add_argument("--keep-transcript", action="store_true",
@@ -176,8 +176,13 @@ class Cfg:
             "PURELOGIC_AUTO_VISUAL", "1").lower() not in {"0", "false", "off", "no"}
         self.inspect = args.inspect or os.environ.get("PURELOGIC_INSPECT", "auto")
         self.vision = args.vision or os.environ.get("PURELOGIC_VISION", "auto")
-        self.vision_base = (args.vision_base or os.environ.get("PURELOGIC_VISION_BASE", "")).rstrip("/")
-        self.vision_model = args.vision_model or os.environ.get("PURELOGIC_VISION_MODEL", "")
+        # The local model endpoint is also the vision endpoint by default. Separate
+        # settings remain available for deployments that use a text model plus a
+        # dedicated multimodal reviewer.
+        self.vision_base = (args.vision_base or os.environ.get(
+            "PURELOGIC_VISION_BASE", "") or self.base).rstrip("/")
+        self.vision_model = args.vision_model or os.environ.get(
+            "PURELOGIC_VISION_MODEL", "") or self.model
         self.vision_cap = args.vision_cap or int(os.environ.get("PURELOGIC_VISION_CAP", "1024"))
         self.keep_transcript = args.keep_transcript or args.verbose or \
             os.environ.get("PURELOGIC_KEEP_TRANSCRIPT", "").lower() in {"1", "true", "yes"}

@@ -73,20 +73,24 @@ the visual run remains usable; `--inspect required` fails the run clearly. Use
 profile, screenshot temporary file, and temporary directory are closed and removed
 after every check.
 
-Vision is independent of browser inspection. Configure an OpenAI-compatible
-multimodal endpoint without putting credentials in code or documentation:
+Vision is independent of browser inspection. By default, screenshot review uses
+the same endpoint and model as `--base` and `--model`; the configured local model
+must support OpenAI-compatible multimodal `image_url` content. A visual run therefore
+needs no second endpoint configuration:
 
 ```powershell
-$env:PURELOGIC_VISION_BASE = "http://localhost:9000/v1"
-$env:PURELOGIC_VISION_MODEL = "a-vision-model-id"
-powershell -File tui\start_tui.ps1 --spec visual --vision required --run "Build a card grid"
+powershell -File tui\start_tui.ps1 --spec visual --vision required `
+  --run "Build a card grid"
 ```
 
-The same settings can be passed as `--vision-base` and `--vision-model`. Use
+For a separate multimodal reviewer, override the defaults with
+`--vision-base`/`--vision-model` or `PURELOGIC_VISION_BASE`/
+`PURELOGIC_VISION_MODEL`. Use
 `--vision auto` (default) to report an unavailable endpoint without breaking the
 visual run, `--vision required` to fail clearly when it is missing or unusable, or
 `--vision off` to skip screenshot review. Endpoint access and model compatibility
-are deployment-specific; a live vision call is not required for DOM-only operation.
+are deployment-specific; DOM-only inspection remains available when the local model
+does not accept images.
 
 ## Workspaces and cleanup
 
@@ -124,8 +128,8 @@ sandboxed to that run folder.
 | `--file-cap` | `GVS5H_FILE_CAP` | file-worker output cap |
 | `--inspect` | `PURELOGIC_INSPECT` | `auto`, `required`, or `off` |
 | `--vision` | `PURELOGIC_VISION` | screenshot review policy |
-| `--vision-base` | `PURELOGIC_VISION_BASE` | multimodal endpoint base |
-| `--vision-model` | `PURELOGIC_VISION_MODEL` | multimodal model id |
+| `--vision-base` | `PURELOGIC_VISION_BASE` | optional separate multimodal endpoint (defaults to `--base`) |
+| `--vision-model` | `PURELOGIC_VISION_MODEL` | optional separate multimodal model (defaults to `--model`) |
 | `--keep-transcript` | `PURELOGIC_KEEP_TRANSCRIPT` | retain full transcript |
 | `--keep-evidence` | `PURELOGIC_KEEP_EVIDENCE` | retain latest screenshot |
 

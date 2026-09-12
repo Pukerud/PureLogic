@@ -4,9 +4,10 @@ import tempfile
 import types
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from tui.visual_inspector import concise_summary, inspect_visual_artifact
-from tui.purelogic_tui import resolve_spec
+from tui.purelogic_tui import Cfg, parse_args, resolve_spec
 
 
 class _FakePage:
@@ -81,6 +82,21 @@ class _FakePlaywrightContext:
 
 
 class VisualInspectorTests(unittest.TestCase):
+    def test_vision_defaults_to_local_endpoint_and_model(self):
+        with patch.dict(
+            "os.environ",
+            {"PURELOGIC_VISION_BASE": "", "PURELOGIC_VISION_MODEL": ""},
+            clear=False,
+        ):
+            with tempfile.TemporaryDirectory() as directory:
+                cfg = Cfg(parse_args([
+                    "--base", "http://local.test/v1",
+                    "--model", "local-vision-model",
+                    "--workspace-dir", directory,
+                ]))
+                self.assertEqual(cfg.vision_base, "http://local.test/v1")
+                self.assertEqual(cfg.vision_model, "local-vision-model")
+
     def test_smart_route_preserves_explicit_specs(self):
         self.assertEqual(resolve_spec("general", "Build an HTML dashboard"), "visual")
         self.assertEqual(resolve_spec("code", "Build an HTML dashboard"), "code")
