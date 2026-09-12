@@ -1,8 +1,0 @@
-- **Fixed target frequency:** Choose a positive common frequency `freq` for every retained letter. Each letter's final count is either `0` or `freq`. It is enough to test `freq` from `1` through the maximum original letter count.
-- **Baseline:** For a selected final count `x` of one letter, deleting or inserting independently costs `abs(count[i] - x)`.
-- **Adjacent conversion saving:** Converting an excess occurrence of letter `i - 1` into a missing occurrence of letter `i` costs `1`, while deleting and inserting would cost `2`, yielding a saving of `1` per matched occurrence.
-- **DP states:** For each frequency, process letters left to right. `dp0` means the current letter is absent; `dp1` means it occurs exactly `freq` times.
-- **Corrected transition:** The conversion surplus for the edge into letter `i` must be calculated from `count[i - 1]`, not `count[i]`. If the previous letter is absent, its surplus is all `count[i - 1]`; if retained, it is `max(0, count[i - 1] - freq)`.
-- **Transitions:** An absent current letter has cost `count[i]` and no incoming deficit. A retained current letter has baseline `abs(count[i] - freq)` and can reduce it by `min(previous_surplus, max(0, freq - count[i]))`.
-- **Complexity:** At most `max(count)` frequencies are tested, each with 26 letters and constant transitions: `O(26 * |s|)` time and `O(1)` extra space.
-- **Sample validation:** `acab -> 1`, `wddw -> 0`, and `aaabc -> 2`.

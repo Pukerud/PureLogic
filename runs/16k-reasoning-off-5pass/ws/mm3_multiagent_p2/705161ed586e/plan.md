@@ -1,5 +1,0 @@
-We need to transform a string so that every character appears in groups (contiguous runs) of length at least 3, using minimum operations where each operation changes a character by ±1 in the alphabet, and we must return the lexicographically smallest result among all optimal-cost solutions.
-
-The key insight: the string is small (n ≤ 5e4) and alphabet size is 26. This is a classic string DP where we process left-to-right, at each position choosing a target character and the run length (at least 3) that ends here, and we minimize total cost. Transitions ensure that either the same character continues a run, or a new run starts. The cost of changing a character `c` to `d` is the absolute difference in the alphabet (each ±1 is one operation). To get the lexicographically smallest answer, we can store the resulting string for each DP state and pick the minimum string when costs tie.
-
-After DP, we check the answer at position n. The answer is the string with minimum cost, or "" if impossible.

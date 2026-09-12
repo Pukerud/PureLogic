@@ -1,6 +1,0 @@
-1. Sort the conflicting pairs by their right endpoint `b`. This allows us to process intervals in order and efficiently compute the maximum left endpoint `a` for any prefix of pairs.
-2. Calculate the total number of invalid subarrays for the full set of pairs. A subarray `[l, r]` is invalid if it covers at least one pair `[a, b]`, which happens when `l <= a` and `r >= b`. For a fixed `r`, the number of invalid `l`'s is exactly the maximum `a` among all pairs with `b <= r`. Summing this maximum over all `r` gives the total invalid count.
-3. To find the optimal pair to remove, we compute how much the invalid count decreases. Removing a pair `[a_i, b_i]` only affects the invalid count for `r >= b_i`. The reduction is determined by how much the maximum `a` drops in the affected ranges.
-4. Precompute the second-largest `a` value for each prefix of sorted pairs. This allows us to quickly determine the new maximum after removing the current maximum.
-5. Use a monotonic stack to find the next pair with `a >= a_i` for each pair, defining the range where `a_i` is the dominant maximum. Combine this with prefix sums of contributions to compute the reduction for each removal in `O(1)`.
-6. The answer is the total number of subarrays minus the minimum possible invalid count after removing the best pair.

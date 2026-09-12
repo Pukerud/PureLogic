@@ -1,6 +1,0 @@
-- **Functional graph structure:** Every connected component has exactly one directed cycle. Along a directed cycle, the inequalities imply equality of all cycle variables.
-- **Tree DP:** For a non-cycle vertex \(u\), let `dp[u][v]` count assignments in the tree rooted at \(u\) when \(x_u=v+1\). Each incoming non-cycle child \(c\) must satisfy \(x_c \le x_u\), so its contribution is the prefix sum \(\sum_{t\le v} dp[c][t]\). Contributions of distinct children multiply.
-- **Cycle components:** Once the common cycle value is fixed, all attached trees are independent. For each possible value, multiply the contributions from every cycle vertex, then sum over all values. Component answers multiply globally.
-- **Cycle detection and order:** Indegree peeling removes all non-cycle vertices. The remaining vertices are exactly cycle vertices. The peeling order guarantees that every tree child is processed before its parent.
-- **Complexity:** Each graph edge participates in one prefix-sum transition, and each vertex has \(M\) value states, giving \(O(NM)\) time. DP rows use `array('I')`, reducing memory to \(O(NM)\) with compact 32-bit storage.
-- **Edge cases:** Self-loops are one-vertex cycles; cycle predecessors are excluded from tree-child processing, ensuring they are handled through the shared cycle value instead.

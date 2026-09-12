@@ -1,4 +1,0 @@
-1. The condition that the middle element `v` is the unique mode of a 5-element subsequence is equivalent to requiring that `v` appears at least twice in the remaining 4 elements, and no other element appears more times than `v`.
-2. We can classify pairs of elements from the left and right of the middle index into four types based on their composition relative to `v`: Type 0 (two distinct non-`v`), Type 1 (one `v`, one non-`v`), Type 2 (two `v`'s), and Type 3 (two identical non-`v`'s).
-3. By iterating through each possible middle index, we can maintain frequency counts and duplicate pair counts for the left and right partitions. Using these, we compute the number of valid pairs of each type in $O(1)$ time.
-4. We sum up the valid combinations of left and right pairs that satisfy the unique mode condition, update the frequencies as the middle index slides, and return the result modulo $10^9 + 7$. This approach runs in $O(n)$ time and $O(n)$ space.

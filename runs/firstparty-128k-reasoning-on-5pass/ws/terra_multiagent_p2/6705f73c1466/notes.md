@@ -1,6 +1,0 @@
-- **Approach:** Preserve the relative order of all `1`s, since swapping equal characters is unnecessary. If the `j`-th one (zero-based among ones) is sent to a consecutive block starting at `x`, its destination is `x + j`, giving movement cost `abs(pos[j] - (x + j))`.
-- **Transformation:** Define adjusted positions `a[j] = pos[j] - j`. The total cost becomes `sum(abs(a[j] - x))`, minimized when `x` is a median of `a`.
-- **Implementation:** Collect zero-based indices of `1`s. Choose `positions[m // 2] - m // 2` as a median adjusted position, then sum `abs((positions[j] - j) - median)`.
-- **Correctness:** The adjusted positions are nondecreasing, so the selected middle value is a median. The sum of distances to a median is minimal. Ordered one movements into the selected consecutive interval require exactly this many adjacent swaps.
-- **Complexity:** `O(N)` time and `O(N)` memory, suitable for `N <= 5 * 10^5`.
-- **Edge cases:** A single `1` and already contiguous ones both produce zero. Python integers safely hold the answer.

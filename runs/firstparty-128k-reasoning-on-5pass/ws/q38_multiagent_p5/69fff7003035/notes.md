@@ -1,8 +1,0 @@
-- **Linearity:** For each value x, its contribution is x times the sum over permutations of 10^(digits after x). Only the digit length a of x matters for that multiplier sum.
-- **Grouping:** Let c_d be the count and S_d the sum of values with d digits. D <= 6 for N <= 2e5. For length a, the other numbers have weights 10^d with counts c_d, except one factor of length a is removed.
-- **Coefficient form:** If P_a(z) = prod_d (1 + 10^d z)^(c_d - [d=a]), then G_a = sum_{k=0}^{N-1} k!(N-1-k)! [z^k] P_a(z). The answer is sum_a S_a G_a.
-- **Full Q:** Q(z) = prod_d (1 + 10^d z)^(c_d), with coefficients q_k. Since P_a = Q / (1 + 10^a z), p_0 = 1 and p_k = q_k - 10^a p_{k-1}.
-- **Log derivative recurrence:** Q' = Q * sum_d c_d 10^d / (1 + 10^d z). Maintain A_d(k) = sum_{j=0}^k q_j (-10^d)^(k-j), with A_d(0)=1. Then q_{k+1} = inv[k+1] * sum_d c_d 10^d A_d(k), and A_d(k+1) = q_{k+1} - 10^d A_d(k).
-- **Implementation:** Precompute factorials, modular inverses up to N, and h[k] = fact[k] fact[N-1-k]. Compute q[0..N-1] using only active lengths. Then for each active length a, divide by (1 + 10^a z) and dot p_k with h[k].
-- **Edge cases:** N=1 gives q and h of length 1 and empty loops, answer 1. All arithmetic is modulo 998244353; N < MOD so inverses exist. Arithmetic-progression sums for S_d use inv2.
-- **Complexity:** O(DN) time and O(N) memory, with D <= 6, easily within limits.

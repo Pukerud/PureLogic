@@ -1,7 +1,0 @@
-- **Tree traversal:** Root the tree at node 0 and perform an explicit iterative DFS so chains of length up to 50,000 do not exceed Python’s recursion limit.
-- **Path state:** Maintain the current root-to-node path’s cumulative distances in `prefix_dist`; its index is the node depth.
-- **Uniqueness boundary:** For each value, store its latest depth on the active path. When visiting a node, if the same value previously appeared at depth `p`, every valid path start must be deeper than `p`. Therefore maintain `boundary = max(previous latest depths)`.
-- **Best path for an endpoint:** All edge lengths are positive, so among valid paths ending at the current node, the earliest valid start (`boundary + 1`) gives the maximum length. Its length is `distance - prefix_dist[boundary + 1]`, and its node count is `depth - boundary`.
-- **Rollback:** Each enter event saves the previous latest depth for the node’s value and the previous boundary. The matching exit event restores both, ensuring sibling subtrees do not affect one another.
-- **Complexity:** Each node and edge is processed a constant number of times. Time complexity is O(n), and auxiliary space is O(n).
-- **Edge cases:** A single-node path is always considered. If all nontrivial paths violate uniqueness, the result correctly remains length 0 and node count 1. Equal-length paths are compared by their number of nodes.

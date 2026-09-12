@@ -1,5 +1,0 @@
-- **Reverse processing:** Process values from \(N\) down to \(1\). At the point where value \(i\) is restored, the currently available final positions correspond exactly to the elements present before inserting \(i\).
-- **Position selection:** \(P_i\) therefore identifies the \(P_i\)-th currently available position in the final array.
-- **Fenwick tree:** Store 1 for every available slot and 0 for every occupied slot. It supports selecting the \(k\)-th available slot and removing it in \(O(\log N)\).
-- **Initialization:** Since every slot is initially available, the Fenwick value at index \(i\) is initialized directly as \(i \& -i\), the sum contributed by an all-ones array.
-- **Complexity:** The algorithm uses \(O(N \log N)\) time and \(O(N)\) memory.

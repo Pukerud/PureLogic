@@ -1,7 +1,0 @@
-1. **Coordinate Compression**: Since values can be up to $2 \times 10^8$, compress all values from sequences $A$ and $B$ into the range $[0, M-1]$ where $M \le 2N$. This allows us to use a segment tree over indices rather than values.
-2. **Persistent Segment Trees**: Build two persistent segment trees, one for prefix sums of $A$ and one for $B$. The $x$-th version of the tree for $A$ will store the multiset $\{A_1, \dots, A_x\}$, and similarly for $B$. Each node in the segment tree will maintain the count of numbers and their sum within its range.
-3. **Query Processing**: For each query $(X_k, Y_k)$, we need to compute $\sum_{i=1}^{X_k} \sum_{j=1}^{Y_k} |A_i - B_j|$. This can be done efficiently by traversing both persistent segment trees simultaneously. At each node covering range $[L, R]$, we split the contribution into:
-   - Pairs where both values fall in the left child.
-   - Pairs where both values fall in the right child.
-   - Cross pairs where one value is in the left child of one tree and the other is in the right child of the other tree. Since all values in the left child are $\le$ all values in the right child, the absolute difference simplifies to a linear combination of counts and sums, computable in $O(1)$.
-4. **Complexity**: Building the trees takes $O(N \log M)$. Each query takes $O(\log M)$. Total time complexity is $O((N + K) \log N)$, which fits well within the limits. Memory usage is $O(N \log N)$, also acceptable.

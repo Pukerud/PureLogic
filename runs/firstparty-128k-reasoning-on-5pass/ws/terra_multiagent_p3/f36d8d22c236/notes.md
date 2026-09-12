@@ -1,6 +1,0 @@
-- **Approach:** For every source letter, all its occurrences must require the same target letter. Build a 26-element mapping array and reject any conflicting requirement.
-- **Graph model:** Ignore identity mappings. Every remaining source-to-target mapping is one required operation, so start the answer with the number of distinct non-identity mapping edges.
-- **Cycles:** The remaining graph has outdegree at most one. Each directed cycle requires exactly one additional operation to move one letter temporarily to a spare character while rotating the cycle.
-- **Spare character condition:** A cycle is possible only if at least one lowercase letter does not occur in `T`. If all 26 characters occur in `T` and there is any nontrivial cycle, output `-1`.
-- **Cycle detection:** Use DFS states on the 26-node functional graph. Encountering an edge to a currently visiting node identifies exactly one directed cycle. Identity edges are removed before DFS so they do not count.
-- **Complexity:** Building mappings is `O(N)`. Counting and DFS are `O(26)`. Memory is `O(26)`.

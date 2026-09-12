@@ -1,1 +1,0 @@
-Process insertions in reverse using the fact that when number \(i\) was inserted, it occupied the \(P_i\)-th currently available position. Maintain all final array positions as initially empty in a Fenwick tree, where each empty position has value 1. For \(i=N\) down to \(1\), find the \(P_i\)-th empty position, place \(i\) there, and remove that position from the tree.

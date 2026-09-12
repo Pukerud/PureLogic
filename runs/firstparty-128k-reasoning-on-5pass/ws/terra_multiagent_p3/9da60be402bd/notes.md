@@ -1,7 +1,0 @@
-- **State model:** Use an ordered pair `(u, v)` as a state representing a palindrome path whose currently exposed endpoints are `u` and `v`.
-- **Centers:** Every `(i, i)` has distance `0`, because the empty string is a palindrome. Every directed edge `u -> v` gives a length-`1` palindrome center, unless `u == v`, where length `0` is already better.
-- **Transitions:** From `(u, v)`, choose a label `c`, an edge `x -> u` labeled `c`, and an edge `v -> y` labeled `c`. This constructs a palindrome path from `x` to `y` with length `dist[u][v] + 2`.
-- **Traversal:** Multi-source BFS is valid because all transitions add two edges and all length-0 centers are enqueued before length-1 centers. The first assigned distance for a pair is shortest.
-- **Adjacency organization:** Store incoming vertices grouped by destination and character. Store outgoing destinations grouped by source and character as bitmasks.
-- **Performance:** For a transition label, intersect the successor bitmask with an `unvisited[x]` bitmask. Each pair is discovered and enqueued once, while predecessor scanning is at most about `O(N^3)` over reachable states. This avoids explicitly iterating all `O(N^4)` product transitions in dense graphs.
-- **Output:** Unreached pairs remain `-1`.

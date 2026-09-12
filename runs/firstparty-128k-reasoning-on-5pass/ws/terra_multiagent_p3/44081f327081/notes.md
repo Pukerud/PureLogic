@@ -1,7 +1,0 @@
-- **Observation:** A GCD value `d` is achievable for an occurrence of value `x` exactly when `d` divides `x` and at least `K` array elements are divisible by `d`.
-- **Frequency sieve:** Store `freq[v]`, the number of occurrences of each value `v`. For every `d`, sum `freq[d], freq[2d], ...` to count elements divisible by `d`.
-- **Answer propagation:** Iterate divisors `d` in increasing order. When at least `K` elements are divisible by `d`, assign `ans[multiple] = d` for every multiple of `d`. Since iteration is increasing, the final assigned value is the largest feasible divisor.
-- **Early stopping:** While counting multiples of `d`, stop immediately once the count reaches `K`; no exact count beyond `K` is needed.
-- **Complexity:** Both sieve passes have harmonic-series complexity, `O(M log M)`, where `M = max(A) <= 10^6`. Memory is `O(M + N)`.
-- **Duplicates:** Frequencies count positions, so repeated values are correctly included in the `K` chosen elements.
-- **Edge case `K=1`:** Every value is itself feasible, so each answer equals its original array value; the sieve naturally produces this result.

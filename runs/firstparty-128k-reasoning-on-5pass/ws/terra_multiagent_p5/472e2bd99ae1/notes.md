@@ -1,7 +1,0 @@
-- **Approach:** Sort `A`, `B`, and `C` in descending order. Since all values are positive, `A_iB_j + B_jC_k + C_kA_i` is nonincreasing when any sorted-array index is increased.
-- **Traversal:** Treat triples `(i, j, k)` as cells of an implicit monotone 3D array. Start from `(0, 0, 0)`, repeatedly pop the largest value from a max-heap, and add valid neighbors obtained by increasing one coordinate.
-- **Correctness:** Every triple is reachable from `(0,0,0)` through coordinate increments. For every unvisited triple, a predecessor on such a path is either in the heap or has not yet been exposed through an earlier predecessor. Monotonicity ensures heap extraction produces values in globally nonincreasing order.
-- **Rank handling:** Pop exactly `K` triples. The value from the `K`-th pop is the answer. Equal scores are still counted independently because deduplication is by triple index, not score.
-- **Memory optimization:** Triple indices are encoded as one integer `i*N*N + j*N + k`, avoiding high memory usage from storing coordinate tuples in both the heap and visited set.
-- **Complexity:** Sorting costs `O(N log N)`. At most `3K+1` states are inserted, and `K` are popped, giving `O(K log K)` heap work. Memory is `O(K)`.
-- **Integer safety:** The maximum score is below `3 * 10^18`; Python integers safely handle it.

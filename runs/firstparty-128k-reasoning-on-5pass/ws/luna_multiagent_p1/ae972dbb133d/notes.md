@@ -1,8 +1,0 @@
-- **Edge variables:** Let \(x_{i,j}\) be the usage of the horizontal edge immediately to the right of cell \((i,j)\), and \(y_{i,j}\) the usage of the vertical edge immediately below it.
-- **Local constraints:** For type A, the left and right horizontal edges differ, and the top and bottom vertical edges differ. For type B, the corresponding pairs are equal, and the horizontal and vertical values are opposite.
-- **Row representation:** Choose one variable \(R_i=x_{i,W-1}\). Moving across row \(i\), each A cell toggles the horizontal edge value and each B cell preserves it. Therefore every row must contain an even number of A cells, otherwise the toroidal wraparound is impossible.
-- **Column representation:** Similarly, choose \(C_j=y_{H-1,j}\). Every column must contain an even number of A cells.
-- **Prefix formula:** After the parity checks, \(x_{i,j-1}=R_i\oplus p_{i,j}\), where \(p_{i,j}\) is the parity of A cells in row \(i\) before column \(j\). Likewise \(y_{i-1,j}=C_j\oplus q_{i,j}\), where \(q_{i,j}\) is the parity of A cells in column \(j\) before row \(i\).
-- **Type B equations:** A B cell requires opposite horizontal and vertical choices, giving \(R_i\oplus C_j=1\oplus p_{i,j}\oplus q_{i,j}\). Each such equation is inserted into a parity DSU.
-- **Counting:** If the DSU is contradictory, the answer is zero. Otherwise, each connected component has one free binary value, so the number of assignments is \(2^{\text{components}}\) modulo 998244353. Isolated row and column variables are included automatically.
-- **Complexity:** Prefix parities and DSU processing take \(O(HW)\) time and \(O(HW+H+W)\) memory per test case; the total time is linear in the total input size.

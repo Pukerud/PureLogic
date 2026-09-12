@@ -1,6 +1,0 @@
-- **State definition:** For a fixed first cut `i`, maintain `F_i(j) = distinct(A[i+1..j]) + distinct(A[j+1..N])` for every possible second cut `j`.
-- **Initialization:** Before removing any prefix elements, use `F_0(j) = distinct(A[1..j]) + distinct(A[j+1..N])`, computed from prefix and suffix distinct-count arrays.
-- **Sweep transition:** Moving from first cut `i-1` to `i` removes `A_i` from the middle segment. If its next occurrence is `q`, this removal decreases the middle distinct count exactly for `j` in `[i, q-1]`; if there is no next occurrence, the endpoint is `N-1`.
-- **Validity:** After processing the transition for `i`, query only `j` in `[i+1, N-1]`, ensuring both the middle and final subarrays are non-empty. Previously invalid positions can remain in the tree because they are never queried again.
-- **Data structure:** A lazy segment tree supports range decrements and range maximum queries in `O(log N)` per first cut, giving total `O(N log N)` time and `O(N)` memory.
-- **Sanity check:** For small arrays, direct enumeration of all `(i,j)` pairs matches the sweep formula; the crucial update interval is `[i, next_occurrence(i)-1]`, including the whole suffix of candidate cuts when no later occurrence exists.

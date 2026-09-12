@@ -1,6 +1,0 @@
-- **Approach:** Sweep the second cut `j` from 2 through `N-1`. For every possible first cut `i < j`, maintain `prefix_distinct[i] + distinct(A[i+1..j])` in a lazy segment tree.
-- **Middle-segment update:** When adding `A[j]`, let its previous occurrence be `p` (or 0 if none). It is newly distinct in the middle segment for exactly the cuts `i >= p`, because the earlier occurrence belongs to `A[i+1..j]` only if `p > i`. Therefore add 1 over `i in [max(1,p), j-1]`.
-- **Activation:** Only valid first cuts may contribute. Leaf `i=j-1` is activated immediately before processing `A[j]`, initialized to `prefix_distinct[j-1]`. Earlier updates cannot have affected this leaf because each update at position `t` ends at `t-1 < j-1`.
-- **Suffix contribution:** Precompute `suffix_distinct[k] = distinct(A[k..N])`. After processing second cut `j`, the third segment contributes `suffix_distinct[j+1]`.
-- **Complexity:** Prefix/suffix preprocessing is `O(N)`. Each sweep iteration performs one point activation and one range add, each `O(log N)`, for total `O(N log N)` time and `O(N)` memory.
-- **Indexing:** Cuts are 1-based positions with `1 <= i < j <= N-1`; hence the sweep range is `j=2..N-1`, ensuring all three segments are non-empty.

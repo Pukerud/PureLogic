@@ -1,6 +1,0 @@
-- **Approach:** Compute the inversion count for shift `k=0` with a Fenwick tree over values. Scan from left to right; for value `x`, the number of earlier values greater than `x` is `seen - prefix_count(x)`.
-- **Transition:** From shift `k` to `k+1`, only elements currently equal to `M-1` wrap to `0`. These correspond to original value `x = M-1-k`. All other values preserve relative order.
-- **Delta derivation:** For every occurrence at 1-indexed position `p` of a value appearing `c` times, wrapping changes the inversion count by its number of non-equal preceding elements minus its number of non-equal following elements. Summed over all occurrences of value `x`, the update is `2 * positionSum[x] - count[x] * (N+1)`.
-- **Order:** Output the current answer for shift `k`, then apply the delta for original value `M-1-k` to obtain the answer for the next shift.
-- **Complexity:** Fenwick initialization and inversion computation take `O(N log M)`. Counting and transition output take `O(N+M)`. Memory usage is `O(M)`.
-- **Edge cases:** Absent values have zero delta. Equal values never form inversions and their mutual pairs do not affect transitions. Python integers safely handle the maximum inversion count.

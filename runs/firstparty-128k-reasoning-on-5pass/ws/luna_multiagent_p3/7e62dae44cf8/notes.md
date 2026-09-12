@@ -1,7 +1,0 @@
-- **Approach:** Maintain all undiscovered neighboring cells in a min-heap, ordered by slime strength.
-- **Greedy choice:** If the smallest boundary slime is not absorbable, then every other boundary slime is at least as strong and is also not absorbable. Thus processing can stop immediately.
-- **Eligibility:** The condition is strict: absorb only when `X * value < current_strength`.
-- **Boundary maintenance:** Mark cells when they are inserted into the heap, so each cell is enqueued at most once. Absorbing a cell exposes its four neighbors.
-- **Correctness:** Absorbing an available slime only increases Takahashi’s strength and never removes any other boundary candidate. Therefore repeatedly absorbing the smallest currently available absorbable slime reaches the maximum possible strength.
-- **Complexity:** Each grid cell is inserted and removed at most once, giving `O(HW log(HW))` time and `O(HW)` memory.
-- **Integer safety:** Python integers safely handle the potentially large products and accumulated strength.

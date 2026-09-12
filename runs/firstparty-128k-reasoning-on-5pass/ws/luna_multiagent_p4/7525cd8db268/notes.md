@@ -1,9 +1,0 @@
-- **Normalization:** Every pair is converted to `(left, right)` with `left < right`, then grouped by its larger endpoint.
-- **Sweep invariant:** At subarray right endpoint `right`, every pair with second endpoint at most `right` is relevant. The maximum first endpoint among these pairs is the forbidden starting boundary.
-- **Baseline:** With boundary `best_left`, valid subarrays ending at `right` have left endpoints `best_left + 1` through `right`, contributing `right - best_left`.
-- **Removal gain:** If one pair uniquely supplies `best_left`, removing it changes the boundary to `second_left`, producing an additional `best_left - second_left` valid subarrays for this right endpoint.
-- **Tie handling:** When another pair has the same maximum left endpoint, no single pair is uniquely responsible. Setting `second_left = best_left` correctly makes the gain zero.
-- **Duplicate and reversed pairs:** Reversed pairs are normalized, and duplicate pairs are handled as ties, so removing only one duplicate does not incorrectly remove the shared restriction.
-- **Exactly one removal:** The baseline counts all pairs as active. Each pair’s accumulated gain represents the result of removing that specific pair, and the maximum gain is selected.
-- **Validation:** The sweep gives 9 for `n=4, [[2,3],[1,4]]` and 12 for `n=5, [[1,2],[2,5],[3,5]]`. Exhaustive small-case reasoning also confirms cases with ties, duplicate pairs, reversed input order, and pairs that never become the dominant boundary.
-- **Complexity:** `O(n + m)` time and `O(n + m)` space, where `m` is the number of conflicting pairs.

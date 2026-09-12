@@ -1,6 +1,0 @@
-1. The total sum of Manhattan distances over all valid arrangements can be decomposed into the sum of horizontal distances and vertical distances independently, since Manhattan distance is |x_i - x_j| + |y_i - y_j|.
-2. For any pair of distinct cells (r1, c1) and (r2, c2), the contribution to the total sum is (|r1 - r2| + |c1 - c2|) multiplied by the number of ways to place the remaining k-2 pieces in the other m*n - 2 cells, which is C(m*n - 2, k - 2).
-3. We can precompute the sum of |r1 - r2| over all pairs of rows and similarly for columns. The sum of |r1 - r2| for all pairs of cells can be computed by considering that for each pair of rows (i, j), there are n * n pairs of cells with row difference |i - j|.
-4. Specifically, the sum of |r1 - r2| over all pairs of cells is n^2 * (sum of |i - j| for all 1<=i,j<=m). Similarly for columns, it is m^2 * (sum of |i - j| for all 1<=i,j<=n).
-5. The sum of |i - j| for 1<=i,j<=L can be computed as 2 * sum_{d=1}^{L-1} d * (L - d).
-6. Finally, multiply the total horizontal + vertical sum by C(m*n - 2, k - 2) modulo 10^9 + 7.

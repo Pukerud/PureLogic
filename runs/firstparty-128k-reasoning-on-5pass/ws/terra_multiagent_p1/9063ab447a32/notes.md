@@ -1,8 +1,0 @@
-- **Marginal-cost model:** Buying the \(k\)-th unit of product \(i\) costs an additional \((2k-1)P_i\). Since these marginal costs are nondecreasing for every product, an optimal purchase takes globally cheapest marginal units.
-- **Threshold count:** For a marginal-price threshold \(x\), product price \(P\) contributes `count = (x // P + 1) // 2` units, because this is the number of positive odd integers not exceeding `x // P`.
-- **Threshold cost:** Buying those `count` units costs `count^2 * P`, matching the original quadratic cost.
-- **Binary search:** Search the largest integer threshold `x` in `[0, M]` for which buying every marginal unit with price at most `x` has total cost at most `M`. This takes \(O(N \log M)\).
-- **Partial final price level:** After obtaining the feasible threshold, calculate the first not-yet-bought marginal cost for every product, `((2*count)+1)*P`, and take their minimum `next_cost`. Any further affordable marginal unit must have this cost. The remaining budget purchases `remaining // next_cost` such units.
-- **Correctness of partial purchase:** If the next price level could be fully bought, the threshold could have been raised to include it. Thus the remaining division never exceeds the number of available units at that price level.
-- **Complexity:** \(O(N\log M)\) time and \(O(N)\) input storage. Python integers safely handle all intermediate products and sums.
-- **Stock limit:** The stock bound \(10^{100}\) is irrelevant because the total budget is at most \(10^{18}\), so no affordable purchase count approaches it.

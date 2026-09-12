@@ -1,9 +1,0 @@
-- **Model:** Takahashi’s absorbed cells form a connected 4-neighbor region containing the start cell. His current strength is the sum of all strengths in that region.
-- **Legal move:** An unvisited cell adjacent to the region can be absorbed exactly when `X * S_cell < total`. This avoids floating point and correctly implements the strict inequality.
-- **Monotonicity:** All strengths are positive. Absorbing any legal cell increases `total` and only adds new boundary cells. It never makes a previously legal boundary cell illegal, so the order of legal absorptions does not affect the final maximum total.
-- **Greedy stop condition:** Keep the current boundary in a min-heap ordered by cell strength. If the smallest boundary cell fails `X * s < total`, then every other boundary cell has strength at least `s` and also fails. Therefore no further move is possible and the current total is optimal.
-- **Heap management:** Use flattened 1D indices from `0` to `H*W-1`. The start cell is marked visited initially. Its unvisited 4-neighbors are pushed into the heap. When a cell is popped and absorbable, mark it visited, add its strength, and push its unvisited 4-neighbors.
-- **Duplicate prevention:** Use an `in_heap` bytearray so each unvisited cell is pushed at most once. This keeps the heap size `O(HW)` and avoids stale duplicate entries. A visited check is still kept as a safe stale-entry guard.
-- **Boundary checks:** For index `idx`, up is `idx - W` if `idx >= W`, down is `idx + W` if `idx < N - W`, left/right require `col = idx % W` and checking `col > 0` or `col + 1 < W`.
-- **Complexity:** Each cell is pushed and popped at most once, giving `O(HW log(HW))` time and `O(HW)` memory. With `H, W <= 500`, this is comfortably fast in Python.
-- **Samples:** Expected outputs are `28`, `5`, and `1343` for the three provided samples, matching the statement, so the implementation passes the provided samples.

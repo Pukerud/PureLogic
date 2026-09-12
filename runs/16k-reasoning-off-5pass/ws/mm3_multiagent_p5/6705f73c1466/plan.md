@@ -1,5 +1,0 @@
-We need to bring all 1s into one contiguous block using adjacent swaps. Let total number of 1s be `K`. If we decide that the final block occupies positions `l, l+1, ..., l+K-1`, then each original 1 at position `pos[i]` (0-indexed) must move into that block. The minimal number of adjacent swaps for one 1 moving from `pos[i]` into a target interval is `|pos[i] - target[i]|`, where `target[i] = l + i`. Summing over i and minimizing over all possible starting positions `l` gives the answer.
-
-Equivalently, after shifting positions so that they are consecutive relative to the start of the block, we need to align the sorted list of original 1-positions with the arithmetic progression `0,1,2,...,K-1`. The cost for a given `l` is `sum |pos[i] - (l+i)|`. This is a convex piecewise-linear function of `l`, and the minimum is achieved at the median of the values `pos[i] - i`. So we pick `l` as the median, compute the total cost, and output it.
-
-The median is found by sorting `pos[i] - i` and picking the middle element. Complexity O(N log N) or O(N) with quickselect; O(N log N) is fine for N ≤ 5e5.

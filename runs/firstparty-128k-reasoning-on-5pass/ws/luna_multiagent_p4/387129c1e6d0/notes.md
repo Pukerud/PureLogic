@@ -1,7 +1,0 @@
-- **Representation:** Horizontal movements are grouped by fixed `y` and store inclusive `x` intervals. Vertical movements are grouped by fixed `x` and store inclusive `y` intervals.
-- **Offline processing:** All movements are simulated first, recording every segment and obtaining Santa’s final position. Each group’s intervals are sorted and merged, so overlapping or touching intervals are processed only once.
-- **House lookup:** Houses are grouped by the matching fixed coordinate and sorted by their varying coordinate. Binary search locates houses inside each merged inclusive interval.
-- **Deduplication:** A global `bytearray` indexed by house ID ensures a house counted on both a horizontal and vertical segment, or on multiple segments, contributes only once.
-- **Complexity:** Sorting intervals and houses costs \(O((N+M)\log(N+M))\) overall. Each house is examined at most once for its horizontal group and once for its vertical group. Memory usage is \(O(N+M)\).
-- **Integer safety:** Python integers handle the potentially larger-than-32-bit final coordinates without overflow.
-- **Endpoint handling:** `bisect_left` and `bisect_right` use inclusive interval bounds, correctly counting houses at segment starts and ends.

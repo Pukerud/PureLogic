@@ -1,6 +1,0 @@
-- **Counting formulation:** A fine triplet satisfies `A + C = 2B`. The indicator polynomial of the set is convolved with itself, so coefficient `conv[x]` counts ordered pairs `(A, C)` whose sum is `x`.
-- **Middle-element contribution:** For each `B` in the set, `conv[2B]` contains the invalid pair `(B, B)`. Every valid endpoint pair appears in both orders, so its contribution is `(conv[2B] - 1) // 2`.
-- **NTT modulus:** `998244353` has primitive root `3` and supports transform lengths up to `2^23`. The required length is at most `2^21`, since values are at most `10^6`.
-- **Exactness:** Each convolution coefficient is at most `N`, which is much smaller than the modulus, so the single-modulus NTT result is the exact coefficient.
-- **Transform implementation:** Both forward and inverse transforms use the standard iterative Cooley–Tukey NTT with an explicit bit-reversal permutation. The inverse transform uses inverse roots and multiplies every coefficient by the modular inverse of the transform length.
-- **Complexity:** The time complexity is `O(L log L)` and the memory complexity is `O(L)`, where `L` is the smallest power of two greater than `2 * max(S)`.

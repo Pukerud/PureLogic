@@ -1,8 +1,0 @@
-- **Validation:** The provided samples are satisfied: `(4, 6)` gives `[3, 4, 1, 2]`, `(3, 2)` gives `[3, 2, 1]`, and `(2, 3)` gives `[]`.
-- **Brute-force validation:** For small `n`, enumerate all permutations, retain those whose adjacent parities differ, sort them, and compare every valid one-based rank against `permute(n, k)`. Also test one rank past the final valid permutation. This confirms the greedy block ordering and out-of-range behavior.
-- **Approach:** Construct the answer greedily from left to right. Scan unused values in numeric order, preserving lexicographic ordering. For each candidate, calculate its valid completion block size. If `k` exceeds that block size, subtract it; otherwise choose that candidate.
-- **Suffix feasibility:** After choosing a parity, the suffix must start with the opposite parity. If it starts odd, feasibility is exactly `odd_left == even_left` or `odd_left == even_left + 1`. If it starts even, feasibility is exactly `even_left == odd_left` or `even_left == odd_left + 1`.
-- **Suffix count:** Once suffix parity positions are feasible, odd values can be arranged arbitrarily among odd slots and even values among even slots. Thus the number of completions is `odd_left! * even_left!`.
-- **Capping:** Factorials and products are saturated at initial `k`. A count above this cap is only used for comparison, never incorrectly subtracted, because the live rank never exceeds its initial value.
-- **Edge cases:** A zero-length suffix is correctly counted as one completion. For `n = 1`, the only rank returns `[1]`; larger ranks return `[]`.
-- **Complexity:** At most `n` candidate scans for each of `n` positions: `O(n^2)` time and `O(n)` memory.

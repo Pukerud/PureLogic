@@ -1,8 +1,0 @@
-- **Block decomposition:** At the beginning of each block, freeze the current grid and compute source-to-cell DP and cell-to-destination suffix DP in `O(HW)`. Updates in the block are handled locally.
-- **Local rectangle:** Since Takahashi moves one cell per operation, all changed cells in a block lie inside the bounding rectangle of his visited positions. Recompute DP only inside this rectangle, using frozen DP values on its top and left boundaries.
-- **Combining paths:** Paths entering the rectangle through its top or left boundary and exiting through its bottom or right boundary form a disjoint decomposition. Replace the frozen rectangle contribution with the locally recomputed contribution.
-- **Zero values:** No modular inverses are used, so zero cell values and zero path contributions are handled correctly.
-- **Repeated assignments:** The latest value is stored in `changes`. A cell restored to its block-baseline value may remain inside the bounding rectangle, which only causes harmless extra work.
-- **Grid orientation:** If the original width exceeds its height, transpose the grid and transform Takahashi’s coordinates and directions. This keeps the smaller dimension as the width.
-- **Memory:** The grid, source DP, and suffix DP each use `O(HW)` storage. Local DP uses only the current block rectangle.
-- **Block size:** The implementation estimates the tradeoff between `O(HW / B)` rebuilding and `O(min(H,B) min(W,B))` local work, testing cube-root and skinny-grid candidates.

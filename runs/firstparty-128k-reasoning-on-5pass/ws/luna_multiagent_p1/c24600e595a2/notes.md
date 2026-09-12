@@ -1,7 +1,0 @@
-- **Phase separation:** Any required 1→0 flip should occur before any required 0→1 flip. Swapping an adjacent on-flip followed by an off-flip never increases the cost.
-- **Ordering:** Off-flips are performed in descending `C_i`; on-flips are performed in ascending `C_i`.
-- **Temporary bits:** Positions with `A_i=B_i=1` may be flipped off and later on. For any fixed number of temporary bits, choosing the largest costs is optimal.
-- **Phase formula:** For an ordered off-flip list of length `k`, the cost is `k*S - q`, where `S` is the initial weighted sum and `q = Σ cost_j*(k-j+1)`. For an on-flip list of length `l` from base sum `T`, the cost is `l*T + q`.
-- **Insertion update:** When inserting a value into an ordered list, only elements before the insertion point gain one extra coefficient. Thus `q` increases by the sum of existing values before the insertion plus `value * (number of elements after it + 1)`.
-- **On-phase update:** Temporary values are processed in descending order, so prior temporary values are after the newly inserted value in ascending on-order. The prefix sum before insertion is obtained from `on_required` using `bisect_left`.
-- **Complexity:** Sorting costs `O(N log N)`; each temporary value is processed in `O(log N)`. Total complexity is `O(N log N)` with Python integers.

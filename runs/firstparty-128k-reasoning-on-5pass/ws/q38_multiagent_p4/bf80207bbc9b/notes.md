@@ -1,9 +1,0 @@
-- **Model:** Row and column flips are involutions and commute, so the final cell is A_ij xor r_i xor c_j. For a fixed column mask c, each row mask p independently costs min(popcount(p xor c), W - popcount(p xor c)).
-- **Antipodal quotient:** The cost is unchanged if p is replaced by p xor M or c is replaced by c xor M, where M=(1<<W)-1. Merge each row mask with its complement and restrict column masks to those with LSB 0.
-- **Indexing:** int(s,2) makes the last character the LSB. For a row mask m, if m&1 then m ^= M; store F[m>>1] += 1. Even W-bit masks map bijectively to indices 0..2^(W-1)-1 by shifting right, and XOR on even masks becomes XOR on these indices.
-- **Kernel:** For quotient index i, the representative even mask is i<<1, so g[i]=min(i.bit_count(), W - i.bit_count()). The desired value for column index c is the XOR convolution (F*g)[c] on size n=2^(W-1).
-- **FWHT:** Use the unnormalized Hadamard transform. For XOR convolution, H(F*g)=H(F) pointwise H(G); the inverse is the same transform, so after three in-place transforms and pointwise multiplication, each entry is n times the convolution. Answer is min(result)//n.
-- **Edge cases and pitfalls:** W=1 gives 0. Even masks are not contiguous, so shifting by 1 is required. Do not forget division by n. Use exact integer arithmetic; intermediate transform values may be negative. The minimum over the quotient equals the full minimum because c and c xor M have the same cost.
-- **Superseded plan:** The full 2^W FWHT is correct but slower; the antipodal quotient halves the transform size and is used here.
-- **Complexity:** O(H + W*2^(W-1)) time and O(2^(W-1)) memory. For W=18, n=131072 and the three transforms perform about 3.3 million butterflies.
-- **Verification:** Sample 1 yields 2 and sample 2 yields 0 by hand; small W brute force over column masks with the row formula matches the convolution result. The final program contains no embedded tests.

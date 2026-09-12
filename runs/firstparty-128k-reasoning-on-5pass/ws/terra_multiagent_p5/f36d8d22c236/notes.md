@@ -1,7 +1,0 @@
-- **Mapping consistency:** For every original letter appearing in `S`, all its occurrences must require the same target letter in `T`. If one source letter maps to multiple targets, the answer is `-1`.
-- **Graph model:** Store each required non-identity replacement as a directed edge `x -> y`. Each such edge requires one operation in an optimal transformation.
-- **Cycles:** Every directed cycle in this functional graph requires one additional operation, using a temporary letter to rotate cycle values safely. Therefore the answer is `number_of_nonidentity_edges + number_of_cycles`.
-- **Temporary letter condition:** If at least one cycle exists, some letter absent from final string `T` is necessary as temporary storage. If all 26 letters occur in `T`, cycles cannot be resolved and the answer is `-1`.
-- **Cycle detection:** Use a three-state functional-graph traversal (`0` unvisited, `1` active, `2` finished). Encountering an active node detects exactly one cycle for that traversal component.
-- **Complexity:** Input consistency checking is `O(N)`. Graph processing is `O(26)`. Memory usage is `O(26)`.
-- **Sample verdict:** The implementation produces `4`, `0`, `-1`, and `4` respectively for the four provided samples.

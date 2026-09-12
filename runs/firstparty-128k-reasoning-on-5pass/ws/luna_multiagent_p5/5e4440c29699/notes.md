@@ -1,9 +1,0 @@
-- **Unrestricted endpoint count:** For a valid endpoint `(x,y)` in a complete grid, the number of paths ending there from arbitrary starting blocks is `f0(x,y) = C(x+y+2, x+1) - 1`.
-- **Unrestricted total:** Summing over all endpoints in a `0..W` by `0..H` grid gives `C(W+H+4,W+2) - (W+H+4) - (W+1)(H+1)`.
-- **Rectangle removal:** The sum of `f0` over the forbidden rectangle is evaluated by two hockey-stick identities, avoiding iteration over its area.
-- **Region E:** For `L <= x <= R, y > U`, the recurrence differs from the unrestricted recurrence because the predecessor below the rectangle is absent. For fixed `x`, the total correction over all upper-strip endpoints is `f0(x,U) * (C((R-x)+(H-U)+1,R-x+1)-1)`.
-- **Region F:** Symmetrically, for `x > R, D <= y <= U`, the correction is summed as `f0(R,y) * (C((W-R)+(U-y)+1,W-R)-1)`.
-- **Top-right region G:** Both boundaries contribute. Convolving the upper-strip boundary and right-strip boundary with the homogeneous recurrence yields, respectively:
-  - `C((R-x)+(W-R)+(H-U)+1, (R-x)+(W-R)+1) - C((R-x)+(H-U)+1, R-x+1)`;
-  - `C((W-R)+(U-y)+(H-U)+1, (U-y)+(H-U)+1) - C((W-R)+(U-y)+1, U-y+1)`.
-- **Complexity:** Factorial and inverse-factorial precomputation takes `O(W+H)`, and all region sums take `O((R-L+1)+(U-D+1))`, with `O(W+H)` memory.

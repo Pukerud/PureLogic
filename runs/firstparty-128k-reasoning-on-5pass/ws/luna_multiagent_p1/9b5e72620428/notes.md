@@ -1,7 +1,0 @@
-- **Fixed entries:** Let `x` and `y` be the numbers of non-`-1` entries in `A` and `B`. Unknown entries can be assigned arbitrary nonnegative values, while `A` may also be rearranged.
-- **Required fixed-fixed pairs:** At least `r = max(0, x + y - N)` pairs must consist of one fixed `A` value and one fixed `B` value. If fewer were used, the remaining fixed entries could not all be placed against unknown entries.
-- **Target restriction:** For a target sum `S`, every fixed value must be at most `S`, since its counterpart must be nonnegative. If `r > 0`, some fixed-fixed pair is necessary, so `S` must equal `a + b` for fixed values `a` and `b`.
-- **Matching score:** For each value pair `(a, b)`, its contribution to target `S = a + b` is `min(countA[a], countB[b])`. Summing these contributions over all value pairs with the same sum gives the maximum number of compatible fixed-fixed pairs for that target.
-- **Algorithm:** Enumerate all pairs of distinct fixed values, discard sums below the maximum fixed value, encode each `(sum, contribution)`, sort the encoded integers, and aggregate contributions by sum. The answer is `Yes` if any aggregate reaches `r`.
-- **Special case:** If `r = 0`, no fixed-fixed pair is required. Choosing `S` equal to the maximum fixed value (or `0` if there are no fixed values) always works.
-- **Complexity:** With at most `N` distinct fixed values on each side, there are at most `N²` encoded pairs. Time complexity is `O(N² log N)` and the stored pair list uses `O(N²)` memory.

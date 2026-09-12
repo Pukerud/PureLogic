@@ -1,5 +1,0 @@
-Represent every valid graph by its unique BFS distance layers from vertex 1: layer 0 is {1}, edges can only stay inside a layer or join consecutive layers, and every vertex in layer i>0 has at least one edge to layer i-1.  
-For a fixed sequence of layer sizes, the labeled count factorizes: each new layer of size b contributes 1/b! for labels, (1+x)^{C(b,2)} for optional intra-layer edges, and an inclusion-exclusion factor sum_{j=0}^b (-1)^j C(b,j)(1+x)^{a(b-j)} for edges from previous layer size a ensuring each new vertex has a parent.  
-Sum over all layer-size sequences whose even and odd layer totals are both N/2 with a DP over current layer size, used even/odd vertices, and current layer parity.  
-Since the resulting edge-count polynomial has degree at most D=N(N-1)/2 <= 435, evaluate this DP at D+1 points x=0..D modulo P (using z=1+x for the factors) and interpolate to recover all coefficients.  
-This gives a fast O((D+1)T + D^2) algorithm, where T is the small number of layer-size transitions, suitable for N<=30.

@@ -1,7 +1,0 @@
-- **Core observation:** Any input value greater than `threshold` is isolated, because `lcm(a, b) >= a > threshold` for every positive `b`.
-- **Proxy-node construction:** Use DSU nodes for all integers from `1` through `threshold`. For every active input value `a <= threshold`, union `a` with each multiple of `a` not exceeding `threshold`.
-- **Correctness:** Two active values `a` and `b` are connected by an original edge exactly when `lcm(a, b) <= threshold`. In that case their LCM is a DSU proxy node divisible by both, so both are unioned to it. Conversely, if both divide a proxy integer `m <= threshold`, then `lcm(a, b)` divides `m`, hence is at most `threshold`, so they have an original edge. Therefore DSU connectivity among active values matches graph connectivity.
-- **Counting:** Count unique DSU roots only for active input values; proxy-only values do not represent graph vertices. Add the count of values exceeding `threshold`.
-- **Complexity:** The multiple traversals cost `sum(threshold // a)` over active values, bounded by `O(threshold log threshold)`. DSU work is amortized near-constant per union. Memory is `O(threshold)`.
-- **Sample validation:** `[2,4,8,3,9]`, threshold `5` returns `4`; `[2,4,8,3,9,12]`, threshold `10` returns `2`.
-- **Targeted validation:** A single value returns `1`; all values above the threshold each form isolated components; value `1` connects every active value because `lcm(1, x) = x <= threshold`; active values with no qualifying shared multiple remain separate.

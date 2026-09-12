@@ -1,5 +1,0 @@
-- **Formula:** Select the exactly `k` equal adjacent transitions among the `n - 1` total transitions. The first element has `m` choices. Every selected equal transition is forced, while every unselected transition has `m - 1` choices. Therefore the answer is `m * C(n - 1, k) * (m - 1)^(n - 1 - k) mod 1_000_000_007`.
-- **Binomial computation:** Precompute factorials and inverse factorials through `n - 1`. Since `n <= 100000 < MOD`, Fermat inverse via `pow(factorial[n - 1], MOD - 2, MOD)` is valid.
-- **Complexity:** Time `O(n + log MOD)` and space `O(n)`.
-- **Sample verification:** `(3, 2, 1)` gives `2 * C(2,1) * 1 = 4`; `(4, 2, 2)` gives `2 * C(3,2) * 1 = 6`; `(5, 2, 0)` gives `2 * C(4,0) * 1 = 2`.
-- **Boundary cases:** For `n = 1`, only `k = 0` is valid and the result is `m`. For `m = 1`, `pow(0, n - 1 - k)` correctly yields `1` only when all transitions are equal (`k = n - 1`) and `0` otherwise.

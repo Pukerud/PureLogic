@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement and validate the complete stdin/stdout Python solution with the Fenwick initial inversion count and O(1) descending-value wrap updates.",
-    "status": "done",
-    "result": ""
-  }
-]

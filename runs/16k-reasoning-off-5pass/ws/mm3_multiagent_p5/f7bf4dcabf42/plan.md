@@ -1,5 +1,0 @@
-We need, for each k, the count of length-M strings whose LCS with S has length exactly k. Since N ≤ 10, we can enumerate all (N+1)^M ways to match S, but a smarter DP uses the edit-like DP. Define f[i][j] = number of strings of length j with LCS length exactly i (LCS computed as a subsequence of S of length i). Transition: for each new character c (26 choices), we need to know best LCS extension. The inner transition can be precomputed by a (N+1)×(N+1) DP for each possible character. For each i, after processing M characters, sum over j the count where current DP state indicates max LCS = j, and we need to convert to exactly k. This gives O(N^2 * 26 * M) = small.
-
-More directly: dp[i] = number of strings of processed length with LCS value = i (exact). Initially dp[0]=1. For each position, newdp[t] = sum over characters c, over previous i, of number of ways to have LCS become t. We can precompute next[i][c] = new LCS length when appending character c given current LCS = i. Then newdp[next[i][c]] += dp[i]. This is O(M * N * 26) = 100*10*26 = 26000.
-
-After processing all M chars, dp[k] is exactly the answer for k. Output dp[0..N].

@@ -1,6 +1,0 @@
-- **Observation:** An integer `x >= 1` needs exactly the number of base-4 digits of `x` divisions by 4 to become zero. This value is constant over block `[4^(k-1), 4^k - 1]`, where it equals `k`.
-- **Operation count:** Every operation performs two divisions, and zeros may be selected as partners after an element reaches zero. Since each query contains at least two positive integers (`l < r`), all required divisions can be paired. Thus the minimum operations for total work `W` is `ceil(W / 2) = (W + 1) // 2`.
-- **Prefix function:** `prefix_work(n)` computes total division work for every number in `[1, n]` by iterating power-of-four blocks. There are at most 15 blocks for `n <= 10^9`.
-- **Query formula:** For `[l, r]`, work is `prefix_work(r) - prefix_work(l - 1)`, and its contribution is `(work + 1) // 2`.
-- **Boundary checks:** Values `1..3` require 1 division; `4..15` require 2; `16..63` require 3. The block implementation uses inclusive endpoints `start * 4 - 1`, correctly handling `1`, `3`, `4`, `15`, and `16`.
-- **Complexity:** `O(Q log_4 R)` time, at most about 15 iterations per prefix call, and `O(1)` auxiliary space.

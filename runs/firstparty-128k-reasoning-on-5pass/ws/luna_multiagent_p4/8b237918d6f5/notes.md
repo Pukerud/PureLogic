@@ -1,8 +1,0 @@
-- **Threshold formulation:** For a target distance \(D\), assign each vertex an integer label \(d_v \in [0,D]\), with \(d_1=0\) and \(d_N=D\). A weight assignment makes every path from 1 to \(N\) have weight at least \(D\) exactly when \(d_v \le d_u+x_{uv}\) for every edge \(u\to v\), where \(x_{uv}\in\{0,1\}\) is its selected status.
-- **Required selected edges:** Under these inequalities, an edge needs weight 1 precisely when \(d_v=d_u+1\). If \(d_v\le d_u\), weight 0 suffices; a difference larger than 1 is impossible.
-- **Layered min-cut:** Create a node \((v,i)\) representing \(d_v\ge i\), for \(1\le i\le D\). Source-side means true. Add infinite-capacity edges \((v,i+1)\to(v,i)\) to enforce threshold monotonicity.
-- **Difference constraint:** For every original edge \(u\to v\), add an infinite-capacity edge \((v,i+1)\to(u,i)\). This forbids \(d_v\ge i+1\) while \(d_u<i\), hence enforces \(d_v\le d_u+1\).
-- **Selection cost:** For every original edge \(u\to v\) and every \(i\), add a capacity-1 edge \((v,i)\to(u,i)\). It is cut exactly when \(d_v\ge i\) and \(d_u<i\). Because the difference constraint allows at most one such threshold, each original edge is charged at most once.
-- **Endpoints:** Add infinite-capacity edges \((1,i)\to\) sink to force \(d_1=0\), and source \(\to(N,D)\) to force \(d_N\ge D\).
-- **Exact cardinality:** The min-cut gives the minimum number of selected edges needed for target \(D\). If this is at most \(K\), arbitrarily selecting additional edges reaches exactly \(K\) and cannot decrease any shortest-path distance.
-- **Complexity:** \(D\le N-1\). Each feasibility test has \(O(ND)\) vertices and \(O(MD+ND)\) edges, and binary search performs \(O(\log N)\) tests.

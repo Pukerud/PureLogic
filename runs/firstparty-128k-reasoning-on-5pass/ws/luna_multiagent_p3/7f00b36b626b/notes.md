@@ -1,6 +1,0 @@
-- **Key observation:** If either value is greater than `threshold`, their LCM is at least that value, so no edge can involve it. Such vertices remain isolated.
-- **Common-multiple characterization:** For values `a, b <= threshold`, `lcm(a, b) <= threshold` exactly when they share some multiple `m <= threshold`. Any common multiple is divisible by both values.
-- **Enumeration method:** For every present value `x <= threshold`, iterate through `x, 2x, 3x, ...` up to `threshold`. The array `representative[m]` stores one previously processed input value dividing `m`.
-- **Union correctness:** When another value dividing `m` is encountered, it has an LCM with the stored representative that divides `m`, and therefore that LCM is at most `threshold`. Unioning them represents a real graph edge.
-- **DSU handling:** Every input value gets its own DSU node. Values above the threshold are never processed and thus remain singleton components. The final answer is the number of distinct DSU roots.
-- **Complexity:** The multiple loops take `O(sum(threshold / x))` over distinct present values `x <= threshold`, bounded by `O(threshold log threshold)` in the worst case. DSU operations are effectively constant amortized time, and memory usage is `O(n + threshold)`.

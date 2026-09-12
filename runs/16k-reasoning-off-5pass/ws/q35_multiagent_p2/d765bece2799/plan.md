@@ -1,6 +1,0 @@
-1. The problem asks for the sum of (max + min) for all subarrays of length 1 to k.
-2. A naive O(N^2) approach will be too slow given N up to 80,000. We need an O(N) or O(N log N) solution.
-3. We can decompose the problem into two parts: calculating the sum of maximums of all subarrays of length <= k, and the sum of minimums of all subarrays of length <= k.
-4. For each element, we can determine how many subarrays of length <= k have this element as the maximum (or minimum). This involves finding the nearest smaller/larger elements to the left and right, but constrained by the window size k.
-5. Specifically, for the maximum contribution: for each `nums[i]`, find the left boundary `L` (index of the first element to the left that is strictly greater than `nums[i]`, or `i-k` if no such element exists within k distance) and right boundary `R` (index of the first element to the right that is greater than or equal to `nums[i]`, or `i+k` if no such element exists within k distance). The number of subarrays where `nums[i]` is the maximum is `(i - L) * (R - i)`.
-6. Similarly for minimums, using appropriate strict/non-strict inequalities to avoid double counting, and sum up the contributions.

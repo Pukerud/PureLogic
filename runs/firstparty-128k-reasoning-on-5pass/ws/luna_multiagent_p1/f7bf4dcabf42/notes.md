@@ -1,6 +1,0 @@
-- **State representation:** After processing a candidate prefix, store the LCS DP row against every prefix of the fixed string \(S\). The row has \(N+1\) entries, with the first entry always zero.
-- **Transition:** Appending a character updates the row using the standard LCS recurrence. For each position \(j\), equal characters use the diagonal value plus one; otherwise use the maximum of the previous row value and the newly computed left value.
-- **Automaton construction:** Begin from the all-zero row and breadth-first enumerate every reachable row. For each state, calculate all 26 character transitions and group letters leading to the same destination state.
-- **Counting:** Dynamic programming over the \(M\) candidate positions counts strings reaching every automaton state. A grouped transition contributes its multiplicity, representing the number of letters with that destination.
-- **Final aggregation:** The LCS length is the last entry of the terminal row. Sum counts of all terminal states having each possible last value modulo 998244353.
-- **Complexity:** The number of reachable rows is small for \(N\le 10\). If it is \(R\), construction costs \(O(26RN)\), and counting costs \(O(MR\cdot 26)\) in the worst case, with \(O(RN)\) memory.

@@ -1,7 +1,0 @@
-- **Sweep interpretation:** Normalize each pair as `(left, right)` with `left < right`. For a subarray ending at position `right`, a pair becomes relevant once its larger endpoint has been reached.
-- **Restriction:** Every relevant pair requires the subarray start to be greater than its `left` endpoint. Therefore, with all pairs present, the valid subarrays ending at `right` are `right - maximum_left`, where `maximum_left` is the largest active left endpoint.
-- **Removal gain:** Removing the uniquely strongest active pair changes the restriction from the largest left endpoint to the second-largest. Its contribution at this endpoint is the difference between those two values.
-- **Identity handling:** Gains are accumulated by pair index. The sweep maintains the two largest active left endpoints together with their pair identities. If the largest value is tied, the second-largest value equals it, correctly making the removal gain zero for every tied pair.
-- **Complexity:** Building endpoint buckets and sweeping take `O(n + m)` time, with `O(n + m)` memory, where `m = len(conflictingPairs)`.
-- **Edge cases:** Removing a pair that never uniquely determines the restriction gives zero gain. Exactly one pair is removed, so the baseline plus the maximum gain remains valid even when every gain is zero.
-- **Verification:** The sweep gives `9` for `n=4, [[2,3],[1,4]]` and `12` for `n=5, [[1,2],[2,5],[3,5]]`; duplicate pairs and random small cases are handled by retaining pair identities and tie-aware top-two values.

@@ -1,9 +1,0 @@
-- **Constraint modeling:** Each equation \(A_x \oplus A_y = z\) is represented as an undirected graph edge.
-- **Relative potentials:** During BFS, assign each vertex a value `potential[v]` such that `potential[v] = potential[root] XOR relative_value`. For an edge `(u, v, z)`, the required value is `potential[u] XOR z`.
-- **Consistency check:** If an already assigned vertex receives a different required value, the component and therefore the whole instance is impossible. This also correctly handles self-loops and duplicate edges.
-- **Component freedom:** Every valid assignment in a connected component is obtained by XORing all relative potentials with one common offset.
-- **Minimization:** For each bit independently, count how many component potentials contain a one. Choosing offset bit zero leaves those values unchanged; choosing it one flips them. Select one exactly when the number of ones exceeds the number of zeros.
-- **Bit range:** Since all given XOR values are below \(2^{30}\), all relative potentials and optimal values use at most 30 bits. Higher offset bits would only increase the sum and are never selected.
-- **Disconnected vertices:** An isolated vertex forms a component of size one with potential zero, so its minimum value is zero.
-- **Complexity:** Graph construction and traversal take \(O(N+M)\). Bit optimization takes \(O(30N)\), and memory usage is \(O(N+M)\).
-- **Implementation:** BFS is iterative to avoid recursion depth issues for large components.

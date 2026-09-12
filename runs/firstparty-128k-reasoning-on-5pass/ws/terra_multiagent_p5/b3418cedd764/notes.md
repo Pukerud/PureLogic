@@ -1,8 +1,0 @@
-- **Functional graph structure:** Each vertex has one outgoing edge `i -> A_i`. Indegree peeling removes all non-cycle vertices; vertices left alive are exactly directed cycles, including self-loops.
-- **Cycle contraction:** All vertices on a directed cycle must have equal values because inequalities hold around the cycle. Contract each cycle into one root component. Every non-cycle vertex remains its own component.
-- **Contracted graph:** For every original edge whose endpoints belong to different components, add the source component as a child of the destination component. This produces a forest whose roots are the contracted cycles. A child value must be at most its parent value.
-- **DP:** For a component `u`, let `dp[u][v]` count assignments in its subtree when `u` has value `v+1`. If a child has DP array `d`, its contribution when the parent value is `v+1` is the prefix sum `d[0] + ... + d[v]`. Multiply these contributions for all children.
-- **Memory handling:** DP arrays use `array('I')`, keeping each entry in 4 bytes. Child DP arrays are discarded immediately after being merged into their parent. This avoids Python-integer memory costs while preserving `O(NM)` time.
-- **Bottom-up order:** Process components with no remaining children. On processing a child, update its parent accumulator using one prefix scan, decrement the parent child count, and enqueue the parent when all children are done.
-- **Final answer:** For each root cycle component, sum its DP over all values `1..M`; multiply these sums across roots modulo `998244353`.
-- **Complexity:** Cycle detection and contraction take `O(N)`. DP takes `O(NM)` time and uses at most `O(NM)` compact integer storage.

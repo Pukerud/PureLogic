@@ -1,5 +1,0 @@
-- **Pair counting:** Every unordered pair of cells appears in exactly `C(m*n-2, k-2)` arrangements, because the remaining `k-2` pieces can be placed in any subset of the other cells.
-- **Row contribution:** For each pair of rows, there are `n²` choices of columns. The sum of row differences over all row pairs is `m(m-1)(m+1)/6`.
-- **Column contribution:** Similarly, the column contribution is `m² * n(n-1)(n+1)/6`.
-- **Modular arithmetic:** The binomial coefficient is computed using factorials and Fermat modular inverses. Since `m*n <= 10^5 < 10^9+7`, all factorial values are invertible modulo the chosen prime.
-- **Complexity:** The method uses `O(m*n)` time and memory for factorial tables.

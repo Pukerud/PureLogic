@@ -1,9 +1,0 @@
-- **Core formula:** For odd p, the required sum is (-1)^K times (A^p + C), where K is the number of zero entries. Each entry of B^p is a sum over length-p walks. For a zero variable x, sum_{x in F_p^*} x^e is -1 for e=0 or e=p-1, and 0 otherwise; e=p also gives 0. Since total degree is p, surviving walks either use no zero edge, giving A^p, or use exactly one zero edge p-1 times plus one fixed nonzero edge.
-- **p=2 special case:** Every possible B is the all-ones matrix, so B^2 has every entry N. Output N mod 2 in every cell.
-- **Diagonal zero corrections:** If A[u,u]=0, the repeated self-loop can appear before or after the single fixed edge. Add A[u,v] to M[u,v] and A[v,u] to M[v,u] for all v != u.
-- **Off-diagonal zero corrections:** Only possible when p=3. If A[u,v]=0 with u != v, the pattern u->v, v->u, u->v survives, adding A[v,u] to M[u,v]. For p>3, p-1 copies of a non-loop edge cannot be connected using only one other edge.
-- **Exponentiation:** Compute A^p mod p by binary exponentiation with res=A, base=A, e=p-1. Square base after shifting e and skip the final unnecessary square.
-- **Matrix multiplication:** Use i-k-j order and reduce each row once. Skip zero aik. Treat aik=1 and aik=p-1 as addition/subtraction to avoid multiplication, which is especially useful for p=3.
-- **Corrections implementation:** Keep original A unchanged. Add correction values with one subtraction because both operands are already in [0, p-1]. If K is odd, replace each nonzero entry x by p-x.
-- **Edge cases:** N=1, all-zero matrices, K=0, p=3 with zero reverse entries, and p=2 are all handled.
-- **Performance:** Worst case is about 45 dense 100x100 multiplications. The row-wise modulo and small-p special cases keep the pure Python implementation as fast as practical.

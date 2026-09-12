@@ -1,7 +1,0 @@
-- **Dynamic programming model:** View repeated majority operations as a complete ternary tree. Each leaf is one input bit, and each internal node outputs the majority of its three children.
-- **State:** For every current subtree, store `dp0`: minimum number of leaf flips needed to make its output `0`, and `dp1`: the corresponding minimum for output `1`.
-- **Leaf initialization:** For an original leaf bit `b`, the cost to force `b` is `0`, and the cost to force `1-b` is `1`.
-- **Transition:** To force an internal majority node to a target bit, at least two of its children must be forced to that target. Every subtree can retain its original output with zero modifications, so the third child needs no extra cost. Therefore, the target cost is the sum of the two smallest target-forcing costs among the three children.
-- **Root answer:** At the root, exactly one of the two DP costs is zero: the cost corresponding to the original final result. The other cost is the minimum number of changes needed to alter that result, so output `max(dp0[0], dp1[0])`.
-- **Complexity:** The total number of processed nodes is geometric-series linear in `3^N`, so time is `O(3^N)`. Only two arrays for one tree level and two arrays for the next level are stored, giving `O(3^N)` memory.
-- **Implementation detail:** `array('I')` avoids the high memory overhead of Python integer lists/tuples for up to `3^13 = 1,594,323` leaves.

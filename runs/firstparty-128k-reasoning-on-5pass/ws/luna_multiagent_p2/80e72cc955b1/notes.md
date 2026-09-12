@@ -1,8 +1,0 @@
-- **Per-value cost:** A positive integer `x` requires the smallest `k` such that repeated floor-division by `4` reaches zero. Values in `[4^(k-1), 4^k - 1]` all require exactly `k` reductions.
-- **Prefix calculation:** `prefix(n)` sums reduction counts over `[1, n]` by processing the intervals `[1, 3]`, `[4, 15]`, `[16, 63]`, and so on.
-- **Query work:** The total number of reductions for `[l, r]` is `prefix(r) - prefix(l - 1)`.
-- **Operations:** Each operation performs at most two reductions, so at least `ceil(work / 2)` operations are needed. This bound is attainable by pairing reductions, with zero-valued elements serving as partners when one reduction remains.
-- **Boundary checks:** At `n = 3`, the prefix is `3`; at `n = 4`, it is `5`; at `n = 15`, it is `27`; and at `n = 16`, it is `29`, confirming correct power-of-four transitions.
-- **Example checks:** `[1, 2]` requires `1` operation, `[2, 4]` requires `2`, giving `3` total. `[2, 6]` has work `8` and requires `4` operations.
-- **Complexity:** Each prefix query uses `O(log_4 n)` intervals, so total complexity is `O(q log_4(max(r)))` with `O(1)` auxiliary space.
-- **Arithmetic:** Python integers safely support all intermediate and accumulated values.

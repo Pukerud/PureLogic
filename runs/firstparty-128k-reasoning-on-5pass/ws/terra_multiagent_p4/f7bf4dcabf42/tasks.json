@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement the complete reachable-state LCS DP-row automaton solution and verify it against the provided samples.",
-    "status": "done",
-    "result": ""
-  }
-]

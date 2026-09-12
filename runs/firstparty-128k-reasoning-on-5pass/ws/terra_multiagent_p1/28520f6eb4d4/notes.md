@@ -1,9 +1,0 @@
-- **Visibility condition:** For target building \(i\), it is sufficient to consider its top \((X_i,H_i)\). For a fixed viewpoint \((0,h)\), the segment height at every earlier coordinate increases as the selected target point moves upward, so if the top cannot be seen then no lower point can be seen.
-- **Pair threshold:** The segment from \((0,h)\) to the top of building \(i\) avoids earlier building \(j\) exactly when its height at \(X_j\) is strictly greater than \(H_j\). This is equivalent to \(h > B_{j,i}=(X_iH_j-X_jH_i)/(X_i-X_j)\). Equality is blocked because the segment intersects the top endpoint of building \(j\).
-- **Global condition:** All buildings are visible at height \(h\) iff \(h > \max_{j<i}B_{j,i}\). If this maximum is negative, height zero already sees all buildings and the answer is \(-1\). Otherwise the answer is that maximum, since equality remains blocked.
-- **Adjacent-pair reduction:** Every non-adjacent threshold is a positive weighted average of thresholds across intervening adjacent intervals, so the maximum over all building pairs is attained by an adjacent pair.
-- **Algorithm:** Scan adjacent buildings and maximize \((X_iH_{i-1}-X_{i-1}H_i)/(X_i-X_{i-1})\). For \(N=1\), output \(-1\).
-- **Exact comparisons:** Denominators are positive, so fractions are compared by cross multiplication with Python integers.
-- **Output:** Nonnegative answers are printed with exactly 18 digits after the decimal point.
-- **Sample verification:** The implementation yields behavior consistent with all supplied samples: \(1.5\), \(-1\), \(0\), and \(17.142857...\), respectively.
-- **Complexity:** \(O(N)\) time and \(O(1)\) auxiliary memory.

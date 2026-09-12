@@ -1,8 +1,0 @@
-- **Prime decomposition:** For each prime \(p\), let \(e_i=v_p(S_i)\) and \(a_i=v_p(A_i)\). The condition \(f(S_i/S_{i+1})=A_i\) is equivalent to \(|e_i-e_{i+1}|=a_i\) independently for every prime.
-- **Gcd normalization:** The global condition \(\gcd(S_1,\ldots,S_N)=1\) is equivalent to \(\min_i e_i=0\) for every prime. Thus each prime can be counted independently, and the final answer is the product of the per-prime weighted sums.
-- **Weighting:** A prime-exponent sequence contributes \(p^{\sum_i e_i}\) to the score. The DP multiplies by \(p^h\) whenever a vertex of height \(h\) is included, including the initial vertex.
-- **Height bound:** For a fixed prime, set \(D=\sum_{i=1}^{N-1}a_i\). Every normalized walk whose minimum is zero has all heights in \([0,D]\), since the total vertical variation is \(D\). This permits finite bounded-height DP.
-- **DP state:** `dp0[h]` stores weighted walks ending at height `h` which have never visited zero; `dp1[h]` stores walks which have visited zero. Initial height zero belongs to `dp1`, while every positive initial height belongs to `dp0`.
-- **Transitions:** For positive increment `a`, transition from height `h` to `h-a` and `h+a` if within `[0,D]`. Reaching zero transfers both state types into `dp1`. For increment zero, there is exactly one equality transition; it must not be treated as two sign choices.
-- **Final value:** Only `dp1` states are summed, enforcing that the normalized walk has minimum zero. This eliminates invalid common upward shifts.
-- **Complexity:** For prime \(p\), complexity is \(O(N(D_p+1))\) time and \(O(D_p)\) memory. Since \(\sum_p D_p\) is the total number of prime factors among all \(A_i\), at most roughly \(9(N-1)\), total time is easily within bounds.

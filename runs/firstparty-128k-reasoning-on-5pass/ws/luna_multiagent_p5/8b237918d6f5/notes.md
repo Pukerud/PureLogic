@@ -1,8 +1,0 @@
-- **Potential formulation:** For a target distance \(D\), assign integer labels \(x_v\in[0,D]\), with \(x_1=0\) and \(x_N=D\). An edge \(u\to v\) must satisfy \(x_v\le x_u+1\). It needs weight 1 exactly when \(x_v=x_u+1\).
-- **Threshold variables:** Let \(z_{v,i}\) indicate \(x_v\ge i\), for \(1\le i\le D\). Label monotonicity is enforced by \(z_{v,i+1}\Rightarrow z_{v,i}\).
-- **Constraint arcs:** The inequality \(x_v\le x_u+1\) is encoded by \(z_{v,i+1}\Rightarrow z_{u,i}\), implemented as an infinite-capacity arc from \((v,i+1)\) to \((u,i)\).
-- **Cost arcs:** Under the constraint above, an edge crosses at most one threshold. Adding a capacity-1 arc \((v,i)\to(u,i)\) charges exactly when \(x_u<i\le x_v\). Thus each original edge whose label increases by one is charged once, even though all threshold layers are present.
-- **Terminal conditions:** Source arcs force every threshold of vertex \(N\) to be true, while arcs to the sink force every threshold of vertex \(1\) to be false.
-- **Correctness:** A finite cut corresponds to valid labels, and its finite cost equals the number of selected edges. Conversely, any edge assignment making every \(1\)-to-\(N\) path contain at least \(D\) selected edges yields shortest-distance labels satisfying the constraints with no more charged edges than selected edges.
-- **Exact budget:** Testing whether at most \(K\) edges suffice is equivalent to exactly \(K\), since marking additional unused edges cannot decrease any shortest-path distance.
-- **Complexity:** Each feasibility test has \(O(ND)\) nodes and \(O((N+M)D)\) arcs. Binary search performs \(O(\log N)\) tests. Multiedges are naturally handled as separate capacity-1 cost arcs.

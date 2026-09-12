@@ -1,8 +1,0 @@
-1. We need to maximize total units $K = \sum k_i$ subject to $\sum k_i^2 P_i \leq M$.
-2. Key insight: For a fixed total number of units $K$, the minimum cost is achieved by distributing units to products with smallest $P_i$ values. Specifically, if we sort products by $P_i$, we should fill units starting from the cheapest product.
-3. However, since each unit of product $i$ costs $P_i$ for the first unit, $4P_i$ for the second, $9P_i$ for the third, etc., the marginal cost of the $j$-th unit of product $i$ is $(2j-1)P_i$.
-4. We can binary search on the total number of units $K$. For a given $K$, we need to check if it's possible to buy $K$ units with cost $\leq M$.
-5. To check if $K$ units are feasible: we want to minimize $\sum k_i^2 P_i$ subject to $\sum k_i = K, k_i \geq 0$. This is minimized when we greedily assign units to products with smallest marginal costs. The marginal cost structure means we should use a priority queue or binary search on the "threshold" marginal cost.
-6. More efficiently: for a fixed $K$, the optimal distribution can be found by binary searching on a threshold $\lambda$ such that we assign $k_i = \max(0, \lfloor \sqrt{\lambda / P_i} \rfloor)$ or similar, but we need $\sum k_i = K$. Actually, we can binary search on the answer $K$ and for each $K$, use binary search on a parameter to determine the optimal allocation.
-
-Let me reconsider. For a fixed total $K$, the minimum cost problem is: minimize $\sum k_i^2 P_i$ s.t. $\sum k_i = K$. Using Lagrange multipliers, the optimal $k_i$ satisfies $2k_i P_i \approx \lambda$, so $k_i \approx \lambda/(2P_i)$. We can binary search on $\lambda$ to find the allocation that sums to $K$.

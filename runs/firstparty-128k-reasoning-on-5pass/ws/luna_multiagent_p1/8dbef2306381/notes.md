@@ -1,7 +1,0 @@
-- **State representation:** After processing square `x`, bit `k` of the state records whether square `x-k` is reachable, for `0 <= k < B`.
-- **Good transition:** The next square is reachable iff at least one reachable previous square lies `A` through `B` steps behind. The state shifts left, and the new bit 0 is the OR of old bits `A-1` through `B-1`.
-- **Bad transition:** It is identical except that the newly appended bit 0 is forced to zero.
-- **Long good gaps:** Each Boolean-linear transformation is represented by dependency masks. Transformations are composed and exponentiated by squaring, allowing a gap of length up to `N` to be processed in `O(B^2 log N)`.
-- **Bad intervals:** Processing a bad interval only requires at most `B` transitions. After `B` consecutive bad squares, all previously reachable positions have shifted out of the window, so the state becomes zero permanently.
-- **Boundaries:** Square 1 starts reachable; all positions before it are unreachable. The algorithm processes every position from 2 through `N`, and the constraints guarantee that `N` itself is not bad.
-- **Complexity:** `O(B^2 log N + MB)` time and `O(B log N)` memory, with `B <= 20`.

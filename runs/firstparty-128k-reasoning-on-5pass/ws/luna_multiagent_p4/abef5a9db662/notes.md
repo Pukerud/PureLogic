@@ -1,6 +1,0 @@
-- **Offline ordering:** Sort all queries by their initial rating. Their current ratings remain nondecreasing throughout processing, so the queries whose current ratings lie in any interval \([L_i,R_i]\) form one contiguous index range.
-- **Contest update:** For each contest, find the first current value at least \(L_i\) and the first current value greater than \(R_i\). Add 1 to the resulting inclusive index range.
-- **Segment tree:** Store the maximum current rating in every node and lazy range-add values. Since the represented sequence is sorted, descend through the tree to find the first index satisfying a threshold in \(O(\log Q)\).
-- **Correctness of monotonicity:** Incrementing a contiguous group of values in a nondecreasing sequence preserves nondecreasing order. Therefore threshold searches remain valid after every contest.
-- **Restoring order:** Store each sorted query's original index and write final values back into the original query order.
-- **Complexity:** Building costs \(O(Q)\); each contest costs \(O(\log Q)\), and each query is handled in sorting and final collection. Total complexity is \(O((N+Q)\log Q)\), with \(O(Q)\) additional memory.

@@ -1,5 +1,0 @@
-We need to move all 1s into a contiguous block using adjacent swaps. Each swap exchanges two neighboring characters, costing 1. The minimum number of adjacent swaps required to bring all 1s together equals the sum over each 1 of the number of 0s that cross it when we "slide" the block of 1s into place. Equivalently, if we enumerate the positions of 1s (0-indexed) as p[0], p[1], …, p[k-1] (k is total number of 1s), then choosing the block to occupy positions [L, L+k-1] for some L (0 ≤ L ≤ N-k) gives cost = Σ |p[i] - (L+i)|. The optimal L is any median of the adjusted positions p[i] - i. Hence the answer is:
-```
-ans = Σ |p[i] - (p[m] - m) - (m+1)|
-```
-where m is a median index (choose floor(k/2) for simplicity). We can compute the sum directly without finding L. Use 64‑bit integers because N up to 5·10⁵ and k up to N, sum may be up to O(N²) ≈ 2.5·10¹¹, which fits in 64‑bit.

@@ -1,5 +1,0 @@
-1. Model the problem as a system of XOR equations over a graph where nodes are indices $1 \dots N$ and edges $(X_i, Y_i)$ have weight $Z_i$, representing $A_{X_i} \oplus A_{Y_i} = Z_i$.
-2. Decompose the graph into connected components. For each component, pick an arbitrary root node and assign it a value (initially 0 to minimize sum, but we must check all bit positions independently).
-3. For each bit position $k$ (from 0 to ~30), determine if the constraints are consistent. Within a connected component, the value of any node relative to the root is fixed by the XOR path. If a cycle exists, the XOR sum of weights along the cycle must be 0; otherwise, output -1.
-4. For each bit position $k$ and each connected component, we have two choices for the root's $k$-th bit: 0 or 1. This determines the $k$-th bit of all nodes in the component. Calculate the total contribution to the sum for both choices (0 vs 1 for the root) and pick the one that minimizes the sum. Note that the choice for each bit is independent.
-5. Construct the final sequence $A$ by combining the optimal bits for each position.

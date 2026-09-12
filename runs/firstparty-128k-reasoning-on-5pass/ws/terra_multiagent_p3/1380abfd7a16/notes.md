@@ -1,6 +1,0 @@
-- **Approach:** Process insertions in reverse, from value `N` down to `1`. At this point, all values larger than `i` already occupy their final positions. Therefore, `i` belongs in the `P_i`-th currently empty final position from the left.
-- **Data structure:** Use a Fenwick tree over positions `1..N`, where `1` means empty and `0` means occupied. Initialize it efficiently with `bit[i] = i & -i`, corresponding to an all-ones array.
-- **Selection:** Fenwick binary lifting finds the smallest position whose prefix sum is at least `k`, giving the `k`-th empty position in `O(log N)`.
-- **Update:** After assigning a value to a position, subtract `1` from that Fenwick-tree position to mark it occupied.
-- **Complexity:** `O(N log N)` time and `O(N)` memory, suitable for `N <= 5 * 10^5`.
-- **Edge cases:** `P_i` is one-indexed. The answer must be printed by final physical positions, not reverse insertion order.

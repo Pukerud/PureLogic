@@ -1,7 +1,0 @@
-- **Per-value work:** An integer `x >= 1` requires `floor(log_4(x)) + 1` reductions by replacing it with `floor(x / 4)` until it reaches zero.
-- **Operations per query:** If the total required reductions for all values in `[l, r]` is `S`, each operation performs two reductions. The minimum is therefore `ceil(S / 2)`, computed as `(S + 1) // 2`.
-- **Prefix sum:** Define `F(n) = sum(floor(log_4(x)) + 1)` for `1 <= x <= n`, with `F(0) = 0`.
-- **Constant ranges:** The reduction count equals `k` on `[4^(k-1), 4^k - 1]`. The prefix function processes these ranges directly in logarithmic time.
-- **Range calculation:** For each query, compute `S = F(r) - F(l - 1)` so all endpoints remain inclusive and `l = 1` is handled correctly.
-- **Complexity:** Each prefix computation uses `O(log_4 n)` iterations, so the total complexity is `O(q log n)` and memory usage is `O(1)`.
-- **Integer safety:** Python integers safely handle the potentially large sum across up to `10^5` queries.

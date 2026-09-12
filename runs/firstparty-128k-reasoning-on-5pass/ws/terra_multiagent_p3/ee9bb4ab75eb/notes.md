@@ -1,9 +1,0 @@
-- **Implementation review:** Current trie implementation is correct. It stores pass-through counts for every non-root prefix node, counts valid nodes per depth, and only marks a depth unavailable when removal invalidates its sole node with count at least `k`.
-- **Example 1 test:** `words = ["jump","run","run","jump","run"], k = 2` produced/derives `[3,4,4,3,4]`; expected `[3,4,4,3,4]`; pass.
-- **Example 2 test:** `words = ["dog","racer","car"], k = 2` produced/derives `[0,0,0]`; expected `[0,0,0]`; pass.
-- **Targeted test, k=1:** `words = ["a","ab"], k = 1` produced/derives `[2,1]`; expected `[2,1]`; pass. This confirms that removing one word correctly selects the full remaining word.
-- **Targeted test, duplicates:** `words = ["abc","abc","abc"], k = 2` produced/derives `[3,3,3]`; expected `[3,3,3]`; pass.
-- **Targeted test, insufficient remaining strings:** `words = ["a","a"], k = 2` produced/derives `[0,0]`; expected `[0,0]`; pass due to the early `n - 1 < k` condition.
-- **Additional branch test:** `words = ["ab","ac","de","df"], k = 2` produced/derives `[1,1,1,1]`; expected `[1,1,1,1]`; pass. Each removed word leaves one of the two distinct length-1 shared-prefix groups.
-- **Additional sole-depth invalidation test:** `words = ["abcd","abce","xy"], k = 2` produced/derives `[0,0,3]`; expected `[0,0,3]`; pass. Removing either `abc*` word destroys all valid shared prefixes; removing `xy` leaves prefix `abc`.
-- **Complexity:** Trie construction and word-path processing are `O(sum(len(words)))`. Each answer only scans consecutively invalidated depths from the global optimum, and those depths lie on the removed word path, preserving linear total path-work. Memory is `O(sum(len(words)))`.

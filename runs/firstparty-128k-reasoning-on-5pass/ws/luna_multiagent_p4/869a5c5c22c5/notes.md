@@ -1,8 +1,0 @@
-- **Feasibility:** Traversing the placement cycle, every red move changes the parity of `row + column`, while every blue move preserves it. Hence the number of red pieces must be even. If there are no red pieces, every blue diagonal move changes row parity, so the number of blue pieces must also be even.
-- **Pure red construction:** For even `R`, use the boundary cycle of a rectangle with perimeter `R`. The special case `R=2` uses two adjacent squares.
-- **Pure blue construction:** Map each point `(x,y)` of a pure red rectangle cycle to `(x+y,x-y)`. An orthogonal step becomes a diagonal step, and the mapping is injective.
-- **Mixed construction:** For positive even `R` and positive `B`, construct a blue path from `start=(0,0)` to a designated `finish`, then a red path from `finish` back to `start`. Omit the common endpoint from both paths when outputting, producing one cyclic ordering.
-- **Blue path endpoints:** For odd `B`, the blue path ends at `(1,1)`; for even `B`, it ends at `(2,0)`. The explicit paths contain exactly `B+1` vertices.
-- **Red path:** With `R=2m+2`, the red path contains `R+1` vertices, starts at the blue endpoint, and ends at `(0,0)`. Its omitted final vertex is the first blue vertex.
-- **Bounds and uniqueness:** All coordinates have absolute value below `R+B+2`, so adding `500000000` keeps them within the board. The path shapes are disjoint except for their intentionally omitted shared endpoints.
-- **Complexity:** Each test case is processed in `O(R+B)` time and memory; the total complexity is linear in the total number of pieces.

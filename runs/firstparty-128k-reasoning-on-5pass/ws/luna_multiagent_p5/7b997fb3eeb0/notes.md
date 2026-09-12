@@ -1,6 +1,0 @@
-- **Pairing characterization:** For an interval of length `m`, if `k` pairs are possible, it is sufficient and necessary to pair the first `k` mochi positions with the last `k` positions in order. Earlier smaller mochi and later larger mochi can only make the condition easier.
-- **Threshold indices:** For each zero-based position `i`, compute `p[i]`, the first index greater than `i` with `A[p[i]] >= 2*A[i]`. If it does not exist, use `p[i] = N`.
-- **Range condition:** Define `B[i] = p[i] - i`. For a query `[L, R]` of length `m`, exactly `k` pairs are feasible iff `max(B[L:L+k]) <= m-k`.
-- **Monotonicity:** As `k` increases, the range maximum does not decrease while `m-k` decreases, so feasibility is monotone. Binary search finds the largest feasible `k`, limited by `floor(m/2)`.
-- **RMQ:** A sparse table answers each range maximum in `O(1)`. The `p[i]` values are computed with binary search in `O(N log N)`, and all queries take `O(Q log N)`.
-- **Indexing:** Input endpoints are converted to a zero-based half-open interval `[L-1, R)`. An absent threshold index is represented by `N`, so all `B[i]` values remain valid.

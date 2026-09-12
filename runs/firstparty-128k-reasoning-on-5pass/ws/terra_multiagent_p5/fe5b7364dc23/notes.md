@@ -1,8 +1,0 @@
-- **Approach:** Let prefix sums be \(S_0=0\), \(S_r=\sum_{i=1}^{r} A_i\). A subarray sum for endpoints \(l,r\) equals \(S_r-S_{l-1}\), so the target is the sum of \((S_r-S_j)^K\) over all \(0\leq j<r\).
-- **Expansion:** Apply the binomial theorem: \((S_r-S_j)^K=\sum_{i=0}^{K} {K\choose i}S_r^{K-i}(-1)^iS_j^i\). For each current prefix sum, maintained sums of earlier prefix powers allow its total contribution to be computed in \(O(K)\).
-- **State:** `moments[i]` stores \(\sum S_j^i\) over already processed prefix indices. Initially only prefix \(S_0=0\) exists, so `moments[0] = 1` because \(0^0=1\), and every `moments[i]` for \(i>0\) must be `0`. Initializing all entries to one is incorrect.
-- **Sweep order:** For each array value, update the current prefix sum; compute its contribution against current moments; then add powers of this prefix to moments. This includes exactly pairs with earlier prefix index \(j<r\).
-- **Binomial coefficients:** Since \(K\leq10\), coefficients can be computed directly with the recurrence \({K\choose i}={K\choose i-1}(K-i+1)/i\). They are small exact integers.
-- **Modulo:** Prefix sums, powers, moments, and answer are reduced modulo 998244353. Negative alternating terms are normalized through modulo arithmetic.
-- **Complexity:** \(O(NK)\) time and \(O(K)\) auxiliary memory, suitable for \(N\leq2\cdot10^5\).
-- **Checks:** For `N=1, K=10, A=[0]`, all powers beyond zero are zero and output is 0. For a first nonzero prefix, only `moments[0]` contributes, correctly yielding \(A_1^K\).

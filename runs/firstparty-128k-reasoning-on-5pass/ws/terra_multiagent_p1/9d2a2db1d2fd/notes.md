@@ -1,8 +1,0 @@
-- **Reduction:** At floor `x`, walkway movement is free inside each connected component formed by grid blocks of height at least `x`. For adjacent blocks, the maximum usable walkway floor is `min(F[u], F[v])`.
-- **Bottleneck:** For two buildings, let `T` be the maximum possible minimum edge capacity over all grid paths between them. They can move freely between those buildings at every floor up to `T`.
-- **Answer formula:** Given endpoint floors `Y, Z`, the minimum stair count is `abs(Y-Z) + 2*max(0, min(Y,Z)-T)`. If `T >= min(Y,Z)`, descend or ascend directly between endpoint floors. Otherwise both endpoints must descend to at most `T`, requiring an additional descent/ascent pair.
-- **Maximum spanning tree:** A maximum spanning tree preserves the maximin bottleneck value for every pair of vertices. Therefore `T` is the minimum edge weight on the unique tree path.
-- **Preprocessing:** Sort all grid adjacency edges by descending capacity and run Kruskal to build a maximum spanning tree. Root it, then use binary lifting. `up[k][v]` is the `2^k`-th ancestor and `mn[k][v]` is the minimum edge capacity on that upward path.
-- **Same building:** Treat the threshold as infinity; the answer becomes simply `abs(Y-Z)`.
-- **Complexity:** Grid edges are `O(HW)`. Construction costs `O(HW log(HW))` due to sorting. Binary lifting uses `O(HW log(HW))` memory and preprocessing time. Each query takes `O(log(HW))`.
-- **Memory details:** Edges are packed into integers and the tree plus lifting tables use `array('i')`, avoiding excessive Python object memory for up to 250,000 vertices.

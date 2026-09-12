@@ -1,7 +1,0 @@
-- **Verification:** The provided implementation is correct and requires no algorithmic changes.
-- **Sample checks:** `"000001", 1` returns `2`; `"0000", 2` returns `1`; `"0101", 0` returns `1`.
-- **Run-cost formula:** For `L > 1`, a run of length `r` needs exactly `r // (L + 1)` flips. Each flip can be placed within a block of `L + 1` consecutive equal characters, splitting that oversized block into shorter runs. Thus every `L + 1` characters force one flip.
-- **Adjacent-run interaction:** Adjacent original runs have opposite characters. A flip used inside an oversized run can be positioned so that it separates the run without creating an oversized merge with neighboring runs. For example, with `"100001"` and `L = 2`, the zero-run has length four and costs `4 // 3 = 1`; flipping an internal zero produces a valid result with maximum run length two.
-- **Boundary checks:** For a run of length exactly `L`, cost is zero; for length `L + 1`, cost is one; for length `2L + 2`, cost is two. This matches `r // (L + 1)`.
-- **Special case:** The formula is not sufficient for `L = 1`, because the final string must be globally alternating. The implementation correctly compares against both alternating patterns.
-- **Complexity:** `O(n log n)` time and `O(1)` extra space.

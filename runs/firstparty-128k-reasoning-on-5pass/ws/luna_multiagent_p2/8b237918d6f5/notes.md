@@ -1,9 +1,0 @@
-- **Fixed-distance condition:** For a target distance \(D\), minimize the number of edges assigned weight 1 such that every path from vertex 1 to vertex \(N\) has total weight at least \(D\).
-- **Potential characterization:** This is equivalent to finding integer potentials \(d_v\) with \(d_1=0\), \(d_N\ge D\), and \(d_v\le d_u+w(u,v)\) for every edge \(u\to v\).
-- **Threshold labels:** Create \(z_{v,i}\) for \(0\le i<D\), where \(z_{v,i}\) means \(d_v\ge i+1\). Labels for each vertex are monotone through infinite-capacity arcs \(z_{v,i+1}\to z_{v,i}\).
-- **Edge constraints:** For every edge \(u\to v\), infinite-capacity arcs \(z_{v,i}\to z_{u,i-1}\) for \(i\ge1\) enforce \(d_v\le d_u+1\).
-- **Edge cost:** Add a capacity-1 arc \(z_{v,i}\to z_{u,i}\) for every threshold. Under the edge constraint, at most one such arc can cross the source-sink cut, and it crosses exactly when \(d_v=d_u+1\). Thus the cut pays one precisely when that original edge is assigned weight 1.
-- **Endpoints:** Labels of vertex 1 are forced to the sink side, while labels of vertex \(N\) are forced to the source side.
-- **Exact \(K\):** The min-cut gives the minimum number of weight-1 edges. If this is at most \(K\), additional arbitrary edges can be changed to weight 1 without decreasing any shortest-path distance.
-- **Search:** Feasibility is monotone in \(D\), so binary search over \(0\le D\le N-1\). Each flow instance has \(O(ND)\) vertices and \(O((N+M)D)\) arcs.
-- **Parallel edges:** Each input edge contributes its own capacity-1 arcs, so parallel edges are handled independently.

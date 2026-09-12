@@ -1,5 +1,0 @@
-- **Observation:** A valid number has only even prime exponents, so it is a perfect square: \(N=x^2\). The distinct prime factors of \(N\) and \(x\) are identical. Thus, \(N\) is a 400 number exactly when its square root has exactly two distinct prime factors.
-- **Precomputation:** For all possible roots up to \(\lfloor\sqrt{\max A}\rfloor\), compute the number of distinct prime divisors using a sieve. For every root with divisor count exactly two, store its square.
-- **Query answering:** The stored squares are naturally sorted because roots are processed in increasing order. Use `bisect_right(values, A) - 1` to find the largest 400 number not exceeding each query value.
-- **Complexity:** The sieve takes \(O(M \log\log M)\)-like time in practice, where \(M \le 10^6\), and \(O(M)\) memory. Each query takes \(O(\log M)\).
-- **Edge cases:** The smallest valid value is \(36=6^2\), guaranteed to exist for every query by the constraints. Python integers safely hold all values up to \(10^{12}\).

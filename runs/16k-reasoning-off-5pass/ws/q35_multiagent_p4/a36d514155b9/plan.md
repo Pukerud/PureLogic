@@ -1,6 +1,0 @@
-1. Use linearity of expectation: The total sum of Manhattan distances over all pairs in all arrangements equals the sum over all unordered pairs of cells (u, v) of (Manhattan distance between u and v) * (number of arrangements where both u and v contain pieces).
-2. For any two distinct cells u and v, the number of arrangements where both contain pieces is C(m*n - 2, k - 2), since we fix 2 pieces and choose k-2 from the remaining m*n-2 cells.
-3. Thus, the answer is C(m*n - 2, k - 2) * (sum of Manhattan distances between all unordered pairs of distinct cells in the m x n grid).
-4. Compute the sum of Manhattan distances between all unordered pairs of cells efficiently: The Manhattan distance |x_i - x_j| + |y_i - y_j| can be split into x-component and y-component sums.
-5. For the x-component: For each row i, there are n cells. The sum of |x_i - x_j| for all pairs in the same column across different rows is: for each column, sum over all pairs of rows (i, j) of |i - j|. This is independent of the column, so multiply by n (number of columns). Similarly for y-component: for each row, sum over all pairs of columns (j, l) of |j - l|, multiplied by m (number of rows).
-6. Precompute combinations using modular arithmetic with precomputed factorials and inverse factorials.

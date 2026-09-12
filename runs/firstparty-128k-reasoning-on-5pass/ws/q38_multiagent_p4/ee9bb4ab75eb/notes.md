@@ -1,8 +1,0 @@
-- **Problem reduction:** For a removed word `w`, a prefix depth `d` is feasible iff some trie node at depth `d` still contains at least `k` strings after removing `w`.
-- **Trie counts:** Each trie node stores how many word occurrences pass through it. Duplicate strings are counted as separate indices, which matches the distinct-index requirement.
-- **Top-two per depth:** For depths `d <= len(w)`, the only node at depth `d` that can contain `w` is the node on `w`'s path. If its count `c >= k + 1`, it remains valid after removal. Otherwise, another node at the same depth is valid exactly when `top1[d] >= k` and either `c < top1[d]` or `top2[d] >= k`.
-- **Suffix array:** `suff[d]` stores the farthest depth `e >= d` with `top1[e] >= k`. For depths greater than `len(w)`, the removed word cannot be inside any node at that depth, so any node with count at least `k` is valid. Thus the initial best for `w` is `suff[len(w) + 1]`.
-- **Answer construction:** For each word, start with the best depth beyond its length from `suff`, then walk its trie path and update the answer whenever the current depth is feasible.
-- **Edge cases:** If `n - 1 < k`, all answers are `0`. `k = 1` correctly reduces to the length of the longest remaining word. Duplicates and words that are prefixes of other words are handled naturally by trie counts at internal/terminal nodes.
-- **Verification:** Provided examples pass. Small brute-force random checks against a direct subset/LCP simulation match for short words, duplicates, prefix words, and boundary `k` values.
-- **Complexity:** Building the trie, computing top counts, and processing all words together take `O(total word length)` time and memory.

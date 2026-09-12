@@ -1,7 +1,0 @@
-- **Approach:** Store the set as a binary indicator polynomial \(P\), then compute \(P \cdot P\) with an NTT under modulus 998244353.
-- **Coefficient meaning:** The coefficient at index \(2B\) counts ordered pairs \((A,C)\) from the set with \(A+C=2B\).
-- **Correction:** The pair \((B,B)\) always contributes one and is removed. Every valid triplet with \(A<C\) contributes two ordered endpoint pairs, so the contribution is `(coefficient - 1) // 2`.
-- **Transform size:** Choose the smallest power of two at least \(2\max(S)+1\), which is at most \(2^{21}\) under the constraints.
-- **Correctness of modular arithmetic:** Every convolution coefficient is at most \(N\le 10^6\), much smaller than 998244353, so the modular result uniquely represents the integer coefficient.
-- **Memory:** The set is retained as a bytearray, while the NTT polynomial is a single in-place list. Input values use a compact unsigned-integer array and are discarded after constructing membership.
-- **Complexity:** The NTT takes \(O(L\log L)\) time and \(O(L)\) memory, where \(L\) is the chosen transform size.

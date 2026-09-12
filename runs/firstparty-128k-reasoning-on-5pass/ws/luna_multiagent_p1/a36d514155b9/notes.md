@@ -1,6 +1,0 @@
-- **Linearity:** For every unordered pair of cells, its Manhattan distance contributes once for each arrangement containing both cells.
-- **Fixed-pair count:** A fixed pair belongs to exactly \(\binom{mn-2}{k-2}\) arrangements, since the remaining \(k-2\) pieces can be placed in any chosen cells among the other \(mn-2\).
-- **Row contribution:** Summing row-coordinate differences over all row pairs gives \(m(m-1)(m+1)/6\). Each row pair has \(n^2\) choices of columns, so the contribution is \(n^2m(m-1)(m+1)/6\).
-- **Column contribution:** Similarly, the column-coordinate contribution is \(m^2n(n-1)(n+1)/6\).
-- **Complexity:** Factorials and modular inverses take \(O(mn)\) time and memory, which fits \(mn \le 10^5\). The geometric formula itself is constant time.
-- **Checks:** For \(m=n=2,k=2\), the geometric sum is \(8\), and the binomial factor is \(1\), giving \(8\). For \(m=1,n=4,k=3\), the geometric sum is \(10\), and the binomial factor is \(2\), giving \(20\).

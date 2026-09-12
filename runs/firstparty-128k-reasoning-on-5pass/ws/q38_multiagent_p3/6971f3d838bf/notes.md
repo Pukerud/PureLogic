@@ -1,7 +1,0 @@
-- **Verification harness:** The program contains the original segment-tree Solution plus a deterministic test harness that runs the two examples, targeted edge cases, 3000 small random arrays, and a 100k stress test.
-- **Examples:** Both pass. Example 1 returns 7, and example 2 returns 10.
-- **Brute-force reference:** For every present value x with count less than n, the reference filters out x and runs Kadane; it also includes the original array. This matches the solution on all small tests.
-- **Edge categories:** All-negative, all-same, zeros, mixed, and consecutive-run arrays all pass. No failing case was found.
-- **Performance:** The 100k stress case uses [1, -1, -2, ..., -99999], exercising about 200k point updates. It completes in a few seconds, returns 1, and satisfies max(nums) <= result <= sum(positive nums).
-- **Correctness notes:** Only negative deletion candidates can improve the answer; deleting non-negative values maps any resulting subarray to an original segment with at least the same sum. Early exits for no negatives and max element <= 0 are safe. Inactive leaves use (0, NEG, NEG, NEG), and NEG is far below any real sum.
-- **Status:** All requested tests pass; no failing case.

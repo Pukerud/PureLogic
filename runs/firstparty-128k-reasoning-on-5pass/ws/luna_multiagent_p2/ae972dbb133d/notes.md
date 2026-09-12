@@ -1,8 +1,0 @@
-- **Edge encoding:** Let each horizontal grid edge have a binary variable indicating whether the segment reaches it, and similarly for each vertical edge. The torus identifies opposite boundary edges.
-- **Type A constraint:** Its left/right edges differ and its top/bottom edges differ. Thus, moving across an A cell toggles the corresponding row or column edge variable.
-- **Type B constraint:** Its left/right edges are equal, its top/bottom edges are equal, and the common horizontal and vertical values differ. This gives one XOR relation between a row representative and a column representative.
-- **Row reduction:** For row `i`, choose the first horizontal edge as `p[i]`. Every other horizontal edge is `p[i]` XOR the prefix parity of A cells in that row. A row is consistent on the torus iff the total number of A cells in it is even.
-- **Column reduction:** Likewise, choose `q[j]` for each column. The column is consistent iff its total number of A cells is even.
-- **Type B equations:** For a B cell `(i,j)`, after removing row and column prefixes, impose `p[i] XOR q[j] = 1 XOR row_prefix XOR column_prefix`.
-- **Counting:** These equations form a parity graph on `H + W` variables. A weighted DSU detects contradictions. If consistent, each connected component has one free binary value, so the answer is `2^components mod 998244353`.
-- **Complexity:** Each cell is processed once, with near-constant DSU cost: `O(HW α(H+W))` time and `O(H+W)` auxiliary memory, besides the input grid.

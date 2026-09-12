@@ -1,7 +1,0 @@
-- **Functional graph structure:** Each connected component has exactly one directed cycle, with rooted in-trees attached to its cycle vertices.
-- **Cycle equality:** The inequalities around a directed cycle force every cycle vertex to have the same value.
-- **Tree DP:** For a non-cycle vertex \(v\), `dp[v][k]` counts assignments in its attached subtree when \(x_v=k\). Each child may take values from \(1\) through \(k\), so child contributions use prefix sums.
-- **Cycle detection:** Repeatedly remove indegree-zero vertices. Vertices remaining afterward are exactly the cycle vertices.
-- **Processing order:** The removal order lists tree vertices from leaves toward cycles, so iterating it forward computes every child DP before its parent.
-- **Component combination:** For each cycle component, multiply all attached-tree contributions for every possible common cycle value, sum over values \(1\) through \(M\), then multiply component answers.
-- **Complexity:** \(O(NM)\) time and \(O(NM)\) memory.

@@ -1,6 +1,0 @@
-1. The problem asks for the maximum number of pairs (top, bottom) such that top_size <= bottom_size / 2, using distinct mochi for each pair.
-2. Since the array is sorted, we can use a greedy two-pointer approach. We want to pair the smallest possible mochi as "top" with the smallest possible valid "bottom" to save larger mochi for other pairs.
-3. Use two pointers: `left` for potential top mochi and `right` for potential bottom mochi. Start `left` at 0 and `right` at N/2 (since we need at least N/2 mochi for the bottom if we pair all, but more precisely, we can start `right` at the middle because the largest N/2 mochi are the best candidates for bottoms).
-4. Actually, a better greedy strategy: iterate through the first half of the array as candidates for the top mochi, and the second half as candidates for the bottom mochi. Specifically, let `left` range from 0 to N/2 - 1 and `right` range from N/2 to N-1.
-5. For each `left`, find the smallest `right` such that A[left] <= A[right] / 2. If found, we form a pair and move both pointers. If not, we move `right` to try a larger bottom. If `right` goes out of bounds, we stop.
-6. This greedy works because if A[left] can be paired with A[right], it's optimal to do so because A[left] is the smallest available top, and A[right] is the smallest valid bottom, leaving larger bottoms for potentially larger tops.

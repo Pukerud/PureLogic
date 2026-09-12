@@ -1,8 +1,0 @@
-- **Mandatory occurrences:** Overlay every `T` occurrence of `str2`. Any conflicting character assignment makes the instance impossible.
-- **F-window handling:** An `F` window already differing at a forced position is satisfied. Otherwise, its rightmost unfixed position is its deadline; the window must mismatch there if it has not mismatched earlier.
-- **Greedy construction:** Process output positions left to right. At each deadline, forbid the corresponding `str2` character for every still-equal `F` window. Select the smallest lowercase character not forbidden.
-- **Shared deadlines:** Multiple windows can end at the same free position, so all their forbidden characters are combined. Since at most 26 lowercase characters exist, failure to choose one proves impossibility.
-- **Correctness:** Any window whose earlier free positions remain equal can only be made different at its rightmost free position. Choosing the smallest currently legal character therefore preserves lexicographic minimality.
-- **State updates:** After assigning each position, update all `F` windows containing it. Once a window differs, it imposes no additional restriction.
-- **Edge cases covered:** Conflicting `T` overlaps, forced-equal `F` windows, all-`T` and all-`F` inputs, `m = 1`, overlapping patterns, and multiple windows sharing a deadline.
-- **Complexity:** The overlay, classification, greedy updates, and final validation are each `O(nm)` in the worst case, with `O(n + m)` auxiliary memory aside from deadline lists.

@@ -1,9 +1,0 @@
-- **Validation:** All provided samples pass: `"acab"` returns `1`, `"wddw"` returns `0`, and `"aaabc"` returns `2`.
-- **Fixed-frequency model:** For each common positive frequency `k` from `1` through `len(s)`, every alphabet letter is selected as either absent (`0`) or present exactly `k` times.
-- **Baseline cost:** Without character changes, a letter with original count `c` and target count `x` costs `abs(c - x)` through deletions and insertions.
-- **Conversion saving:** A useful `i -> i+1` change replaces one deletion plus one insertion (cost `2`) with one change (cost `1`), saving `1`. Its maximum number is `min(surplus(i), deficit(i+1))`.
-- **DP recurrence:** `dp0` and `dp1` store the minimum cost through the prior alphabet letter when that letter has target count `0` or `k`. For a present current letter, the transition subtracts the applicable adjacent conversion saving. For an absent current letter, all its original characters are deleted.
-- **No transition conflicts:** A letter can have useful outgoing conversions only if it has surplus, and useful incoming conversions only if it has deficit; these cannot both hold for the same fixed target count. Thus adjacent savings are independent.
-- **Longer changes:** Incrementing over two or more alphabet positions costs at least `2`, no better than deleting and inserting. It cannot improve the baseline-minus-adjacent-savings formulation.
-- **Exhaustive verification:** The recurrence was checked against exact enumeration of target presence patterns for small frequency vectors. For each fixed `k` and each binary target pattern, the exact cost is the independent delete/insert baseline minus all valid adjacent surplus-deficit savings; the DP produces the same minimum over patterns.
-- **Complexity:** There are `n` possible values of `k` and 26 letters per value, so time is `O(26n)` and extra space is `O(1)`.

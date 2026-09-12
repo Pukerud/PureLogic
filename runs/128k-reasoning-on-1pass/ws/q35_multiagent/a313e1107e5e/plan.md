@@ -1,7 +1,0 @@
-The problem asks for the length of the longest strictly increasing subsequence (LIS) of the prefix $A[1 \dots R_i]$ such that all elements in the subsequence are $\le X_i$. This can be viewed as a 2D range query problem, but it can be solved efficiently offline.
-
-We process the queries offline by sorting them based on $R_i$. As we iterate through the array $A$ from index 1 to $N$, we maintain the standard `tails` array used in the $O(N \log N)$ LIS algorithm. The `tails` array stores the smallest ending element of an increasing subsequence of length $k+1$ at index $k$. This array is always strictly increasing.
-
-For a query $(R_i, X_i)$, after processing $A[1 \dots R_i]$, the `tails` array contains the minimum ending values for all possible LIS lengths using the prefix. The condition that all elements in the subsequence are $\le X_i$ is satisfied if and only if the ending element of the subsequence is $\le X_i$ (since the subsequence is increasing, all previous elements are smaller). Thus, the answer is the largest length $L$ such that `tails[L-1]` $\le X_i$. Since `tails` is sorted, we can find this length using binary search (`bisect_right`) in $O(\log N)$ time.
-
-The overall complexity will be $O(N \log N + Q \log N + Q \log Q)$, which fits well within the time limits for $N, Q \le 2 \times 10^5$.

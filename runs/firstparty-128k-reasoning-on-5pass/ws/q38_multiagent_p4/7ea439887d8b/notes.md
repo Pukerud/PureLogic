@@ -1,8 +1,0 @@
-- **State model:** The only global information needed is whether the number of reversals so far is even or odd. State `(v, p)` with `p = 0` meaning original directions and `p = 1` meaning reversed directions.
-- **Transitions:** In `p = 0`, an original edge `u -> v` gives a move `u -> v` with cost 1, implemented using `adj[u]`. In `p = 1`, the same original edge gives a move `v -> u` with cost 1, implemented using `radj[v]`. At every vertex, toggle `p` to `1 - p` at cost `X`.
-- **Target and early exit:** The process ends as soon as vertex `N` is reached, so the answer is the minimum distance to `(N, 0)` or `(N, 1)`. Dijkstra may stop when the first popped state has vertex `N - 1` because heap pops states in nondecreasing distance and all edge weights are positive.
-- **Indexing:** Use state id `(v << 1) | p`. Start is id `0` for vertex `0` parity `0`. Target ids are `(N - 1) << 1` and `(N - 1) << 1 | 1`.
-- **Complexity:** There are `2N` states, `2M` move transitions, and `2N` toggle transitions. Dijkstra runs in `O((N + M) log N)` time and `O(N + M)` memory.
-- **Implementation details:** Read all integers at once, build `adj` and `radj`, use `heapq`, and keep local references to `heappush` and `heappop`. Strict `<` updates avoid pushing equal-distance duplicates.
-- **Numerics:** Python integers are arbitrary precision, so 64-bit overflow is not a concern. `INF = 10 ** 30` is far above any possible shortest path bound.
-- **Edge cases:** Self-loops and duplicate edges are handled naturally. `N` is at least 2, but the code would also return `0` if `N` were `1`. The guaranteed reachability makes the fallback after the loop unnecessary, but it is kept for safety.

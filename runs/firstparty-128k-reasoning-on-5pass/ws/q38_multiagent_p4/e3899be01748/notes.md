@@ -1,9 +1,0 @@
-- **State:** After processing a prefix ending at position `i`, `freq[d][r]` is the number of substrings ending at `i` whose numeric value has remainder `r` modulo `d`, for each `d = 1..9`. Index `0` is unused.
-- **Transition:** For a new digit `x`, every old substring ending at `i` extends to value `10*v + x`, so its remainder maps as `r -> (10*r + x) % d`. The one-character substring `x` adds one to remainder `x % d`. This builds `new_freq[d]` for all `d`.
-- **Counting:** A substring ending at the new position is valid only if `x != 0` and its value is divisible by `x`; that count is exactly `new_freq[x][0]`. Zero-ending substrings are never added to the answer, but they are still propagated because they can be extended to later non-zero endings.
-- **Leading zeros:** The recurrence `10*v + x` is valid for values with leading zeros, so substrings like `"01"` are handled naturally as value `1`.
-- **Complexity:** Each character performs `1 + 2 + ... + 9 = 45` remainder updates, so time is `O(45n) = O(n)` for `n <= 1e5`. Memory is `O(45)` for the two frequency tables plus tiny precomputed transition tables.
-- **Precomputation:** `_TRANS[x][d-1][r] = (10*r + x) % d` and `_MODS[x][d-1] = x % d` remove repeated arithmetic. The transition tables are tiny, with only `10 * 45` entries.
-- **Edge cases:** `s = "0"` returns `0`; a single non-zero digit returns `1`; all zeros return `0`; all ones return `n*(n+1)//2` because every substring ending in `1` is divisible by `1`.
-- **Magnitude:** The answer can be about `5e9` for `n = 1e5`, which fits Python int easily.
-- **Verification:** The three examples produce `11`, `18`, and `25`. The invariant also matches brute-force substring checks for small strings.

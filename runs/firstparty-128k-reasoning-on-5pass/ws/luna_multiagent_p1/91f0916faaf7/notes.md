@@ -1,8 +1,0 @@
-- **Prime decomposition:** For each prime \(p\), let \(e_i=v_p(S_i)\) and \(a_i=v_p(A_i)\). The ratio condition is exactly \(|e_i-e_{i+1}|=a_i\).
-- **GCD condition:** The global gcd is \(1\) precisely when every prime’s exponent sequence has minimum \(0\). Primes absent from every \(A_i\) must have constant exponents, and the gcd condition forces those exponents to be zero.
-- **Independence:** Prime exponent sequences are independent. For a fixed prime, each sequence has weight \(p^{\sum e_i}\), so the final answer is the product of per-prime weighted sums.
-- **First-zero decomposition:** Every valid nonnegative exponent walk has a unique first zero. Prefix DP counts walks whose first zero is at each position; suffix DP counts arbitrary nonnegative continuations from that zero.
-- **Prefix transition:** Positive state exponent \(x\) is stored at `dp[x - 1]`. Therefore, when processing an edge of difference \(a_i>0\), the transition from exponent \(a_i\) to zero contributes `dp[a_i - 1]`.
-- **Zero-difference edges:** When \(a_i=0\), the exponent does not change, and the transition is counted once rather than twice.
-- **Exponent bound:** For a walk with a zero, every exponent is at most the sum of edge differences, \(T_p=\sum_i v_p(A_i)\). Arrays of size \(T_p+1\) are sufficient.
-- **Complexity:** For each prime, the time complexity is \(O(NT_p)\) and memory usage is \(O(T_p+N)\). The total factor-exponent size is small because every \(A_i\le1000\).

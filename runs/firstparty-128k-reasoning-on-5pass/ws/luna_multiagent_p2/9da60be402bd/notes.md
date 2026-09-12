@@ -1,7 +1,0 @@
-- **State meaning:** A state `(x, y)` represents the shortest currently known palindromic path from vertex `x` to vertex `y`.
-- **Initialization:** Every `(v, v)` has distance `0`, representing the empty palindrome. Every existing directed edge gives a palindrome of length `1`.
-- **Transition:** If `u -> x` and `y -> v` have the same label, any palindrome from `x` to `y` can be enclosed by these two edges, producing a palindrome from `u` to `v` whose length is increased by `2`.
-- **Shortest paths:** All transition costs are nonnegative, so Dijkstra's algorithm over the `N²` pair states is correct.
-- **Adjacency:** Incoming and outgoing edges are grouped by character, allowing transitions to inspect only matching labels.
-- **Complexity:** The pair-state graph has `N²` states. Transition work is proportional to the sum of Cartesian products of matching incoming/outgoing adjacency lists; in the densest case this is `O(N⁴)`, with `N <= 100`. Memory usage is `O(N² + E)`.
-- **Edge cases:** Self-loops, repeated vertices, empty paths, and unreachable pairs are handled directly. The input has at most one edge for each ordered vertex pair.

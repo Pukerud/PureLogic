@@ -1,8 +1,0 @@
-- **Approach:** Sort intervals by start coordinate while preserving original indices. For each interval, find the first interval with `start > end` using `bisect_right`, which correctly enforces that boundary-touching intervals overlap.
-- **DP state:** Use four rolling DP layers. A state stores `(maximum_score, sorted_tuple_of_original_indices)` for choosing at most the current capacity from a suffix of the start-sorted intervals.
-- **Transition:** At every interval, either skip it or take it, then jump to its strict compatible successor. Taking an interval consumes one of the four available selections.
-- **Tie-breaking:** On equal scores, compare sorted original-index tuples directly. Python tuple comparison provides the required lexicographic comparison and correctly prefers a shorter tuple when it is a prefix.
-- **Complexity:** Sorting and successor lookup cost `O(n log n)`. The DP has `4n` states and constant-size tuples of length at most four, using `O(n)` memory.
-- **Validation:** The supplied implementation passes both given samples: sample 1 returns `[2, 3]`, and sample 2 returns `[1, 3, 5, 6]`.
-- **Boundary-touching validation:** For intervals such as `[[1,2,5], [2,3,100]]`, the first interval cannot transition to the second because `bisect_right(starts, 2)` skips starts equal to `2`; the answer correctly selects only index `1`.
-- **Equal-score validation:** For equal-score alternatives, such as a compatible pair `[0, 1]` versus a single interval `[2]` with the same total score, tuple comparison selects `[0, 1]`, which is lexicographically smaller. Alternatives differing later similarly select the smaller original index at their first difference.

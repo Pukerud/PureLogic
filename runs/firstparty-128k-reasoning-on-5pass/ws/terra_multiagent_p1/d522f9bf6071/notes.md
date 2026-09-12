@@ -1,7 +1,0 @@
-- **Approach:** Sort intervals by start position, then use weighted interval scheduling dynamic programming with a maximum of four selected intervals.
-- **Compatibility:** For an interval ending at `r`, the next selected interval must start at a position strictly greater than `r`. `bisect_right(starts, r)` finds the first compatible sorted interval, correctly treating shared endpoints as overlapping.
-- **DP state:** `dp[k][i]` represents the best result obtainable from sorted suffix `i` using at most `k` intervals. A result is stored as `(total_weight, sorted_original_index_tuple)`.
-- **Transition:** Either skip interval `i`, using `dp[k][i+1]`, or take it and add its weight to `dp[k-1][next[i]]`. The original index is inserted into the returned tuple in sorted order.
-- **Tie-break:** Prefer larger total weight. On equal weight, compare sorted original-index tuples directly; Python tuple comparison implements the required lexicographic rule, including the shorter-prefix rule.
-- **Memory optimization:** Only the previous capacity layer and current capacity layer are needed, so memory is `O(n)`.
-- **Complexity:** Sorting and binary searches take `O(n log n)`. DP takes `O(4n)` states, with tuple operations of size at most four, so total time is `O(n log n)` and memory is `O(n)`.

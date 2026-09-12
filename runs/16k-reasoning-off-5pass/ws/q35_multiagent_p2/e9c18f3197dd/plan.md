@@ -1,5 +1,0 @@
-1. For each element in `target`, we need to find the minimum increments required to make some element in `nums` a multiple of that target element.
-2. For a given `target` value `t` and a `nums` value `n`, the smallest multiple of `t` that is >= `n` is `ceil(n/t) * t`. The cost is `ceil(n/t) * t - n`.
-3. Since `target` has at most 4 elements, we can iterate over all possible assignments of `nums` elements to `target` elements. However, multiple `target` elements can share the same `nums` element (as shown in Example 2).
-4. We need to assign each `target` element to at least one `nums` element such that the total cost is minimized. This is a minimum weight perfect matching problem in a bipartite graph, but since `target` is very small (<=4), we can use dynamic programming with bitmask or iterate over all possible subsets.
-5. We'll precompute the cost for every pair `(nums[i], target[j])`. Then use DP with bitmask over `target` indices to find the minimum total cost, where the state represents which target elements have been covered.

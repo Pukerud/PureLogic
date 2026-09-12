@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement the complete offline DSU pending-query-set solution (fast input, packed edge sort, small-to-large set merging, answer formula) and verify it on the sample.",
-    "status": "done",
-    "result": ""
-  }
-]

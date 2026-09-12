@@ -1,5 +1,0 @@
-The problem asks us to count the number of arithmetic progressions of length 3 (fine triplets) in a given set $S$. A triplet $(A, B, C)$ is fine if $A, B, C \in S$, $A < B < C$, and $B - A = C - B$, which implies $A + C = 2B$. This is equivalent to finding pairs $(A, C)$ in $S$ such that their average $(A+C)/2$ is also in $S$.
-
-We can solve this using Fast Fourier Transform (FFT). We construct a polynomial $P(x) = \sum_{s \in S} x^s$. The coefficient of $x^k$ in $P(x)^2$ represents the number of pairs $(A, C)$ such that $A + C = k$. For each $B \in S$, we look at the coefficient of $x^{2B}$ in $P(x)^2$. Let this count be $cnt[2B]$. This count includes the pair $(B, B)$ and pairs $(A, C)$ with $A \neq C$. Since $S$ has distinct elements, the pair $(B, B)$ contributes 1. The remaining $cnt[2B] - 1$ pairs are distinct and come in symmetric pairs $(A, C)$ and $(C, A)$. Thus, the number of fine triplets with middle element $B$ is $(cnt[2B] - 1) / 2$. We sum this over all $B \in S$.
-
-We will use `numpy` if available for efficient FFT, otherwise fall back to a custom iterative FFT implementation.

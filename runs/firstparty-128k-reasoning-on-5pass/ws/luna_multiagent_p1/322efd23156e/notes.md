@@ -1,7 +1,0 @@
-- **Independence:** Foods provide only one vitamin, so the three vitamin groups can be optimized independently for any fixed target intake.
-- **Knapsack DP:** For each vitamin, `dp[c]` stores the maximum amount obtainable using at most `c` calories. Capacities are processed in descending order to ensure each food is used at most once.
-- **Minimum cost:** Since `dp` is nondecreasing with capacity, binary search finds the smallest calorie capacity that reaches a requested target.
-- **Feasibility:** A target is feasible exactly when every vitamin can reach it and the sum of their minimum required calorie capacities is at most `X`.
-- **Outer binary search:** The answer lies in `[0, min(total vitamin amounts)]`. An inclusive upper-bound binary search uses `middle = (left + right + 1) // 2`, preserving the possibility that the initial upper bound itself is feasible.
-- **Empty groups:** If a vitamin has no foods, its DP is all zeroes, making every positive target infeasible and yielding answer `0`.
-- **Complexity:** Knapsack construction takes `O(NX)` time and `O(X)` memory per DP. Feasibility checks take `O(3 log X)`, and the outer binary search adds `O(log A)` checks, where `A` is the answer bound.

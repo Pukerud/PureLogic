@@ -1,7 +1,0 @@
-- **Fixed values and wildcards:** Let \(p\) and \(q\) be the numbers of fixed (non-\(-1\)) entries in \(A\) and \(B\). The remaining entries are independently replaceable by arbitrary nonnegative integers.
-- **Required direct matches:** For a chosen common sum \(S\), a fixed \(A\)-value can be paired directly only with a fixed \(B\)-value summing to \(S\). If \(m\) such direct pairs are used, the remaining fixed \(A\)-values need wildcard positions in \(B\), and the remaining fixed \(B\)-values need wildcard positions in \(A\). This is possible exactly when \(m \ge r=\max(0,p+q-N)\).
-- **Maximum direct matching:** For a fixed \(S\), equal-sum matching has maximum size \(M(S)=\sum_x \min(\mathrm{cntA}[x],\mathrm{cntB}[S-x])\), since values can be matched independently by multiplicity.
-- **Nonnegative replacements:** Every fixed value must be at most \(S\); otherwise its counterpart \(S-x\) would be negative. Thus candidate sums must satisfy \(S\ge\max\) of all fixed values.
-- **Candidate sums:** If \(r>0\), at least one fixed-fixed pair is necessary, so \(S\) must equal \(a+b\) for some fixed values. The code accumulates \(M(a+b)\) over all distinct fixed-value pairs in \(O(U_AU_B)\), where \(U_A,U_B\) are the numbers of distinct fixed values.
-- **Large-\(S\) case:** If \(r=0\), wildcard entries suffice to avoid all direct fixed-fixed pairs. Choosing \(S\) at least the largest fixed value always works.
-- **Complexity:** Time is \(O(U_AU_B+N)\), at most \(O(N^2)\), and memory is \(O(U_AU_B)\) in the worst case.

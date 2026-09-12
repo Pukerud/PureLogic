@@ -1,1 +1,0 @@
-Construct \(A=N+1\) and \(M=N^2\) for \(N>1\), which satisfy the bounds because \(N\le 10^9\). By the binomial theorem, \((N+1)^n\equiv 1+nN\pmod{N^2}\), so \(M\mid A^n-1\) exactly when \(N\mid n\); therefore the smallest valid exponent is \(N\). For \(N=1\), output any valid pair such as \(A=2, M=1\). Process each test case independently in \(O(T)\) time.

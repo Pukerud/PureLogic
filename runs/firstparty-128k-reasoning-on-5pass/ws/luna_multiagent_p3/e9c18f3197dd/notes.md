@@ -1,7 +1,0 @@
-- **State representation:** Use a bitmask of covered target values. Since there are at most four distinct targets, there are at most 16 states.
-- **Duplicate targets:** Duplicate values are removed because satisfying one target value automatically satisfies all identical copies.
-- **Subset cost:** If an element is made a multiple of the LCM of a target subset, it covers every target in that subset. The required increment is `(-value) % lcm`.
-- **Incidental coverage:** After reaching the smallest multiple of a subset LCM, check every target again. The resulting value may cover additional targets, which must be included in the transition.
-- **Dynamic programming:** Each number is either skipped or used once. Fresh-layer updates prevent one `nums` element from being reused multiple times.
-- **LCM arithmetic:** Python integers safely handle potentially large LCM values.
-- **Examples and edge cases:** The algorithm gives 1 for `[1,2,3]`, `[4]`; 2 for `[8,4]`, `[10,5]`; and 0 for `[7,9,10]`, `[7]`. It also correctly handles duplicate targets and divisible targets such as `[2,4]`.

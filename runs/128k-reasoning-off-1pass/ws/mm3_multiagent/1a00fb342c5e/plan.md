@@ -1,5 +1,0 @@
-We model each constraint `A_x XOR A_y = Z` as a graph edge with weight Z. The graph consists of connected components; each component's values are determined up to a global XOR offset. For each component we detect inconsistency via union-find (DSU) storing parity of XOR between a node and its representative. If any contradiction appears, answer is -1.
-
-For each consistent component, we need to pick the base value `c` (assigned to the root) that minimizes the total sum of `A_i = val[i] XOR c`, where `val[i]` is the known XOR of node i with the root. For each bit independently, the optimal choice of the bit of `c` is the majority among the bits of `val[i]` (because XOR with 1 flips the bit, and we want more zeros). So per bit we count ones in `val` and set that bit of `c` to 0 if zeros >= ones, else 1. Construct `c` over up to 30 bits, then compute all `A_i = val[i] XOR c`.
-
-We process each component independently, output the resulting array. Complexity O((N+M) * log MAX) with DSU.

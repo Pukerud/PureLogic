@@ -1,7 +1,0 @@
-- **Observation:** After any prefix of contests, the current rating as a function of initial rating is nondecreasing.
-- **Interval update:** For contest `[L, R]`, initial ratings whose current values are in `[L, R]` form one contiguous interval in sorted initial-rating order.
-- **Data structure:** Store current values for sorted distinct query ratings in a lazy segment tree supporting range add, range maximum, and finding the first position with value at least a threshold.
-- **Transition:** Find `a = first(value >= L)` and `b = first(value >= R + 1)`. Add one to the half-open index interval `[a, b)`.
-- **Correctness:** Monotonicity is preserved because incrementing exactly the contiguous block of values in `[L, R]` cannot invert neighboring values.
-- **Complexity:** Each contest uses two threshold searches and one range addition, costing `O(log Q)`. Final extraction costs `O(Q log Q)` in this implementation. Memory is `O(Q)`.
-- **Bounds:** Current ratings may exceed `500000`, so segment-tree values must not be restricted to endpoint bounds.

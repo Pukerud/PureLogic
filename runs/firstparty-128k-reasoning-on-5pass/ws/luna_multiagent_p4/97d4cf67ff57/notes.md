@@ -1,7 +1,0 @@
-- **Structure:** Every valid alkane has at least one degree-4 vertex, which can be treated as a center. Removing the center leaves four disjoint rooted arms.
-- **Arm recurrence:** For a directed edge `u -> v`, define its message as the maximum size of a valid arm rooted at `u`, where `u` already uses the edge to `v` as its parent edge. Vertex `u` must therefore choose either zero child arms (degree 1) or exactly three child arms (degree 4).
-- **Message formula:** `msg(u -> v) = 1` if fewer than three usable neighboring arms exist; otherwise it is `1 +` the sum of the three largest incoming messages from neighbors other than `v`.
-- **Center combination:** At every possible center, choose the four largest messages from its neighbors. The candidate alkane size is `1 +` their sum.
-- **Linear-time computation:** Root the tree. Bottom-up DP computes child-to-parent messages. A preorder pass computes parent-to-child messages using the best four incoming values at each vertex; retaining four values is sufficient when excluding one neighbor.
-- **Validity:** Any connected vertex subgraph of a tree must use all tree edges between its selected vertices, so the degree-based arm decomposition exactly characterizes valid alkane subgraphs.
-- **Failure case:** If no vertex has at least four neighbors, or no center candidate exists, output `-1`.

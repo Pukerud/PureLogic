@@ -1,7 +1,0 @@
-- **Offline simulation:** Simulate all moves first, recording each horizontal movement as an inclusive x-interval keyed by its y-coordinate and each vertical movement as an inclusive y-interval keyed by its x-coordinate.
-- **Interval merging:** For each fixed coordinate, sort its movement intervals and merge overlapping or adjacent intervals. Adjacent intervals may safely merge because coordinates are integral and no house coordinate exists strictly between consecutive integers.
-- **House indexing:** Store every house twice: grouped by y as `(x, index)` for horizontal checks, and grouped by x as `(y, index)` for vertical checks.
-- **Coverage scan:** Sort each relevant house group by its varying coordinate. For every merged movement interval, use binary search to find the covered slice and mark its house indices.
-- **Distinct counting:** A global boolean array indexed by house ID prevents counting a house twice when covered by multiple segments or by both a horizontal and vertical route.
-- **Complexity:** Sorting movement intervals costs `O(M log M)` overall, sorting houses costs `O(N log N)` overall, and each house can occur in at most one horizontal and one vertical scan. Memory usage is `O(N + M)`.
-- **Coordinates:** Python integers safely handle total displacement beyond 32-bit range.

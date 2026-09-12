@@ -1,6 +1,0 @@
-- **Approach:** Use the product state `(u, v)`, representing a known palindromic path from `u` to `v`. If edges `a -> u` and `v -> b` share a label, wrapping the inner palindrome creates one from `a` to `b`.
-- **Parity separation:** Run two ordinary multi-source BFS traversals because each wrapping operation adds exactly two edges. The even BFS starts from all `(x, x)` empty palindromes. The odd BFS starts from every direct edge `(x, y)`, which is a one-character palindrome.
-- **Distances:** BFS distance counts wrapping layers. Convert even results to `2 * layers` and odd results to `2 * layers + 1`; take the smaller reachable value.
-- **Optimization:** Store predecessor and successor sets per label as Python integer bitmasks. For a transition state and label, iterate possible outer-left vertices and discover only previously unseen outer-right vertices using bit operations. This avoids repeatedly iterating all Cartesian-product pairs that were already visited.
-- **Complexity:** There are at most `N^2 = 10000` pair states. Bitmask-based discovery prevents repeated state insertion; memory is `O(N^2 + 26N)`. The state expansion work is suitable for `N <= 100`.
-- **Sample verification:** The algorithm produces the stated outputs for both provided samples.

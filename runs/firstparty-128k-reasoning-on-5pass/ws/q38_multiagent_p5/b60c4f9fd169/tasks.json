@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement and test a deterministic Landau-Vishkin furthest-reaching algorithm for edit distance <=K with chunked LCE, early exits, and sample/edge verification.",
-    "status": "done",
-    "result": ""
-  }
-]

@@ -1,6 +1,0 @@
-- **Approach:** Greedily construct the permutation in lexicographic order. For every valid unused candidate, count alternating suffixes after fixing that candidate and use these counts to unrank `k`.
-- **Completion counting:** Given remaining odd/even counts and the required parity of the next suffix element, suffix parity slots are forced. If counts match those slots, there are `odd_left! * even_left!` suffix permutations.
-- **Feasibility:** For a suffix of length `r`, its starting parity requires `(r + 1) // 2` positions and the other parity requires `r // 2`. Mismatched remaining counts yield zero completions.
-- **Overflow handling:** Factorials and products are capped at `k + 1`, sufficient because counts are only compared to the current rank.
-- **Complexity:** `O(n^2)` time from scanning unused values at each position and `O(n)` memory.
-- **Sample verification:** `permute(4, 6)` returns `[3, 4, 1, 2]`; `permute(3, 2)` returns `[3, 2, 1]`; `permute(2, 3)` returns `[]`. All exactly match expected outputs.

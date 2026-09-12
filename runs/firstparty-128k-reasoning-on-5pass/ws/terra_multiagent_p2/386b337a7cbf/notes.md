@@ -1,9 +1,0 @@
-- **Verification:** The supplied implementation produces the expected answers for the examples: `[1,2,3], k=2, limit=10 -> 6`; `[0,2,3], k=-5, limit=12 -> -1`; `[2,2,3,3], k=0, limit=9 -> 9`.
-- **k = 0 / non-empty:** The DP does not initialize an empty state. It explicitly creates singleton states, so an empty subsequence is never accepted for `k = 0`.
-- **Singleton zero:** For `nums=[0], k=0, limit=1`, the singleton transition sets odd/product-zero/sum-zero and returns `0`. For a nonzero target it correctly returns `-1`.
-- **Zero parity transition:** Taking zero must flip parity even though the alternating sum is unchanged. The implementation correctly maps old even states to new odd states and old odd states to new even states in product bucket zero.
-- **Overflow followed by zero:** Products greater than `limit` are kept in the overflow bucket. When zero is later selected, all active buckets, including overflow, map to exact product zero. Thus sequences such as `[12, 0]` with a small limit are not incorrectly discarded if their alternating-sum target is reachable.
-- **Products above limit:** A singleton positive value greater than `limit` is stored only in overflow and cannot be returned directly. It can only contribute to a valid answer after a later zero resets its product to zero, which is correct.
-- **Shift directions:** A bit at index `sum + offset` moves left by `x` when selecting after even selected length (`sum + x`), and right by `x` after odd selected length (`sum - x`). The left shift is masked to the feasible sum range.
-- **No failing transition found:** The tested edge categories match the intended DP semantics. Snapshot copies per element ensure the current element cannot be selected more than once.
-- **Complexity:** At most `limit + 2 <= 5002` product buckets exist. Alternating sums are represented by Python integer bitsets of width at most `3601`; transitions iterate only active product buckets.

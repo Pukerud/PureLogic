@@ -1,7 +1,0 @@
-1. Use the identity $x^3 - y^3 = (x-y)(x^2 + xy + y^2)$. Let $d = x-y$ and $s = x^2 + xy + y^2$, so $N = d \cdot s$.
-2. Since $x, y \geq 1$, we have $x > y$, so $d \geq 1$. Also $s = x^2 + xy + y^2 > 0$.
-3. Iterate over all divisors $d$ of $N$. For each $d$, we need to check if there exist positive integers $x, y$ such that $x - y = d$ and $x^2 + xy + y^2 = N/d$.
-4. Substitute $x = y + d$ into the second equation: $(y+d)^2 + (y+d)y + y^2 = N/d$. This simplifies to $3y^2 + 3dy + d^2 = N/d$, or $3y^2 + 3dy + (d^2 - N/d) = 0$.
-5. Solve this quadratic for $y$: $y = \frac{-3d \pm \sqrt{9d^2 - 12(d^2 - N/d)}}{6} = \frac{-3d \pm \sqrt{12N/d - 3d^2}}{6}$.
-6. For $y$ to be a positive integer, the discriminant $D = 12N/d - 3d^2$ must be a perfect square, and the resulting $y$ must be a positive integer. We can iterate $d$ from 1 up to $\sqrt[3]{N}$ approximately, but since $d$ can be larger, we iterate all divisors. However, note that $d^2 < 12N/d$ implies $d^3 < 12N$, so $d < \sqrt[3]{12N}$. For $N=10^{18}$, $\sqrt[3]{12 \cdot 10^{18}} \approx 2.3 \cdot 10^6$, which is manageable.
-7. For each divisor $d$ of $N$ with $d < \sqrt[3]{12N}$, compute the discriminant and check if it's a perfect square. If so, compute $y$ and check if it's a positive integer. If yes, compute $x = y + d$ and output.

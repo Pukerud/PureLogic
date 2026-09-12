@@ -1,8 +1,0 @@
-1. Use linearity of expectation: The total Manhattan distance over all pairs in all arrangements equals the sum over all unordered pairs of cells (u, v) of (Manhattan distance between u and v) * (number of arrangements where both u and v contain pieces).
-2. For any two distinct cells u and v, the number of arrangements where both contain pieces is C(m*n - 2, k - 2), since we fix 2 pieces and choose k-2 from the remaining m*n-2 cells.
-3. So the answer is C(m*n - 2, k - 2) * (sum of Manhattan distances between all unordered pairs of distinct cells in the m x n grid).
-4. Compute the sum of Manhattan distances between all unordered pairs of cells efficiently: The Manhattan distance |x_i - x_j| + |y_i - y_j| can be split into row contributions and column contributions.
-5. For rows: There are n columns, so each pair of rows (r1, r2) appears n * n times? No, for each pair of cells in different rows, the row distance is |r1 - r2|. The number of cell pairs with row distance d_r is: for each pair of rows with distance d_r, there are n * n cell pairs (since each row has n cells). Actually, for rows i and j (i < j), the row distance is j - i, and there are n choices for the column of the first cell and n choices for the column of the second cell, so n^2 pairs. Sum over all pairs of rows: n^2 * sum_{i<j} (j - i).
-6. Similarly for columns: m^2 * sum_{i<j} (j - i) for columns. Then total sum = n^2 * S_rows + m^2 * S_cols, where S_rows = sum of |i-j| for all 0<=i<j<m, and S_cols = sum of |i-j| for all 0<=i<j<n.
-7. Compute S_rows and S_cols in O(1) using formula: sum_{i<j} (j-i) for 0 to L-1 is L*(L^2-1)/6.
-8. Compute C(m*n-2, k-2) modulo 10^9+7 using precomputed factorials or direct computation since m*n <= 10^5.

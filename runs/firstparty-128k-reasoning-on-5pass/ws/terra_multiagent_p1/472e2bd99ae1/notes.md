@@ -1,8 +1,0 @@
-- **Approach:** Sort A, B, and C in descending order. Since every value is positive, the score `ab + bc + ca` is non-increasing whenever any one sorted-array index increases.
-- **Traversal:** Treat triples `(i, j, k)` as an implicit monotone 3D grid. Start from `(0, 0, 0)` and repeatedly extract the maximum score from a heap. Insert valid neighbors obtained by incrementing exactly one coordinate.
-- **Correctness:** Every triple is reachable from `(0,0,0)` through index increments. Because each neighbor score is no greater than its parent, best-first traversal extracts triples in non-increasing score order. Therefore the K-th extraction is the K-th largest value, including duplicates from distinct triples.
-- **Duplicates:** A visited set deduplicates index triples only. Equal numerical scores must still be counted separately, as required.
-- **Prefix reduction:** Only the first `min(N, K)` elements of each sorted array are needed. A triple using an index at least K in one coordinate is dominated by at least K triples obtained by replacing that coordinate with ranks `0..K-1` while fixing the other coordinates.
-- **Memory optimization:** Triple indices are encoded as one integer `((i*m)+j)*m+k`. Heap entries are also packed into one integer containing score and encoded key, avoiding large tuples and reducing memory use for `K <= 5e5`.
-- **Complexity:** At most K states are extracted and at most 3K neighbor attempts occur. Time is `O(K log K)` and memory is `O(K)`.
-- **Integer range:** Scores can reach about `3 * 10^18`; Python integers safely support this.

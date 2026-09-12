@@ -1,6 +1,0 @@
-- **Tree model:** Repeated majority operations form a complete ternary tree. Original bits are leaves, and the final value is the root.
-- **Dynamic programming state:** For each subtree, store `cost0` and `cost1`, the minimum number of original leaf flips needed to make that subtree evaluate to 0 or 1.
-- **Leaf initialization:** A leaf already equal to the target costs 0; changing it to the other value costs 1.
-- **Internal transition:** To force a majority node to target `t`, at least two of its three children must be forced to `t`. For each choice of two children, add their `cost[t]` values and the cheaper of the two possible costs for the remaining child. Take the minimum over the three choices.
-- **Final result:** Exactly one root target has cost 0, representing the unchanged root value. The answer is the cost for the opposite target.
-- **Complexity:** Each level processes every current node once, so total time is `O(3^N)` and memory usage is `O(3^N)`.

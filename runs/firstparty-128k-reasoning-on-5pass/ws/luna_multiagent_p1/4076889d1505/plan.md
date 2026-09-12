@@ -1,1 +1,0 @@
-Use the construction \(A=N+1\) and \(M=N^2\), which always satisfies the bounds for \(N\le 10^9\). By the binomial theorem, \((N+1)^n\equiv 1+nN\pmod{N^2}\), so \(N^2\mid (A^n-1)\) exactly when \(N\mid n\). Therefore the smallest valid positive exponent is \(n=N\); for \(N=1\), \(M=1\) also correctly gives minimum exponent \(1\).

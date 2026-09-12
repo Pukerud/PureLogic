@@ -1,6 +1,0 @@
-1. Since N is small (up to 10), we can use dynamic programming with bitmask or profile-based state to track the LCS computation progress.
-2. The key insight is that when computing LCS between a string T (of length M) and S (of length N), we can process T character by character. At each step, we maintain the current LCS DP row (the last row of the LCS table) which has N+1 entries.
-3. However, storing the entire row is too expensive. Instead, we observe that the difference between consecutive entries in the LCS DP row is either 0 or 1, and the row is non-decreasing. This means the row can be represented by a bitmask of length N, where the i-th bit indicates whether dp[i] > dp[i-1].
-4. We use DP over the length of T (from 0 to M). The state is the bitmask representing the current LCS DP row. For each new character added to T, we update the bitmask according to the LCS recurrence.
-5. For each final bitmask (after M characters), we can determine the LCS length (which is the number of set bits in the mask, i.e., dp[N]). We then count how many strings lead to each LCS length.
-6. The transition: given a mask representing the current DP row, and a new character c, we compute the new DP row using the standard LCS recurrence with S, and convert it back to a mask.

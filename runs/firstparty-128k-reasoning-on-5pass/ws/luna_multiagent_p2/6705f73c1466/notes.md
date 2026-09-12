@@ -1,6 +1,0 @@
-- **Core idea:** Adjacent swaps preserve the relative order of all `1`s. If their original zero-based positions are `p[i]`, then in a final contiguous block they must occupy positions `x + i`.
-- **Cost for a fixed block:** Moving the `i`-th `1` to `x + i` costs `abs(p[i] - (x + i))`. The total cost is therefore `sum(abs((p[i] - i) - x))`.
-- **Optimization:** Define `a[i] = p[i] - i`. The sum of absolute deviations is minimized when `x` is any median of the `a` values. Choosing the middle element after collecting them is sufficient because the values are nondecreasing.
-- **Bounds:** Every `a[i]` corresponds to a valid possible block alignment, and its median also lies within the feasible range for the block start.
-- **Complexity:** Collecting positions and computing the answer take `O(N)` time. Since `a[i]` is already nondecreasing, no sorting is required. Memory usage is `O(K)`, where `K` is the number of `1`s.
-- **Edge cases:** A single `1` or an already contiguous group gives answer `0`. Python integers safely handle the maximum possible total cost.

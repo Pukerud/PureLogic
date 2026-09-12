@@ -1,6 +1,0 @@
-- **Core observation:** A divisor `d` can be achieved for an occurrence of value `x` exactly when `d | x` and at least `K` array elements are divisible by `d`. Choosing any `K` such elements yields a GCD divisible by `d`; the largest feasible divisor is therefore the maximum possible GCD.
-- **Sieve method:** Build `freq[v]`, the occurrence count of each value. For every `d`, sum `freq[d], freq[2d], ...` until reaching `K`. If it reaches `K`, `d` is feasible.
-- **Descending assignment:** Process `d` from `max(A)` down to `1`. For a feasible `d`, visit all multiples and assign `answer[multiple] = d` only if still zero. The first assigned divisor is the largest feasible one.
-- **Complexity:** The multiples traversal is harmonic, `O(M log M)` in the worst case for `M = max(A) <= 10^6`. Early stopping while counting divisibility saves work whenever the count reaches `K` quickly.
-- **Memory:** Input parsing avoids `read().split()`, which can be expensive for up to `1.2e6` values. Values and answers use compact `array('I')`; frequency uses a Python list for faster repeated increments.
-- **Edge cases:** For `K = 1`, every value can choose itself, so its answer is itself; descending assignment obtains this. Duplicate values are counted independently through `freq`. For `K = N`, answers become the GCD of the full array for every position.

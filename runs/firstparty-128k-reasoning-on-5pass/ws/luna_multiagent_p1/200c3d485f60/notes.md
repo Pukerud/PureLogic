@@ -1,6 +1,0 @@
-- **Counting formula:** Choose the `k` equal adjacent transitions among the `n - 1` transitions in `C(n - 1, k)` ways.
-- **Value choices:** The first element has `m` choices. An equal transition is forced, while an unequal transition has `m - 1` choices.
-- **Result:** `m * C(n - 1, k) * (m - 1)^(n - 1 - k)` modulo `1_000_000_007`.
-- **Complexity:** Factorials and inverse factorials take `O(n)` time and `O(n)` memory. Modular exponentiation takes `O(log n)` time.
-- **Edge cases:** For `n = 1`, there are no transitions and the result is `m`. If `m = 1`, the result is `1` when `k = n - 1`, otherwise `0`. The cases `k = 0` and `k = n - 1` are handled directly by the formula.
-- **Sample verification:** `(3, 2, 1)` gives `4`; `(4, 2, 2)` gives `6`; `(5, 2, 0)` gives `2`.

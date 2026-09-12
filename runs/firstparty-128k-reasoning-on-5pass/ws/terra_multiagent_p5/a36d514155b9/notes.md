@@ -1,8 +1,0 @@
-- **Core counting:** Treat an arrangement as an unordered subset of `k` occupied cells because pieces are identical. Every fixed unordered pair of distinct cells appears together in exactly `C(m*n-2, k-2)` arrangements.
-- **Distance decomposition:** Sum Manhattan distances over all unordered cell pairs first, then multiply by the common arrangement count. Manhattan distance splits into independent row and column absolute differences.
-- **One-dimensional formula:** For a dimension of length `L`, the sum of absolute differences over unordered coordinate pairs is `sum(d*(L-d), d=1..L-1) = L*(L-1)*(L+1)/6`.
-- **Grid geometric sum:** Row contribution is `one_dim_sum(m) * n^2`, since after choosing two rows, each endpoint independently has one of `n` columns. Column contribution is `one_dim_sum(n) * m^2`.
-- **Final formula:** `(one_dim_sum(m)*n^2 + one_dim_sum(n)*m^2) * C(m*n-2, k-2) mod MOD`.
-- **Complexity:** Factorial and inverse-factorial preprocessing takes `O(m*n)` time and space; all other work is `O(1)`. This fits `m*n <= 100000`.
-- **Verification:** For `(m,n,k)=(2,2,2)`, geometric sum is `8` and binomial factor is `1`, giving `8`. For `(1,4,3)`, geometric sum is `10` and `C(2,1)=2`, giving `20`.
-- **Edge cases:** `k=2` gives multiplicative factor `C(N-2,0)=1`. A dimension of size `1` has one-dimensional sum `0`. The formula uses unordered pairs throughout, avoiding an erroneous factor of two.

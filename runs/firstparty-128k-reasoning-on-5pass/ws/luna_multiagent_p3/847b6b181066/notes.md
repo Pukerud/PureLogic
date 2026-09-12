@@ -1,6 +1,0 @@
-- **Algorithm:** Let `(r_t, c_t)` be the cumulative wind displacement after the first `t` moves, with `(r_0, c_0) = (0, 0)`.
-- **Smoke representation:** Smoke generated when the cumulative position is `p` will later be at `current_prefix - p`. Every distinct prefix position encountered corresponds to a smoke particle generated at that position/time, so maintain all previously seen prefix positions in a set.
-- **Target check:** After applying the `t`-th wind, smoke is at `(R, C)` exactly when `current_prefix - (R, C)` is one of the previously seen prefix positions.
-- **Ordering:** Apply the wind first, check the target using the set of earlier prefixes, then insert the current prefix. The initial prefix `(0, 0)` is inserted before processing the string.
-- **Complexity:** Expected `O(N)` time and `O(N)` memory.
-- **Coordinates:** `N` changes the row by `-1`, `S` by `+1`, `W` changes the column by `-1`, and `E` by `+1`.

@@ -1,9 +1,0 @@
-- **Approach:** Use a left-to-right streaming dynamic program independently for every modulus from 1 through 9.
-- **State:** `dp[m][r]` stores how many substrings ending at the previous character have numeric value congruent to `r modulo m`.
-- **Transition:** For appended digit `x`, every prior remainder `r` becomes `(10 * r + x) % m`. Also add the one-character substring with remainder `x % m`.
-- **Counting:** After state updates for a position with non-zero digit `d`, `dp[d][0]` is exactly the number of substrings ending there divisible by their last digit. Endpoints containing digit `0` are excluded.
-- **Zero handling:** Substrings ending at zero are retained in every DP state, since they can be extended into later valid substrings. Only counting them at a zero endpoint is skipped.
-- **Correctness:** The transition enumerates every substring ending at the current index exactly once: either an old endpoint substring extended by one digit or the newly started one-character substring. A non-zero-ending substring is valid precisely if its residue modulo that final digit is zero.
-- **Complexity:** Each character processes `1 + 2 + ... + 9 = 45` remainder states. Time is `O(n)` and memory is `O(1)` apart from fixed 45 counters.
-- **Verification:** The implementation yields 11 for `"12936"`, 18 for `"5701283"`, and 25 for `"1010101010"`.
-- **Edge cases:** `"0"` returns 0; any single non-zero digit returns 1; strings with leading zeros are handled because zero-valued prefix substrings remain available for extension; an all-zero string returns 0.

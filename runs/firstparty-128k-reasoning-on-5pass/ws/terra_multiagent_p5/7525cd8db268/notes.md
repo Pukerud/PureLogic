@@ -1,7 +1,0 @@
-- **Validation:** The implementation matches both provided examples: `(n=4, [[2,3],[1,4]]) -> 9` and `(n=5, [[1,2],[2,5],[3,5]]) -> 12`. No mismatch was found.
-- **Sweep model:** Normalize every conflict to `(l, r)` where `l < r`. Once the sweep reaches right endpoint `r`, a valid subarray ending at any later endpoint must start strictly after `l`.
-- **Baseline:** At each right endpoint, `max_left` is the largest activated left endpoint. There are exactly `right - max_left` valid subarrays ending there, so their sum is the count before removing a pair.
-- **Removal gain:** A removed pair can improve the count only while it is the unique active pair imposing `max_left`. The boundary then falls to `second_left`, adding `max_left - second_left` valid starts at that endpoint.
-- **Duplicate pairs:** Input entries are distinct removable pairs even when normalized endpoints are equal. `max_count` prevents assigning gain when another active pair has the same strongest left endpoint.
-- **State correctness:** When a newly activated left endpoint exceeds `max_left`, the previous maximum becomes `second_left`. Lower activated endpoints update `second_left` only if they are larger than its current value.
-- **Complexity:** `O(n + m)` time and `O(n + m)` memory, where `m = len(conflictingPairs)`.

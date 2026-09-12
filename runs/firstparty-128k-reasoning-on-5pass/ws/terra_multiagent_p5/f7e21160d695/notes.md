@@ -1,7 +1,0 @@
-- **Core observation:** For any vertices x and y, the minimax path value f(x, y) equals the maximum edge weight on the unique x-y path in any minimum spanning tree.
-- **Kruskal interpretation:** While processing MST edges in nondecreasing weight order, DSU components are exactly connected components using MST edges of weight at most the current threshold. Two occurrences can be paired with cost at most w exactly when they first become members of one such component.
-- **Greedy matching:** Store unmatched A-occurrence and B-occurrence counts in every DSU component. Whenever two components merge through an MST edge of weight w, combine counts and match `min(countA, countB)` pairs immediately, adding that number times w to the answer.
-- **Correctness rationale:** Matching opposite occurrences as early as their components become connected is optimal because every future possible match has weight at least the current weight. Remaining unmatched occurrences of a given side are interchangeable outside their current component.
-- **Duplicates:** A and B are sequences, so repeated vertices are handled as occurrence counts rather than booleans.
-- **Equal weights:** Processing equal-weight MST edges one at a time is valid because every match created during that group receives the same weight.
-- **Complexity:** Sorting edges costs O(M log M). DSU operations cost O((N+M) alpha(N)). Memory usage is O(N+M).

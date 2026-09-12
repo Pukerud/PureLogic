@@ -1,7 +1,0 @@
-- **State model:** A state `(u, v)` represents a palindromic path from vertex `u` to vertex `v`. The answer for every ordered pair is the shortest distance of the corresponding state.
-- **Initial states:** The empty path gives distance `0` for `(i, i)`. Every directed edge gives distance `1` for its ordered endpoint pair.
-- **Transition:** If `x -> u` and `v -> y` have the same label, any palindrome from `u` to `v` can be surrounded by those two edges, producing a palindrome from `x` to `y` with length increased by `2`.
-- **Shortest-path algorithm:** All transitions have nonnegative cost, so Dijkstra's algorithm over the implicit `N²`-state graph is correct.
-- **Grouping:** Incoming vertices are grouped by destination and label. Outgoing edges are represented as bitmasks grouped by source and label.
-- **Pruning:** For a popped state with distance `d`, transitions produce distance `d + 2`. States whose current tentative distance is at most `d + 2` can never be improved by this transition. Buckets and row bitmasks track such states and avoid repeatedly scanning already-good targets.
-- **Complexity:** The implicit transition graph can have `O(N⁴)` edges in the worst case, while memory usage is `O(N² + N² * 26)`.

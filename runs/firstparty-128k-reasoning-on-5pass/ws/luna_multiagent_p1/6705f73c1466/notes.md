@@ -1,5 +1,0 @@
-- **Algorithm:** For each `1` at position `p_i`, in left-to-right order, define `q_i = p_i - i`. If the final contiguous block starts at `x`, the cost is `sum(abs(q_i - x))`.
-- **Optimization:** The sum of absolute deviations is minimized at a median, so choose the middle adjusted position.
-- **Complexity:** The adjusted positions are naturally nondecreasing, allowing direct median selection. The total time is `O(N)` and extra space is `O(K)`, where `K` is the number of ones.
-- **Correctness detail:** Matching ones in left-to-right order is optimal because adjacent swaps preserve their relative order. Each one must move to its corresponding position in the final block.
-- **Integer safety:** Python integers safely handle the potentially large answer.

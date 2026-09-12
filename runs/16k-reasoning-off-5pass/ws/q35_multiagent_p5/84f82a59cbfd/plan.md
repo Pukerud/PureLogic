@@ -1,5 +1,0 @@
-1. A "400 number" is of the form $p^{2a} \cdot q^{2b}$ where $p$ and $q$ are distinct primes, and $a, b \ge 1$. This can be rewritten as $(p^a)^2 \cdot (q^b)^2 = x^2 \cdot y^2 = (xy)^2$ is not quite right because the exponents are even but the base primes must be distinct. Actually, it's $p^{2a} q^{2b}$. Let $u = p^a$ and $v = q^b$. Then the number is $u^2 v^2$ where $u$ and $v$ are composed of distinct prime bases? No, simpler: the number is $k^2$ where $k = p^a q^b$ with $p \neq q$. So the number is a perfect square, and its square root has exactly 2 distinct prime factors.
-2. We need to find the largest such number $\le A$. Since $A \le 10^{12}$, the square root is at most $10^6$.
-3. Precompute all numbers $k \le 10^6$ that have exactly 2 distinct prime factors. For each such $k$, the corresponding 400 number is $k^2$.
-4. Store all valid 400 numbers in a sorted list.
-5. For each query $A$, use binary search to find the largest 400 number $\le A$.

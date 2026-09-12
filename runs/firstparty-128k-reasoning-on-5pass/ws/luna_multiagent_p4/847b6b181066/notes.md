@@ -1,6 +1,0 @@
-- **Prefix displacement:** Let `(row, col)` be the cumulative wind displacement after the current step.
-- **Smoke sources:** The initial smoke corresponds to prefix `(0, 0)`. Whenever a prefix position is visited for the first time, a new smoke source is generated there; therefore all distinct visited prefixes are stored in a set.
-- **Target condition:** A source born at prefix `q` is at `P[t] - q` after step `t`. It reaches `(R, C)` exactly when `q = P[t] - (R, C)`, namely `(row - R, col - C)`.
-- **Timing:** Query the set before inserting the current prefix. This prevents smoke generated after the current wind from being incorrectly considered at time `t+0.5`.
-- **Complexity:** The algorithm runs in `O(N)` time and uses `O(N)` memory.
-- **Directions:** North changes the row by `-1`, South by `+1`, West changes the column by `-1`, and East by `+1`.

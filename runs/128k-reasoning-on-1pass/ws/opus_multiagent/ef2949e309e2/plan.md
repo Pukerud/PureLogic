@@ -1,7 +1,0 @@
-Fix the middle element by index `i` (so exactly 2 elements come from the left prefix and 2 from the right suffix), let `x = nums[i]`, and count selections where `x` is the *unique* mode of the 5 chosen elements. If `x` occurs `k` times in the subsequence: `k = 1` always fails (either a tie or another value dominates), `k >= 3` always succeeds (the other 2 elements can give at most count 2), and `k = 2` fails exactly when the 3 non-`x` elements contain a repeated value. So the answer per `i` is `C(L,2)*C(R,2)` minus the `k=1` count minus the bad `k=2` count, using complementary counting. Maintain `cntL`/`cntR` frequency maps while sweeping `i` from left to right, and compute the bad `k=2` term either by a per-`i` loop over distinct values (O(n·d) ≈ 10^6, fine for n ≤ 1000) or via incrementally maintained aggregate sums (O(n)). Sum over all valid `i` modulo 1e9+7 and validate against the three provided examples plus brute force on small random arrays.
-
-Key formulas (with `a = cntL[x]`, `b = cntR[x]`, `L' = L - a`, `R' = R - b`):
-- total(i) = C(L,2)·C(R,2)
-- bad(k=1) = C(L',2)·C(R',2)
-- bad(k=2, x from left) = a · Σ_{y≠x} [ L'·C(cntR[y],2) + cntL[y]·cntR[y]·(R'−cntR[y]) ]
-- bad(k=2, x from right) = b · Σ_{y≠x} [ R'·C(cntL[y],2) + cntR[y]·cntL[y]·(L'−cntL[y]) ]

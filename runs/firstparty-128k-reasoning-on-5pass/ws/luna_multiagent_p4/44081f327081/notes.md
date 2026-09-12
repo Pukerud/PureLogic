@@ -1,6 +1,0 @@
-- **Key observation:** A divisor `d` can be used for an element value `x` exactly when `d` divides `x` and at least `K` array elements are divisible by `d`.
-- **Counting multiples:** A sieve-style loop computes, for every `d`, the number of input elements divisible by `d`.
-- **Maximum selection:** Process feasible divisors in descending order. For every multiple value present in the input, assign it only if it has no answer yet; this guarantees the assigned divisor is maximal.
-- **Duplicates:** Frequencies count duplicate input values correctly, while `present` tracks whether a value occurs. Answers are then emitted once per original array position.
-- **Shortcuts:** For `K = 1`, each element itself is the answer. For `K = N`, every choice contains the whole array, so the answer is the gcd of all elements.
-- **Complexity:** The two multiples traversals take `O(M log M)` time, where `M` is the maximum array value. Memory usage is `O(M + N)` using compact arrays.

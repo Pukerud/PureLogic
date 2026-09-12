@@ -1,6 +1,0 @@
-- **Transformation:** Let \(d=x-y>0\), so \(x=y+d\). Then \(N=d(3y^2+3dy+d^2)\).
-- **Search bound:** Since \(y>0\), \(N>d^3\), hence every valid \(d\) satisfies \(1\le d\le\lfloor\sqrt[3]{N}\rfloor\).
-- **Quadratic recovery:** For each candidate divisor \(d\), set \(q=N/d\). The equation in \(y\) is \(3y^2+3dy+d^2-q=0\), whose discriminant is \(D=3(4q-d^2)\).
-- **Validity checks:** \(D\) must be nonnegative and a perfect square. Then \(y=(\sqrt D-3d)/6\) must be a positive integer; set \(x=y+d\).
-- **Exact arithmetic:** Integer cube root uses binary search, and perfect-square checks use `math.isqrt`, avoiding floating-point precision issues.
-- **Complexity:** At most \(10^6\) values of \(d\) are checked, with \(O(1)\) arithmetic per value; memory usage is \(O(1)\).

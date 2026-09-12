@@ -1,8 +1,0 @@
-- **Visibility criterion:** For observer height `t`, all buildings are visible exactly when the top slopes `(H_i - t) / X_i` are strictly increasing. Equality is blocked because the sight segment intersects an earlier building.
-- **Adjacent reduction:** Strict increase for all top slopes is equivalent to strict increase for every adjacent pair.
-- **Pair threshold:** For consecutive buildings `(px, ph)` and `(x, h)`, visibility requires `h * px - ph * x + t * (x - px) > 0`. With `num = ph * x - h * px` and `den = x - px`, if `num >= 0`, this requires `t > num / den`.
-- **Answer:** If every consecutive pair has `num < 0`, all buildings are visible at height zero, so output `-1`. Otherwise, output the maximum `num / den` over pairs having `num >= 0`. A zero numerator gives answer `0`.
-- **Exact comparison:** Candidate fractions are compared using integer cross multiplication.
-- **Output:** Final formatting now uses IEEE-754 float conversion with `print(f"{best_num / best_den:.18f}")`.
-- **Complexity:** `O(N)` time and `O(1)` extra memory.
-- **Sample results:** The implementation produces `1.500000000000000000`, `-1`, `0.000000000000000000`, and `17.142857142857142350` for the four provided samples.

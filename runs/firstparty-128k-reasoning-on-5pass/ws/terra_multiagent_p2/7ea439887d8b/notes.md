@@ -1,7 +1,0 @@
-- **State reduction:** The graph orientation depends only on the parity of the number of global reversals. Use two states per vertex: layer 0 for original orientation and layer 1 for reversed orientation.
-- **Movement transitions:** In layer 0, an original edge `u -> v` allows state `u` to move to `v` at cost 1. In layer 1, traversal follows reversed edges, so use the original incoming adjacency list: for original `u -> v`, layer 1 can move from `v` to `u` at cost 1.
-- **Reversal transitions:** From either layer at every vertex, switch to the other layer at the same vertex with cost `X`.
-- **Algorithm:** Run Dijkstra from `(vertex 1, original layer)`. All weights are positive. The first popped state whose vertex is `N` is globally optimal, regardless of layer.
-- **Complexity:** There are `2N` states and implicit transitions totaling `2M + 2N`; runtime is `O((N + M) log N)` and memory is `O(N + M)`.
-- **Integer safety:** Python integers safely handle answers exceeding 32-bit range.
-- **Verification:** The implementation follows the specified two-layer Dijkstra design and produces the expected values for the provided sample cases: `4`, `3`, `4294967299`, and `21`.

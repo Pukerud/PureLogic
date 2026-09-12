@@ -1,6 +1,0 @@
-- **Formula:** Choose the `k` equal adjacent transitions among the `n - 1` transitions. The first array value has `m` choices, equal transitions are forced, and each differing transition has `m - 1` choices. The result is `m * C(n - 1, k) * (m - 1)^(n - 1 - k) mod 1_000_000_007`.
-- **Binomial computation:** Since `n <= 100000`, construct factorial and inverse-factorial arrays through `n - 1`. Compute the inverse factorial of the largest factorial with Fermat's theorem, then fill remaining inverse factorials backward.
-- **Sample verification:** `(n=3, m=2, k=1)` gives `2 * C(2,1) * 1^1 = 4`; `(4,2,2)` gives `2 * C(3,2) * 1 = 6`; `(5,2,0)` gives `2 * C(4,0) * 1^4 = 2`.
-- **Edge cases:** For `n = 1`, `C(0,0) = 1` and the result is `m`. For `m = 1`, modular exponentiation correctly treats `0^0` as `1`, so only `k = n - 1` produces `1`; otherwise the result is `0`.
-- **Complexity:** Time is `O(n + log MOD)` and space is `O(n)`.
-- **Validity:** Constraints guarantee `0 <= k <= n - 1`, so factorial indexes are valid.

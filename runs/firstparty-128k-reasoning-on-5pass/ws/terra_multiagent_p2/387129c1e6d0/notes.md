@@ -1,6 +1,0 @@
-- **Offline approach:** Record every movement as a closed interval. Horizontal moves are stored by fixed `y` with their covered `x` interval; vertical moves are stored by fixed `x` with their covered `y` interval.
-- **Final position:** Update Santa's coordinates while reading each move. Python integers safely handle cumulative coordinates up to about `2e14`.
-- **Merging:** Sort intervals independently for every fixed coordinate and merge overlapping intervals. Endpoint inclusion is preserved because all recorded intervals are closed.
-- **House testing:** A house `(x,y)` is visited if `x` belongs to a merged horizontal interval for key `y`, or `y` belongs to a merged vertical interval for key `x`. Binary search finds the last interval beginning at or before the target coordinate.
-- **Complexity:** Interval sorting costs `O(M log M)` in the worst case. House queries cost `O(N log M)` worst case. Memory usage is `O(N+M)`.
-- **Distinct counting:** Each house is checked once after all segments are merged, so revisiting it across multiple movements or orientations cannot increase the count.

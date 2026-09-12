@@ -1,6 +1,0 @@
-- **Fixed target:** For a chosen common total length \(H\), the final upper tooth \(i\) must satisfy \(\max(0,H-D_i) \le U'_i \le \min(U_i,H)\).
-- **Cost:** Every valid final configuration has total tooth length \(NH\), so the grinding cost is \(\sum_i(U_i+D_i)-NH\). Therefore, maximize feasible \(H\).
-- **Interval propagation:** If the reachable range for the previous upper tooth is \([lo, hi]\), the adjacent-difference condition allows the current value to lie in \([lo-X, hi+X]\). Intersect this with the current tooth’s allowed interval.
-- **Binary search:** Feasibility is monotone downward in \(H\): a feasible configuration for \(H\) can be reduced to one for any smaller nonnegative total while preserving all constraints. Search from \(0\) to \(\min_i(U_i+D_i)\).
-- **Complexity:** Each feasibility check is \(O(N)\), and binary search performs \(O(\log 10^{14})\) checks, for total \(O(N\log 10^{14})\) time and \(O(N)\) memory.
-- **Integer safety:** Python integers safely handle the potentially large answer.

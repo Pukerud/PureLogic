@@ -1,7 +1,0 @@
-- **Reformulation:** After grinding, let the final upper length at position `i` be `u_i` and let every upper/lower pair sum to `H`. Then the final lower length is `H-u_i`, so total retained length is exactly `N*H`. Therefore minimizing grinding cost is equivalent to maximizing feasible `H`.
-- **Intervals:** For fixed `H`, upper values must satisfy `H-D_i <= u_i <= U_i`. The physical nonnegative constraints additionally require `0 <= u_i <= H`.
-- **Lipschitz interval feasibility:** Intervals `[L_i,R_i]` admit choices with `|u_i-u_{i+1}| <= X` iff for every pair `(i,j)`, `L_i <= R_j + X*|i-j|`. Here this becomes `H-D_i <= U_j + X*|i-j|`, or `H <= D_i+U_j+X*|i-j|`.
-- **Maximum common sum:** Thus `H_max = min_i (D_i + min_j(U_j + X*|i-j|))`.
-- **Nonnegativity:** It adds no restriction. Any feasible sequence for raw intervals can be clamped coordinatewise to `[0,H]`; clamping is nonexpansive, so adjacent differences do not increase. It also stays within each raw interval because `U_i > 0` and `D_i > 0`.
-- **Linear computation:** Compute `min_j(U_j+X*|i-j|)` with two sweeps. Left sweep maintains the best source from the left: `left[i]=min(U_i,left[i-1]+X)`. Right sweep analogously handles sources from the right. Their minimum is the desired value.
-- **Complexity:** `O(N)` time and `O(N)` memory. Python integers safely handle all totals.

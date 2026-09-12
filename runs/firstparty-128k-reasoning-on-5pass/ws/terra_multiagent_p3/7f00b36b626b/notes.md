@@ -1,6 +1,0 @@
-- **Core observation:** Every input value greater than `threshold` is isolated because `lcm(x, y) >= x > threshold` for all positive `y`.
-- **Edge characterization:** For two values `a, b <= threshold`, `lcm(a, b) <= threshold` exactly when there exists an integer `m <= threshold` divisible by both. If an edge exists, choose `m = lcm(a, b)`; conversely, `lcm(a, b)` divides any common multiple `m`.
-- **DSU construction:** For every present value `d`, iterate multiples `m = d, 2d, ... <= threshold`. `first[m]` stores a previously encountered present divisor of `m`; unioning `d` with it connects all present divisors of each `m`.
-- **Correctness:** Any union corresponds to two values dividing an `m <= threshold`, hence a valid graph edge. Every valid graph edge has both endpoints dividing `lcm(a,b) <= threshold`, so both are processed in that same divisor bucket and become unioned.
-- **Complexity:** The sieve loops take `sum(floor(T/d))` over values `d <= T`, at most `O(T log T)`, with `T <= 200000`. DSU memory and auxiliary arrays are `O(T)`.
-- **Validation verdict:** PASS. Example 1 returns `4`; example 2 returns `2`. Randomized small comparisons against brute-force graph construction using `gcd` and `lcm = a // gcd(a,b) * b` also pass, including values above the threshold and disconnected singleton cases.

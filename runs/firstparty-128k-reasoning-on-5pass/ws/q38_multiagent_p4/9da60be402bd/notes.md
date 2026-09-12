@@ -1,9 +1,0 @@
-- **core idea:** peel a palindromic walk from both ends. The only state needed while peeling is the ordered pair of current endpoints `(left, right)` of the remaining middle walk.
-- **centers:** even-length palindromes reduce to a diagonal state `(v, v)` with length 0. Odd-length palindromes reduce to an actual edge state `(u, v)` with length 1.
-- **reverse step:** from an inner state `(x, y)`, an outer state `(i, j)` is reachable when there is a label `c` with edge `i -> x` and edge `y -> j`. This is why the implementation uses `in_edges[x]` and `out_bits[y][c]`.
-- **bfs:** run two multi-source BFS passes on the reversed product graph. One starts from all diagonal states, the other from all existing edge states. The BFS distance is the number of peeled edge pairs.
-- **answer formula:** for pair `(i, j)`, the shortest palindromic walk length is `min(2 * even_dist[i][j], 2 * odd_dist[i][j] + 1)`, with diagonal pairs forced to 0 for the empty path.
-- **bitset generation:** `unvis[i]` stores not-yet-discovered right endpoints in row `i`. For each incoming edge `(i, c)` to `x`, compute `new = out_bits[y][c] & unvis[i]`, clear those bits, and enqueue each set bit. This avoids enumerating all label pairs or all vertex pairs.
-- **complexity:** there are at most `N^2 = 10000` product states. Each popped state iterates over incoming edges of its left endpoint, giving at most `N * E <= 1e6` iterations per BFS. Bitsets are 100-bit integers, so the work is small in Python.
-- **edge cases:** diagonal answers are 0 because the empty string is a palindrome. Self-loops are handled as normal edges. If no palindromic walk exists, the answer remains -1. Duplicate base states are guarded by checking `dist[code] == -1`.
-- **implementation details:** use 0-based indices and flat state code `i * n + j`. Compute `y = code - x * n` to avoid repeated modulo. Mark states visited at enqueue time to keep the queue linear.

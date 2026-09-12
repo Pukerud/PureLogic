@@ -1,7 +1,0 @@
-- **State:** For a fixed maximum run length `L`, `dp0[r]` and `dp1[r]` store the minimum flips needed for the processed prefix when the final bit is respectively `0` or `1`, and its current equal-character run has length `r`.
-- **Transitions:** At each new character, either switch the final bit, creating a run of length `1`, or retain the bit and extend the current run from `r-1` to `r`. Extensions are only considered for `r <= L`.
-- **Initialization:** For the first character, ending in `0` or `1` costs zero or one flip depending on whether it matches the original character.
-- **Feasibility:** The candidate `L` is feasible if the minimum DP value after the full string is at most `numOps`.
-- **Binary search:** Feasibility is monotone: if a result can have all runs of length at most `L`, it also satisfies every larger limit. Binary search therefore finds the smallest feasible limit.
-- **Correctness:** The DP considers every possible final bit and current run length. Every valid transformed string is represented by exactly one sequence of these states, and each transition adds precisely the flip cost of the next character.
-- **Complexity:** A feasibility check costs `O(nL)` time and `O(L)` memory. Binary search gives `O(n^2 log n)` worst-case time with `n <= 1000`, which is sufficient.

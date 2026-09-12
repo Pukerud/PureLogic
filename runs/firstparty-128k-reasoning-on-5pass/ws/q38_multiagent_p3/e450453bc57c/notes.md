@@ -1,5 +1,0 @@
-- **Examples:** The current solution returns 8 for `[5,-2,1,3,7,3,6,4,-1], x=3, k=2` and 3 for `[9,-2,-2,-2,1,5], x=2, k=2`, matching the stated outputs.
-- **Edge cases:** Checked `x=2, k=1` as a minimum single-window case, `k*x=n` as a forced partition, all-equal arrays returning 0, negative values, and `x=n, k=1`; all matched the brute-force checker.
-- **Brute-force checker:** For `n <= 12`, the checker enumerates every subset of length-`x` window starts, keeps only non-overlapping subsets with at least `k` windows, and computes each window cost by trying every integer target between that window's minimum and maximum. This avoids relying on the median formula for the small tests.
-- **Random tests:** Ran 500 seeded random cases with `n` in `[2, 12]`, valid `x` and `k`, and values in `[-5, 5]`; every case matched the brute-force result.
-- **Conclusion:** No discrepancy was found, so the solution code is unchanged. The median/Fenwick window-cost computation and the rolling DP are correct for the constraints.

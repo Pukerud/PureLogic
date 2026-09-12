@@ -1,9 +1,0 @@
-- **Cost model:** Changing one character to letter `x` costs its alphabetic distance, `abs(ord(original) - ord(x))`.
-- **Dynamic-programming state:** `dp[i, category, letter]` is the minimum suffix cost from position `i`, assuming the current run uses `letter`; categories `0`, `1`, and `2` represent run lengths `1`, `2`, and at least `3`.
-- **Run transitions:** Runs of lengths one or two must continue with the same letter. A completed run may either continue or switch to another letter.
-- **Switch handling:** When switching at position `i`, the new character is emitted at `i`, and the suffix at `i + 1` starts with a new run of length one. Therefore the transition uses category `0`.
-- **Optimization:** For each position, the best and second-best values of `abs(original - letter) + dp[next position, category 0, letter]` allow excluding the current letter in constant time. The DP runs in `O(26n)` time.
-- **Terminal condition:** At position `n`, only category `2` states have cost zero. Incomplete final runs remain impossible.
-- **Reconstruction:** The initial letter and every subsequent character are tested in ascending alphabetic order. A character is selected only if it preserves the optimal DP cost, guaranteeing the lexicographically smallest minimum-cost caption.
-- **Edge cases:** Lengths below three return `""`, since no nonempty run can reach length three. Every caption of length at least three is feasible by converting all characters to one letter.
-- **Validation:** The implementation produces `"cccc"` for `"cdcd"`, `"aaa"` for `"aca"`, and `""` for `"bc"`. It also handles ties such as `"abc"` by selecting the lexicographically smallest minimum-cost uniform result.

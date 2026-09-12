@@ -1,8 +1,0 @@
-- **Reduction:** A shortest palindrome with prefix S is formed by appending the reverse of a prefix of S. The appended length is minimized exactly when the remaining suffix of S is already a palindrome, so the core task is finding the longest palindromic suffix length L.
-- **KMP mapping:** Let R = reverse(S). A suffix T of S of length L is palindromic iff T = reverse(T) = R[:L]. Therefore L is exactly the longest prefix of R that is also a suffix of S.
-- **Two-phase KMP:** First compute the prefix function pi for R only. Then scan S with KMP state q, using pi for fallbacks. After scanning all of S, q equals L. Do not reset q after a full match; a full match can only occur on the last character and is the desired answer.
-- **Index safety:** Before processing the i-th character of S, q <= i, and i < n, so r[q] is always valid. For n = 1, the scan works and q becomes 1.
-- **Complexity:** O(n) time and O(n) memory. Both the prefix-function computation and the KMP scan are linear by KMP amortization. n = 500000 is safe in Python using bytes indexing and a list of integers.
-- **Output construction:** k = n - L. Print S + reverse(S[:k]) + newline. This uses a few large bytes operations and produces at most 1000001 bytes.
-- **Edge cases:** A single character returns itself. All identical characters have L = n and append nothing. Suffix palindromicity is not monotone, so binary search over suffix length is invalid.
-- **Checks:** Samples ABC, Z, and TREE produce ABCBA, Z, and TREERT. Small brute-force enumeration of all append lengths 0..n with direct palindrome checks agrees with the KMP result.

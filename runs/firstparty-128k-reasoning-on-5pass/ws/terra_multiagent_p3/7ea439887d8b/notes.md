@@ -1,7 +1,0 @@
-- **State modeling:** The graph orientation depends only on the parity of the total number of global reversals. Use two states for every vertex: parity 0 for original orientation and parity 1 for reversed orientation.
-- **Movement transitions:** From `(v, 0)`, traverse original outgoing edges of `v`. From `(v, 1)`, traverse original incoming edges of `v`, because these become outgoing after reversal. Each movement costs 1.
-- **Reversal transitions:** From either `(v, p)`, transition to `(v, p xor 1)` with cost `X`.
-- **Algorithm:** Run Dijkstra from `(vertex 1, parity 0)` over the implicit `2N`-vertex graph. Keep original outgoing and incoming adjacency lists, avoiding explicit construction of all layered edges.
-- **Answer:** The target can be reached under either orientation, so return `min(dist[0][N-1], dist[1][N-1])`.
-- **Complexity:** There are `2N` states and `2M + 2N` directed transitions. Time is `O((N + M) log N)` and memory is `O(N + M)`.
-- **Integer safety:** Python integers safely handle answers exceeding 32-bit range; use a sufficiently large infinity sentinel.

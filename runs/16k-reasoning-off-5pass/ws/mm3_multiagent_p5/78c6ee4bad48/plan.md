@@ -1,1 +1,0 @@
-The operation reflects the two middle pieces across the midpoint of the outer pair, which preserves the sum of the four involved pieces (the two outer pieces stay fixed, the two inner pieces swap their distances to the midpoint). Therefore the total sum of all coordinates is invariant under the operation. So the minimum possible sum is simply the initial sum.

@@ -1,6 +1,0 @@
-- **Grouping:** Foods are partitioned by vitamin. Choices for different vitamins are independent except for the shared calorie budget.
-- **Knapsack:** For each vitamin, a calorie-indexed 0/1 knapsack stores the maximum intake achievable with each calorie limit. Updates iterate calories in descending order so each food is used at most once.
-- **Prefix maxima:** A final prefix-max pass ensures each DP entry represents the best result using at most that many calories, making the arrays nondecreasing.
-- **Feasibility:** For a target `T`, binary search each DP array for the minimum calorie count achieving intake at least `T`. The target is feasible exactly when the three minimum costs sum to at most `X`.
-- **Binary search:** Feasibility is monotone in `T`, so binary search finds the maximum valid target. The upper bound is the smallest total intake among the three vitamin groups.
-- **Complexity:** Knapsack construction takes `O(NX)` time and `O(X)` memory per group. Each feasibility check takes `O(log X)` using binary search, and the target search takes `O(log M)` where `M` is the answer bound.

@@ -1,6 +1,0 @@
-1. Split the pattern `p` into three parts: `prefix`, `middle`, and `suffix` based on the two `*` characters.
-2. Find all occurrences of `prefix` in `s` from left to right. For each occurrence, find all occurrences of `suffix` in `s` from right to left (or use a right-to-left search for efficiency).
-3. For each valid pair of (prefix_end, suffix_start) where prefix_end <= suffix_start, the middle part must match the substring `s[prefix_end:suffix_start]`.
-4. Since the middle part has no wildcards, we can use KMP or string matching to find all occurrences of `middle` in `s`.
-5. Iterate through all possible prefix positions and for each, find the earliest suffix position such that the middle part fits between them. Use binary search or precomputed next-occurrence arrays for efficiency.
-6. The key insight: precompute for each position in `s` the next occurrence of `middle` starting at or after that position. Then for each prefix ending at `i`, we need the suffix to start at some `j >= i + len(middle)` such that `s[j:j+len(suffix)] == suffix`. We can precompute all suffix matches and then for each prefix, find the smallest `j` that is a valid suffix start and `j >= i + len(middle)`.

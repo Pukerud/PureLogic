@@ -1,5 +1,0 @@
-- **Parameterization:** Let \(d=x-y>0\), so \(x=y+d\). Then \(N=d(3y^2+3dy+d^2)\), which implies \(d\mid N\) and \(d^3<N\).
-- **Search bound:** Since \(d^3<N\), it is sufficient to scan \(d\) through \(\lfloor\sqrt[3]{N}\rfloor\). The cube root is computed exactly using integer binary search.
-- **Recovering \(y\):** For a fixed divisor \(d\), set \(q=N/d\). The quadratic \(3y^2+3dy+d^2=q\) has discriminant \(D=12q-3d^2\). Its positive root is \(y=(\sqrt D-3d)/6\).
-- **Validation:** The algorithm requires \(D\) to be a perfect square, checks the divisibility and positivity conditions for \(y\), and finally verifies the original cubic equation.
-- **Complexity:** At most about \(10^6\) candidates are scanned for the maximum \(N\), with constant-time arithmetic and integer square-root checks per candidate. Memory usage is \(O(1)\).

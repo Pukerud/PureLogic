@@ -1,6 +1,0 @@
-- **Core approach:** Enumerate subsets of size `R = min(K, N-K)`, because `C(N, R) = C(N, K) <= 10^6`.
-- **Complement identity:** Let `total_xor` be the XOR of all elements. If enumerating excluded elements of size `N-K`, then the XOR of the selected `K` elements is `total_xor ^ excluded_xor`.
-- **Candidate calculation:** If `R == K`, an enumerated subset is the selected set and its current XOR is directly a candidate. Otherwise, it is the excluded set and the candidate is `total_xor ^ current_xor`.
-- **DFS generation:** Recursively choose strictly increasing indices. At state `(start, chosen, current_xor)`, choose the next index from `start` through `N - (R - chosen)` inclusive, ensuring enough remaining elements exist.
-- **Complexity:** There are exactly `C(N, R)` leaves, at most `10^6`. Recursion depth is small under the binomial constraint when both sides are nontrivial; it is safe in Python. Memory use is `O(R)` recursion stack besides the input array.
-- **Edge cases:** `R = 0` occurs when `K = N`; DFS immediately evaluates XOR `0`, yielding `total_xor`. For `K = 1` or `K = N-1`, enumeration has linear-sized branching but remains within the combination guarantee.

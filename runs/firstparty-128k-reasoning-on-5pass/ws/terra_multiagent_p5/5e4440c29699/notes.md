@@ -1,8 +1,0 @@
-- **Counting strategy:** Count all monotone paths in the complete outer grid, then subtract every path that visits a removed point. Invalid paths partition uniquely into paths starting inside the hole, and paths starting outside whose first removed point is entered from the left or from below.
-- **Full-grid paths:** For a fixed displacement `(dx,dy)`, there are `(W-dx+1)(H-dy+1) * C(dx+dy,dx)` paths. Exchanging summations gives `total = sum_{i=0..W,j=0..H} (C(i+j+2,i+1)-1)`.
-- **Prefix identity:** Define `G(a,b) = sum_{i=0..a,j=0..b} C(i+j+2,i+1)`. Hockey-stick identities give `G(a,b) = C(a+b+4,a+2) - (a+1) - (b+3)`. Set `G=0` if either argument is negative. Thus full-grid count is `G(W,H)-(W+1)(H+1)`.
-- **Starts in hole:** For a hole start `(x,y)`, the number of full-grid continuations is `C(W-x+H-y+2,W-x+1)-1`. After substituting `i=W-x`, `j=H-y`, summing this over the hole is a rectangular inclusion-exclusion of `G`, minus the number of hole points.
-- **First left entry:** If `L>0`, first entry at `(L,y)` for `D<=y<=U` must use `(L-1,y)->(L,y)`. Prefixes cannot have touched the hole because their x-coordinate is at most `L-1`. Their count is `Q(L-1,y)=C(L-1+y+2,L)-1`; suffix count from entry to any endpoint is `Q(W-L,H-y)`. Sum their product over `y`.
-- **First bottom entry:** Symmetrically, if `D>0`, sum `Q(x,D-1)*Q(W-x,H-D)` for `L<=x<=R`.
-- **Complexity:** Factorial preprocessing is `O(W+H)`. Boundary sums take `O((R-L+1)+(U-D+1))`, hence `O(W+H)` total time and `O(W+H)` memory.
-- **Degenerate boundaries:** When `L=0`, left entries do not exist; when `D=0`, bottom entries do not exist. Zero-length paths are included automatically in the full count and retained exactly when their point is not removed.

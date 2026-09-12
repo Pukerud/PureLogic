@@ -1,5 +1,0 @@
-1.  **Build the Tree**: Construct an adjacency list from the `edges` input, ensuring we know the parent-child relationships relative to the root (node 0).
-2.  **DFS Traversal**: Perform a Depth-First Search starting from the root to explore all possible downward paths.
-3.  **Path Validation & Optimization**: During the DFS, maintain the current path's values in a set to ensure uniqueness. If a duplicate value is encountered, backtrack to the most recent ancestor that doesn't have that value (effectively pruning the invalid suffix of the path).
-4.  **Track Results**: For every valid path found, calculate its total length and node count. Update the global maximum length and the minimum node count associated with that maximum length.
-5.  **Return**: Return the results as `[max_length, min_nodes]`.

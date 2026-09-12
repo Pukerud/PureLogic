@@ -1,5 +1,0 @@
-1. For each possible GCD value `g` (from 1 to max(A)), we want to know if there are at least `K` elements in A that are divisible by `g`.
-2. We can precompute for each `g`, the count of elements in A divisible by `g` using a sieve-like approach: iterate over each `g`, and for each multiple `g, 2g, 3g, ...`, sum up the frequencies of those values in A.
-3. For each `g` from max(A) down to 1, if the count of multiples of `g` is at least `K`, then `g` is a candidate answer for any element that is itself divisible by `g`.
-4. For each element `A_i`, the answer is the largest `g` such that `g` divides `A_i` and the count of multiples of `g` in A is at least `K`.
-5. To efficiently find this for each `A_i`, we can precompute an array `ans[g]` which is `g` if `count[g] >= K`, else 0. Then for each `A_i`, we find the largest divisor `d` of `A_i` such that `ans[d] > 0`. This can be done by iterating over all divisors of `A_i` or by precomputing for each number the best answer.

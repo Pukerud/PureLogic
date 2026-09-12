@@ -1,8 +1,0 @@
-- **State representation:** After processing square `p`, bit `k` of the state records whether square `p-k` is reachable, for `0 <= k < B`. Initially, square 1 is reachable, so the state is `1`.
-- **Open transition:** For the next square, bit 0 is reachable iff at least one predecessor at distances `A` through `B` is reachable. In the state orientation, these are old bits `A-1` through `B-1`. All other bits are shifted copies of the previous state.
-- **Blocked transition:** The next square is forced unreachable, so output bit 0 has no dependencies; the remaining bits are shifted exactly as in the open transition.
-- **Boolean dependency transforms:** Every transition is represented by a list of `B` bitmasks. A dependency mask for output bit `j` specifies which input bits need to contain a reachable square. Since the recurrence uses only OR operations, transforms can be composed by OR-ing dependency masks.
-- **Binary lifting:** Powers of two of both the open and blocked transforms are precomputed. A stretch of identical positions is processed by decomposing its length into binary powers, requiring `O(B log N)` state operations.
-- **Sweep:** Starting from square 1, process each gap of open squares before a forbidden interval, then process the entire forbidden interval with the blocked transform. Finally process the open suffix through square `N`.
-- **Correctness details:** Forbidden intervals are inclusive. The state after processing square `N` has its target reachability in bit 0. The given constraints ensure square 1 and square `N` are not forbidden.
-- **Complexity:** Building transforms costs `O(B^2 log N)`. The sweep costs `O((M+1) B log N)`, with `B <= 20`; memory usage is `O(B log N)`.

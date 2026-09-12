@@ -1,9 +1,0 @@
-- **Core counting method:** Count all monotone paths in the complete outer grid, then subtract every path that visits the forbidden rectangle. Each invalid path has a unique first forbidden vertex.
-- **First-hit decomposition:** A path whose first forbidden vertex is `v` consists of a valid prefix reaching `v`, followed by any unrestricted suffix from `v`. Directly starting at each forbidden vertex contributes one prefix for every forbidden vertex.
-- **Boundary entries:** Besides direct starts, a first hit can only enter the forbidden rectangle from below along `y=D`, or from the left along `x=L`. Bottom entries exist only if `D>0`; left entries exist only if `L>0`. At `(L,D)`, both contributions are included independently.
-- **Unrestricted prefix count:** The number of paths ending at `(x,y)` with arbitrary start is `C(x+y+2, x+1)-1`.
-- **Unrestricted suffix count:** The number of paths beginning at `(x,y)` with arbitrary endpoint is `C(W-x+H-y+2, W-x+1)-1`.
-- **Full-grid total:** The sum of arbitrary-start path counts over all vertices is `C(W+H+4, W+2)-W-H-4-(W+1)(H+1)`.
-- **Rectangle direct-start sum:** The sum of `C(a+b+2,a+1)` over a rectangle is obtained by four 2D prefix sums. The prefix identity is `sum_{0<=a<=A,0<=b<=B} C(a+b+2,a+1) = C(A+B+4,A+2)-A-B-4`.
-- **Complexity:** Factorial precomputation is `O(W+H)`. Boundary sums cost `O((R-L+1)+(U-D+1))`, hence overall `O(W+H)` time and `O(W+H)` memory.
-- **Degeneracies:** Width/height-zero forbidden rectangles work naturally. Obstacles touching the bottom or left borders suppress the corresponding entry contribution. The direct-start rectangle contribution remains valid in all cases.

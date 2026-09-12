@@ -1,6 +1,0 @@
-- **Characterization:** For an interval of length \(m\), if \(k\) pairs are possible, they can be transformed into pairs between the first \(k\) mochi and the last \(k\) mochi, in sorted order. Replacing each chosen top mochi by an earlier one only decreases its size, and replacing each bottom mochi by a later one only increases its size, so feasibility is preserved.
-- **Pair condition:** The \(i\)-th mochi among the first \(k\) is paired with index \(i+m-k\). If \(p_i\) is the first index whose size is at least \(2A_i\), then this pair is valid exactly when \(p_i-i\le m-k\).
-- **Preprocessing:** Compute \(D_i=p_i-i\) using `bisect_left(A, 2*A_i)`. A sparse table supports range maxima on \(D\) in \(O(1)\).
-- **Query:** For candidate \(k\), test whether \(\max(D_L,\ldots,D_{L+k-1})\le m-k\). Also restrict \(k\le\lfloor m/2\rfloor\) so the first and last groups are disjoint.
-- **Binary search validity:** As \(k\) increases, the queried prefix maximum never decreases while \(m-k\) decreases, so feasibility is monotone.
-- **Complexity:** Sparse-table construction uses \(O(N\log N)\) time and memory. Each query takes \(O(\log N)\) time, for total \(O((N+Q)\log N)\) time.

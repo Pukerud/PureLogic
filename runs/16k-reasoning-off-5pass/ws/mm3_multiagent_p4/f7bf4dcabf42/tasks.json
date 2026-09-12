@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Write Python program that precomputes trans[mask][c] for mask in 0..2^N-1 and c in 0..25 using the LCS recurrence, runs DP over M steps, and outputs ans[0..N] modulo 998244353.",
-    "status": "done",
-    "result": ""
-  }
-]

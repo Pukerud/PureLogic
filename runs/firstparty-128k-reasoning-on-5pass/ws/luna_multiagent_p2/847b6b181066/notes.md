@@ -1,6 +1,0 @@
-- **State representation:** Let \(P_t\) be the cumulative displacement of the wind after \(t\) steps, with \(P_0=(0,0)\).
-- **Smoke origins:** A smoke particle generated when the cumulative displacement was \(P_k\) is located at \(P_t-P_k\) after time \(t\).
-- **Generation condition:** A new particle is generated exactly when the origin is empty. This means generation occurs at the first occurrence of each prefix position \(P_k\). Therefore, maintaining all distinct prefixes is sufficient.
-- **Target test:** At time \(t+0.5\), smoke is at \((R,C)\) iff some seen prefix equals \(P_t-(R,C)\). Check this before inserting \(P_t\); since \((R,C)\ne(0,0)\), the current prefix cannot itself cause a false positive.
-- **Directions:** N changes the row by \(-1\), S by \(+1\), W changes the column by \(-1\), and E by \(+1\).
-- **Complexity:** The algorithm uses expected \(O(N)\) time and \(O(N)\) memory.

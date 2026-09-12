@@ -1,9 +1,0 @@
-- **State:** A directed message across an edge represents the best connected selected subtree on one side of that edge, with the boundary edge selected and the endpoint required to have selected degree 4. It therefore contains a degree-4 vertex.
-- **Leaf-only branch:** Whenever a neighboring message is unavailable, that incident edge can still be selected with no further vertices on that side. This contributes exactly one vertex, making the neighbor a valid degree-1 leaf.
-- **Degree-4 transition:** With the boundary edge already selected, the endpoint must choose exactly three additional incident edges. Among those branches, use finite messages when beneficial and fill the rest with leaf-only contributions of value 1.
-- **Important correction:** A degree-4 message is valid even when none of its neighboring messages contains a degree-4 vertex, because the endpoint itself is degree 4. Thus `finite_count == 0` must not reject the transition.
-- **Top values:** Only the four largest finite incoming message values are retained at each vertex. This is sufficient both for the whole-tree transition and for recomputing a message while excluding one neighbor.
-- **Rooted processing:** A postorder pass computes child-to-parent messages. A preorder pass computes parent-to-child messages and evaluates every vertex as the highest vertex of a possible selected subtree.
-- **Whole-tree candidates:** A highest vertex is either a degree-1 endpoint connected to a message already containing a degree-4 vertex, or a degree-4 vertex connected to four branches. The latter case itself guarantees the alkane condition.
-- **Complexity:** Each edge and vertex is processed a constant number of times, giving O(N) time and O(N) memory.
-- **Edge cases:** Fewer than five vertices, or no vertex capable of supporting degree 4 in a valid selected structure, yields `-1`. A star with four leaves yields 5.

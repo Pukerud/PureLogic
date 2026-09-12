@@ -1,7 +1,0 @@
-- **Reduction:** If the final common pair sum is `H`, the total remaining tooth length is exactly `N * H`. Since each unit removed costs one yen, minimizing cost is equivalent to maximizing feasible integer `H`.
-- **Per-position interval:** For a fixed `H`, final upper length `u_i` must satisfy `0 <= u_i <= U_i` and `0 <= H-u_i <= D_i`. Thus its allowed interval is `[max(0, H-D_i), min(U_i, H)]`.
-- **Adjacency feasibility:** Maintain all possible upper lengths at the current position as an interval `[L, R]`. Given the previous feasible interval, the next value may first lie in `[L-X, R+X]`; intersect this with the current tooth interval. If the intersection becomes empty, `H` is infeasible.
-- **Binary search:** Feasibility is monotone: if height `H` can be achieved, any smaller height can be achieved by further grinding. Search `H` from `0` through `min_i(U_i+D_i)`.
-- **Answer:** Let `S = sum_i(U_i+D_i)`. The minimum cost is `S - N * H_max`.
-- **Complexity:** Each feasibility check is `O(N)` and binary search uses at most about 31 checks, for `O(N log 10^9)` time and `O(N)` memory.
-- **Numeric safety:** Python integers safely handle the potentially large total and answer.

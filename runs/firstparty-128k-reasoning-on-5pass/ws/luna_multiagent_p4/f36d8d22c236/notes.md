@@ -1,6 +1,0 @@
-- **Mapping validation:** Every occurrence of a source letter must correspond to the same target letter. A conflicting mapping makes the transformation impossible.
-- **Operation count:** Each non-identity source-to-target mapping requires one operation.
-- **Cycles:** Every nontrivial directed cycle in the mapping requires one additional operation using a temporary letter.
-- **Temporary letter:** A cycle can be resolved only if some lowercase letter is absent from the final string `T`. If all 26 letters occur in `T`, any cycle is impossible.
-- **Cycle detection:** DFS over the 26-letter functional graph counts only cycles formed by non-identity mappings; self-mappings do not contribute.
-- **Complexity:** Building the mapping takes `O(N)`, and graph processing takes `O(26)` time and memory.

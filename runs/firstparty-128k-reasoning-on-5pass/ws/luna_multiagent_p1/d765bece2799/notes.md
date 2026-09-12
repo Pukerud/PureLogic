@@ -1,8 +1,0 @@
-- **Approach:** Compute the sum of maximums and the sum of minimums over all subarrays of length at most `k`, then add them.
-- **Ownership:** Each subarray is assigned exactly one index for its maximum and one for its minimum. Equal values are handled consistently through asymmetric stack boundaries.
-- **Maximum boundaries:** The left boundary is the previous strictly greater element, and the right boundary is the next greater-or-equal element.
-- **Minimum boundaries:** The left boundary is the previous strictly smaller element, and the right boundary is the next smaller-or-equal element.
-- **Counting:** If the left and right extension capacities are `a` and `b`, count pairs `(x, y)` with `0 <= x < a`, `0 <= y < b`, and `x + y <= k - 1`.
-- **Formula:** First count pairs with unrestricted `y`, then subtract those with `y >= b`. For width `w` and limit `s`, the unrestricted count is `q * (s + 1) - q * (q - 1) // 2`, where `q = min(w, s + 1)`.
-- **Validation:** The implementation produces `20` for `[1, 2, 3], 2` and `-6` for `[1, -3, 1], 2`. The boundary ownership also correctly handles duplicates, negative values, `k = 1`, and `k = n`.
-- **Complexity:** Each extremum computation uses two monotonic-stack passes and one accumulation pass, giving `O(n)` time and `O(n)` auxiliary space.

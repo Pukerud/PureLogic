@@ -1,6 +1,0 @@
-- **Core reduction:** Use complement symmetry. Let m = min(K, N-K). If K <= N-K, enumerate chosen m-subsets and maximize their XOR. Otherwise enumerate omitted m-subsets and maximize total_xor ^ omitted_xor.
-- **Feasibility:** C(N,K) = C(N,m) <= 10^6. Since C(2m,m) grows quickly, m is at most 11 under the constraints, so exhaustive enumeration is safe.
-- **Enumeration:** For m >= 2, use a recursive DFS over indices with an incremental XOR. The parameter stop starts at N - m + 1 and increases by one each depth; it is the exclusive upper bound for the next index. When stop == N, only one element remains, so loop directly and update the answer without another recursive call.
-- **Special cases:** m = 0 gives total_xor when K = N, or 0 if K = 0. m = 1 is handled by a single loop: max(A) in choose mode, max(total_xor ^ v) in omit mode.
-- **Complexity:** The pruned DFS visits only extendable partial combinations. Total work is proportional to generated combinations plus internal nodes, at most a few million iterations in the worst allowed case, plus O(N) parsing and total XOR.
-- **Edge cases:** Duplicates are distinct indices, zero values are fine, answer initialized to 0 because XOR values are non-negative, and K = N is covered by m = 0.

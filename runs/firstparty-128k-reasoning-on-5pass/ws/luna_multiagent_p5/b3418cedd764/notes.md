@@ -1,7 +1,0 @@
-- **Graph structure:** Each vertex points to its parent via \(i \to A_i\). Every connected component contains exactly one directed cycle, with rooted in-trees attached to cycle vertices.
-- **Cycle constraint:** Inequalities around a directed cycle force every cycle vertex to have the same value.
-- **Dynamic programming:** For a non-cycle vertex \(v\), `dp[v][k]` counts assignments of its attached subtree when \(x_v=k\). Each child may take any value from 1 through \(k\), so prefix sums of the child DP are multiplied into the parent DP.
-- **Indegree peeling:** Removing indegree-zero vertices identifies all non-cycle vertices. The removal order is already bottom-up: every non-cycle child is processed before its parent.
-- **Cycle handling:** Incoming cycle edges are excluded from tree contributions. For each component, multiply all attached-tree factors for every possible common cycle value, then sum over values.
-- **Complexity:** Every non-cycle edge and every cycle-to-tree edge is processed across all \(M\) values, giving \(O(NM)\) time. DP rows use packed unsigned integer arrays, requiring \(O(NM)\) packed memory in the worst case.
-- **Edge cases:** Self-loops are cycles of length one; components with no attached trees contribute exactly \(M\).

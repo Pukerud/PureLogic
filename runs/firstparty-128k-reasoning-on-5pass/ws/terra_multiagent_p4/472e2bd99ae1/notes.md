@@ -1,7 +1,0 @@
-- **Algorithm:** Sort A, B, and C in descending order. Since all values are positive, `A[i]B[j] + B[j]C[k] + C[k]A[i]` never increases when any sorted index is incremented.
-- **Search:** Start from index triple `(0, 0, 0)` in a max-heap. Whenever a triple is popped, add its valid neighbors obtained by incrementing exactly one of its three indices.
-- **Correctness:** Every triple is reachable from `(0, 0, 0)` by index increments. Monotonicity ensures a popped heap state is the currently largest unprocessed value, so the K-th pop is the K-th largest result.
-- **Deduplication:** Different paths can reach the same triple, so visited index states must be tracked. Numerical expression values must not be deduplicated because equal values at distinct triples count separately.
-- **Memory optimization:** Index triples are encoded as one integer `i*n*n + j*n + k`, reducing memory compared with storing 3-tuples in both heap and visited set.
-- **Complexity:** At most three neighbor attempts per pop. Time is `O(K log K + N log N)` and memory is `O(K)`, suitable for `K <= 5*10^5`.
-- **Integer range:** Python integers safely handle values up to approximately `3*10^18`.

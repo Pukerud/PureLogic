@@ -1,6 +1,0 @@
-- **Initial inversion count:** Process the sequence from left to right with a Fenwick tree over values `0..M-1`. For each `A_i`, the number of previous elements greater than it is `(i-1) - count(previous values <= A_i)`.
-- **Transition:** When changing shift `k` to `k+1`, exactly the elements whose original value is `x = M-1-k` wrap from residue `M-1` to residue `0`.
-- **Effect of one wrapped element:** For an occurrence at 1-indexed position `p`, every pair involving it changes: pairs with the occurrence on the left lose one inversion, while pairs with it on the right gain one. Its net change is `(p-1) - (N-p) = 2p-N-1`.
-- **Aggregated update:** If `freq[x]` is the number of occurrences of `x` and `pos_sum[x]` is the sum of their positions, then the transition change is `2*pos_sum[x] - freq[x]*(N+1)`.
-- **Complexity:** The initial Fenwick computation takes `O(N log M)` time; storing frequencies and position sums takes `O(N)`, and generating all answers takes `O(M)`. Memory usage is `O(N+M)`.
-- **Integer range:** The maximum inversion count is `N(N-1)/2`; Python integers safely handle it.

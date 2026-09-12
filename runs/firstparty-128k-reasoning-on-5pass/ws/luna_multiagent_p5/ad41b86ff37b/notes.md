@@ -1,7 +1,0 @@
-- **Model:** Choose a center, some of its neighbors as intermediate vertices, and a common positive leaf count \(y\). Every selected intermediate must have at least \(y\) neighbors other than the center.
-- **Capacity:** A vertex \(v\) has capacity \(\deg(v)-1\), so it can be selected as an intermediate for every threshold \(y \le \deg(v)-1\).
-- **Optimal selection:** For a fixed center and \(y\), every eligible neighboring vertex should be selected. Each contributes \(y\) leaves plus itself, so retaining \(x\) intermediates gives \(1+x(y+1)\) vertices.
-- **Descending sweep:** Process \(y\) from the largest capacity down to \(1\). When capacity \(y\) is activated, all active vertices have capacity at least \(y\). Activating \(v\) increments the eligible-intermediate count of each neighbor, since each neighbor can be the center.
-- **Tree structure:** Neighbors of a center cannot be adjacent in a tree, so selected intermediates are distinct and their available leaf sets are disjoint. Excess vertices can be deleted.
-- **Complexity:** Each vertex is activated once, and each edge is scanned from both endpoints once, giving \(O(N)\) time and \(O(N)\) memory.
-- **Bounds:** The constructed snowflake is a subgraph of the original tree, so its retained vertex count cannot exceed \(N\). Positive thresholds and positive eligible counts ensure \(x,y\ge1\).

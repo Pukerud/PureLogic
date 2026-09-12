@@ -1,5 +1,0 @@
-- **State representation:** After processing position `x`, bit `k` of the mask stores whether `x-k` is reachable, for `0 <= k < B`.
-- **Transition:** For the next clear square, the new position is reachable iff one of the previous positions at distances `A` through `B` is reachable. In the mask this is the bit range `A-1` through `B-1`; then the window shifts left and the new bit is inserted at bit zero.
-- **Clear stretches:** If `A == B`, the transition rotates the `B`-bit mask, so a clear stretch can be reduced modulo `B`. If `A < B`, zero and the all-ones mask are stable; every nonzero state reaches all ones after a bounded number of transitions, so simulation stops as soon as either stable state is reached.
-- **Blocked stretches:** Landing on every square in a blocked interval is forbidden, so append zero bits. After at least `B` blocked squares, the entire reachability window becomes zero and the answer is immediately `No`.
-- **Complexity:** `O(M * B)` transitions in practice and `O(B)` memory; `B <= 20`.

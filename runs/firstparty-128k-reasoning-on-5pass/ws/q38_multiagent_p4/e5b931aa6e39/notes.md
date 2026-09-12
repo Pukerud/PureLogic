@@ -1,8 +1,0 @@
-- **Core identity:** Let d = x - y > 0. Then x^3 - y^3 = d(3y^2 + 3dy + d^2). Since y >= 1, the second factor is strictly larger than d^2, so N > d^3. Therefore d is bounded by the cube root of N.
-- **Search bound:** With N <= 10^18, d^3 < N implies d < 10^6. Scanning d from 1 up to 1_000_000 is therefore sufficient and fast enough.
-- **Quadratic test:** For each d dividing N, set q = N / d. We need 3y^2 + 3dy + d^2 = q. Its discriminant is D = 12q - 3d^2. A valid y exists iff D is a perfect square s^2, s ≡ 3d (mod 6), and y = (s - 3d) / 6 is a positive integer.
-- **Why modulo 6:** From (6y + 3d)^2 = 12q - 3d^2, the square root must be exactly s = 6y + 3d. Hence s must be congruent to 3d modulo 6 and must be larger than 3d for y > 0.
-- **Implementation details:** Use math.isqrt for exact integer square-root testing. Avoid floating-point cube roots or square roots. Verify the final candidate with d * (3y^2 + 3dy + d^2) == N before printing.
-- **Edge cases:** N = 1 has no valid d because d^3 < 1 is impossible. Perfect cubes such as N = 8 do not produce y = 0 because the loop condition excludes d with d^3 = N, and the y > 0 check also rejects y = 0.
-- **Complexity:** At most 10^6 iterations. Each iteration does one modulo operation; isqrt is called only when d divides N. This is easily within typical time limits.
-- **Rejected alternatives:** Full factorization, Pollard Rho, Eisenstein-integer factorization, and scanning y directly are either overkill or too slow. The direct d-scan is the simplest exact method.

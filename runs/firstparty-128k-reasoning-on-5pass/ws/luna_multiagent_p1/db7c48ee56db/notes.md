@@ -1,6 +1,0 @@
-- **Subset size reduction:** Let \(r=\min(K,N-K)\). If \(K\le N/2\), enumerate chosen subsets of size \(K\). Otherwise, enumerate excluded subsets of size \(N-K\).
-- **Complement identity:** If \(T\) is the XOR of all elements and \(E\) is the XOR of excluded elements, then the XOR of the chosen elements is \(T\oplus E\).
-- **Enumeration:** A depth-first search selects indices in increasing order, guaranteeing every subset of size \(r\) is visited exactly once without storing subsets.
-- **Correctness:** Every valid chosen subset is either directly enumerated or represented uniquely by its excluded subset. The running XOR is updated when adding each selected index, and the maximum candidate is tracked at every leaf.
-- **Complexity:** There are \(\binom Nr=\binom NK\le 10^6\) leaves. Each subset takes \(O(r)\) recursive selection work, with \(O(r)\) recursion depth and \(O(N)\) input storage.
-- **Edge cases:** When \(r=0\), either all elements are chosen or all are excluded. The answer is respectively the total XOR or zero; the implementation handles both through the complement choice.

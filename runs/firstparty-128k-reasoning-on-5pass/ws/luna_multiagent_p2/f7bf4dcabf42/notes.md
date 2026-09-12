@@ -1,7 +1,0 @@
-- **State representation:** After processing a prefix of the unknown string, let `dp[i]` be the LCS length between `S[:i]` and that prefix. Adjacent differences `dp[i] - dp[i-1]` are always either 0 or 1, so the row is encoded by an `N`-bit mask.
-- **Mask decoding:** Bit `i-1` represents `dp[i] - dp[i-1]`. Therefore `dp[i]` is the cumulative number of set bits among positions `0` through `i-1`.
-- **Transition:** When appending character `c`, compute the next row using `new[i] = old[i-1] + 1` when `S[i-1] == c`, otherwise `new[i] = max(old[i], new[i-1])`.
-- **Next mask:** Each newly computed difference `new[i] - new[i-1]` becomes bit `i-1` of the successor mask.
-- **Multiplicity aggregation:** All 26 letters are tested for every state. Letters producing the same successor mask are combined into one transition with a multiplicity.
-- **Final answer:** Since `dp[0] = 0`, the final LCS length is `dp[N]`, equal to the number of set bits in the final profile mask.
-- **Complexity:** There are at most `2^N` states. Transition preprocessing costs `O(2^N * 26 * N)`, and the length-`M` DP costs `O(M * 2^N * 26)`, well within the constraints.

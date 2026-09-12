@@ -1,5 +1,0 @@
-- **Algorithm:** Find the longest palindromic suffix of `S`. If its length is `L`, append the reverse of `S[:len(S)-L]`.
-- **KMP construction:** In `reverse(S) + "#" + S`, the final prefix-function value is the longest suffix of `S` matching a prefix of `reverse(S)`. Such a match is exactly a palindromic suffix of `S`.
-- **Separator:** `#` is safe because the input contains only uppercase English letters.
-- **Complexity:** The algorithm runs in `O(|S|)` time and uses `O(|S|)` memory.
-- **Edge cases:** If all of `S` is already a palindrome, `L = len(S)` and nothing is appended. A one-character string is handled naturally.

@@ -1,6 +1,0 @@
-- **Approach:** Process insertions in reverse order. At reverse step `i`, element `i` occupies the `P_i`-th currently unassigned position in the final array.
-- **Data structure:** Use a Fenwick tree where each final position initially has availability `1`. Once assigned, update it by `-1`.
-- **Order statistic:** Find the `k`-th available position using Fenwick binary lifting: locate the largest index whose prefix sum is less than `k`, then add one.
-- **Complexity:** Initialization is `O(N)`, and each of `N` placement/update operations costs `O(log N)`, for total `O(N log N)` time and `O(N)` memory.
-- **Indexing:** Fenwick indices and ranks are 1-based. The output array is stored 0-based.
-- **Initialization:** For an all-ones underlying array, Fenwick values can be initialized directly as `bit[i] = i & -i`.

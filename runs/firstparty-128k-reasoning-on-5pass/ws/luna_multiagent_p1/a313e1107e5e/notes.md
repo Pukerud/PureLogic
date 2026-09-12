@@ -1,6 +1,0 @@
-- **Algorithm:** Sort queries by their prefix endpoint \(R\), then process the array from left to right while maintaining the patience-sorting tails array.
-- **Tails invariant:** `tails[k]` is the minimum possible final value of a strictly increasing subsequence of length `k + 1` in the processed prefix. The array is sorted.
-- **Updates:** For each new value, replace the first tails entry greater than or equal to it using `bisect_left`; append if no such entry exists. This correctly handles strict increase and duplicates.
-- **Queries:** The answer for limit \(X\) is the number of tails entries at most \(X\), obtained with `bisect_right(tails, X)`. A tails entry at most \(X\) corresponds to a subsequence whose earlier elements are even smaller, so all elements satisfy the bound.
-- **Complexity:** Sorting queries costs \(O(Q \log Q)\); each array update and query costs \(O(\log N)\), for total \(O((N+Q)\log N)\) time and \(O(N+Q)\) memory.
-- **Ordering:** Answers are stored by original query index and printed in input order.

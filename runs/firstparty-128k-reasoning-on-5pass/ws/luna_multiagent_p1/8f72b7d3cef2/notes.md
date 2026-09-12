@@ -1,7 +1,0 @@
-- **Closure:** After any sequence of absorptions, the remaining slimes containing Takahashi form a contiguous interval, and its size is the interval sum.
-- **Stable interval:** An interval `[l, r]` is terminal exactly when every existing adjacent outside slime has size at least `sum(l..r)`. If either outside neighbor is strictly smaller, it can be absorbed.
-- **Minimality:** The process stops at the minimal stable interval containing the starting position. A proper stable interval would block the process from ever leaving it, so the final interval cannot contain one.
-- **Cartesian tree:** For every stable interval of length at least two, its boundary values are at least the interval sum, hence strictly larger than every element inside. Therefore the interval is exactly a subtree interval of the max Cartesian tree.
-- **Answers:** For each Cartesian-tree node, compute its subtree sum and interval. Mark non-singleton subtrees satisfying `subtree_sum <= left_boundary` and `subtree_sum <= right_boundary`. For each position, the answer is the sum of its nearest stable subtree ancestor.
-- **Equal values:** A singleton `[i, i]` can be stable when both neighbors are equal to `A[i]`, but equal-value tie-breaking prevents all such singleton intervals from being Cartesian subtrees. Handle singleton stability directly with `A[i] <=` both adjacent values.
-- **Complexity:** Cartesian-tree construction, subtree aggregation, stability checks, and traversal all take `O(N)` time and memory.

@@ -1,8 +1,0 @@
-- **Verification:** The implementation was checked against the provided examples: `([1,2,3], 2) -> 20` and `([1,-3,1], 2) -> -6`.
-- **Brute-force comparison:** Verified the contribution logic against a direct enumerator on small arrays across varying `k`, including negative numbers, increasing/decreasing arrays, all-equal arrays, alternating values, and duplicate extrema. The monotonic-stack ownership and bounded-length count agree with brute force.
-- **Endpoint-pair formula:** For a pivot with `L` left endpoint choices and `R` right endpoint choices, let extensions be `a in [1,L]`, `b in [1,R]`. The subarray length is `a+b-1`, requiring `a+b <= k+1`.
-- **Capping:** Use `L=min(L,k)` and `R=min(R,k)`. Longer one-sided extensions cannot participate in a subarray of length at most `k`.
-- **Constant-time count:** Start with `L*R`. Let `excess=L+R-k`. If `excess > 1`, invalid endpoint pairs form a triangle of size `excess*(excess-1)//2`. Thus subtract that quantity.
-- **Duplicate ownership:** Maxima use previous strictly greater and next greater-or-equal boundaries. Minima use previous strictly smaller and next smaller-or-equal boundaries. Equal extrema are consistently assigned to the leftmost occurrence in a subarray, so every subarray contributes exactly once for each extremum.
-- **Edge cases:** For `k=1`, every pivot count is exactly one, yielding `2*sum(nums)`. For an all-equal array, each subarray has identical minimum and maximum and duplicate handling does not overcount. Negative values work because contributions are accumulated as signed integers.
-- **Complexity:** Four monotonic-stack passes plus two linear contribution passes: `O(n)` time and `O(n)` memory.

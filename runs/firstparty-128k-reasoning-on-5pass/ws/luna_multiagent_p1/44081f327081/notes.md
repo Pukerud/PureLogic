@@ -1,6 +1,0 @@
-- **Feasibility criterion:** A divisor `d` can be the GCD candidate for `A_i` exactly when `d` divides `A_i` and at least `K` array elements are divisible by `d`.
-- **Multiplicity:** The divisible-element counts use frequencies, so duplicate values are counted separately.
-- **Sieve:** For every `d`, sum frequencies over all multiples of `d` to obtain the number of elements divisible by `d`.
-- **Descending assignment:** Sweep feasible divisors from largest to smallest. The first divisor assigned to a value is its maximum possible answer.
-- **Memory:** `array('i')` stores frequencies, divisible counts, answers, and input values compactly.
-- **Complexity:** The two multiples sweeps take `O(M log M)` time, where `M = max(A)`, with `O(M + N)` memory.

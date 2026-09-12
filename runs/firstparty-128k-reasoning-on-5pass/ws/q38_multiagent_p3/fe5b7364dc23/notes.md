@@ -1,6 +1,0 @@
-- **Problem reduction:** Let S_0 = 0 and S_j = A_1 + ... + A_j. Every subarray sum is S_j - S_i for 0 <= i < j <= N. The required sum is therefore sum_{0 <= i < j <= N} (S_j - S_i)^K.
-- **Algorithm:** Scan prefixes j = 1..N. Maintain M[p] = sum_{i < j} S_i^p modulo MOD for p = 0..K. Initially M[0] = 1 and M[p] = 0 for p > 0, representing S_0 = 0. For current prefix S, add sum_{p=0}^K C(K,p)(-1)^p S^{K-p} M[p] to the answer, then update M[p] += S^p.
-- **Implementation:** Precompute signed binomial coefficients iteratively. Keep the running prefix sum modulo MOD using one subtraction because each A_i < MOD. Reuse a length K+1 power array with pw[0] = 1 and pw[i] = pw[i-1] * S mod MOD. The contribution is accumulated as a Python integer and reduced once per prefix, which is safe because K <= 10 and the intermediate size remains small.
-- **Complexity:** O(NK) time and O(K) memory. With N <= 2e5 and K <= 10, this is easily fast enough in Python.
-- **Edge cases:** K = 1 works directly. All A_i = 0 gives answer 0 for K >= 1. The convention 0^0 = 1 is handled by pw[0] = 1 and M[0] = 1. Negative binomial signs are stored as positive residues modulo MOD.
-- **Sample verification:** Sample 1 outputs 75, pass. Sample 2 outputs 0, pass. Sample 3 outputs 428633385, pass.

@@ -1,9 +1,0 @@
-We need to count arithmetic progressions of length 3 within a set of distinct positive integers up to 1e6, with N up to 1e6. Approach: use a boolean presence array `present[1..MAXVAL]`. For each possible middle element B and difference d, we check if B-d and B+d are both present. However, naive O(N * max_val) is too slow. Better: iterate over B from 1 to MAXVAL; if B is present, iterate over d = 1..MAXVAL while B-d >=1 and B+d <=MAXVAL, count matches. This is bounded by O(MAXVAL * max_d) which could be large.
-
-Alternative: iterate over d from 1 to MAXVAL, and for each B such that B+d <=MAXVAL, check if B and B+2d are present. That counts (A,B,C) with B as middle. We need to ensure A < B < C, so d>0. Total operations: for each d, B runs up to MAXVAL-2d, roughly MAXVAL/d checks. Sum_{d=1}^{MAXVAL} MAXVAL/d = MAXVAL * H_MAXVAL ≈ 1e6 * log(1e6) ≈ 14e6, feasible. We'll maintain a presence array. For each d, loop B from 1 to MAXVAL-2d: if present[B] and present[B+2d], then also need to ensure B+d is present? Wait, we must check (A,B,C) = (B, B+d, B+2d). So we need B, B+d, B+2d all present. The above checks B and B+2d but misses middle. Actually we need to check triplet (A,B,C) = (x, x+d, x+2d). So for each d, for each x such that x+2d <= MAXVAL, check if present[x], present[x+d], present[x+2d]. That is O(MAXVAL * H_MAXVAL) checks. Each check is 3 array accesses. That's about 42 million accesses, fine.
-
-Implementation details: read N, read list S, find max_val, set present = [False]*(max_val+1). Mark each S_i. Then for d in range(1, max_val//2 + 1): for x in range(1, max_val - 2*d + 1): if present[x] and present[x+d] and present[x+2d]: ans+=1. Complexity O(M log M) with M = max_val. Since max_val <= 1e6, it's fine.
-
-Edge Cases: N < 3 -> answer 0. If max_val is small, loops are tiny. Works within time.
-
-We need to output ans.

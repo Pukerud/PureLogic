@@ -1,8 +1,0 @@
-- **Approach:** The shortest palindrome having S as a prefix is obtained by appending the reverse of the shortest prefix of S that must be mirrored. If k is the length of the longest palindromic suffix of S, the answer is S + reverse(S[:n-k]).
-- **Reduction:** A suffix of S of length k is palindromic iff it equals its reverse. The reverse of that suffix is exactly the prefix of length k of R = reverse(S). Therefore k is the longest prefix of R that is also a suffix of S.
-- **KMP detail:** Compute the prefix function pi for R only. Then scan S as text with R as pattern, maintaining q as the longest prefix of R that is a suffix of the scanned prefix. At the end, q is exactly k.
-- **No reset:** Do not reset q after q reaches n. A full match can only occur at the last character because |R| = |S|. If S is already a palindrome, the needed value is k = n, not pi[n-1].
-- **Construction validity:** Since S[n-k:] is palindromic, S + reverse(S[:n-k]) is a palindrome. Maximizing k minimizes the appended length, so the result is shortest.
-- **Complexity:** O(n) time and O(n) memory. For n up to 500000, bytes indexing and a Python list of ints are efficient enough.
-- **Edge cases:** n = 1 gives k = 1 and outputs S. Already-palindromic S gives k = n and appends nothing. A single-character suffix guarantees k >= 1 for non-empty S.
-- **Implementation notes:** Reading as bytes avoids decoding overhead. No separator character is needed because the pattern prefix function and text scan are done separately.

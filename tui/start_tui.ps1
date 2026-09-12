@@ -16,6 +16,7 @@
         .\start_tui.ps1 --run "<problem>"             # one harness run, then exit
         .\start_tui.ps1 --run "Say hi" --mode chat    # one quick chat, then exit
         .\start_tui.ps1 --run "<problem>" --spec code --json
+        .\start_tui.ps1 --run "Build a web page" --spec visual
 
 .PARAMETER TuiArgs
     Arguments forwarded unchanged to purelogic_tui.py.

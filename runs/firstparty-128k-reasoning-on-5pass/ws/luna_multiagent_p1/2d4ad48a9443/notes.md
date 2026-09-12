@@ -1,7 +1,0 @@
-- **Cost formula:** For a fixed subarray `[l, r]`, the optimal final value at each position is the prefix maximum, so the required increments are `sum(max(nums[l:i+1]) - nums[i])`.
-- **Next-greater blocks:** `ng[i]` is the first position after `i` with a strictly larger value. The prefix maximum remains `nums[i]` from `i` through `ng[i] - 1`; equal values therefore remain in the same block.
-- **Binary lifting:** Each block stores its destination and the sum of its target values. Doubling tables combine consecutive blocks, allowing a query for `[l, r]` in `O(log n)`.
-- **Sliding window:** For a fixed right endpoint, removing elements from the left cannot increase the required cost. After advancing `left` until the window is affordable, every start from `left` through `right` is valid.
-- **Verification:** The implementation handles increasing, decreasing, constant, duplicate-heavy, and single-element arrays. It gives 17 for `[6,3,1,2,4,4], k=7` and 12 for `[6,3,1,3,6], k=4`.
-- **Complexity:** Stack construction is `O(n)`, preprocessing is `O(n log n)`, and all window queries are `O(n log n)`. Memory usage is `O(n log n)`.
-- **Integer safety:** Python integers and 64-bit block-sum arrays safely handle the maximum operation count and answer.

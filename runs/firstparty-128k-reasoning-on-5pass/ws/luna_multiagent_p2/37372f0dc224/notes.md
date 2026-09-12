@@ -1,5 +1,0 @@
-- **Key observation:** If the longest palindromic suffix of `S` has length `L`, then appending the reverse of `S[:n-L]` produces a palindrome with `S` as its prefix.
-- **Optimality:** Any palindrome beginning with `S` must append at least the reverse of the prefix before some palindromic suffix of `S`. Therefore maximizing the palindromic suffix length minimizes the appended part.
-- **KMP computation:** For `T = reverse(S) + '#' + S`, the final prefix-function value is the longest prefix of `reverse(S)` matching a suffix of `S`. Such a match corresponds exactly to a palindromic suffix of `S`.
-- **Separator:** `#` is safe because `S` contains only uppercase English letters, so matches cannot cross the separator.
-- **Complexity:** The prefix function, construction, and output all take `O(n)` time. Memory usage is `O(n)`, with `n <= 500000`.

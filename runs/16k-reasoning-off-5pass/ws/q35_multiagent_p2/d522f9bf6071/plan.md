@@ -1,5 +1,0 @@
-1. Sort intervals by their end points to facilitate dynamic programming where we process intervals in order of completion.
-2. Use dynamic programming with states dp[k][i] representing the maximum weight achievable using exactly k non-overlapping intervals from the first i intervals (sorted by end time).
-3. To handle the lexicographical requirement, after computing the maximum possible score, reconstruct the solution by greedily choosing the smallest index interval that allows achieving the optimal score, ensuring non-overlapping constraints.
-4. For reconstruction, iterate through intervals in index order (original indices) and check if including the current interval can lead to the optimal score given the previously chosen intervals.
-5. Use a segment tree or binary search with precomputed DP values to efficiently query the maximum weight achievable from intervals ending after the current interval's end for remaining slots.

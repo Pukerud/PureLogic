@@ -1,7 +1,0 @@
-- **Membership preservation:** The separate `present` bytearray retains which values belong to the set, while `convolution` is overwritten by its NTT transform and inverse transform.
-- **Convolution meaning:** The coefficient at index `t` equals the number of ordered pairs `(x, y)` in the set with `x + y = t`.
-- **Counting a center:** For each `B` in the input, `convolution[2 * B]` includes `(B, B)` once and both orderings of every pair `(A, C)` with `A < C` and `A + C = 2B`. Thus its contribution is `(convolution[2 * B] - 1) // 2`.
-- **NTT parameters:** Modulus `998244353` supports powers-of-two transform lengths up to `2^23`, and primitive root `3` is used. The required length is at most `2^21`.
-- **Exactness:** Every convolution coefficient is at most `N`, so it is smaller than the modulus and the inverse NTT residue is the exact coefficient.
-- **Complexity:** The algorithm runs in `O(L log L)` time and uses `O(L)` memory, where `L` is the smallest power of two greater than `2 * max(S)`.
-- **Edge cases:** Sets with fewer than three elements or without arithmetic progressions naturally produce zero. Input values are distinct, so `(B, B)` is the only equal pair removed for each center.

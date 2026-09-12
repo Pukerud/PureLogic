@@ -1,7 +1,0 @@
-- **Reduction:** A valid number has the form \(N=p^{2a}q^{2b}=m^2\), where \(m=p^a q^b\) has exactly two distinct prime factors. Conversely, squaring any such \(m\) produces a valid number.
-- **Search bound:** Since \(A\le 10^{12}\), every possible root satisfies \(m\le\sqrt{10^{12}}=10^6\).
-- **Prime sieve:** A bytearray sieve identifies all primes up to \(10^6\).
-- **Factor counting:** For every prime \(p\), increment the count of each multiple of \(p\). This counts distinct prime divisors rather than multiplicities.
-- **Candidates:** Every root with distinct-prime count exactly two is squared and stored. The resulting list is naturally increasing because roots are processed in increasing order.
-- **Queries:** `bisect_right` finds the largest candidate square not exceeding each query.
-- **Complexity:** The sieve and factor-counting phase takes approximately \(O(M\log\log M)\) time for \(M=10^6\), while queries take \(O(\log C)\) each, where \(C\) is the number of candidates. Memory usage is \(O(M+C)\).

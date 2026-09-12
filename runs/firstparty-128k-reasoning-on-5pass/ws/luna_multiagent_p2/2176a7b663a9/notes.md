@@ -1,8 +1,0 @@
-- **Graph structure:** Two vertices are adjacent exactly when one interval lies strictly to the left of the other: `R[i] < L[j]` or `R[j] < L[i]`.
-- **Diameter bound:** Every connected component of an interval-disjointness graph has unweighted diameter at most three. Therefore a minimum positive-weight path, if it exists, can be restricted to at most three edges.
-- **Path decomposition:** For a query `(s,t)`, check direct adjacency, then all one-intermediate paths, then all two-intermediate paths. Endpoint weights are added exactly once at the end.
-- **Two-edge paths:** The intermediate interval must be disjoint from both endpoints. Same-side cases reduce to prefix/suffix minima. Cross-sided cases are answered offline by sweeping the bound on `R[k]` and using a Fenwick tree over `L[k]`.
-- **Three-edge paths:** Fix the side of `m` relative to `t`, the side of `k` relative to `m`, and the side of `k` relative to `s`. There are eight orientation combinations.
-- **Offline sweep:** For each orientation, sweep the endpoint threshold that admits `m`. When an interval `m` becomes active, range-update every possible `k` coordinate satisfying the relation `k` left/right of `m`, with candidate value `W[k] + W[m]`.
-- **Segment tree:** Each leaf has base value `W[k]`; range updates store the minimum added `W[m]` lazily. Range queries return the minimum sum on the required prefix or suffix.
-- **Complexity:** The implementation uses a constant number of offline sweeps, each with logarithmic updates and queries, for overall `O((N+Q) log N)` time and `O(N+Q)` memory.

@@ -1,7 +1,0 @@
-- **Approach:** Let \(d=x-y\). Since positive solutions require \(x>y\), \(d\ge1\), \(x=y+d\), and \(N=d(3y^2+3dy+d^2)\).
-- **Bound:** Since \(3y^2+3dy+d^2\ge d^2\), any solution has \(d^3\le N\). Thus only enumerate \(1\le d\le\lfloor\sqrt[3]{N}\rfloor\), at most \(10^6\).
-- **Divisibility:** A valid difference must divide \(N\). Skip every enumerated \(d\) for which \(N\bmod d\ne0\).
-- **Quadratic:** For \(q=N/d\), solve \(3y^2+3dy+d^2=q\). The discriminant is \(D=12q-3d^2\), and \(y=(\sqrt D-3d)/6\).
-- **Exact checks:** Use `math.isqrt` and verify `root * root == D`. Require the numerator to be positive and divisible by 6, so that \(y\) is a positive integer.
-- **Cube root:** The implementation uses integer binary search, avoiding floating-point boundary issues.
-- **Complexity:** \(O(\sqrt[3]{N})\) iterations and \(O(1)\) additional memory.

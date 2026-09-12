@@ -1,7 +1,0 @@
-- **Core characterization:** For every processed prefix, maintain the patience-sorting `tails` array, where `tails[k]` is the minimum possible ending value of a strictly increasing subsequence of length `k + 1`. The array is strictly increasing.
-- **Bounded answer:** The maximum length of an increasing subsequence whose values are all at most `X` equals the number of entries in `tails` that are at most `X`. A tail value at most `X` corresponds to a subsequence whose earlier values are smaller, hence also at most `X`.
-- **Update rule:** For each new sequence value, use `bisect_left` to find the first tail greater than or equal to it. Replace that tail, or append if no such tail exists. This handles strict increasing subsequences correctly, including duplicates.
-- **Offline processing:** Group queries by their prefix endpoint `R`. Process the sequence from left to right, so when reaching position `R`, the Fenwick tree contains exactly the current tails values for that prefix.
-- **Fenwick tree:** Coordinate-compress the sequence values. The Fenwick tree stores frequencies of values currently present in `tails`; each replacement removes the old tail and inserts the new value.
-- **Threshold handling:** Since `X` may not occur in the sequence, use `bisect_right(values, X)` to obtain the number of compressed values at most `X`, then query the corresponding Fenwick prefix sum.
-- **Complexity:** Each sequence update and query takes `O(log N)`. Total time is `O((N + Q) log N)` and memory usage is `O(N + Q)`.

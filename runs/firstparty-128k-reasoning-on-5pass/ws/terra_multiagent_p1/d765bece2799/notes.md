@@ -1,7 +1,0 @@
-- **Validation:** The implementation gives the provided results: `[1,2,3], k=2 -> 20` and `[1,-3,1], k=2 -> -6`.
-- **Contribution approach:** Each valid subarray is counted once for its minimum and once for its maximum. Monotonic-stack boundaries assign duplicate extrema consistently to the rightmost qualifying occurrence.
-- **Minimum boundaries:** Previous strictly smaller and next smaller-or-equal. Left pass pops `>=`; right pass pops `>`.
-- **Maximum boundaries:** Previous strictly greater and next greater-or-equal. Left pass pops `<=`; right pass pops `<`.
-- **Length-limited counting:** For an element with `L` possible left endpoint positions and `R` possible right endpoint positions, count offset pairs `a,b` where `a+b <= k-1`. With `m=min(L,k)` and `full=clamp(k-R+1,0,m)`, the count is `full*R + rem*k - (full+m-1)*rem//2`, where `rem=m-full`.
-- **Edge cases checked:** `k=1` makes every singleton contribute twice its value. `k=n` reduces to standard unrestricted subarray-extremum contributions. Equal arrays are correctly assigned through asymmetric strictness. Negative values remain valid because contributions are multiplied directly by signed values.
-- **Complexity:** `O(n)` time from four monotonic stack scans and two summations; `O(n)` memory.

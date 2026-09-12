@@ -1,1 +1,0 @@
-Let prefix sums be \(P_0=0\) and \(P_i=\sum_{j=1}^i A_j\); every subarray sum is \(P_r-P_{l-1}\). Expand \((P_r-P_{l-1})^K\) with the binomial theorem, and while scanning each right endpoint \(r\), maintain the sums of powers \(P_j^t\) for all prior prefixes \(j<r\). Each \(r\) can then contribute in \(O(K)\), giving total \(O(NK)\) time and \(O(K)\) memory modulo 998244353.

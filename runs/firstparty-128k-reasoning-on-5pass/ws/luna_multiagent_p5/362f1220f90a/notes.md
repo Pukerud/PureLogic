@@ -1,8 +1,0 @@
-- **T-window propagation:** Every `T` window forces its corresponding characters. Conflicting assignments immediately imply impossibility.
-- **F-window tracking:** For each `F` window, maintain the number of unforced positions and whether an already assigned position differs from `str2`.
-- **Initial impossibility:** An `F` window with no free positions and no mismatch is forced to equal `str2`, so return `""`.
-- **Greedy construction:** Process unforced output positions left to right and choose the smallest lowercase character that preserves feasibility.
-- **Unit-window rule:** If an unsatisfied `F` window has exactly one free position remaining, that position cannot receive its matching character from `str2`.
-- **Safety of postponement:** If an unsatisfied `F` window has at least two free positions, assigning the current position leaves a later position that can still create a mismatch.
-- **Tested cases:** The implementation handles `m = 1`, overlapping conflicting or compatible `T` windows, adjacent `F` windows, forced `F` windows that are impossible, and all three supplied examples.
-- **Complexity:** Time is `O(nm)` and memory is `O(n + m)`, within the constraints.

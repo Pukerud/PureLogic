@@ -1,8 +1,0 @@
-- **Approach:** Process values in reverse. Later insertions never reorder earlier values, so after removing values greater than i from the final array, the remaining sequence is exactly the array after operation i. Therefore value i is the P_i-th empty final position.
-- **Fenwick tree:** Maintain 1 for empty positions and 0 for occupied positions. For i = N down to 1, query the P_i-th 1, assign value i there, then decrement that position.
-- **Padded power-of-two tree:** Use size = next power of two >= N. Initialize positions 1..N as 1 and N+1..size as 0. Binary lifting starts from size/2, so the search never reads index size; this removes bounds checks. Positions beyond N are never selected because the prefix sum at N already reaches the total remaining count.
-- **Initialization:** Start with lowbit(i) for a full array of ones, then for i > N replace bit[i] by the number of real positions in its Fenwick interval, i.e. max(0, N - (i - lowbit(i))).
-- **Update optimization:** Since index size is never read by the kth search, point updates stop at j < size. This is safe and saves one update step per element.
-- **Complexity:** O(N log N) time and O(N) memory. For N = 5e5, this is about 14 million simple loop iterations, which is efficient in Python.
-- **Edge cases:** N = 1 has no search steps; all P_i = 1 produces reverse order; all P_i = i produces identity; non-power-of-two N is handled by padding; k equal to the current number of empty positions is handled correctly.
-- **Verification:** Sample 1 gives 4 2 3 1; sample 2 gives 1 2 3 4 5. Small random cases match a naive list-insertion simulation.

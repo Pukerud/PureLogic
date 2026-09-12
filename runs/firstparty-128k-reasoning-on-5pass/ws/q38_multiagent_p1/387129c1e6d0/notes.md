@@ -1,8 +1,0 @@
-- **Approach:** Simulate all moves to get the final position, and record each move as an inclusive interval on its fixed coordinate: horizontal moves grouped by y, vertical moves grouped by x.
-- **Merging:** For each line, sort intervals by left endpoint and merge them in place. Use `l <= cr + 1` because all house coordinates are integers; merging adjacent integer intervals is safe and reduces the number of stored intervals.
-- **Query:** For a house `(hx, hy)`, check the horizontal merged intervals at `hy` and the vertical merged intervals at `hx`. With a sorted list of `(left, right)` tuples, `bisect_right(lst, (coord, INF)) - 1` finds the last interval whose left endpoint is at most `coord`; it covers the house if its right endpoint is at least `coord`.
-- **Counting once:** A house is counted if either its horizontal line or its vertical line covers it, so houses lying on both a horizontal and a vertical segment are not double-counted.
-- **Complexity:** Total time is `O((N + M) log M)` because sorting intervals per line sums to at most `O(M log M)`, and each house does at most two binary searches. Memory is `O(N + M)`.
-- **Overflow:** Final coordinates can reach about `2 * 10^14`, but Python integers handle this safely.
-- **IO:** Use `sys.stdin.buffer.read().split()` for fast parsing, then delete the token list after building the interval groups to reduce memory before merging and counting.
-- **Edge cases:** Endpoints are inclusive, so houses at segment ends are counted. Overlapping, backtracking, and repeated segments are handled by interval merging. Singleton interval lists are skipped during merging.

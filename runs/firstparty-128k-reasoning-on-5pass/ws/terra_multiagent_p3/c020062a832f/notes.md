@@ -1,6 +1,0 @@
-- **Algorithm:** Compute the inversion count for shift `k=0` using a Fenwick tree over values. Scan positions left to right; for value `a`, add the number of previously seen values greater than `a`.
-- **Shift transition:** From shift `k` to `k+1`, exactly the elements currently equal to `M-1` wrap to `0`. For transition `k`, these are elements with original value `M-1-k`.
-- **Group update:** If a wrapping original-value group `v` has occurrence count `c` and sum of 1-based positions `s`, its inversion-count change is `2*s - c*(N+1)`. Equal-value pairs do not affect the result because they are ties both before and after wrapping.
-- **Precomputation:** Maintain `count[v]` and `pos_sum[v]` while scanning the input. Values absent from the sequence naturally have zero update.
-- **Complexity:** Fenwick initialization is `O(N log M)`. Precomputation, transitions, and output are `O(N+M)`. Memory is `O(M)`.
-- **Integer range:** Python integers safely handle inversion totals up to `N*(N-1)/2`.

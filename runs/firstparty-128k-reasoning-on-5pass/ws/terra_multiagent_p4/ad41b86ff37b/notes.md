@@ -1,9 +1,0 @@
-- **Model:** A retained Snowflake Tree is determined by a center vertex `c`, positive integers `x,y`, `x` neighboring branch vertices of `c`, and exactly `y` retained neighbors of each selected branch other than `c`.
-- **Branch capacity:** For a directed choice `(c -> b)`, branch `b` supports every `y <= deg[b]-1`, since the edge to `c` occupies one incident edge. Retained leaf vertices need not be leaves in the original tree because all their other adjacent vertices may be deleted.
-- **No overlap issue:** In a tree, candidates retained under different selected branches are disjoint. A vertex cannot be adjacent to both different branches selected from the same center, as that would form a cycle.
-- **Fixed center and y:** Every neighbor `b` of `c` with capacity at least `y` should be selected. Each adds `y+1` retained vertices and cannot hurt feasibility. Thus `x` is the number of neighboring capacities at least `y`.
-- **Candidate values:** For a fixed center, the eligible branch count changes only at a capacity value. Sort capacities descending, process equal-value groups, and evaluate the group endpoint: `1 + x * (y+1)`.
-- **Formula:** The retained vertex count is `1 + x + xy = 1 + x(y+1)`. The answer is `N - maximum_retained_size`.
-- **Implementation fix:** The former runtime error came from calling the list `deg` as `deg(branch)`. It is corrected to indexed access: `deg[branch]`.
-- **Complexity:** Sorting neighbor capacities for every center costs `O(sum(deg(c) log deg(c)))`, which is `O(N log N)` for a tree. Storage is `O(N)` besides temporary capacity lists.
-- **Validation:** The corrected program produces the expected outputs `1`, `0`, and `3` for the three supplied samples. It also handles a 3-vertex path, stars, and arbitrary paths; every valid input has a feasible 3-vertex snowflake with `x=1,y=1`.

@@ -1,7 +1,0 @@
-- **Middle fixation:** Fix the third selected index as the middle. Choose two indices on its left and two on its right, ensuring every size-5 subsequence is counted exactly once.
-- **Frequency characterization:** If at least two outer elements equal the middle value, that value occurs at least three times and is automatically the unique mode. If exactly one outer element equals it, the other three outer values must be pairwise distinct and different from the middle value.
-- **Counting at least two copies:** Enumerate the number of selected middle-value copies from each side, each ranging from zero to two, and use binomial counts for the remaining non-middle positions.
-- **Counting exactly one copy:** For one left and two right non-middle values, count all left choices times right pairs, subtracting cases where the left value equals the repeated value in the right pair. The symmetric formula handles two left and one right.
-- **Sweep aggregates:** Maintain side frequencies, the number of equal-value pairs on each side, and the two cross-side aggregates needed by the distinctness formulas. Moving the middle updates all aggregates in constant time.
-- **Complexity:** Coordinate compression takes `O(n)`. The sweep is `O(n)` time and `O(U)` memory, where `U` is the number of distinct values.
-- **Validation:** The formulas produce the provided results `6`, `4`, and `0`; exhaustive enumeration agrees on small random arrays and edge cases such as all-equal and all-distinct inputs.

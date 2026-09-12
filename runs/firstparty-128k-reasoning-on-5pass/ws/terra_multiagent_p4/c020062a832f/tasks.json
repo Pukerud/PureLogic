@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement and validate the complete \\(O(N\\log M+M)\\) Python solution, including transitions, duplicates, absent values, and \\(M=1\\).",
-    "status": "done",
-    "result": ""
-  }
-]

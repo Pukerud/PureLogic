@@ -1,6 +1,0 @@
-- **State representation:** Keep a B-bit mask after processing the current square. Bit d means that square `current - d` is reachable, for `0 <= d < B`.
-- **Good-square transition:** For a new good square, it is reachable iff any predecessor at distance A through B is reachable. These correspond to old mask bits `A-1` through `B-1`. Shift the mask left by one and insert that result into bit 0.
-- **Bad-square transition:** A bad square cannot be reached, so shift the mask left by one and insert zero. For a consecutive bad block of length at least B, all useful reachability information disappears and the mask becomes zero.
-- **Long good gaps when A < B:** Let `C = B - 1 + A * ceil((A-1)/(B-A))`. After C consecutive good steps from any nonempty state, future reachability behaves as if the mask were all ones, so remaining steps in the same good interval can be skipped by setting the mask to all ones. Simulate at most C steps per good gap.
-- **Long good gaps when A == B:** Each reachable square can only lead exactly A positions ahead. Since `A = B`, the B-bit state is cyclically rotated by the gap length modulo B.
-- **Complexity:** There are O(M) intervals. Each good gap takes O(C), where B <= 20, and each bad gap takes O(1). Total complexity is O(MB), with O(1) memory.

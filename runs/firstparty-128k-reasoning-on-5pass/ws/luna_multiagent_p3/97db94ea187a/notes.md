@@ -1,8 +1,0 @@
-- **BFS layers:** Fix the exact distance layers \(L_0,L_1,\ldots,L_k\) from vertex 1. \(L_0=\{1\}\), all later layers are nonempty, and the sum of even-indexed layer sizes must be \(N/2\).
-- **Allowed edges:** Edges are allowed only inside one layer or between consecutive layers. Edges skipping a layer would create a shorter path and are forbidden.
-- **Predecessor condition:** Every vertex in \(L_i\) for \(i>0\) must have at least one neighbor in \(L_{i-1}\). For consecutive layer sizes \(a,b\), the edge polynomial is \((y^a-1)^b\), where \(y=1+x\).
-- **Layer edges:** Internal edges in a new layer of size \(b\) contribute \(y^{\binom b2}\). Choosing labels for that layer contributes \(\binom{\text{remaining}}b\).
-- **Packed polynomial bug:** The factor already contains the internal-edge degree shift. The old code shifted the packed product by `shift` again while unpacking or adding it, causing every transition to gain an extra \(\binom b2\) degree. Products must be unpacked starting at degree zero.
-- **Small-tree validation:** For layer sequence \([1,1,1,1]\), the contribution is \(6x^3\): six labeled paths. For \([1,2,1]\), the contribution is \(3x^2(y^2-1)=6x^3+3x^4\), so its spanning-tree contribution is 6. Together these give 12 spanning trees for \(N=4\), matching the sample.
-- **Packing safety:** Each packed digit stores a coefficient modulo \(P\). During multiplication, a coefficient is a sum of at most \(N+1\) products, safely below \(2^{80}\) for \(N\le30\). Digits are normalized modulo \(P\) after every multiplication.
-- **Final transform:** If the DP coefficient of \(y^d\) is \(c_d\), then its coefficient of \(x^m\) is \(c_d\binom dm\). The requested answers are obtained for \(m=N-1,\ldots,\binom N2\).

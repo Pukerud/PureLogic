@@ -1,6 +1,0 @@
-- **Model:** The graph orientation after any sequence of reversals depends only on reversal parity. Use two states per vertex: `(v, 0)` for the original orientation and `(v, 1)` for the fully reversed orientation.
-- **Transitions:** From `(v, 0)`, traverse every original outgoing edge `v -> u` to `(u, 0)` at cost `1`. From `(v, 1)`, traverse every original incoming edge `u -> v` to `(u, 1)` at cost `1`, because these are outgoing edges after reversal. From either state `(v, p)`, switch to `(v, 1-p)` at cost `X`.
-- **Algorithm:** Run Dijkstra from state `(1, 0)`. The answer is the first finalized Dijkstra state whose vertex is `N`, equivalently `min(dist[N,0], dist[N,1])`.
-- **Complexity:** There are `2N` states. Each original edge appears once in each orientation layer, and each state has one reversal transition, so the implicit graph has `O(N + M)` transitions. Time is `O((N + M) log N)` and memory is `O(N + M)`.
-- **Implementation:** Store both original outgoing and incoming adjacency lists. Encode state as `vertex + parity * N`, with zero-indexed vertices. Python integers safely handle costs exceeding 32-bit range.
-- **Verification:** For sample 1, normal-layer path `1 -> 2 -> 4 -> 3 -> 5` costs `4`. For sample 2, `1 -> 2`, reverse, then reversed-layer move to `5` costs `1 + 1 + 1 = 3`. The implementation supports large answers such as sample 3.

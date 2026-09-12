@@ -1,9 +1,0 @@
-- **Forced overlays:** Every `T` window must equal `str2`, so all such copies are overlaid first. Any conflicting character at an overlapping position makes the answer impossible.
-- **Initial assignment:** Positions not forced by a `T` window start as `'a'`, the smallest lowercase character.
-- **Forbidden windows:** Each `F` window must differ from `str2`. If its current contents already equal `str2`, at least one non-forced position in that window must be changed.
-- **Greedy position:** The latest available position in a violating window is changed. Changing an earlier position would increase the result at an earlier index and therefore cannot produce a lexicographically smaller valid string.
-- **Replacement character:** A newly selected position still contains `'a'`. Since the violating window equals `str2`, its corresponding pattern character is `'a'`; changing it to `'b'` is the smallest possible increase. The conditional replacement also handles robustness if the value is inspected after another assignment.
-- **Permanent assignments:** Once a position is changed to repair an `F` window, it is marked fixed. Earlier constraints remain satisfied, and any later violation is repaired using a later available position whenever possible.
-- **Failure condition:** If a violating `F` window has no non-fixed position, all of its characters are forced to match `str2`, so no valid result exists.
-- **Complexity:** The implementation uses `O(nm)` time in the worst case and `O(n+m)` auxiliary space. With `n <= 10^4` and `m <= 500`, this is within the limits.
-- **Verification:** The approach agrees with the sample outputs: `"ababa"`, `""`, and `"a"`. Exhaustive brute-force comparison on small alphabets and short strings validates both feasibility and lexicographic minimality.

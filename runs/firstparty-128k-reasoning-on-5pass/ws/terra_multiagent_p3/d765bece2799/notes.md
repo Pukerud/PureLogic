@@ -1,6 +1,0 @@
-- **Verification:** The implementation matches both provided examples: `[1, 2, 3], k = 2` returns `20`, and `[1, -3, 1], k = 2` returns `-6`.
-- **Tie-breaking:** Maximum boundaries use previous strictly greater and next greater-or-equal. Minimum boundaries use previous strictly smaller and next smaller-or-equal. This consistently assigns a subarray with duplicate extrema to its rightmost equal extremum.
-- **Duplicate check:** For `[2, 2]`, the length-limited contribution ownership is unique: index `0` owns `[0]`; index `1` owns `[1]` and `[0, 1]`. Thus no double counting occurs for either minima or maxima.
-- **Pair-count formula:** `count_pairs(L, R)` counts endpoint extension pairs satisfying `a + b - 1 <= k`. The first segment has all `R` right choices valid; the remaining segment is an arithmetic series of `k + 1 - a`. It handles edge cases including `k = 1`, `L = 1`, `R = 1`, and `k >= L + R - 1`.
-- **Brute-force comparison plan:** For randomized small arrays, compare the method against enumeration of every subarray with length at most `k`, adding `min(subarray) + max(subarray)`. The boundary conventions and formula are consistent with this direct definition.
-- **Complexity:** Four monotonic-stack passes and two contribution scans take `O(n)` time. The arrays and stacks require `O(n)` memory.

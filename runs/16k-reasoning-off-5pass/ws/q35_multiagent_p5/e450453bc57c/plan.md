@@ -1,5 +1,0 @@
-1. Since k is small (up to 15), we can use dynamic programming where the state tracks the number of valid subarrays formed so far.
-2. For each possible ending position of a subarray of size x, calculate the minimum cost to make all elements in that subarray equal. The optimal value to make them equal is the median of the subarray, and the cost is the sum of absolute differences from the median.
-3. Precompute the cost for every possible subarray of length x using a sliding window approach with two heaps (or sorted list) to efficiently maintain the median and sum of absolute differences.
-4. Use DP: `dp[i][j]` represents the minimum operations to have `j` non-overlapping subarrays using the first `i` elements. We iterate through each position, and if a subarray ends at `i`, we update the DP state by considering the cost of that subarray plus the best previous state for `j-1` subarrays ending before the start of this subarray.
-5. The answer is the minimum value in `dp[n][k]` after processing all positions.

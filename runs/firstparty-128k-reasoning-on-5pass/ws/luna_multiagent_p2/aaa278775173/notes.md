@@ -1,6 +1,0 @@
-- **Directions:** Use `(1,1), (1,-1), (-1,-1), (-1,1)` for southeast, southwest, northwest, northeast. A clockwise turn changes direction with `(d + 1) % 4`.
-- **Prefix DP:** `prefix[d][cell]` stores the longest valid straight path ending at the cell, starting from a `1` and moving in direction `d`. If the previous path length is `L`, the next expected value is `2` when `L` is odd and `0` when `L` is even.
-- **Suffix DP:** `suffix[p][d][cell]` stores a straight continuation beginning at the cell. Parity `p=1` means the cell must be `2`; `p=0` means it must be `0`. The parity toggles after every move.
-- **Turn combination:** If a prefix of length `L` ends at a possible turn cell, the next cell has parity `L % 2`. Add the suffix in the clockwise direction starting from that next cell. The turn cell is counted exactly once in the prefix.
-- **Traversal:** Prefix states are processed in movement direction order so their predecessor is ready. Suffix states are processed opposite the movement direction so their next cell is ready.
-- **Complexity:** Time is `O(nm)` and auxiliary memory is `O(nm)`. Compact `array('H')` storage keeps all DP values within the maximum possible path length of 500.

@@ -1,7 +1,0 @@
-- **Route bottleneck:** For any chosen route, let \(M\) be the minimum building height along it, including both endpoints. Walkways can preserve a floor only up to \(M\).
-- **Stair cost:** Given endpoint floors \(y,z\) and route bottleneck \(M\), the minimum stair usage is \(|y-z|+2\max(0,\min(y,z)-M)\).
-- **Optimization:** This cost is nonincreasing in \(M\), so each query only needs the maximum bottleneck between its two buildings. For the same building, the bottleneck is its own height.
-- **Reconstruction tree:** Activate cells in descending height order and union each active cell with active cardinal neighbors. Each union creates an internal node weighted by the current height. The LCA of two leaves has weight equal to their maximum bottleneck.
-- **Root correction:** The DSU representative is a leaf/root representative, while the reconstruction-tree root is stored in `component_node[find(0)]`. The correct initialization is `root_node = component_node[find(0)]` followed by `parent[root_node] = root_node`.
-- **Complexity:** Sorting takes \(O(HW\log(HW))\); reconstruction and binary lifting take \(O(HW\log(HW))\) memory/time; each query is answered in \(O(\log(HW))\).
-- **Edge cases:** Same-building queries, equal floors, endpoint height limits, and bottlenecks below both queried floors are handled by the direct formula.

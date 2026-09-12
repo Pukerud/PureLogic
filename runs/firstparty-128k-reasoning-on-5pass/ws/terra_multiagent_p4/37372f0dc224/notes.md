@@ -1,7 +1,0 @@
-- **Algorithm:** Let `R = reverse(S)`. The longest palindromic suffix of `S` equals the longest prefix of `R` that is also a suffix of `S`.
-- **KMP construction:** Compute the prefix-function for `R + "#" + S`, where `#` is safe because input contains only uppercase English letters.
-- **Why it works:** A prefix of `R` of length `L` is the reverse of the suffix of `S` of length `L`. If it equals that suffix, the suffix equals its reverse and is therefore a palindrome.
-- **Construction of answer:** If the longest palindromic suffix starts at index `L`, append `reverse(S[:L])` to `S`. This mirrors all characters before the suffix and produces a palindrome.
-- **Optimality:** Choosing the longest palindromic suffix minimizes the number of appended characters, so the resulting palindrome is shortest.
-- **Complexity:** Prefix-function computation is `O(|S|)` time. Memory usage is `O(|S|)`. An `array('I')` stores prefix values compactly for length up to 500,000.
-- **Edge cases:** A one-character string and an already-palindromic string have longest palindromic suffix equal to the full string, so nothing is appended.

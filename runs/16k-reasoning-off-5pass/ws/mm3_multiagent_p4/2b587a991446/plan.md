@@ -1,7 +1,0 @@
-Model the state of the game as an ordered pair (posA, posB) with the constraint that posA ≠ posB. The initial state is (S, T) and the target state is (T, S). Moves correspond to changing one of the two positions along an incident edge, with the constraint that the two positions never coincide. We need the shortest path in this implicit graph.
-
-Because N can be up to 2·10⁵, we cannot build the full N² state graph, but each vertex has only degree d, so a vertex appears in O(d) states. A BFS on the state space visits each state (u, v) at most once. We can store distances in a hash map (or two dicts indexed by the "inner" vertex). The BFS expands from the start state, generating moves of A and B, and terminates when we reach (T, S) or when the queue empties (impossible).
-
-To keep memory under control, we only store distances for states where the "other" piece is a neighbor of the moved piece (the "frontier"). This still gives O(M) total states. The BFS is O((N + M) · deg) in the worst case, but in practice O(number of visited states) ≤ O(M), which is fast enough for 2·10⁵.
-
-If S and T are disconnected, we still run BFS; the reachable component is the whole graph (graph is connected), but the answer may be -1 if the parity or structure prevents swapping (e.g., a single edge). The BFS naturally handles this.

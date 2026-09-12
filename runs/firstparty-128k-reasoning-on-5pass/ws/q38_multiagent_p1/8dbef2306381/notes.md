@@ -1,7 +1,0 @@
-
-## ideation
-The core difficulty is that the line has length up to 10^12, so position-by-position simulation is impossible, while the number of bad intervals is only up to 2*10^4 and the maximum jump length B is at most 20. The process is strictly forward and highly local: whether a square is reachable depends only on reachable good squares within the previous B positions. Bad squares are sparse intervals, so long stretches of good squares must be compressed.
-
-A second subtlety is that the minimum jump A prevents naive interval reasoning. Tracking only the furthest reachable square is unsafe: with A=3 and B=4, some nearby squares are unreachable, and with A=B only one congruence class is reachable. Also, a single jump can skip over a small good gap between two bad blocks, so a compression that only connects adjacent good gaps may miss valid paths. Adjacent bad intervals should be merged into maximal bad blocks; in particular, a maximal bad block of length at least B cannot be crossed at all, which can give an early No.
-
-The local recurrence “square x is reachable iff it is good and some reachable square in the previous B positions is at distance A..B” suggests finite-state compression. The gap-boundary viewpoint suggests another compression: only the first B and last B squares of each good gap matter for entering and leaving the gap. Both views are promising, but each has different off-by-one and boundary pitfalls.

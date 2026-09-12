@@ -1,8 +1,0 @@
-- **Cost model:** Changing a character with alphabet index `a` to index `b` costs `abs(a-b)`, because each operation changes the letter by exactly one step.
-- **DP state:** For a suffix beginning at position `i`, store the previous output letter and the current run status: length `1`, length `2`, or length at least `3`. Status is capped at `3`, represented by indices `0`, `1`, and `2`.
-- **Transitions:** Continuing the previous letter advances the status. Starting a different letter is allowed only from status `3`, and creates a new run with status `1`.
-- **Terminal condition:** After the final position, only status `3` is valid. Therefore the terminal suffix cost is zero for status `3` and infinity for statuses `1` and `2`.
-- **Transition optimization:** For a state with status `3`, switching to a letter `x` uses `abs(caption[i]-x) + next[x][1]`. The minimum excluding the previous letter is found using the two smallest values over all 26 letters, giving `O(26n)` time.
-- **Lexicographic tie-breaking:** Every transition compares equal-cost choices by the character selected at the current position. The first character is similarly chosen as the smallest one among globally optimal choices. Greedy reconstruction is valid because each stored choice is optimal for its exact suffix state.
-- **Reconstruction:** Store one byte per position, previous letter, and status. The total memory usage is `O(78n)`, while the rolling DP costs only `O(26)` additional memory.
-- **Impossibility:** If `n < 3`, no nonempty caption can consist entirely of runs of length at least three, so return `""`. For every `n >= 3`, a valid caption always exists by changing all positions to one letter.

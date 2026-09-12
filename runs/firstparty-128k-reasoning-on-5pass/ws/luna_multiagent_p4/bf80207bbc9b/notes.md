@@ -1,8 +1,0 @@
-- **Reduction:** Applying any row or column operation more than once is unnecessary because two applications cancel.
-- **Fixed column flips:** Represent the chosen column flips by a mask `m`. A row with mask `r` becomes `r XOR m`.
-- **Independent row choice:** Each row may then be flipped or not. Its minimum number of ones is `min(popcount(r XOR m), W - popcount(r XOR m))`.
-- **Frequency aggregation:** Count rows by their `W`-bit masks in an array `frequency` of size `2^W`.
-- **XOR convolution:** For every column mask `m`, the total cost is `sum_r frequency[r] * kernel[r XOR m]`, where `kernel[t] = min(popcount(t), W - popcount(t))`.
-- **Walsh–Hadamard transform:** XOR convolution is computed by transforming both arrays, multiplying pointwise, and applying the transform again. The unnormalized inverse requires division by `2^W`.
-- **Complexity:** The algorithm uses `O(W * 2^W + H * W)` time and `O(2^W)` memory. This fits `W <= 18` and `H <= 2 * 10^5`.
-- **Integer safety:** Python integers safely handle all transform coefficients and products.

@@ -1,8 +1,0 @@
-- **Monotonicity:** Every nonzero operation changes only zeroes to ones, so the chosen operations must form a set cover of all positions.
-- **Complement operations:** Selecting operation 2 for interval \(I\) covers the complement of \(I\). With two such operations, the positions still uncovered are exactly the intersection of their intervals; ordinary interval operations must cover that intersection.
-- **Greedy interval covering:** A target interval is covered optimally by repeatedly choosing, among intervals starting no later than the current position, one with maximum right endpoint.
-- **Three-prefix candidates:** Among intervals eligible at a position, only the three largest right endpoints are needed when up to two intervals are excluded.
-- **Binary lifting:** The unrestricted greedy transitions are precomputed for every position and binary-lifted, allowing long greedy runs to be evaluated quickly.
-- **Excluded intervals:** Each interval can be the unrestricted greedy choice over one contiguous position range. Therefore, for a fixed pair of excluded intervals, only a constant number of detours from the unrestricted greedy path need handling.
-- **Pair candidates:** For an optimal pair of complements, orient the pair so the first interval determines the left endpoint of their intersection. Testing the first and last three eligible partners by right endpoint preserves an extremal optimal pair.
-- **Complexity:** The main preprocessing is \(O(N\log N + M\log M)\). Candidate generation and evaluation are subquadratic, and reconstruction is linear in the number of selected operations.

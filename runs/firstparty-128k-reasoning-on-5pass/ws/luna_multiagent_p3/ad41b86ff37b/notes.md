@@ -1,7 +1,0 @@
-- **Structure:** A Snowflake Tree consists of one center, `x >= 1` middle-layer vertices adjacent to it, and exactly `y >= 1` leaves attached to each middle-layer vertex.
-- **Fixed center:** Every retained middle-layer vertex must be an original neighbor of the chosen center. If a neighbor `v` is used as a middle vertex, one incident edge connects it to the center, leaving `deg(v)-1` possible leaf neighbors.
-- **Capacity:** Define the capacity of a neighbor `v` as `deg(v)-1`. For a fixed positive `y`, exactly the neighbors with capacity at least `y` can serve as middle vertices.
-- **Optimal selection:** If `i` neighbors have capacity at least `y`, retaining all of them is optimal because `x` is unrestricted apart from being positive. Their contribution is `i * (1+y)` vertices, in addition to the center.
-- **Sorting optimization:** Sort neighboring capacities in descending order. If `c_i` is the capacity at 1-based position `i`, choosing `y=c_i` allows the first `i` neighbors to serve as middle vertices and maximizes the result for that prefix. The retained size is `1 + i * (c_i+1)`.
-- **Answer:** Maximize this retained size over every center and every positive-capacity prefix, then output `N - maximum_retained`.
-- **Complexity:** The total sorting cost is `O(sum deg(v) log deg(v))`, bounded by `O(N log N)`. Memory usage is `O(N)`.

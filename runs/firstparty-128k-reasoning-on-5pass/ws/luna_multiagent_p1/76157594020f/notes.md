@@ -1,6 +1,0 @@
-- **Feasibility condition:** For a fixed maximum run length `L`, dynamic programming tracks the minimum flips needed for every ending bit and every possible final run length from `1` through `L`.
-- **DP transitions:** Appending the same bit extends the current run; appending the opposite bit starts a new run of length `1`. The appended character costs one flip exactly when it differs from the original character.
-- **Special case `L = 1`:** Every final character must alternate, so only the two alternating strings beginning with `0` and `1` need to be compared.
-- **Binary search:** Feasibility is monotone: if a maximum run length is achievable, every larger limit is also achievable. Search the answer in `[1, n]`.
-- **Complexity:** A feasibility check costs `O(nL)` time and `O(L)` memory. Across binary search, the worst-case time is `O(n^2)` and memory is `O(n)`, which is safe for `n <= 1000`.
-- **Examples:** The DP returns `2` for `"000001"` with one operation, `1` for `"0000"` with two operations, and `1` for `"0101"` with zero operations.

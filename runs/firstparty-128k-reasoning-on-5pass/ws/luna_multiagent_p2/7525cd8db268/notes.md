@@ -1,6 +1,0 @@
-- **Normalization:** Convert every pair to `(low, high)` with `low < high`, then activate it when the right endpoint reaches `high`.
-- **Fixed-right counting:** For a subarray ending at `right`, an active pair `(low, high)` forbids every start at most `low`. Therefore all forbidden starts form the prefix `1..max_low`, and the valid count is `right - max_low`.
-- **Sweep state:** Maintain the two largest active lower endpoints as individual pair entries, not merely distinct values. This is enough because removing one pair can only expose the largest remaining lower endpoint.
-- **Duplicate handling:** If two active pairs share the maximum lower endpoint, the second-largest entry has the same value. Removing either pair then gives zero gain, which is handled automatically.
-- **Gain accumulation:** At each right endpoint, the pair identified by the largest lower endpoint gains `first_val - second_val` if removed. Summing this over all endpoints gives that pair’s total improvement over the baseline.
-- **Complexity:** The sweep processes every pair and every endpoint once, using `O(n + m)` time and `O(n + m)` memory, where `m = len(conflictingPairs)`. Python integers safely hold the potentially quadratic answer.

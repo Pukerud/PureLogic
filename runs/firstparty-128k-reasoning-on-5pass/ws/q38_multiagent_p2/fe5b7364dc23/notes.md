@@ -1,8 +1,0 @@
-- **Core idea:** Every subarray sum is a difference of two prefix sums. Sweep the right endpoint and aggregate all earlier prefixes by their low-order power sums.
-- **Formula:** For current prefix P, the contribution of all earlier prefixes Q is sum_{t=0}^K C(K,t) P^t (-1)^{K-t} sum_prev Q^{K-t}. Maintain moments[m] = sum_prev Q^m for m=0..K.
-- **Initialization:** The empty prefix P_0=0 must be included. Set moments[0]=1 to count it, and moments[m]=0 for m>0. This uses the convention 0^0=1 only for the count term.
-- **Update order:** For each array element, update the current prefix, compute the contribution using the moments from previous prefixes only, then add the current prefix powers to the moments. Updating before the contribution would count invalid pairs.
-- **Modulo handling:** All prefix values, powers, and moments are kept modulo 998244353. The prefix update can subtract the modulus once because both addends are already reduced. Signed binomial coefficients are used for the (-1) factor, and the accumulated contribution is normalized with a modulo operation after each element.
-- **Complexity:** O(NK) time and O(K) memory. With K<=10 and N<=2e5, the inner work is about 2.2 million iterations, which is easily fast in Python.
-- **Edge cases:** K=1 works as a simple sum of subarray sums; zero elements and zero prefixes are handled by powers[0]=1; N=1 returns A_1^K; large counts in moments[0] remain safe under modulo updates.
-- **Verification:** Sample 1 evaluates to 75 by hand, sample 2 is 0 because the only subarray sum is 0, and sample 3 matches 428633385 with this sweep.

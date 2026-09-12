@@ -1,6 +1,0 @@
-- **Algorithm:** Compute the inversion count for shift `k=0` with a Fenwick tree in `O(N log M)`. Process the sequence left to right; for value `x`, the number of prior values greater than `x` is `i - prefix_sum(x + 1)`.
-- **Shift observation:** From shift `k` to `k+1`, only original value `M-1-k` wraps from current value `M-1` to `0`. All comparisons not involving this value remain unchanged.
-- **Delta definition:** For a value `x`, `delta[x]` is the change in inversion count when all occurrences of `x` wrap. For every unequal pair `(i,j)` with `i<j`, it contributes `+1` if `A[j]=x`, and `-1` if `A[i]=x`.
-- **Linear delta formula:** Let an occurrence of `x` be at zero-based position `p`, with `seen[x]` earlier occurrences of `x`, and let `freq[x]` be the total count of `x`. Its contribution is `2*p - 2*seen[x] - N + freq[x]`. Summing this over occurrences gives every `delta[x]` in `O(N)`.
-- **Output order:** Print the current answer for each `k`, then apply `delta[M-1-k]` to obtain the next shift. No update is needed after the final output.
-- **Complexity:** Time is `O(N log M + N + M)`, memory is `O(M)` besides input storage. Inversion counts use Python integers, safely covering up to `N(N-1)/2`.

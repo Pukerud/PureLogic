@@ -1,5 +1,0 @@
-- **Approach:** A shortest palindrome with `S` as prefix is obtained by appending characters only to the end. It must preserve the longest suffix of `S` that is already palindromic, then append the reverse of the preceding prefix.
-- **KMP construction:** Build `reverse(S) + '#' + S`, where `#` cannot occur because input contains only uppercase English letters. The final KMP prefix-function value is the largest prefix of `reverse(S)` matching a suffix of `S`.
-- **Correctness:** Such a match means the suffix of `S` equals its own reverse, so it is palindromic. If its length is `L`, output `S + reverse(S[:len(S)-L])`, implemented as `S + S[:-L][::-1]`.
-- **Complexity:** KMP runs in `O(n)` time and uses `O(n)` memory, suitable for `n <= 500000`.
-- **Edge cases:** For a one-character or already-palindromic string, `L = len(S)`, `S[:-L]` is empty, and the original string is printed unchanged.

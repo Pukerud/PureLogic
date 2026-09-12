@@ -1,7 +1,0 @@
-We need to simulate inserting numbers 1..N into a list at given positions P_i (1-indexed). The naive approach using Python's `list.insert` is O(N^2) worst-case (since each insert is O(N) and N ≤ 5×10^5). However, we can achieve O(N log N) by processing operations **backwards** using a Fenwick tree (Binary Indexed Tree) or a segment tree to find the k-th empty slot.
-
-The key idea: Consider N empty positions (slots). Process i = N down to 1. For each i, we have its insertion position P_i, which means when i was inserted, it became the P_i-th element among the first i elements of the final array. Equivalently, among the positions that are still empty after processing numbers > i, i should occupy the P_i-th empty slot from the left.
-
-We maintain a BIT over N positions where each slot holds 1 if it's still empty, 0 if it's already filled. Initially all are 1. When we place i, we find the index `pos` such that the prefix sum up to `pos` equals P_i (i.e., the P_i-th empty slot). Then we set `result[pos] = i` and update BIT at `pos` to 0 (mark as filled). After all N steps, `result` contains the final array.
-
-Both the BIT updates and the "find k-th one" (binary lifting on BIT) are O(log N), giving overall O(N log N) time and O(N) memory.

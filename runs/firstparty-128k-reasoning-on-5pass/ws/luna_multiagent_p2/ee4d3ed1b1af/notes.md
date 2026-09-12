@@ -1,8 +1,0 @@
-- **Decomposition:** Splitting at the two stars gives fixed segments `A`, `B`, and `C`; a match has the form `A + arbitrary + B + arbitrary + C`.
-- **Occurrence search:** KMP finds every occurrence of each nonempty segment in `O(|s| + |segment|)` time.
-- **Empty segments:** An empty segment occurs at every boundary from `0` through `n`, represented by `range(n + 1)`. This handles leading, trailing, and consecutive stars, including `"**"` producing `0`.
-- **Candidate selection:** For each occurrence of `A`, binary search chooses the earliest occurrence of `B` starting at or after the end of `A`, then the earliest `C` starting at or after the end of `B`.
-- **Greedy correctness:** Choosing an earlier compatible `B` cannot worsen the earliest possible `C`, because it gives `C` a no-later lower bound. Therefore these choices minimize the ending position for each fixed start of `A`.
-- **Boundary behavior:** Segment starts must be at or after the preceding segment’s end, so fixed portions cannot overlap; adjacent portions are allowed. Empty segments correctly support zero-length gaps and boundary matches.
-- **Validation:** The implementation gives `8`, `-1`, `0`, and `6` for the four supplied examples. It also handles `"**"` on any nonempty string, leading/trailing/consecutive stars, adjacent literals, exact full-string matches, impossible literals, empty-prefix/suffix matches, and repeated-overlap cases such as `"aa*aa*aa"` by requiring the three fixed occurrences to be non-overlapping.
-- **Complexity:** KMP preprocessing and searches use `O(|s| + |p|)` time and memory. Binary searches over all `A` occurrences add `O(|s| log |s|)` time. Total memory is `O(|s| + |p|)`.

@@ -1,7 +1,0 @@
-- **Model:** Each chosen operation contributes a fixed covered set: an ordinary interval for type 1, or the complement of its interval for type 2. Since values only change from 0 to 1, the selected sets must cover all positions.
-- **Minimum costs:** Cost 1 is possible exactly when some interval is `[1, N]`.
-- **Cost 2:** Two complements work when their original intervals are disjoint. Two ordinary intervals work when one starts at 1 and another ends at N. One ordinary interval and one complement work when the ordinary interval contains the complement’s original interval.
-- **Cost 3:** If intervals are not pairwise intersecting, a disjoint pair already gives cost 2. Otherwise, by the one-dimensional Helly property, all intervals share a common intersection. Complements of intervals with maximum left endpoint and minimum right endpoint leave only this common intersection, which any third ordinary interval covers.
-- **Mixed cost 3:** For a fixed complement interval `[l, r]`, two ordinary intervals must cover it. It is sufficient to test the two largest right endpoints among intervals with `L <= l` and the two smallest left endpoints among intervals with `R >= r`.
-- **Correctness checking:** Coverage is validated on elementary segments induced by all selected interval endpoints; coverage is constant within each segment.
-- **Complexity:** Sorting and preprocessing take `O(M log M)` time and `O(M)` memory. Candidate enumeration and validation take `O(M)` additional time.

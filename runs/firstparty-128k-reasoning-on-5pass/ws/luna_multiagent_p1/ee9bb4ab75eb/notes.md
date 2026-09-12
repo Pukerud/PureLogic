@@ -1,7 +1,0 @@
-- **Trie construction:** Each trie node represents a prefix. Its `count` stores how many input strings pass through that prefix, counting duplicate strings by distinct indices.
-- **Validity:** A prefix can be shared by at least `k` remaining strings exactly when its original trie-node count is at least `k`.
-- **Effect of removal:** Removing one word changes counts only along that word’s trie path. A path node becomes invalid after removal only when its original count is exactly `k`; nodes with larger counts remain valid.
-- **Depth tracking:** For each depth, maintain how many trie nodes at that depth currently have count at least `k`. If this number is positive, that depth can produce a common prefix.
-- **Segment tree:** Leaves represent depths and store the depth itself when at least one valid node exists, otherwise `-1`. The root therefore stores the deepest currently feasible prefix length.
-- **Per-index processing:** Temporarily decrement the valid-node counts for affected path nodes, read the segment-tree root, then restore all changes.
-- **Complexity:** The trie uses `O(total word length)` memory. Each word causes `O(length * log(max_word_length))` temporary updates, for total time `O(total word length * log(max_word_length))`.

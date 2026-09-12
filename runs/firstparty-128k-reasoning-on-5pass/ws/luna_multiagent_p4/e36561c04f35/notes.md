@@ -1,8 +1,0 @@
-- **Group interpretation:** Every deletion removes one nonempty monochromatic prefix. After considering the order in which elements are deleted, swaps are exactly the inversions needed to arrange elements into consecutive deletion groups.
-- **Dynamic programming state:** `dp[i]` is the minimum number of operations needed to empty the suffix starting at position `i`.
-- **Immediate transition:** The maximal equal run beginning at `i` can be deleted directly as one group, yielding `1 + dp[run_end[i]]`.
-- **Joining equal values:** If `a[i]` is joined with a later occurrence, the intervening elements must be crossed by swaps. The optimal transition only needs the first useful later occurrence of the same value; later occurrences are dominated by this choice or represented recursively.
-- **Transition structure:** For a later equal occurrence `j`, the swap contribution depends linearly on the distance between `i` and `j`. Intermediate suffix boundaries produce terms of the form `dp[k] + 2 * (k - i - 2) + 3`.
-- **Range minimum optimization:** Rewrite those terms as `3 - 2 * (i + 2) + (dp[k] + 2*k)`. A segment tree stores `dp[k] + 2*k` and answers the required interval minima.
-- **Occurrence lookup:** Positions of each value are stored in sorted lists. `bisect_right` finds the first occurrence strictly after `i + 1`.
-- **Complexity:** Each position performs constant-many segment-tree operations and one binary search, so each test case runs in `O(N log N)` time and `O(N)` memory. The total complexity respects the summed constraint `sum(N) <= 2 * 10^5`.

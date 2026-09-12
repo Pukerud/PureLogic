@@ -1,5 +1,0 @@
-We need to maximize `f(i) + g(j) - shared(i,j)`? No — the three subarrays are disjoint, so we can compute left[i] = number of distinct elements in A[1..i] for all i, and right[j] = number of distinct elements in A[j..N] for all j. Then for split positions (i, j) with i < j, the answer is `left[i] + mid_distinct(i+1, j) + right[j+1]`. The middle part varies, so we need an efficient way to combine.
-
-Standard approach: for each possible middle subarray (i+1..j), track its distinct count, and we need to find the best left[i] for i ≤ that start, and best right[j+1] for end ≥ that end. Process from left to right: maintain `best_left` (max left[i] seen so far). As we expand the right end `r` of the middle subarray, update its distinct count. At each `r`, answer candidate = `best_left + middle_distinct + right[r+1]`. Take max over all r.
-
-Left array: O(N) time with a set/dict tracking counts. Right array: precompute `right[k]` = distinct in A[k..N] for all k (1-indexed), O(N). Middle: as we slide `r` from 2 to N-1, we add A[r] to a counter for the middle, track distinct count. After updating, best candidate is `best_left + mid_distinct + right[r+1]`.

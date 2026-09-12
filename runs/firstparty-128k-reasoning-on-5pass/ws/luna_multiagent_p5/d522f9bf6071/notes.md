@@ -1,6 +1,0 @@
-- **Ordering:** Intervals are sorted by left endpoint. For each interval, `bisect_right` finds the first interval whose left endpoint is strictly greater than the current right endpoint, so touching intervals are correctly treated as overlapping.
-- **Dynamic programming:** `dp[i][k]` stores the maximum score and lexicographically smallest sorted original-index tuple obtainable from sorted position `i` onward using at most `k` intervals.
-- **Transitions:** The current interval is either skipped, or selected and followed by the best compatible solution with one fewer available slot.
-- **Tie-breaking:** Selected original indices are stored in sorted order. For equal scores, Python tuple comparison implements the required lexicographic ordering, including the shorter-prefix rule.
-- **Complexity:** Computing successors costs `O(n log n)`. The DP has five capacity states per interval, giving `O(n log n)` total time and `O(n)` memory up to constant factors. Each tuple has length at most four.
-- **Validation:** The implementation produces `[2, 3]` for the first example and `[1, 3, 5, 6]` for the second. It also handles a single interval, intervals with identical boundaries, touching intervals, all-overlapping intervals, and ties where lexicographic index order determines the answer.

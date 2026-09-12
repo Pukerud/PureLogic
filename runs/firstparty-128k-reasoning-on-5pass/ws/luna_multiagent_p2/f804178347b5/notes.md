@@ -1,6 +1,0 @@
-- **Tree DP:** Each contiguous block is represented by a ternary-tree node. For each node, store the minimum number of leaf changes required for its resulting majority value to be 0 or 1.
-- **Leaf initialization:** For an original bit 0, the costs are `(0, 1)`; for an original bit 1, they are `(1, 0)`.
-- **Transition:** A parent becomes 0 when at least two children become 0. Enumerate the four child-output combinations with at least two zeroes and take their minimum total cost. The transition for parent value 1 is symmetric.
-- **Answer:** After all levels are processed, one root cost is zero for the unchanged final value. The cost for the other root value is exactly the minimum number of changes needed to change the final result.
-- **Integer width:** Use `array('I')` rather than `array('H')`, since the required DP values can exceed 65535 under the stated constraints.
-- **Complexity:** Every tree node is processed once, so the time complexity is `O(3^N)`. Two integer arrays are maintained per level, using `O(3^N)` memory.

@@ -1,9 +1,0 @@
-The problem requires us to determine if we can make all elements of an array $x$ equal to 1 using a sequence of $M$ operations, where each operation can set a range $[L_i, R_i]$ to 1 (Op 1), set the complement range to 1 (Op 2), or do nothing (Op 0). We need to minimize the total cost (number of non-zero operations).
-
-The key insight is that an operation $i$ is **necessary** if and only if there exists at least one index $j$ that is covered by operation $i$ but is **not** covered by any operation $k > i$. If all points covered by operation $i$ are also covered by some future operation, we can safely skip operation $i$ (choose Op 0) without jeopardizing the ability to cover those points later. If there is a point covered by $i$ that no future operation covers, we **must** use operation $i$ (either Op 1 or Op 2) to cover that point.
-
-The algorithm proceeds in two passes:
-1.  **Reverse Pass**: Iterate from $M-1$ down to 0. Maintain a set of "covered" points using a segment tree (over compressed coordinates). For each operation $i$, check if the union of its possible coverage ranges (Op 1 or Op 2) is fully covered by the set of points already marked as covered by future operations. If not, mark operation $i$ as `must_use`. Then, add the coverage of operation $i$ to the segment tree.
-2.  **Forward Pass**: Iterate from 0 to $M-1$. If operation $i$ is marked `must_use`, apply it (update the segment tree to mark its coverage as 1). Otherwise, skip it. Finally, check if the entire range $[1, N]$ is covered. If yes, output the cost and the sequence of operations; otherwise, output -1.
-
-Coordinate compression is used to handle the large $N$ ($10^6$) efficiently, reducing the problem size to $O(M)$. A segment tree with lazy propagation is used for range updates and queries in $O(\log M)$.

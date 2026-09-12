@@ -1,9 +1,0 @@
-- **Approach:** Deduplicate `target`, because repeated requirements only need one number divisible by that target value. With at most four distinct values, coverage is represented by a bitmask.
-- **LCM preprocessing:** For every non-empty subset mask, compute the LCM of the selected targets. Incrementing a number to its next multiple of that LCM makes it satisfy all targets in the subset.
-- **Cost calculation:** For source value `x` and subset LCM `L`, the increment cost is `(-x) % L`.
-- **DP state:** `dp[mask]` is the minimum total increment cost after considering processed values such that all target bits in `mask` are covered.
-- **Transition safety:** Each input number uses a copied `next_dp = dp[:]`; all transitions read from the old `dp`, so one original number cannot be used as multiple separate final values.
-- **Transition:** A number can be assigned to any non-empty subset `add_mask`, producing `covered | add_mask` at the corresponding LCM increment cost. The unchanged copied state represents skipping that number.
-- **Correctness check:** Example 1 returns `1`: increment `3` to `4`. Example 2 returns `2`: increment `8` to `10`, covering both `5` and `10`. Example 3 returns `0`: `7` already covers target `7`.
-- **Targeted checks:** Duplicate targets such as `nums=[1,2], target=[3,3]` deduplicate to `[3]` and return `1`. Already-covered values such as `nums=[14], target=[7]` return `0`. One value covering several targets such as `nums=[5], target=[2,3]` returns `1` by incrementing `5` to `6`.
-- **Complexity:** With at most 16 masks, time is `O(len(nums) * 4^m)` and memory is `O(2^m)`. For `m <= 4`, this is at most about 12.8 million DP transitions.

@@ -1,7 +1,0 @@
-- **Algorithm:** Uses thresholded diagonal-banded Levenshtein DP. A valid edit sequence of at most `K` operations cannot visit a cell whose row/column difference exceeds `K`, so only `2K+1` diagonals are retained.
-- **State:** For source-prefix length `i` and target-prefix length `j`, store `dp[i][j]` at diagonal index `d = j - i`. The stored band contains only `-K <= d <= K`.
-- **Transitions:** `dp[i][j]` is the minimum of deleting `S[i-1]`, inserting `T[j-1]`, and matching/replacing the two final characters. Values above `K` are discarded as `K+1`.
-- **Boundary handling:** Row zero is initialized as `dp[0][j] = j` for `0 <= j <= K`. Extra sentinel slots prevent out-of-range diagonal accesses. States with `j < 0`, `j > len(T)`, or outside the band are excluded.
-- **Early rejection:** If the length difference exceeds `K`, conversion is impossible. If an entire DP row has no state at distance at most `K`, no future valid path exists.
-- **Complexity:** Time is `O((|S| + 1) * (2K + 1))`, and memory is `O(K)`. With `K <= 20`, this is suitable for strings of length up to 500,000.
-- **Validation:** The implementation yields `Yes` for sample 1, `No` for sample 2, and `Yes` for sample 3.

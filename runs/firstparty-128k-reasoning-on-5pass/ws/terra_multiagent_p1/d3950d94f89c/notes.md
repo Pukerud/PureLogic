@@ -1,8 +1,0 @@
-- **Approach:** Root the tree at node 0 and process it with iterative DFS enter/exit events, avoiding recursion-depth failure on a chain of 50,000 nodes.
-- **Unique values:** Maintain `last_seen[value]`, representing the most recent depth of that value on the active root-to-current-node DFS path. At a node of depth `d`, if its value previously appeared at depth `p`, a unique suffix must start at depth at least `p + 1`.
-- **Sliding boundary:** Each DFS enter state carries the inherited earliest valid start depth. At the entered node, use `max(inherited_start, previous_occurrence + 1)` if the value has appeared earlier on the active path.
-- **Weighted length:** `path_dist[depth]` stores root distance for the active DFS path. For endpoint depth `d` and valid suffix start `s`, length is `path_dist[d] - path_dist[s]`; node count is `d - s + 1`.
-- **Backtracking:** An enter event saves the overwritten `last_seen` depth and pushes a matching exit event. The exit restores `last_seen` and pops the active distance, isolating sibling subtrees correctly.
-- **Sample verification:** For sample 1, the traversal finds both length-6 candidates and applies the node-count tie break, returning `[6, 2]`. For sample 2, duplicate values force singleton paths, returning `[0, 1]`.
-- **Duplicate-chain sanity check:** In a chain where every node has the same value, each non-root node moves the valid start to its own depth. Every candidate has length 0 and one node, so the result remains `[0, 1]`.
-- **Complexity:** Building and traversing the tree is O(n) time. Memory is O(n + max(nums)) for adjacency, DFS state, active path distances, and value tracking.

@@ -1,5 +1,0 @@
-- **Sample validation:** The implementation returns `6` for `[1,1,1,1,1,1]`, `4` for `[1,2,2,3,3,4]`, and `0` for `[0,1,2,3,4,5,6,7,8]`.
-- **Brute-force validation:** Compared against an exhaustive oracle that enumerates every 5-index combination, counts values in the selected subsequence, and checks whether its third selected value is the sole maximum-frequency value. Exhaustive arrays of lengths 5 through 8 over a three-value alphabet produced no mismatch.
-- **Case split:** With fixed middle value `x`, no additional selected `x` cannot work. Exactly one additional `x` requires all three remaining values to be non-`x` and pairwise distinct. At least two additional `x` values gives `x` frequency at least three, automatically making it the unique mode.
-- **Aggregate formulas:** The maintained sums `sum(L²)`, `sum(R²)`, `sum(LR)`, `sum(L²R)`, and `sum(LR²)` correctly support constant-time exclusion of `x` and collision subtraction for the exactly-one-extra-`x` cases.
-- **Complexity:** O(n + d) time and O(d) memory, where d is the number of distinct values. Integer intermediates fit safely in Python; modulo is applied to the final result.

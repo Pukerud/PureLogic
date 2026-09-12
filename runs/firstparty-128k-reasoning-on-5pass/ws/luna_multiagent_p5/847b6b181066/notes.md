@@ -1,6 +1,0 @@
-- **State representation:** Let `(dr, dc)` be the cumulative displacement caused by all wind directions through the current time, with north decreasing the row and west decreasing the column.
-- **Smoke origins:** A smoke particle generated when the cumulative displacement is `p_k` is at `p_t - p_k` after time `t`. The initial smoke corresponds to `p_0 = (0, 0)`.
-- **Generation condition:** New smoke is generated at the origin exactly when the current cumulative position has not appeared before. Therefore, the set of all prefix positions, including `(0, 0)`, identifies all possible smoke trajectories. Maintaining every encountered prefix in `seen` is sufficient.
-- **Target check:** At time `t + 0.5`, the target `(R, C)` contains smoke iff some stored prefix position equals `(dr - R, dc - C)`. This directly follows from `p_t - p_k = (R, C)`.
-- **Timing:** The cumulative displacement is updated first for the current wind, then the target is checked. Adding the current prefix to `seen` afterward is equivalent here because `(R, C)` is guaranteed nonzero, so the current prefix cannot itself satisfy the target check.
-- **Complexity:** The scan takes `O(N)` expected time and `O(N)` memory.

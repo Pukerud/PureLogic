@@ -1,4 +1,0 @@
-1.  **Parity Check**: For a valid configuration to exist, every row and every column must contain an even number of 'A' tiles. If any row or column has an odd count, the answer is 0.
-2.  **Graph Construction**: The problem can be modeled as a system of linear equations over GF(2). We define variables $x_i$ for each row and $y_j$ for each column. For each 'B' tile at $(i, j)$, there is a constraint $x_i \oplus y_j = \text{weight}$, where the weight depends on the parity of 'A's in the prefix of the row and column.
-3.  **Component Analysis**: We build a bipartite graph with $H+W$ nodes (rows and columns). Edges represent constraints from 'B' tiles. We traverse the graph to find connected components and check for consistency (no contradictions in the system).
-4.  **Counting Solutions**: If the system is consistent, the number of solutions is $2^C$, where $C$ is the number of connected components in the constraint graph. We output this value modulo 998244353.

@@ -1,6 +1,0 @@
-- **Completion counting:** Once a value is selected, all later parities must alternate. A completion exists only if the remaining odd and even counts match the required alternating pattern. The remaining values can then be arranged independently within each parity group, producing `odd! * even!` completions.
-- **Starting parity:** If the counts of odd and even values are equal, either parity may start. If they differ by one, the majority parity must start. A difference greater than one makes a valid permutation impossible.
-- **Lexicographic unranking:** At every position, unused values are examined in increasing order. Each valid candidate represents a contiguous block of completions; whole blocks are skipped until the block containing rank `k` is found.
-- **Capped arithmetic:** Factorials and products are capped at the original `k`. Counts at least `k` are equivalent for deciding whether to skip a block, while preventing unnecessarily large intermediate values.
-- **Complexity:** Candidate scanning takes `O(n²)` time and the auxiliary storage is `O(n)`.
-- **Test verdict:** Passed the supplied examples and edge cases by evaluation: `(4, 6) -> [3, 4, 1, 2]`, `(3, 2) -> [3, 2, 1]`, `(2, 3) -> []`, `(1, 1) -> [1]`, `(1, 2) -> []`, `(2, 1) -> [1, 2]`, and `(2, 2) -> [2, 1]`. Even and odd sizes, valid ranks, and out-of-range ranks are handled correctly.

@@ -1,1 +1,0 @@
-For each test case, choose \(A=N+1\) and \(M=N^2\). By the binomial theorem, \((N+1)^n-1 \equiv nN \pmod{N^2}\), so \(M\) divides \(A^n-1\) exactly when \(N\) divides \(n\). Therefore, the smallest valid positive exponent is \(n=N\). The bounds are satisfied because \(A\le 10^9+1\) and \(M\le 10^{18}\), including the case \(N=1\).

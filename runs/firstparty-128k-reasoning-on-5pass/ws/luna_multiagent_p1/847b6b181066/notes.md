@@ -1,7 +1,0 @@
-- **State representation:** Let `(row, col)` be the cumulative wind displacement after the current time, with `(0, 0)` initially.
-- **Smoke sources:** Smoke generated at time `k` starts at the origin and, at time `t`, is located at `P_t - P_k`, where `P_i` is the cumulative displacement after `i` wind steps.
-- **Visited positions:** A new smoke source is generated exactly when the current cumulative position `P_t` has not appeared before. Therefore, the set of all visited prefix positions represents all possible source positions; adding duplicate positions is harmless.
-- **Target condition:** Smoke is at `(R, C)` at time `t+0.5` iff there exists a visited prefix position `P_k` such that `P_t - P_k = (R, C)`. Equivalently, `(P_t.row - R, P_t.col - C)` must be in the visited set.
-- **Ordering:** After applying the current wind, insert the current cumulative position into the set, then perform the target query. This includes smoke generated immediately after the current wind step.
-- **Directions:** `N` decreases the row, `S` increases the row, `W` decreases the column, and `E` increases the column.
-- **Complexity:** The algorithm uses expected `O(N)` time and `O(N)` memory.

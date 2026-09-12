@@ -1,6 +1,0 @@
-- **Reverse processing:** Process values from \(N\) down to \(1\). At step \(i\), the positions not yet assigned correspond to positions occupied by \(1,\ldots,i\) in the final array.
-- **Position selection:** Value \(i\) must occupy the \(P_i\)-th currently available position from the left. After selecting it, remove that position from future consideration.
-- **Fenwick tree:** Store 1 for every available position and 0 for every occupied position. Prefix sums count available positions, enabling both removal and order-statistic queries in \(O(\log N)\).
-- **Binary lifting:** The `kth` method finds the smallest index whose Fenwick prefix sum is at least \(k\), directly locating the \(k\)-th available slot.
-- **Initialization:** For an all-ones Fenwick tree, each internal node initially stores its covered range length, namely `i & -i`.
-- **Complexity:** The algorithm uses \(O(N\log N)\) time and \(O(N)\) memory.

@@ -1,7 +1,0 @@
-- **Identity:** If \(v=v_2(x)\), then \(\sum_{k\ge1,\;2^k\mid x}2^{-k}=1-2^{-v}\), so \(f(x)=x/2^v=x\left(1-\sum_{k\ge1,\;2^k\mid x}2^{-k}\right)\).
-- **Total pair sum:** Over all \(i\le j\), \(\sum(A_i+A_j)=(N+1)\sum A_i\), because each array element appears once in every off-diagonal pair and twice in its diagonal pair.
-- **Divisibility aggregation:** For \(M=2^k\), compute \(S_k=\sum_{i\le j,\;M\mid A_i+A_j}(A_i+A_j)\). The answer is \(T-\sum_{k\ge1}S_k/2^k\). The subtraction uses \(S_k\) directly; using only \((S_k-S_{k+1})/2^k\) would not represent the identity correctly.
-- **Residue classes:** \(A_i+A_j\) is divisible by \(M\) exactly when their residues are complementary modulo \(M\): \(r+s\equiv0\pmod M\). Each class stores its count and the sum of its values.
-- **Distinct complementary classes:** For \(r\ne -r\pmod M\), process only \(r<(-r\bmod M)\). Their contribution is `sum_r * count_s + sum_s * count_r`.
-- **Self-complementary classes:** For \(r=-r\pmod M\) (residue \(0\), and \(M/2\) when applicable), all unordered pairs within the class are valid. Their total pair-sum is \((c+1)\cdot\text{sum}\), including diagonal pairs.
-- **Range and complexity:** Powers of two only need to be processed while \(M\le 2\max A_i\), since larger moduli divide no positive pair sum. Complexity is \(O(N\log A_{\max})\) time and \(O(N)\) memory.

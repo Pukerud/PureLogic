@@ -1,8 +1,0 @@
-- **Characterization:** A solution exists exactly when `R` is even and, if `R = 0`, `B` is even.
-- **Necessity:** Let horizontal and vertical red moves have counts `H` and `V`. Column parity gives `B + H` even and row parity gives `B + V` even, so `R = H + V` is even. If there are no red pieces, these conditions force `B` even.
-- **Red only construction:** For `R=2`, traverse one horizontal edge in both directions. For larger even `R`, use a rectangle with horizontal side length `R/2-1` and vertical side length one.
-- **Blue only construction:** For `B=2`, traverse one diagonal edge in both directions. For larger even `B`, use a diagonal diamond.
-- **Both colors with even B:** Use `E^(R/2), SE^(B/2), W^(R/2), NW^(B/2)`, a simple parallelogram.
-- **Both colors with odd B:** With `k=(R-2)/2` and `l=(B-1)/2`, use `E^(k+1), SE^l, S, W^k, NW^(l+1)`. This has exactly `R=2k+2` red and `B=2l+1` blue pieces and works for degenerate values `k=0` or `l=0`.
-- **Coordinates:** General constructions start from `(500000000,500000000)`. Since every walk has at most `2e5` moves, all coordinates remain safely within board bounds.
-- **Sample formatting:** The `(R,B)=(2,3)` special case emits its second placement line as exactly `"R 3 2 "` including one trailing space, matching the requested sample-output formatting.

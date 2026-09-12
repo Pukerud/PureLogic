@@ -1,6 +1,0 @@
-- **Reduction:** Let \(d=x-y>0\), so \(x=y+d\). Then \(N=d(3y^2+3dy+d^2)\), and therefore \(d^3\leq N\).
-- **Enumeration bound:** Only values \(1\leq d\leq\lfloor\sqrt[3]{N}\rfloor\) need to be tested. The integer cube root is computed with binary search to avoid floating-point errors.
-- **Quadratic solution:** For each divisor \(d\) of \(N\), set \(q=N/d\). The equation becomes \(3y^2+3dy+d^2=q\), whose discriminant is \(12q-3d^2\).
-- **Exact checks:** `math.isqrt` verifies that the discriminant is a perfect square. The resulting numerator must be positive and divisible by \(6\), ensuring a positive integer \(y\).
-- **Verification:** The candidate pair is finally checked directly using integer arithmetic.
-- **Complexity:** \(O(\sqrt[3]{N})\) iterations and \(O(1)\) extra space; at most about one million candidates under the constraints.

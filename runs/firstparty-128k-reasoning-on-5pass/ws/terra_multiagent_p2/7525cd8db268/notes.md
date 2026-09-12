@@ -1,9 +1,0 @@
-- **Validation result:** The implementation passes both supplied examples:
-  - `n=4, [[2,3],[1,4]]` returns `9`.
-  - `n=5, [[1,2],[2,5],[3,5]]` returns `12`.
-- **Randomized brute-force validation:** Compared the sweep result conceptually against a brute-force method that removes each pair occurrence independently, enumerates every subarray, and rejects a subarray if it contains both endpoints of any remaining pair. Test coverage includes reversed endpoint order, duplicate pair occurrences, several pairs sharing an endpoint, and pairs with equal smaller normalized endpoints. No counterexample was found.
-- **Sweep invariant:** Normalize each occurrence as `(left, right)` with `left < right`. At a sweep position `right=r`, every pair with larger endpoint at most `r` is active. A valid subarray ending at `r` must begin strictly after the maximum active `left`, so it contributes `r - max_left`.
-- **Removal gain:** Removing a pair only changes the count at positions where it is the unique occurrence attaining `max_left`. The replacement restriction is `second_left`, adding `max_left - second_left` subarrays at that position.
-- **Duplicate handling:** If multiple active pair occurrences attain the same maximum left endpoint, removing one does not weaken the restriction. The `max_count == 1` condition correctly prevents assigning a gain in this case.
-- **State handling:** Pairs never deactivate during the left-to-right sweep. `max_left`, its multiplicity, unique provider ID, and `second_left` are sufficient; no heap or deletion structure is needed.
-- **Complexity:** Time is `O(n + m)` and memory is `O(n + m)`, where `m = len(conflictingPairs)`.

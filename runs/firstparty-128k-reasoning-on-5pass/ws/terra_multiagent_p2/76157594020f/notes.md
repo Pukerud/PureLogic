@@ -1,8 +1,0 @@
-- **Validation:** The current implementation produces the expected results for all provided examples: `"000001", 1 -> 2`; `"0000", 2 -> 1`; `"0101", 0 -> 1`.
-- **Targeted edge cases:** `"0", 0 -> 1`; `"0", 1 -> 1`; `"0000", 0 -> 4`; `"0011", 0 -> 2`; `"0011", 1 -> 2`; `"00000", 1 -> 2`; `"00000", 2 -> 1`; `"01010", 0 -> 1`; `"01110", 1 -> 1`.
-- **Algorithm:** Binary search the smallest feasible maximum run bound `L` in `[1, n]`. Feasibility is monotonic: allowing a larger maximum run can never require more flips.
-- **Case `L = 1`:** A valid final string must equal either `0101...` or `1010...`. The implementation counts mismatches with both targets and compares the smaller count against `numOps`.
-- **Case `L > 1`:** For every original maximal run of length `r`, the minimum number of separator flips required is `r // (L + 1)`. Each such flip prevents a segment from reaching length `L + 1`; for `L > 1`, these internal separators can be chosen without invalid boundary interactions between adjacent original runs.
-- **Formula checks:** For `L = 2`, run lengths `1,2` need zero flips; lengths `3,4,5` need one; lengths `6,7,8` need two, matching `r // 3`. For `L = 3`, lengths `1..3` need zero, `4..7` need one, and `8..11` need two, matching `r // 4`.
-- **Complexity:** Building run lengths costs `O(n)`. Each binary-search feasibility check costs `O(n)` in the alternating case or `O(number_of_runs)` otherwise. Total time is `O(n log n)` and extra space is `O(n)`.
-- **Conclusion:** The feasibility formulas and binary search are correct for the stated constraints.

@@ -1,7 +1,0 @@
-- **Approach:** Enumerate every subset of size `R = min(K, N-K)`. The guarantee `C(N,K) <= 10^6` also guarantees `C(N,R) <= 10^6`.
-- **Complement identity:** Let `T` be the XOR of all elements. If `K > N-K`, enumerate excluded subsets of size `N-K`; the XOR of the selected elements is `T XOR excluded_xor`.
-- **DFS state:** `dfs(start, depth, current_xor)` has selected `depth` elements from indices before `start`. Each recursive choice XORs one new value into `current_xor`.
-- **Safe pruning:** At depth `d`, with `remaining = R-d`, choices only range through index `N-remaining`, ensuring enough indices remain to complete a subset.
-- **Recursion depth:** Since `R` is the smaller of `K` and `N-K` and the binomial coefficient is bounded by `10^6`, recursion depth is very small in all valid cases.
-- **Complexity:** There are exactly `C(N,R)` leaves and a bounded number of DFS nodes. Time is proportional to generated combinations, with O(R) recursion stack space.
-- **Validation:** Sample 1 produces `7`. Sample 2 produces `2024`.

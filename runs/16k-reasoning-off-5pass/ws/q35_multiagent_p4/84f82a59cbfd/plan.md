@@ -1,5 +1,0 @@
-1. A "400 number" N has exactly two distinct prime factors p and q, and the exponent of each in the prime factorization is even. Thus N = p^(2a) * q^(2b) for integers a,b >= 1. This can be rewritten as N = (p^a * q^b)^2, meaning N is a perfect square whose square root has exactly two distinct prime factors.
-2. Equivalently, let M = sqrt(N). Then M must be a product of exactly two distinct primes raised to some positive integer powers: M = p^a * q^b. So N = M^2 where M is a "2-prime-factor number" (not necessarily square-free, but with exactly two distinct primes).
-3. For each query A, we want the largest N <= A such that N is a 400 number. Since N = M^2, we need the largest M such that M^2 <= A (i.e., M <= floor(sqrt(A))) and M has exactly two distinct prime factors.
-4. Precompute all numbers M up to 10^6 (since sqrt(10^12) = 10^6) that have exactly two distinct prime factors. We can do this by sieving to count distinct prime factors for each number up to 10^6.
-5. Store these valid M values in a sorted list. For each query A, compute limit = floor(sqrt(A)), then use binary search to find the largest valid M <= limit. The answer is M^2.

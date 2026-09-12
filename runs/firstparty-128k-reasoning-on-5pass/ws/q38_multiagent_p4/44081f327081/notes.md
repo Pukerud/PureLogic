@@ -1,8 +1,0 @@
-- **Reduction:** For a fixed value x=A_i, a gcd G is attainable iff G divides x and at least K array elements are divisible by G. Thus answer[x] = max{d | d divides x, cnt[d] >= K}, where cnt[d] counts array elements divisible by d.
-- **Counting transform:** Start f[v] = frequency of exact value v. For each prime p, loop d from M//p down to 1 and do f[d] += f[d*p]. Descending makes f[d*p] already include higher p-powers, so this sums over d, d*p, d*p^2, ... . After all primes, f[d] = cnt[d].
-- **Answer transform:** Replace f[d] by d if f[d] >= K else 0. For each prime p, loop d from 1 to M//p and do f[d*p] = max(f[d*p], f[d]). Ascending propagates values along p-powers; after all primes f[x] is the maximum feasible divisor of x.
-- **Prime list:** Need every prime up to M, not only up to M//2, because for d=1 each prime p<=M contributes f[p] to f[1]. Generate with a bytearray sieve.
-- **Complexity:** Sieve O(M log log M); both transforms sum_{p<=M} floor(M/p) = O(M log log M); input/output O(N). With M<=1e6 this is very small.
-- **Implementation choices:** Use read().split() for fast parsing, store A in array('I') to keep memory low, delete token list before allocating freq. Use one list for counts and final answers. Chunked stdout writes with buffer.
-- **Edge cases:** M=1 has no primes and answer is 1. K=1 returns A_i because cnt[A_i]>=1. K=N returns the global gcd. Since K<=N, cnt[1]=N, so f[1]=1 and every answer is at least 1.
-- **Pitfalls:** Count transform must be descending, max transform ascending. Do not replace counts before the counting transform is complete. Ensure d*p <= M via mp = M//p.

@@ -1,6 +1,0 @@
-- **Approach:** Maintain residue-count DP independently for every possible non-zero last-digit divisor `d = 1..9`. For each `d`, `dp[d][r]` stores how many substrings ending at the preceding position have numeric remainder `r mod d`.
-- **Transition:** When appending digit `x` to a substring with remainder `r mod d`, its new remainder is `(10*r + x) % d`. Also add the new length-one substring, with remainder `x % d`.
-- **Counting:** After processing a position whose digit is `x != 0`, the valid substrings ending there are exactly `dp[x][0]`, because their required divisor is their non-zero final digit `x`. Do not count positions ending in `0`.
-- **Leading zeros:** Naturally supported. For example, extending `"0"` by `"1"` follows the same remainder transition, and `"01"` is treated numerically as `1`.
-- **Complexity:** For each character, transitions process `1 + 2 + ... + 9 = 45` residue states. Time is `O(45n) = O(n)` and memory is `O(45)`.
-- **Samples:** The implementation yields `11` for `"12936"`, `18` for `"5701283"`, and `25` for `"1010101010"`.

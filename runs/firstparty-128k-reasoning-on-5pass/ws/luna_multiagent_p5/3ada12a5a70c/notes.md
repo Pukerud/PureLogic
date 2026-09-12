@@ -1,9 +1,0 @@
-- **Perimeter representation:** Each boundary point is mapped to a unique clockwise coordinate in `[0, 4 * side)`, with corners assigned exactly once.
-- **Distance characterization:** For thresholds `D <= side`, two boundary points have Manhattan distance less than `D` exactly when their smaller circular perimeter separation is less than `D`. Pairs on opposite sides have Manhattan distance at least `side`, so they cannot violate such a threshold.
-- **Cyclic selection:** A valid selection is equivalent to choosing points whose consecutive circular perimeter gaps are all at least `D`.
-- **Greedy feasibility:** For a fixed starting point, repeatedly selecting the earliest point at least `D` farther along the doubled perimeter is optimal, because it leaves the most room for subsequent selections.
-- **Binary lifting:** The greedy successor of every doubled-perimeter point is computed with a two-pointer scan. Binary lifting applies the successor transition `k - 1` times in `O(log k)` per starting point.
-- **Wraparound check:** After selecting the final point, the gap back to the starting point must also be at least `D`.
-- **Complexity:** Each feasibility test runs in `O(n log k)` time and `O(n log k)` memory. Binary search contributes an additional `O(log side)` factor.
-- **Validation:** The implementation produces `2`, `1`, and `1` for the three supplied examples. Exhaustive targeted small-square enumeration found no discrepancies against brute-force subset search.
-- **Edge cases:** `D = 0` is always feasible, coordinates are unique, and the binary-search upper bound is safely `side`.

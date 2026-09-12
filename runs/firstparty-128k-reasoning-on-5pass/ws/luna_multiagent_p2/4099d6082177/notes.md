@@ -1,8 +1,0 @@
-- **State:** For each rooted subtree, store `0` if it is completely decomposed, a positive unfinished-path length if one path ends at the subtree root and must connect to its parent, or `-1` if impossible.
-- **Transition:** An unfinished path from a child must use the edge to the current vertex. More than two such child paths is impossible because a path can use at most two incident edges at a vertex.
-- **No active child:** The current vertex starts an unfinished path of length 1, unless `K == 1`, in which case it immediately forms a complete path.
-- **One active child:** Extend that path by the current vertex. Length exactly `K` completes it; a smaller length remains unfinished; a larger length is invalid.
-- **Two active children:** Join both paths through the current vertex. This must produce exactly `K` vertices; otherwise the decomposition is impossible.
-- **Root condition:** The root must end in state `0`, since no path may remain unfinished outside the tree.
-- **Traversal:** Root the tree at vertex 1 and process vertices in iterative postorder to avoid recursion-depth issues.
-- **Complexity:** The algorithm runs in `O(NK)` time and uses `O(NK)` memory.

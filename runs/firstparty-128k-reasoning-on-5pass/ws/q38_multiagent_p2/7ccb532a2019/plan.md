@@ -1,5 +1,0 @@
-A good final string is determined by a common positive frequency k and a subset of the 26 letters that appear, each with count k.  
-For a fixed k, compare any kept original character to the delete-then-insert alternative: keeping it unchanged saves 2 operations, changing it to the next letter saves 1, and changing it by two or more letters is never better than delete+insert.  
-Therefore the cost is n + k*m - maximum savings, where m is the number of selected letters and savings come only from exact matches and adjacent increments.  
-The choice of selected letters is a binary path DP over the alphabet: selecting letter i determines how many surplus characters from i-1 can be saved as increments into i, and only the previous selection state is needed.  
-Enumerate k from 1 to n, run the O(26) DP for each, and return the minimum n + DP value.

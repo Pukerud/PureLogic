@@ -1,6 +1,0 @@
-- **Approach:** A shortest palindrome beginning with `S` is formed by retaining the longest palindromic suffix of `S` and appending the reverse of everything before it.
-- **KMP construction:** Let `R = S[::-1]`. Build `T = R + "#" + S`, where `#` cannot occur because input contains only uppercase English letters.
-- **Why it works:** The final KMP prefix-function value is the longest prefix of `R` matching a suffix of `S`. A prefix of `R` corresponds to the reverse of a suffix of `S`; equality therefore means that suffix is a palindrome.
-- **Output:** If the longest palindromic suffix has length `L`, print `S + reverse(S[:n-L])`.
-- **Complexity:** The prefix-function takes `O(n)` time and `O(n)` memory. The combined string has length `2n + 1`, suitable for `n <= 500000`.
-- **Sample checks:** `ABC` gives `ABCBA`; `Z` gives `Z`; `TREE` gives `TREERT`.

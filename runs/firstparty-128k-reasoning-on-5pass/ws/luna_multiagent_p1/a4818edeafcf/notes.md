@@ -1,7 +1,0 @@
-- **State:** For a fixed middle segment right endpoint `j`, each segment-tree position `i` stores `prefDistinct[i] + distinct(A[i+1..j])` for every valid first split `1 <= i < j`.
-- **Initialization:** Set `last[A[1]] = 1` before the sweep. The sweep processes right endpoints `j = 2, 3, ..., N-1`.
-- **Transition:** When appending `A[j]`, let `p` be its previous occurrence. The middle segment gains this value exactly for candidates `i >= p`; therefore add one on `[max(1, p), j-1]`.
-- **Activation:** After applying the range update, activate the new candidate `i = j-1` with value `prefDistinct[j-1] + 1`, because its middle segment contains only `A[j]`. Applying activation afterward prevents updates intended for existing candidates from determining its initial value.
-- **Combination:** For each `j`, the segment-tree maximum gives the best sum for the first two subarrays. Add `suffDistinct[j+1]` for the third subarray.
-- **Complexity:** Prefix and suffix distinct counts are computed in `O(N)`. Each sweep iteration performs one range addition and one point assignment in `O(log N)`, for total `O(N log N)` time and `O(N)` memory.
-- **Edge cases:** The loop includes all valid second split positions from `2` through `N-1`, including the minimum case `N=3`.

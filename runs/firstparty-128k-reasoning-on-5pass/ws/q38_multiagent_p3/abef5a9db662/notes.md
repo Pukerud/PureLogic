@@ -1,9 +1,0 @@
-- **Core invariant:** Let V be the maximum queried initial rating. Maintain A[x] for every integer initial rating x in 1..V. A[x] is the current rating after processed contests. Each contest map y -> y+1 if L<=y<=R else y is nondecreasing, so A remains nondecreasing.
-- **Affected interval:** For a contest [L,R], the x with L<=A[x]<=R form one contiguous interval. Its left end is the first index with A[x]>=L; its right end is the last index with A[x]<=R, i.e. first index with A[x]>=R+1 minus one, or V if R+1>A[V].
-- **Fenwick/difference:** Store D as the difference array of A, A[i]=sum_{j<=i}D[j]. Initially D[i]=1. A Fenwick tree over D supports point updates and prefix sums. lower_bound(t) uses Fenwick binary lifting to find the first index with prefix sum >=t.
-- **Range update:** If affected interval is [l,r], add 1 to A[l..r] by D[l]+=1 and, if r<V, D[r+1]-=1. If r=V, no D[V+1] update is needed; the +1 at D[l] already raises A[V]. Maintain maxA=A[V] and increment it in that case.
-- **Nonnegative D:** D stays nonnegative, which is required for Fenwick lower_bound. At the right boundary, old A[r+1]>=R+1 while old A[r]<=R, so D[r+1]=A[r+1]-A[r]>=1 before subtracting.
-- **Min/max shortcuts:** Maintain minA=A[1] and maxA=A[V]. Skip a contest if R+1<=minA (all ratings already above R) or L>maxA (all ratings below L). If L<=minA, l=1 without a search. If R+1>maxA, r=V without a search. Update minA when l==1 and maxA when r==V.
-- **Finalization:** After all contests, scan D once to replace it by prefix sums, giving final A. Answer each query X by A[X] in original order.
-- **Complexity:** O(N log V + V + Q) time and O(V + Q) memory, plus input storage. V<=5e5, so Fenwick size is small.
-- **Pitfalls:** Use R+1<=maxA (not <) to exclude ratings equal to R+1; handle empty intervals when l>r; keep minA/maxA synchronized with actual A[1]/A[V]; do not apply an extra Fenwick increment for A[V] when r=V.

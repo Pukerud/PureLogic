@@ -1,7 +1,0 @@
-- **Graph model:** Each red ball follows the permutation edge `i -> P_i`, and each blue ball follows `i -> Q_i`. A ball can reach `X` only if its starting box lies in the same permutation cycle as `X` for its color.
-- **Required operations:** For one color, traverse the cycle containing `X` backwards from `X`. If a ball starts at distance `d` from `X`, every vertex on its path must be operated in order from distance `d` down to `1`.
-- **Sequence construction:** The required sequence for a color starts at the farthest occupied distance and ends at distance `1`. If that color has no balls outside `X`, its required sequence is empty.
-- **Impossibility:** If any initially present ball is outside the cycle containing `X` for its color, the answer is `-1`.
-- **Combining colors:** The red and blue required sequences must both be subsequences of the global operation sequence. Therefore the minimum number of operations is the shortest common supersequence length: `len(red) + len(blue) - LCS(red, blue)`.
-- **LCS computation:** Each sequence contains distinct vertices. Map every common vertex in the red sequence to its position in the blue sequence; the LCS is the longest strictly increasing subsequence of these positions.
-- **Complexity:** The algorithm runs in `O(N log N)` time and uses `O(N)` memory.

@@ -1,6 +1,0 @@
-- **Mathematical characterization:** A valid number has all prime exponents even, so it is a perfect square \(N=M^2\). It has exactly two distinct prime factors exactly when \(M\) has exactly two distinct prime factors.
-- **Bound:** Since every query has \(A \le 10^{12}\), every relevant root satisfies \(M \le 10^6\).
-- **Precomputation:** Use a sieve over roots up to \(10^6\). For each prime, increment a counter for every multiple; this counter becomes the number of distinct prime factors.
-- **Candidates:** For every root whose distinct-prime-factor count is exactly two, store its square. Roots increase monotonically, so stored squares are already sorted.
-- **Queries:** Use `bisect_right(values, A) - 1` to find the largest precomputed 400 number not exceeding each query.
-- **Complexity:** Sieve time is \(O(10^6 \log\log 10^6)\)-like harmonic multiple iteration, memory is \(O(10^6)\), and each query takes \(O(\log C)\), where \(C\) is the number of candidates.

@@ -1,6 +1,0 @@
-- **Observation:** It is sufficient to decide each row and column flip modulo 2, since flipping the same row or column twice cancels.
-- **Fixed columns:** For a fixed column-flip mask `c`, a row with mask `r` becomes `r XOR c`. Its row flip can then be chosen independently, giving cost `g[r XOR c] = min(popcount(r XOR c), W - popcount(r XOR c))`.
-- **Frequency compression:** Let `f[r]` be the number of input rows equal to mask `r`. The total after choosing column mask `c` is `T[c] = sum_r f[r] * g[r XOR c]`.
-- **XOR convolution:** The values `T[c]` are the XOR convolution of `f` and `g`. Compute all values using Walsh-Hadamard transforms: transform both arrays, multiply pointwise, transform again, then divide every result by `2^W`.
-- **Complexity:** The transform takes `O(W * 2^W)` time and `O(2^W)` memory. With `W <= 18`, this is feasible. Input processing is `O(H)`.
-- **Implementation:** The same forward XOR Hadamard butterfly is used for the inverse; after the second transform, divide by the array length exactly.

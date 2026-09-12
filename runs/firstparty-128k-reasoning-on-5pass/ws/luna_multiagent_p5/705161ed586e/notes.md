@@ -1,9 +1,0 @@
-- **Dynamic programming states:** For each ending letter, maintain whether the current run has length 1, length 2, or at least 3.
-- **Valid transitions:** A new run can begin only initially or after a completed run of a different letter. Runs of lengths 1 and 2 can only extend; a completed run can continue.
-- **Cost:** Assigning position `i` to letter `x` costs `abs(ord(caption[i]) - ord(x))`. The DP adds this cost at every position.
-- **Starting runs efficiently:** To start a run with letter `x`, use the best completed predecessor whose letter differs from `x`. The two best completed states by `(cost, lexicographic rank)` suffice.
-- **Tie-breaking:** Each retained state stores the lexicographic rank of its prefix among all reachable prefixes at that position. Equal-cost transitions must compare predecessor ranks. In particular, when creating a completed state from either a length-2 predecessor or an already-completed predecessor, compare both cost and predecessor rank; this fixes the previously incorrect equal-cost choice.
-- **Rank construction:** Since every new prefix is a predecessor prefix followed by one character, prefixes are ordered by `(predecessor rank, current character)`.
-- **Reconstruction:** Store predecessor state IDs in a bytearray and backtrack from the minimum-cost completed final state, breaking final ties by lexicographic rank.
-- **Edge cases:** A caption of length less than 3 cannot be good, so return `""`. The DP naturally returns `""` for any otherwise impossible case.
-- **Complexity:** `O(26n)` time and `O(78n)` memory.

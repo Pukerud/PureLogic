@@ -1,6 +1,0 @@
-- **Transition formula:** An array has `n - 1` adjacent transitions. Choose exactly `k` transitions that preserve the value, giving `C(n - 1, k)` choices. The first element has `m` choices. Every remaining non-equal transition has `m - 1` choices.
-- **Answer:** `m * C(n - 1, k) * (m - 1)^(n - 1 - k) mod (10^9 + 7)`.
-- **Binomial computation:** With `n <= 10^5`, precompute factorials and inverse factorials through `n - 1`. Use Fermat inversion because the modulus is prime.
-- **Examples:** `(3, 2, 1)` gives `2 * C(2,1) * 1 = 4`; `(4, 2, 2)` gives `2 * C(3,2) = 6`; `(5, 2, 0)` gives `2 * 1 = 2`.
-- **Edge cases:** For `n = 1`, `k = 0`, and the result is `m`. For `m = 1`, the formula gives `1` only when all `n - 1` transitions are equal, otherwise zero; Python modular exponentiation correctly handles exponent zero.
-- **Complexity:** Time `O(n + log MOD)`, space `O(n)`.

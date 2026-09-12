@@ -1,7 +1,0 @@
-- **Identity:** If a pair sum S has 2-adic valuation v, then f(S)=S/2^v and S/2^v = S - S/2 - ... - S/2^v. Therefore the required total is V_0 - V_1 - V_2 - ..., where V_t is the sum of S/2^t over all i<=j such that 2^t divides S.
-- **Fixed t computation:** Let m=2^t. For each residue r modulo m, store cnt[r] and sum[r]. A residue r can only pair with s=(-r) mod m. For distinct residues r<s, add (cnt[r]*sum[s] + cnt[s]*sum[r])//m. For self-complementary residues r=s, which are r=0 and r=m/2 when t>=1, add (cnt[r]+1)*sum[r]//m.
-- **Self-pair coefficient:** The unordered-with-repetition sum of (a_i+a_j) inside one class of size c is (c+1)*sum(a_i), not c*sum or 2*sum. This correctly includes diagonal pairs i=j.
-- **Loop bound:** V_0 is (N+1)*sum(A). Iterate m=2,4,8,... while m<=2*max(A). Larger m cannot divide any positive pair sum.
-- **Implementation choices:** Use bitwise masking x & (m-1) instead of modulo. For m up to 1<<20, use dense lists and a touched list to avoid scanning all m entries and to reduce dict overhead. For larger m, use two dictionaries. This keeps per-iteration memory O(min(N,m)) and total time O(N log maxA).
-- **Integer safety:** Each group numerator is divisible by m because every included pair sum is congruent to 0 modulo m. Python integers safely handle the final answer, which can be around 1e17.
-- **Sample verdict:** Manual brute-force checks give sample 1 = 5, sample 2 = 384, and sample 3 = 20241214, so the implementation passes the three samples.

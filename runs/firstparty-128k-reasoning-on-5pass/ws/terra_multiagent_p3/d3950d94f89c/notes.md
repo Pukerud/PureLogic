@@ -1,9 +1,0 @@
-- **Verification:** The current iterative DFS solution is correct under the stated constraints. The provided examples evaluate to `[6, 2]` and `[0, 1]`, respectively.
-- **Sample 1:** For `edges = [[0,1,2],[1,2,3],[1,3,5],[1,4,4],[2,5,6]]` and `nums = [2,1,2,1,3,1]`, paths `2 -> 5` and `0 -> 1 -> 4` both have weight 6. The first uses 2 nodes, so the result is `[6, 2]`.
-- **Sample 2:** For one edge joining two nodes with equal values, each non-empty unique path can only contain one node. The result is `[0, 1]`.
-- **All-distinct chain check:** When all values in a root-to-leaf chain are distinct, `window_left` remains 0 and the algorithm selects the complete chain, with node count equal to its number of vertices.
-- **Repeated-value chain check:** When every node has the same value, each visited node moves `window_left` to its own depth. Every valid suffix has zero length and one node, producing `[0, 1]`.
-- **Sibling restoration check:** Exit events restore `last_seen[value]` to its ancestor-path state. Thus, a value visited in one child subtree cannot incorrectly constrain paths in a sibling subtree.
-- **Prefix-distance safety:** `prefix_dist` is indexed by depth. Although positions are overwritten when moving between sibling branches, at each enter event all indices from `window_left` through the current depth correspond to the active root-to-current-node path; only `prefix_dist[window_left]` is required.
-- **Tie-breaking:** For equal maximum weighted lengths, `node_count = depth - window_left + 1` correctly chooses the fewest-node path.
-- **Complexity:** Each node has one enter and one exit event, so time is `O(n)` and memory is `O(n)`. Iterative traversal safely handles a chain of 50,000 nodes.

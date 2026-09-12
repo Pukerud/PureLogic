@@ -1,5 +1,0 @@
-The initial graph is a bipartite graph (no odd cycle). Adding edges without creating odd cycles means we can only add edges between vertices of opposite parity within each connected component. So each connected component is an independent game where players add cross-color edges until none remain, then union-find merges components.
-
-When a component becomes "saturated" (all possible cross-color edges added), the game moves to the next component. This is a classic Grundy / Nim analysis on a forest of component-merging games: a component with x "moves" left (x = size_left * size_right - existing_cross_edges) corresponds to a Nim heap of size x (since each move reduces the component to 0 moves, equivalent to a Nim heap of size 1... but actually each cross-edge addition is independent and can be added in any order). 
-
-Key insight: adding cross-color edges in a bipartite component is equivalent to a Nim heap of size equal to the number of remaining valid moves. When the component saturates, no more moves on it. So total Nim sum = XOR of all (size_left * size_right - current_cross_edges) over components. First player wins iff XOR ≠ 0.

@@ -1,8 +1,0 @@
-- **Pattern decomposition:** Splitting at the two stars produces fixed fragments `A`, `B`, and `C`, with required order `A`, then `B`, then `C`.
-- **KMP matching:** Each nonempty fragment is searched independently with KMP, correctly recording overlapping occurrences and returning no occurrences when the fragment is longer than `s`.
-- **Empty fragments:** An empty fragment occurs at every boundary `0..n`, represented by `range(n + 1)`. This works with `bisect_left` and supports leading, internal, and trailing stars.
-- **Boundary rules:** `B` must start at or after `startA + len(A)`, and `C` must start at or after `startB + len(B)`. Thus adjacent fragments cannot overlap.
-- **Optimization:** For each occurrence of `A`, the earliest valid `B` and then earliest valid `C` minimize the endpoint. Binary searches over sorted occurrence positions provide these choices.
-- **Examples confirmed:** The implementation gives `8`, `-1`, `0`, and `6` for the four supplied examples.
-- **Additional edge cases:** `s="a", p="**"` returns `0`; `s="abc", p="a**"` returns `1`; `s="ba", p="**a"` returns `0`; `s="ab", p="a*b*"` returns `2`; impossible fragment order returns `-1`.
-- **Complexity:** KMP matching takes `O(n + |p|)` total time. Binary searches over at most `O(n)` candidate starts take `O(n log n)` time. Memory usage is `O(n + |p|)`.

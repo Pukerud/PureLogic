@@ -1,5 +1,0 @@
-The bottleneck distance `f(x,y)` equals the maximum edge weight on the path between `x` and `y` in any minimum spanning tree (MST).  
-We build a **Kruskal reconstruction tree** (a binary tree) while running Kruskal: edges are processed in non‑decreasing order, each union creates a new internal node whose weight is the edge weight and which becomes the parent of the two components.  
-Leaves of this tree are the original vertices; an internal node’s weight is exactly the cost `f(a,b)` for any pair of leaves whose lowest common ancestor (LCA) is that node.  
-The problem becomes: on a rooted binary tree, each leaf may contain several “red” (A) or “blue” (B) tokens. We must match every red token with a distinct blue token minimizing the sum of the weights of the LCAs of the matched pairs.  
-The optimal strategy is greedy bottom‑up: at each internal node we match as many red tokens from the left child with blue tokens from the right child (and vice‑versa) as possible, adding `weight * matches` to the answer. This always yields the minimum total because any pair that can be matched lower in the tree can only be matched at a higher (more expensive) node later.

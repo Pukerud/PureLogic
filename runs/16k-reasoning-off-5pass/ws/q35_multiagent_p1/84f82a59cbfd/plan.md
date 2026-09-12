@@ -1,6 +1,0 @@
-1. A "400 number" N has exactly two distinct prime factors p and q, and the exponents of both p and q in the prime factorization of N are even. Thus, N can be written as p^(2a) * q^(2b) where a, b >= 1. This means N = (p^a * q^b)^2, so N is a perfect square. Let M = p^a * q^b, then N = M^2, and M has exactly two distinct prime factors p and q with exponents a and b respectively (a, b >= 1).
-2. So the problem reduces to: for a given A, find the largest M^2 <= A such that M has exactly two distinct prime factors. Equivalently, find the largest M <= sqrt(A) such that M is a product of two primes raised to some positive powers (i.e., M = p^a * q^b, a,b >= 1).
-3. Since A can be up to 10^12, sqrt(A) is up to 10^6. We can precompute all numbers up to 10^6 that have exactly two distinct prime factors. To do this efficiently, we can use a sieve-like method.
-4. For each number from 2 to 10^6, we can count its distinct prime factors. We can use a sieve to compute the number of distinct prime factors for each number up to 10^6.
-5. Then, for each query A, we compute limit = floor(sqrt(A)). We need the largest M <= limit such that M has exactly two distinct prime factors. We can precompute a list of all such M's in sorted order, and then for each query, use binary search to find the largest M <= limit.
-6. The answer is M^2.

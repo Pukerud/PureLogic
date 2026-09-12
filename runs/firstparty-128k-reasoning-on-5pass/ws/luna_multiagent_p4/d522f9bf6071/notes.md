@@ -1,7 +1,0 @@
-- **Compatibility:** Intervals are sorted by left endpoint. `bisect_right(starts, right)` finds the first interval whose left endpoint is strictly greater than the current right endpoint, so intervals touching at a boundary are correctly treated as overlapping.
-- **Dynamic programming:** `scores[i][k]` is the maximum weight obtainable from sorted position `i` onward using at most `k` intervals. `choices[i][k]` stores the lexicographically smallest original-index tuple attaining that score.
-- **Transitions:** Each state either skips the current interval or takes it and jumps to the first compatible interval. There are only four selection limits, so the DP is linear after compatibility computation.
-- **Tie-breaking:** Chosen original indices are maintained in sorted order. On equal scores, tuple comparison exactly implements the required lexicographic ordering, including the shorter-prefix rule.
-- **Verification:** The implementation produces `[2, 3]` for the first example and `[1, 3, 5, 6]` for the second. It also handles boundary-touching intervals by selecting only one of them, returns `[0]` for a single interval, selects four compatible intervals when optimal, and chooses the lexicographically smallest solution among equal-weight alternatives.
-- **Correctness:** No correctness issue was found in the current implementation.
-- **Complexity:** Sorting and binary searches take `O(n log n)`. The DP uses `O(n)` states because the limit is at most four, and each stored tuple has length at most four, giving `O(n)` additional memory.

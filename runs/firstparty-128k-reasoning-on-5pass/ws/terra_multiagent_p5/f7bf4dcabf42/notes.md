@@ -1,5 +1,0 @@
-- **Automaton state:** After processing a generated prefix `T`, let `row[j] = LCS(T, S[:j])`. Consecutive row values differ by either 0 or 1, so encode the differences in an `N`-bit mask. The final LCS length is the mask popcount.
-- **Transition:** Reconstruct `old[j]` by prefix sums of mask bits. For each appended character, compute the standard LCS row recurrence: on equality use `old[j-1] + 1`; otherwise use `max(old[j], new[j-1])`. Encode differences of the resulting row as the next mask.
-- **Counting:** Precompute transitions for every mask and each of 26 letters. Run DP for `M` positions, where `dp[mask]` counts generated strings producing that row-state. Aggregate terminal counts by `popcount(mask)`.
-- **Complexity:** There are at most `2^N <= 1024` states. Transition preprocessing costs `O(26 * 2^N * N)`. Main DP costs `O(M * 26 * 2^N)`, well within limits.
-- **Validation:** The aggregate answer sum equals `26^M (mod 998244353)`. Values greater than `min(N, M)` naturally remain zero.

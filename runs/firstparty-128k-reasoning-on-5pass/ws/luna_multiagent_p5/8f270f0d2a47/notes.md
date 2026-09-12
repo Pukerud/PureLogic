@@ -1,8 +1,0 @@
-- **Digit DP:** Count beautiful numbers in `[1, x]` and return `count(r) - count(l - 1)`.
-- **Fixed digit sum:** For each possible sum from `1` to `9 * number_of_digits`, the DP counts exactly the numbers having that sum.
-- **Product divisibility:** The product is stored modulo the current target sum. A zero digit appearing after the number starts makes the residue zero, correctly satisfying divisibility.
-- **Leading zeroes:** Leading zeroes do not contribute to the digit sum or product. The `started` flag excludes the all-zero path, so number `0` is never counted.
-- **Tightness:** The `tight` flag ensures generated digits never exceed the bound.
-- **Pruning:** States are discarded if the current sum exceeds the target or if the remaining positions cannot reach it.
-- **Verification:** The implementation gives `2` for `[10, 20]` and `10` for `[1, 15]`; exhaustive brute-force checks on small ranges match direct evaluation.
-- **Complexity:** With at most 9 digits, the state space over all target sums is practical. Product residues are bounded by the target sum, and memoization avoids repeated suffix computations.

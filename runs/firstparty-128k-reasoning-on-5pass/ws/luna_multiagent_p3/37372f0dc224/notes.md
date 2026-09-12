@@ -1,6 +1,0 @@
-- **Algorithm:** Find the longest palindromic suffix of `S`, then append the reverse of the prefix before that suffix.
-- **KMP construction:** For `T = reverse(S) + "#" + S`, the final prefix-function value is the longest prefix of `reverse(S)` matching a suffix of `S`.
-- **Why it works:** A suffix of `S` matching the corresponding prefix of `reverse(S)` equals its own reverse, so it is palindromic. The separator `#` is absent from uppercase input and prevents matches crossing the boundary.
-- **Construction:** If the palindromic suffix has length `L`, output `S + reverse(S[:n-L])`.
-- **Complexity:** `O(n)` time and `O(n)` memory, suitable for `n ≤ 500000`.
-- **Edge cases:** A one-character string has `L = 1` and is returned unchanged. An already-palindromic string also has `L = n` and requires no appended characters.

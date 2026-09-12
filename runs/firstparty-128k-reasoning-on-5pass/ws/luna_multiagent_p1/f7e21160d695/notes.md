@@ -1,6 +1,0 @@
-- **Threshold interpretation:** For a threshold \(w\), vertices connected using only edges of weight at most \(w\) can be paired at cost at most \(w\). Within one connected component, the maximum number of such pairs is \(\min(\text{countA}, \text{countB})\).
-- **Kruskal processing:** Sort edges by weight and use DSU components. When two components merge, the total number of currently matchable pairs increases by the difference between the new and old sums of component-wise minima.
-- **Cost accumulation:** Every newly matchable pair first becomes available at the current edge weight \(w\), so add `increase * w` to the answer. Processing equal-weight edges individually is valid because every increase in that group receives the same weight.
-- **Occurrences:** Counts are maintained per occurrence, so duplicate vertices in either sequence are handled correctly.
-- **Complexity:** Sorting costs \(O(M \log M)\); DSU operations cost \(O(M \alpha(N))\). Memory usage is \(O(N+M)\).
-- **Numeric range:** Python integers safely handle the potentially large weighted sum.

@@ -1,9 +1,0 @@
-- **Model:** Row and column flips commute, and only their parity matters. Let c be the column-flip mask and r_i be the row-flip bit for row i. The final cell is A_ij xor c_j xor r_i.
-- **Row reduction:** For a fixed column mask c, a row with mask a has Hamming distance d = popcount(a xor c). Not flipping the row costs d, flipping it costs W - d, so the row contributes min(d, W - d).
-- **Convolution form:** Let cnt[a] be the frequency of row mask a, and K[m] = min(popcount(m), W - popcount(m)). The answer is min_c sum_a cnt[a] K[a xor c], which is an XOR convolution cnt * K.
-- **Walsh transform:** Use the unnormalized fast Walsh-Hadamard transform with butterfly (x + y, x - y). It diagonalizes XOR convolution: T(cnt * K) = T(cnt) * T(K), and applying the transform twice gives a factor of 2^W.
-- **Radial kernel:** K depends only on popcount, so T(K) depends only on t = popcount(index). Precompute G[t] = sum_k min(k, W-k) * sum_j (-1)^j C(t,j) C(W-t,k-j). This is the Krawtchouk transform of the distance cost.
-- **Implementation:** Count row masks in an array of length 2^W. Precompute G using math.comb, which is tiny because W <= 18. Apply fwht to cnt, multiply cnt[i] by G[i.bit_count()], apply fwht again, and output min(cnt) // 2^W.
-- **Complexity:** O(H + W^3 + W 2^W) time and O(2^W) memory. For W = 18 this is about two full transforms of size 262144, feasible in Python.
-- **Edge cases:** W = 1 always gives 0, and the formula also yields 0. H = 1 gives 0 by choosing c equal to the single row mask. The transform values are exact integers, and after the second transform they are exact multiples of 2^W.
-- **Sample checks:** Sample 1 can be verified by hand and gives 2. Sample 2 gives 0 by choosing the all-ones column mask. The implementation follows the same convolution for sample 3.

@@ -1,7 +1,0 @@
-- **Functional graph structure:** The graph has one outgoing edge per original vertex, `i -> A[i]`. Indegree peeling removes every non-cycle vertex; vertices left unpeeled are exactly those on directed cycles.
-- **Cycle contraction:** Every cycle forces all its labels equal, because inequalities around the cycle imply equality. Each remaining cycle is therefore contracted into one component. Every peeled vertex becomes its own component.
-- **Resulting graph:** After contraction, components form a rooted forest. A component points to its parent through the original outgoing edge. Cycle components are roots; non-cycle components have one parent.
-- **DP recurrence:** For a component with label `t`, each child may have any label in `1..t`. If `dp_child[s]` counts assignments with child label `s`, its contribution is `sum(dp_child[1..t])`. Component DP is the product of these prefix sums over all children.
-- **Forest answer:** Root labels are unrestricted, so a root contributes `sum_t dp_root[t]`. Different roots are independent, hence multiply their contributions.
-- **Complexity:** `O(NM)` time. The recursive implementation reuses the first child DP array for prefix sums, avoiding `O(NM)` simultaneous storage; working memory is roughly proportional to a small number of DP rows plus graph storage.
-- **Edge cases:** Self-loops remain cycle components and work normally. Multiple roots are multiplied. A component with no children has DP equal to one for every label.

@@ -3,8 +3,7 @@
 *.key
 .credentials*
 
-# Raw agent transcripts: ~1.4 GB across ~9.9k files.
-# Graded results/ and agent workspace artifacts under ws/ are tracked.
+# Raw agent transcripts and generated run workspaces stay local by default.
 transcript.jsonl
 
 # Local spec checker: measures the built figures and manuscript against the
@@ -20,9 +19,10 @@ iclr2027/
 tui_workspaces/
 # TUI agent runs: <cwd>/Workspace/<md5(prompt)>/ artifacts (README §0)
 Workspace/
-# ...except the small tracked in-TUI evidence transcripts (README §0).
-!tui/evidence/tui_evidence_harness/transcript.jsonl
-!tui/evidence/tui_evidence_live156/transcript.jsonl
+# Optional retained screenshots/debug evidence.
+visual-evidence/
+tui/evidence/
+tui/Workspace/
 
 # Python
 __pycache__/

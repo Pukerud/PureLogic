@@ -1,6 +1,0 @@
-- **Representation:** Maintain `f(x)`, the current rating after all processed contests for every initial rating `x` from 1 through 500000.
-- **Monotonicity:** `f` remains nondecreasing. For one contest `[L, R]`, the initial ratings whose current values lie in `[L, R]` form one contiguous interval.
-- **Segment tree:** Store range maxima and lazy range additions. Since values are nondecreasing, the first position with value at least a threshold can be found by descending toward the leftmost child whose maximum reaches that threshold.
-- **Contest update:** Find `start = first value >= L` and `end = first value >= R + 1`. The affected initial-rating interval is `[start, end)`, so add 1 on `[start, end - 1]`.
-- **Queries:** After all contests, each answer is a point lookup in the lazy segment tree.
-- **Complexity:** Building is `O(M)`, where `M = 500000`; each contest and query costs `O(log M)`. Total complexity is `O(M + (N + Q) log M)`.

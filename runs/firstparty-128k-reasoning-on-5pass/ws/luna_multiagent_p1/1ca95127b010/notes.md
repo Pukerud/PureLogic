@@ -1,6 +1,0 @@
-- **Operation invariants:** In either operation, every involved `1` moves by exactly `X` positions, while every involved `0` moves by exactly `Y` positions. The relative order of all `1`s and of all `0`s is preserved.
-- **Necessary condition:** If the `1` positions are listed from left to right, their residues modulo `X` form an invariant sequence. Likewise, the ordered residues of the `0` positions modulo `Y` are invariant.
-- **Exhaustive validation:** Enumerating all binary strings for small `N`, `X`, and `Y`, constructing the graph of legal operations, and comparing connected components confirms that all unequal non-isolated states with matching ordered residue sequences are connected. No counterexample was found.
-- **Isolated states:** A legal operation exists exactly when two adjacent maximal runs have sufficient lengths: `0` then `1` with lengths at least `X` and `Y`, or `1` then `0` with lengths at least `Y` and `X`. If a state has no such pair, it cannot move and therefore can only reach itself.
-- **Implementation:** Run-length scanning detects whether any operation is possible. Two linear scans compare the ordered residue sequences for `1`s and `0`s.
-- **Complexity:** `O(N)` time and `O(1)` auxiliary space, excluding the input strings.

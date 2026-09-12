@@ -1,6 +1,0 @@
-- **Observation:** Let \(P_t\) be the cumulative wind displacement after step \(t\), with \(P_0=(0,0)\). Smoke generated at time \(g\) is at \(P_t-P_g\) after movement at time \(t\).
-- **Query condition:** Smoke exists at target \((R,C)\) at time \(t+0.5\) iff some prior smoke-generation prefix satisfies \(P_g=P_t-(R,C)\).
-- **Generation invariant:** A smoke source is generated for each distinct prefix displacement. Therefore it is sufficient to store all previously encountered prefix positions in a set.
-- **Update order:** After updating to current prefix \(P_t\), query whether \(P_t-(R,C)\) is already in the set, then insert \(P_t\). Since \((R,C)\ne(0,0)\), current-time generation cannot change the answer for the current step.
-- **Complexity:** Expected \(O(N)\) time and \(O(N)\) memory.
-- **Validation:** The implementation follows the required update/query order and matches the supplied samples.

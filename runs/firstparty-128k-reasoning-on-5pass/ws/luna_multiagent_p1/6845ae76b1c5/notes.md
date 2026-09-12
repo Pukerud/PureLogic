@@ -1,6 +1,0 @@
-- **Block decomposition:** Partition A into blocks of size about sqrt(N). A query uses precomputed contributions from complete blocks and processes only the remaining partial block.
-- **Compact block table:** Only queried Y-values are stored. For each A-block and distinct query prefix length Y, a sweep over B computes the cumulative absolute-difference sum. The table uses `array('q')`, requiring O((N / S)K) 64-bit storage in the worst case.
-- **Partial block queries:** For every B-prefix, a persistent segment tree stores counts and sums of B-values by compressed coordinate. For an A-value `a`, querying all B-values `<= a` gives the absolute-difference sum in O(log N).
-- **Absolute-difference formula:** If `c` values have sum `s` and are at most `a`, while the B-prefix total sum is `T`, the contribution is `a*c-s + (T-s)-a*(Y-c)`.
-- **Complexity:** Block preprocessing is approximately O((N²/S) log S) in the direct sweep implementation. Query processing is O(K(N/S + S log N)) in the worst case. Persistent tree construction uses O(N log N) nodes.
-- **Integer safety:** Maximum answers fit in signed 64-bit integers, and all stored cumulative values use 64-bit arrays.

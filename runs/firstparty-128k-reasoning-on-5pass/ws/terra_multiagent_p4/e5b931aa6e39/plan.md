@@ -1,1 +1,0 @@
-Rewrite the equation as \(N=(x-y)(x^2+xy+y^2)\). Let \(d=x-y>0\), so \(x=y+d\) and \(N=d(3y^2+3dy+d^2)\). Iterate possible positive \(d\) up to \(\sqrt[3]{N}\), checking divisors of \(N\); for each, solve the resulting quadratic for positive integer \(y\) using an exact discriminant square-root test. Use integer arithmetic throughout to avoid precision errors.

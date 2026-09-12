@@ -1,7 +1,0 @@
-- **Algorithm:** Retain the longest palindromic suffix of `S`, then append the reverse of the prefix before that suffix.
-- **Palindrome detection:** Compute the KMP prefix function for `reverse(S) + separator + S`. Its final value is the length of the longest suffix of `S` that is also a prefix of `reverse(S)`, which is exactly the longest palindromic suffix of `S`.
-- **Separator:** `b'\x00'` is safe because `S` contains only uppercase English letters.
-- **Construction:** If the palindromic suffix length is `k`, output `S + reverse(S[:len(S)-k])`.
-- **Correctness:** The retained suffix is already palindromic. The appended part mirrors the initial prefix, so the resulting string is a palindrome. Any palindrome beginning with `S` must mirror every character outside its palindromic suffix, so maximizing that suffix minimizes the answer length.
-- **Complexity:** `O(n)` time and `O(n)` memory for `n = len(S)`.
-- **Edge cases:** A one-character string and an already-palindromic string produce `S` unchanged.

@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Write complete solution: fast I/O, Fenwick tree (O(N) build, add, find_kth via binary lifting), reverse loop filling ans, output; include brief correctness comment and mentally verify on both samples.",
-    "status": "done",
-    "result": ""
-  }
-]

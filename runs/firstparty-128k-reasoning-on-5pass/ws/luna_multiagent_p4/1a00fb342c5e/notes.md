@@ -1,6 +1,0 @@
-- **Constraint modeling:** In each connected component, choose one root with potential `0`. For an edge `(u, v, z)`, enforce `potential[v] = potential[u] XOR z`.
-- **Consistency checking:** During iterative DFS, every already-visited endpoint must match its expected potential. This detects contradictory cycles, nonzero self-loops, and inconsistent duplicate edges.
-- **Free component offset:** If a component is consistent, every valid assignment has the form `A[v] = potential[v] XOR t` for one common nonnegative integer `t`.
-- **Minimization:** XOR acts independently on each binary bit. For a given bit, if `c` component potentials contain `1` and the component size is `s`, choosing offset bit `0` contributes `c` ones, while choosing it as `1` contributes `s-c` ones. Choose offset bit `1` exactly when `c > s-c`.
-- **Bit range:** Every supplied `Z` is below `2^30`, so all propagated potentials use only bits `0` through `29`. Any higher offset bit would add a `1` to every value and cannot be optimal.
-- **Complexity:** Graph traversal takes `O(N + M)`. Offset selection takes `O(30N)`, so the total is `O(N + M)` with a small constant factor. Memory usage is `O(N + M)`.

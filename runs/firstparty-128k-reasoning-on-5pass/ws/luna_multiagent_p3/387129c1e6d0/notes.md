@@ -1,7 +1,0 @@
-- **Grouping:** Houses are grouped by fixed x-coordinate for vertical movements and fixed y-coordinate for horizontal movements. Each group stores sorted varying coordinates and corresponding house IDs.
-- **Deletion structure:** Every group has a successor DSU array. For a deleted local index `i`, its parent becomes the first still-active index after `i`; a sentinel at the group length represents the end.
-- **Simulation:** For each movement, binary search finds the inclusive interval of relevant coordinates. Successor queries enumerate only houses not previously visited.
-- **Deduplication:** When a house is encountered, it is deleted from both its x-group and y-group. Thus every house contributes to the count at most once, even if crossed repeatedly.
-- **Endpoints:** Both interval bounds use `bisect_left` and `bisect_right`, so houses at either endpoint are counted.
-- **Complexity:** Sorting takes O(N log N). Each command uses O(log N) binary searches, and each house is deleted once, giving O((N + M) log N) total time with near-linear memory.
-- **Integer safety:** Python integers handle coordinates beyond 32-bit range naturally.

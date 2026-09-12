@@ -1,6 +1,0 @@
-- **Feasibility reduction:** For an interval `[L, R]` and proposed `K`, the optimal choice is the `K` smallest mochi as tops and the `K` largest as bottoms, paired in increasing order. Feasibility is exactly `2*A[L+i] <= A[R-K+1+i]` for every `0 <= i < K`.
-- **Transition array:** Let `P[j]` be the first index with `A[P[j]] >= 2*A[j]`, using sentinel `N` if none exists. Define `D[j] = P[j] - j`. For a query of length `S`, candidate `K` is feasible iff `max(D[j])` over `j in [L, L+K-1]` is at most `S-K`.
-- **Monotonicity:** As `K` increases, the checked prefix becomes larger and the allowed threshold `S-K` becomes smaller, so feasibility is monotone. Therefore binary search finds the maximum feasible `K`.
-- **Preprocessing:** `P` is computed in `O(N)` with a monotone two-pointer because both `A[j]` and target `2*A[j]` are nondecreasing. A sparse table supports static range maximum queries on `D` in `O(1)`.
-- **Complexity:** Sparse-table construction costs `O(N log N)`. Each query performs `O(log N)` binary-search iterations with `O(1)` RMQ, for total `O((N+Q) log N)` time and `O(N log N)` memory.
-- **Indexing and overflow:** The implementation uses zero-based indices internally. Python integers safely handle `2*A[j]`; in fixed-width languages, use 64-bit integers.

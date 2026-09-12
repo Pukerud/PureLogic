@@ -1,9 +1,0 @@
-We are given a valid parenthesis string S of length N. We can repeatedly pick a contiguous substring that is itself a valid parenthesis sequence and "reverse" it in the bracket-swapped sense: positions l..r are mapped such that S_i becomes the bracket-flipped version of S_{l+r-i}. That is exactly the operation that, in terms of matched-pair structure, swaps opening and closing along a subchain.
-
-Observation: A valid parenthesis sequence can be represented as a rooted forest of matched pairs. The operation of reversing a valid substring corresponds to taking a subchain of the rooted tree (a path from some node down to a descendant) and swapping left/right along that subchain, which is equivalent to taking the subtree rooted at that node's ancestor and reflecting it in a way that exchanges the "downward" direction. More concretely, the operation permutes positions only within the chosen valid substring, and the resulting string is again a valid parenthesis sequence. The reachable set depends on the underlying tree structure: nodes (matched pairs) can be reordered only in ways that respect the partial order of ancestry.
-
-Key insight: After analyzing the operation, the reachable strings correspond exactly to reordering children of each node arbitrarily, but keeping the parent-child relationship intact. That is, the string is determined by the parenthesization tree, and we can permute sibling subtrees in any order at each node. So the number of distinct reachable strings equals the product over all nodes of (size of that node's children list)! (factorial of the number of children).
-
-To compute the number of children of each node: build the standard parenthesis tree. For each node, count the number of direct children. Multiply factorials modulo 998244353.
-
-N ≤ 5000, so O(N) or O(N log N) is fine. The factorial can be precomputed up to N.

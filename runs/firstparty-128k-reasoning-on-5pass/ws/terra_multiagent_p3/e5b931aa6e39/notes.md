@@ -1,6 +1,0 @@
-- **Approach:** Let \(d=x-y>0\). Substitution \(x=y+d\) gives \(N=d(3y^2+3dy+d^2)\). Since the second factor is at least \(d^2\), \(d^3\le N\), so enumerate only \(1\le d\le\lfloor\sqrt[3]{N}\rfloor\), at most \(10^6\) values.
-- **Divisibility:** A valid difference must divide \(N\). For each enumerated divisor \(d\), let \(q=N/d\).
-- **Quadratic:** Solve \(3y^2+3dy+d^2-q=0\). Its discriminant is \(D=12q-3d^2\), and the positive-root formula is \(y=(\sqrt D-3d)/6\).
-- **Exactness:** Use `math.isqrt` and check `s*s == D`; do not use floating-point roots. Require `s > 3*d`, divisibility by 6, and `y > 0`.
-- **Validation:** The final cubic equality check is included as a safety check. Python integers handle all required intermediate values.
-- **Complexity:** \(O(\sqrt[3]{N})\) time and \(O(1)\) extra memory.

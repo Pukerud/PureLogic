@@ -1,9 +1,0 @@
-- **Approach:** Use thresholded banded Levenshtein DP. Any edit sequence of at most `K` operations can only visit DP states with diagonal offset `d = j - i` in `[-K, K]`.
-- **Length check:** If `abs(len(S) - len(T)) > K`, output `No` immediately because insertions/deletions alone require more than `K` operations.
-- **DP state:** `dp[i][j]` is the edit distance between `S[:i]` and `T[:j]`. Only valid states satisfying `|j-i| <= K` are retained.
-- **Rolling representation:** Store a row by diagonal offset rather than by full `j`. For a fixed row `i`, offset `d` corresponds to `j = i + d`. Two arrays of size `2K+3` are sufficient.
-- **Transitions:** For each valid state, consider deleting `S[i-1]`, inserting `T[j-1]`, and replacing/matching `S[i-1]` with `T[j-1]`.
-- **Capping:** Values greater than `K` are capped at `K+1`, since larger values cannot affect whether the final answer is within the threshold.
-- **Performance:** The algorithm performs `O((|S|+|T|)K)` work and uses `O(K)` memory. With `K <= 20`, this handles lengths up to 500,000.
-- **Optimization:** When the full diagonal band is valid, the implementation uses a branch-reduced loop. Strings are swapped when useful because edit distance is symmetric.
-- **Validation:** The recurrence supports the sample cases: `(K=3, abc, awtf)` gives `Yes`; `(K=2, abc, awtf)` gives `No`; the third sample gives `Yes`.

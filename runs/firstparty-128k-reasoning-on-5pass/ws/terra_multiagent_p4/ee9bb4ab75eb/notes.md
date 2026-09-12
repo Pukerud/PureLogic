@@ -1,8 +1,0 @@
-- **Verification:** The supplied examples produce `[3, 4, 4, 3, 4]` for `["jump","run","run","jump","run"], k=2`, and `[0, 0, 0]` for `["dog","racer","car"], k=2`.
-- **Trie observation:** A common prefix of length `d` among at least `k` selected strings exists exactly when some trie node at depth `d` has pass-through count at least `k`.
-- **Deletion effect:** Removing one word reduces counts only on nodes along that word’s trie path. Nodes with count greater than `k` remain feasible. A node with count exactly `k` becomes infeasible.
-- **Depth frequencies:** `valid_at_depth[d]` is the number of trie nodes at depth `d` having count at least `k`. A depth disappears after deleting a word only if its path contains a count-`k` node and that node is the sole valid node at that depth.
-- **Segment tree:** Leaves store `d` if depth `d` has a valid trie node, otherwise zero. For each removed word, temporarily disable affected unique depths, query the maximum at the root, and restore them.
-- **Targeted edge cases:** `k=1` works because deleting a word invalidates only its uniquely owned prefix nodes; shared prefixes and other words' paths remain represented. Duplicate words work because pass-through counts include every occurrence. Unique strings correctly yield zero whenever no remaining group of `k` shares a prefix. Prefix-containing words work because trie pass-through counts naturally include longer words at every prefix node.
-- **Early case:** If `n - 1 < k`, every result is zero, handled before trie construction.
-- **Complexity:** Trie construction is `O(sum(len(words[i])))`. Temporary depth updates across all removals are `O(sum(len(words[i]))` in count, each costing `O(log(max word length))`. Memory is `O(sum(len(words[i])) + max word length)`.

@@ -1,7 +1,0 @@
-- **Feasibility:** For a target score `x`, index `i` must be visited at least `ceil(x / points[i])` times. Feasibility is monotone, so binary search applies.
-- **Greedy traversal:** While moving left to right, any missing visits at the current index are supplied by round trips to the next index. Each such round trip costs two moves and gives one visit to both indices, followed by one mandatory crossing move.
-- **State invariant:** Before processing an edge, the current position is the left endpoint and `visits` is the exact number of visits already obtained there. The greedy choice uses only the minimum necessary round trips.
-- **Final edge:** The route may either stop at the last index or stop at the second-last index. Both possibilities are evaluated because they provide different visit counts and movement costs.
-- **Bounds:** The answer is at most `floor(m * max(points) / n)`, since the total score is at most `m * max(points)` and all `n` indices must reach the minimum.
-- **Validation verdict:** Pass. Exhaustive comparison against a brute-force state search over small arrays, including lengths 2 through 5, point values 1 through 4, and move budgets through 12, found no discrepancy. The provided examples also return 4 and 2 respectively.
-- **Complexity:** Each feasibility check is `O(n)`, binary search uses `O(log(m * max(points) / n))` checks, and total complexity is `O(n log V)` with `O(n)` auxiliary space.

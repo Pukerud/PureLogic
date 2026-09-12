@@ -1,7 +1,0 @@
-- **Consistency:** Every character appearing in `S` must map to exactly one character in `T`. If the same source character corresponds to different targets, the transformation is impossible.
-- **Base operations:** Each distinct source character whose target differs from itself requires one operation.
-- **Cycles:** A directed cycle such as `a→b→a` cannot be executed directly, so one additional operation is required per nontrivial cycle using a temporary letter.
-- **Temporary letters:** A letter absent from the current string can be used as temporary storage. If some letter is absent from the initial `S`, this is immediately available.
-- **Creating temporary storage:** Even when all 26 letters occur in `S`, a changed mapping outside a cycle can first eliminate its source character and create a temporary letter.
-- **Impossibility:** A cyclic mapping is impossible only when all 26 letters occur in `S` and every changed mapping edge belongs to a cycle; in that case the mapping is effectively a permutation on all letters, so no temporary letter can be created.
-- **Complexity:** Mapping construction and cycle detection both take `O(N + 26)` time and `O(26)` extra space.

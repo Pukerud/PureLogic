@@ -1,8 +1,0 @@
-- **Brute-force comparison:** PASS. Compared the formula implementation against a direct enumerator that checks every 5-index combination, computes frequencies, and verifies that the third chosen element is the sole maximum-frequency value.
-- **Exhaustive coverage:** PASS for every array of lengths 5 through 8 over alphabet `{-1, 0, 1}` (9,840 arrays total), and every array of lengths 5 through 7 over four distinct symbols (21,504 arrays total). No mismatches found.
-- **Examples:** PASS: `[1,1,1,1,1,1] -> 6`, `[1,2,2,3,3,4] -> 4`, and `[0,1,2,3,4,5,6,7,8] -> 0`.
-- **Adversarial cases:** PASS on all-equal arrays; all-distinct arrays; alternating two-value arrays; distributions such as `[1,1,2,2,2]`, `[1,1,1,2,2,2]`, `[1,2,1,2,1,2,1]`; and cases where repeated values occur only on one side of the middle.
-- **Counting split:** For fixed middle value `x`, at least one surrounding selected element must equal `x`. With two or more extra `x` values, `x` has frequency at least three and is automatically the unique mode. With exactly one extra `x`, `x` has frequency two, so all three non-`x` chosen values must be pairwise distinct.
-- **At-least-two case:** Enumerate the counts of selected `x` values from the two positions on each side. Products of binomial counts preserve positional subsequences.
-- **Exactly-one case:** If the extra `x` is on the left, choose one left non-`x` value and a distinct-valued right pair, excluding right pairs containing that left value. The opposite-side case is symmetric.
-- **Complexity:** Coordinate compression and frequency arrays use `O(n)` memory. Each possible middle index scans all distinct values, giving `O(n * d)` time, bounded by `O(n^2)` for `n <= 1000`.

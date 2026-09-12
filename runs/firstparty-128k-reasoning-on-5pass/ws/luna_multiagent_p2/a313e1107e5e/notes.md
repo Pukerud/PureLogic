@@ -1,7 +1,0 @@
-- **Dynamic DP:** When processing `A_i`, let `dp_i` be the longest strictly increasing subsequence ending at `A_i`. Then `dp_i = 1 + max(dp_j)` over earlier `j` with `A_j < A_i`.
-- **Fenwick tree:** Store the maximum `dp` value for each compressed value. A prefix maximum query over positions strictly below `A_i` computes `dp_i`; a point update stores it.
-- **Query validity:** Any strictly increasing subsequence whose final element is at most `X` has every earlier element smaller than that final element, and therefore also at most `X`. Thus the query answer is exactly the maximum DP value among ending values `<= X`.
-- **Offline processing:** Group queries by their prefix endpoint `R`, process array elements from left to right, and answer all queries attached to the current prefix after inserting its newest element.
-- **Strictness and duplicates:** Querying `pos - 1` prevents equal values from extending a subsequence. Multiple occurrences of the same value are handled by taking the maximum point-update value.
-- **Compression:** Compress all array values globally. `bisect_right(values, X)` gives the number of compressed values not exceeding `X`; future values in the compression do not affect current Fenwick results because they have not been inserted.
-- **Complexity:** `O((N + Q) log N)` time and `O(N + Q)` memory.

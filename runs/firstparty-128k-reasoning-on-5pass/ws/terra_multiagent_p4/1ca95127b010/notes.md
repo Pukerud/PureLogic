@@ -1,9 +1,0 @@
-- **Rewrite characterization:** Operation B is the directed rewrite `1^Y 0^X -> 0^X 1^Y`, while Operation A is its inverse. Every directed rewrite decreases the inversion count by exactly `X*Y`, so directed reductions terminate.
-- **Canonical form:** Directed redexes cannot overlap. Thus the terminating rewrite system is locally confluent and has a unique normal form. Two strings are mutually reachable under Operations A and B exactly when their directed normal forms are equal.
-- **Bulk reduction:** At a reducible run boundary, write the runs as `1^(pY+r) 0^(qX+s)`, where `0 <= r < Y` and `0 <= s < X`. All swaps between complete blocks at that boundary can be applied together:
-  `1^(pY+r) 0^(qX+s) -> 1^r 0^(qX) 1^(pY) 0^s`.
-- **Data structure:** The implementation stores maximal homogeneous runs in a doubly linked list with sentinels. A bulk replacement deletes two adjacent runs and inserts up to four runs, merging neighboring equal bits as necessary.
-- **Scheduling:** Initial reducible boundaries are pushed left-to-right and popped from a stack, processing rightmost reductions first. This prevents long alternating structures from degenerating into elementary block-swap simulation.
-- **Stale work items:** A stack entry may refer to removed runs, so every entry is revalidated before reduction. After a replacement, only a constant-size local neighborhood can gain a new redex; that neighborhood is rescanned.
-- **Complexity:** The linked-list bulk normalizer runs in linear time and memory in the number of input runs/nodes created, suitable for `N <= 5 * 10^5`. Compact arrays reduce memory overhead.
-- **Boundary cases:** If `X + Y > N`, no operation is possible, so the answer is equality of the original strings. For `X = Y = 1`, the normal form is all zeros followed by all ones, so only the number of ones matters.

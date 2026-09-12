@@ -1,6 +1,0 @@
-- **Gap reduction:** Let \(d=x-y\). Since \(x>y>0\), \(d\) is a positive integer and \(x=y+d\). The equation becomes \(N=d(3y^2+3dy+d^2)\).
-- **Enumeration bound:** Because \(3y^2+3dy+d^2 \ge d^2\), every solution satisfies \(N \ge d^3\). Therefore it is sufficient to enumerate \(1 \le d \le \lfloor\sqrt[3]{N}\rfloor\), at most \(10^6\) values for the constraints.
-- **Quadratic condition:** For each enumerated divisor \(d\) of \(N\), define \(q=N/d\). Then solve \(3y^2+3dy+d^2-q=0\). Its discriminant is \(D=12q-3d^2\), and a valid solution must satisfy \(D=r^2\) and \(y=(r-3d)/6\) being a positive integer.
-- **Exact arithmetic:** `math.isqrt` checks whether the discriminant is a perfect square without floating-point errors. The cube-root bound is obtained by integer binary search, so it is exact.
-- **Validation:** After deriving a candidate, the code verifies positivity and directly confirms `x^3 - y^3 == N`.
-- **Complexity:** The loop has \(O(\sqrt[3]{N})\) iterations and uses constant extra space. For \(N\le10^{18}\), this is at most about one million iterations.

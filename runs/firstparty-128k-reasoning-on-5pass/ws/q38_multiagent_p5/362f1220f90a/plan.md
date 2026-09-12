@@ -1,5 +1,0 @@
-First apply every 'T' constraint to build a partial fixed string of length n+m-1, returning empty immediately if two T windows assign different characters to the same position.  
-For the remaining lexicographic construction, use a KMP state representing the longest prefix of str2 that is a suffix of the built prefix; this state captures all F windows that have not yet mismatched.  
-Precompute the KMP automaton transitions for all 26 letters and bitsets of reachable next states for each state, with a flag for whether a full match at the current position is forbidden.  
-Run a backward DP over positions, storing for each position a bitset of KMP states from which a valid completion exists, while respecting fixed characters and forbidding full matches at F-window ends.  
-Finally, greedily scan left to right and choose the smallest character whose transition leads to a feasible state, producing the lexicographically smallest valid string.

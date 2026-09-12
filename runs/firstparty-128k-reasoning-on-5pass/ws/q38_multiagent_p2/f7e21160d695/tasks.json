@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement the O(M log M) Kruskal DSU surplus greedy in Python (read input, sort edges, maintain net surplus, charge w*min(abs(n1),abs(n2)) on opposite-sign merges, union, print answer) and verify samples.",
-    "status": "done",
-    "result": ""
-  }
-]

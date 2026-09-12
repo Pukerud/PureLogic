@@ -1,7 +1,0 @@
-- **Correctness:** Two values `a` and `b` have `lcm(a, b) <= threshold` exactly when they divide a common multiple no greater than `threshold`. Their LCM is the smallest such common multiple.
-- **Sweep method:** For every input value `x <= threshold`, iterate through all multiples of `x` up to `threshold`. Each multiple stores one input index whose value divides it. Any later value dividing that multiple is unioned with the stored index.
-- **Connectivity preservation:** All values dividing the same multiple have pairwise LCM at most that multiple, so they form a clique in the original graph. Unioning each with one owner preserves every required connection.
-- **Values above the threshold:** If `x > threshold`, every LCM involving `x` is at least `x`, so `x` has no edges and remains a singleton component.
-- **Confirmed examples:** The implementation returns `4` for `[2,4,8,3,9]` with threshold `5`, and `2` for `[2,4,8,3,9,12]` with threshold `10`.
-- **Confirmed edge cases:** A single value returns `1`; values all greater than the threshold remain separate; value `1` connects every value at most the threshold; values `6` and `10` with threshold `10` remain separate because their LCM is `30`.
-- **Complexity:** The sweep costs `sum(threshold / x)` over distinct processed values, bounded by `O(threshold log threshold)`. DSU operations are near-constant amortized time. Memory usage is `O(threshold + n)`.

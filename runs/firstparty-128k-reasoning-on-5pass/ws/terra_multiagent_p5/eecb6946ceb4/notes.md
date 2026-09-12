@@ -1,7 +1,0 @@
-- **Approach:** Use the identity `A + C = 2B`. For each present middle value `B`, the self-convolution coefficient at index `2B` counts ordered endpoint pairs `(A, C)` with sum `2B`.
-- **Counting formula:** Since the input values are distinct, convolution includes `(B, B)` exactly once. Each desired triplet has distinct endpoints and occurs in both orders `(A, C)` and `(C, A)`. Therefore its contribution for present `B` is `(conv[2B] - 1) // 2`.
-- **Exactness:** The NTT uses modulus `998244353`, whose primitive root is `3`. Any convolution coefficient is at most `N <= 10^6`, much smaller than the modulus, so modular results equal the true integer coefficients.
-- **NTT size:** Values are at most `10^6`, so sums are at most `2 * 10^6`. The transform length is the smallest power of two strictly larger than this, at most `2^21`, supported by `998244353`.
-- **Fallback:** For `N <= 3000`, enumerate endpoint pairs directly and check whether their integer midpoint belongs to the set. This avoids NTT overhead for sparse small input.
-- **Complexity:** The fallback takes `O(N^2)`. The main algorithm takes `O(M log M)` time and `O(M)` memory, where `M` is the selected NTT length.
-- **Triplet uniqueness:** Every fine triplet has one unique middle value, so summing the formula over all values `B` counts each fine triplet exactly once.

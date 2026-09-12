@@ -1,6 +1,0 @@
-- **Prefix representation:** Define \(P_0=0\) and \(P_i=A_1+\cdots+A_i\). Every subarray sum is \(P_r-P_x\) for exactly one pair \(0\le x<r\).
-- **Binomial expansion:** For each new prefix \(P_r\), calculate \((P_r-P_x)^K=\sum_{j=0}^K\binom Kj P_r^{K-j}(-1)^jP_x^j\).
-- **Maintained moments:** `moments[j]` stores \(\sum_{x<r}P_x^j\), initially containing only \(P_0\). The current prefix is inserted only after its contribution is computed.
-- **Complexity:** Each prefix requires \(O(K)\) operations and \(O(K)\) memory, giving \(O(NK)\) time and \(O(K)\) memory.
-- **Modulo handling:** All additions, multiplications, and accumulated contributions are reduced modulo 998244353. Negative contribution terms are normalized before the final output.
-- **Edge cases:** The initial prefix \(P_0\) is included, zero-valued prefixes are handled naturally, and \(N=1\) requires no special case.

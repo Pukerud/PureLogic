@@ -1,6 +1,0 @@
-- **State definition:** For a fixed second split \(j\), each active leaf \(i\) stores \(\mathrm{distinct}(A_{1..i})+\mathrm{distinct}(A_{i+1..j})\), for \(1 \le i < j\).
-- **Transition:** When increasing \(j\), let \(p\) be the previous occurrence of \(A_j\). The new element contributes to the middle segment exactly when \(i \ge p\), so add \(1\) to all leaves \(i \in [\max(1,p), j-1]\).
-- **Activation:** The newly valid split \(i=j-1\) is initialized with the prefix count \(\mathrm{distinct}(A_{1..j-1})\), then receives the same range addition, giving its singleton middle segment one distinct value.
-- **Segment tree:** A lazy range-add/max segment tree maintains all active first-split values. Inactive leaves remain at negative infinity and are never included in updates.
-- **Suffix contribution:** Precompute \(\mathrm{distinct}(A_{j+1..N})\) for every \(j\), then combine it with the tree maximum.
-- **Complexity:** The algorithm uses \(O(N)\) memory and \(O(N \log N)\) time.

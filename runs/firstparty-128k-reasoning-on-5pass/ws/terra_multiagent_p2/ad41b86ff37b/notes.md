@@ -1,9 +1,0 @@
-- **Fixed implementation:** Corrected the Python indexing bug from `deg(v)` to `deg[v]`.
-- **Observation:** Fix a vertex `c` as the snowflake center. Each neighbor `v` can be a branch vertex, with at most `deg[v] - 1` available leaf neighbors because the edge to `c` is occupied.
-- **Fixed leaf count:** For a selected common positive leaf count `y`, every neighbor of `c` whose capacity is at least `y` may be retained as a branch. Retaining all such neighbors maximizes the resulting snowflake size.
-- **Retained vertices:** If `k` branches are usable for threshold `y`, the snowflake contains `1 + k + ky = 1 + k(y + 1)` vertices.
-- **Threshold scan:** Sort the capacities of neighbors of each possible center in descending order. At position `i` with capacity `cap`, choosing `y = cap` yields `i` usable branches and size `1 + i(cap + 1)`. Only these capacity thresholds need checking.
-- **Zero capacity:** A branch needs at least one leaf because `y` is positive, so scanning stops when `cap == 0`.
-- **Correctness detail:** Distinct branches of the same center cannot share a leaf in a tree; such sharing would create a cycle. Unused adjacent vertices can simply be deleted.
-- **Complexity:** Neighbor capacities over all centers total `2(N-1)`. Sorting separately costs `O(sum deg(c) log deg(c))`, bounded by `O(N log N)`. Memory usage is `O(N)`.
-- **Sample verification:** The corrected scan gives retained size `7` for sample 1 (center 4, two capacity-2 branches), hence answer `1`; sample 2 retains all `3` vertices; sample 3 yields answer `3`.

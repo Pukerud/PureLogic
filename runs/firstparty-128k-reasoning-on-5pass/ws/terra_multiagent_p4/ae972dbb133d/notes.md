@@ -1,8 +1,0 @@
-- **Model:** Introduce one binary variable for every toroidal shared edge. `h[i][j]` is the edge to the right of cell `(i,j)`, and `v[i][j]` is the edge below it. There are `2HW` variables.
-- **Cell edges:** For cell `(i,j)`, use `L=h[i][j-1]`, `R=h[i][j]`, `U=v[i-1][j]`, `D=v[i][j]`, with row and column indices taken modulo `H,W`.
-- **Type A constraints:** A corner segment uses exactly one horizontal and exactly one vertical edge, so impose `L xor R = 1` and `U xor D = 1`.
-- **Type B constraints:** An opposite-edge segment is either horizontal or vertical, so impose `L xor R = 0`, `U xor D = 0`, and `L xor U = 1`.
-- **Counting:** All constraints are XOR equations of two variables. A consistent connected component of this parity graph has exactly one free binary choice, so the number of placements is `2^(number of DSU components)`.
-- **Parity DSU:** Store the xor value from each node to its parent. A union enforces `x xor y = c`; if both nodes already share a root, check whether their implied xor equals `c`.
-- **Complexity:** There are `2HW` DSU nodes and at most `3HW` constraints. Time is `O(HW alpha(HW))` per aggregate input, and memory is `O(HW)`.
-- **Implementation detail:** `array('i')` plus `bytearray` keeps memory small for up to `2,000,000` variables. The indexing keeps distinct directed-wrap edge instances even when `H=2` or `W=2`.

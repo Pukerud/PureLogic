@@ -1,6 +1,0 @@
-- **Approach:** Record the zero-based positions `p_i` of all `1`s in increasing order.
-- **Relative order:** Adjacent swaps preserve the relative order of the `1`s, so if the final contiguous block starts at position `l`, the `i`-th `1` must move to `l + i`.
-- **Cost transformation:** The swap count for a fixed `l` is `sum(abs(p_i - (l + i)))`. Defining `q_i = p_i - i`, this becomes `sum(abs(q_i - l))`.
-- **Optimization:** A sum of absolute deviations is minimized at a median, so choose the median of the adjusted positions `q_i`.
-- **Complexity:** The implementation uses `O(N)` memory and `O(K log K)` time for `K` ones due to sorting. Since the adjusted values are already nondecreasing (`p_i` increases by at least one while `i` increases by one), sorting is unnecessary; the current implementation can be made linear by omitting the sort.
-- **Integer safety:** Python integers safely handle the potentially large answer.

@@ -1,9 +1,0 @@
-- **Structural model:** Each primitive parenthesis pair is a node of an ordered rooted forest. A valid substring is exactly a consecutive block of children of some node, possibly at the virtual root of the whole forest.
-- **Effect of an operation:** Reversing and complementing a valid block reverses the order of the selected child subtrees and mirrors each selected subtree. Therefore the underlying unordered rooted forest is invariant.
-- **Reachability characterization:** A block of length one allows any subtree to be mirrored. After mirroring selected children individually if necessary, a block operation can perform a pure reversal of any consecutive child block. Adjacent swaps are obtainable using length-two reversals, so arbitrary permutations of children are possible. Applying these operations recursively shows that every plane embedding of the same unordered rooted forest is reachable.
-- **Canonical types:** A subtree type is represented by the sorted tuple of its child type IDs. Equal tuples mean identical unordered rooted subtrees. IDs are created bottom-up while parsing the Dyck word.
-- **Counting recurrence:** If a node has `k` children and multiplicity `m_t` of each unordered child type `t`, and `W_t` is the number of reachable plane forms of type `t`, then
-  `W = k! * product(W_t^m_t / m_t!)`.
-  The same formula is applied to the virtual root of the entire forest.
-- **Duplicate avoidance:** A resulting plane sequence uniquely determines the unordered type of every child and the chosen plane form at every position. There are `k! / product(m_t!)` possible type patterns, and for each type `t`, each of its `m_t` positions independently has `W_t` choices. Thus every distinct string is counted exactly once.
-- **Complexity:** There are at most `N/2` nodes. Sorting child type lists costs `O(N log N)` overall in the worst case, and the recurrence is linear in the total number of child occurrences. Memory usage is `O(N)`.

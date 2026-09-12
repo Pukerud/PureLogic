@@ -1,7 +1,0 @@
-- **State:** For each deleted value `x`, track the best compressed subarray sum ending at the current position. If the current value equals `x`, it is skipped; otherwise it is included using the usual Kadane transition.
-- **Normalization:** With prefix sum `S`, store `q[x] = dp[x] - S`. For a non-deleted current value, `q[x]` becomes `max(q[x], -S_old)`. For the deleted current value, `q[x]` decreases by the current value.
-- **Activation of ordinary values:** When a value first appears at position `t > 0`, initialize its state using the ordinary Kadane state ending at `t - 1`, since that prefix contains no occurrence of the value being deleted.
-- **Activation of the first array value:** Its deletion state cannot be initialized from ordinary Kadane, because the entire preceding prefix consists of that value and would disappear. Once a different value first appears, initialize this candidate to `-S_old`, forcing a fresh subarray beginning at the current surviving value.
-- **Data structure:** Values receive IDs in first-occurrence order, so active candidates form a prefix. A segment-tree-beats structure supports range `chmax`, point addition, point assignment, and global maximum.
-- **Validity:** Deletion candidates are activated only when a surviving element exists, so an empty resulting array is never counted. Ordinary Kadane separately handles performing no deletion and all-negative arrays.
-- **Complexity:** Each element performs `O(1)` segment-tree operations, resulting in `O(n log n)` time and `O(n)` memory.

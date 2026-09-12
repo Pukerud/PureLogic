@@ -1,5 +1,0 @@
-- **Counting:** Once a candidate is fixed, the parity of every remaining position is forced. A completion exists only when the remaining odd and even values match the required odd/even slots. The number of completions is `odd_remaining! * even_remaining!`.
-- **Starting parity:** If `n` is odd, the larger parity group must occupy the first position. If `n` is even, either parity may start.
-- **Lexicographic unranking:** At each position, unused values are checked in increasing order. Each valid candidate contributes one contiguous lexicographic block; subtract its block size when `k` is larger, otherwise select it.
-- **Capping:** Factorials and counts are capped at `10^15`, which is sufficient because `k` never exceeds that value.
-- **Validation:** The implementation handles the three examples and boundary cases such as `n=1, k=1`, `n=1, k=2`, `n=2, k=2`, and out-of-range `k`.

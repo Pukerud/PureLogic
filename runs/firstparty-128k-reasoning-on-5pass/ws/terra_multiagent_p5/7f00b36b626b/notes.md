@@ -1,6 +1,0 @@
-- **Core observation:** Any input value greater than `threshold` is isolated, since `lcm(x, y) >= x > threshold` for every positive `y`.
-- **DSU construction:** Retain only values at most `threshold`. For each retained value `d`, visit every multiple `m` of `d` up to `threshold`. Store one retained divisor of each `m` in `representative[m]`, and union `d` with that stored value.
-- **Why unions are valid:** If `a` and `b` both divide `m`, then `lcm(a, b)` divides `m`, so `lcm(a, b) <= m <= threshold`. Thus every union represents a graph edge.
-- **Why all edges are captured:** For any edge between `a` and `b`, `m = lcm(a, b) <= threshold`. Both divide `m`, so processing that multiple unions them through its representative.
-- **Result:** Count distinct DSU roots among retained values and add the number of oversized isolated values.
-- **Complexity:** The multiple loops perform `sum(threshold // d)` iterations over retained distinct values, at most `O(threshold log threshold)`. DSU operations are amortized `O(alpha(threshold))`. Memory use is `O(threshold)`.

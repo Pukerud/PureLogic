@@ -1,6 +1,0 @@
-- **Model:** Each row and column operation only matters modulo two. With row toggle bit `r_i` and column toggle bit `c_j`, the final cell is `A[i][j] XOR r_i XOR c_j`.
-- **Fixed column mask:** For a chosen column-toggle mask `c`, an original row mask `r` becomes `r XOR c`. The row flip can then choose between its number of ones and zeros, giving contribution `min(popcount(r XOR c), W - popcount(r XOR c))`.
-- **Convolution formulation:** Let `F[r]` be the frequency of input row mask `r`, and let `K[d] = min(popcount(d), W - popcount(d))`. The cost for column mask `c` is `sum_r F[r] * K[r XOR c]`, an XOR convolution of `F` and `K`.
-- **Algorithm:** Compute the XOR convolution with the fast Walsh-Hadamard transform. Transform both arrays, multiply pointwise, transform again, and divide every result by `2^W`. The minimum resulting value is the answer.
-- **Complexity:** `O(H + W * 2^W)` time and `O(2^W)` memory. This fits because `W <= 18`.
-- **Implementation details:** Row strings are parsed with `int(row, 2)`. Bit order is irrelevant as long as it is consistent. FWHT values can become negative internally, so signed integer arithmetic is necessary. Python integers safely handle all intermediate values.

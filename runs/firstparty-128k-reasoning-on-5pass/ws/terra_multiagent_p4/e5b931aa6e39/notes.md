@@ -1,6 +1,0 @@
-- **Approach:** Let `d = x - y > 0`. Then `N = d(3y^2 + 3dy + d^2)`, so every valid `d` divides `N` and satisfies `d^3 < N` when `y > 0`.
-- **Enumeration:** Iterate all `d` from `1` through `floor(cuberoot(N))`. This is at most `10^6` iterations for `N <= 10^18`.
-- **Quadratic:** For `q = N / d`, solve `3y^2 + 3dy + d^2 = q`. Its discriminant is `D = 12q - 3d^2`, and `y = (sqrt(D) - 3d) / 6`.
-- **Exactness:** Use `math.isqrt` and require both a perfect-square discriminant and divisibility by `6`. Reject `y <= 0`, notably handling `N = 1`, whose only nonnegative representation would use `y = 0`.
-- **Safety:** The final direct cube-difference check is redundant mathematically but confirms the computed candidate exactly using Python arbitrary-precision integers.
-- **Complexity:** `O(cuberoot(N))` time and `O(1)` auxiliary space.

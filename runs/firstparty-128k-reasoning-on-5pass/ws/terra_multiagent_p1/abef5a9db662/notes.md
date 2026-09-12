@@ -1,7 +1,0 @@
-- **Monotone mapping:** Let \(f(x)\) be the current rating starting from initial rating \(x\). Initially \(f(x)=x\), and every contest changes selected values by \(+1\). The mapping remains nondecreasing.
-- **Preimage interval:** For contest interval \([L,R]\), all initial ratings satisfying \(L \le f(x) \le R\) form one contiguous interval due to monotonicity. Its boundaries are the first position with value at least \(L\), and the first position with value greater than \(R\).
-- **Segment tree state:** A lazy segment tree stores the maximum current mapped value in each segment. Since the mapping is nondecreasing, checking a segment maximum is enough to locate the first position reaching a threshold.
-- **Boundary search:** `first_at_least(t)` descends the segment tree, choosing the left child if its maximum is at least `t`; otherwise it chooses the right child. This finds a boundary in \(O(\log 500000)\).
-- **Updates:** After finding `left = first_at_least(L)` and `right_exclusive = first_at_least(R+1)`, add one to the initial-rating interval `[left, right_exclusive-1]`, clipped to `1..500000`.
-- **Queries:** A point result is its initial rating plus all lazy tags on its root-to-leaf path. This is \(O(\log 500000)\) and does not require pushing tags.
-- **Complexity:** Each contest performs two boundary searches and one range update, all \(O(\log 500000)\). Each query is \(O(\log 500000)\). Memory is \(O(500000)\).

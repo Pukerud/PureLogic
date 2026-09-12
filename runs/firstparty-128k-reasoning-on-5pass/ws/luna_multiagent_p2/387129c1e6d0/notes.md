@@ -1,6 +1,0 @@
-- **Grouping:** Houses are grouped by row for horizontal movements and by column for vertical movements. Each group stores sorted varying coordinates and the corresponding house IDs.
-- **Inclusive queries:** `bisect_left` and `bisect_right` identify all houses whose coordinates lie within each movement segment, including both endpoints.
-- **DSU successor structure:** Every row and column group has a successor array. Removing an index links it to the next available index, allowing skipped houses to be found in near-constant amortized time.
-- **Unique counting:** When a house is encountered, it is removed from both its row and column structures. Therefore, later movements cannot count it again, and no separate visited set is required.
-- **Complexity:** Sorting takes `O(N log N)`. Each house is removed at most once from each structure, so all movement processing takes `O((N + M) α(N))` amortized time.
-- **Integer safety:** Python integers support the potentially large final coordinates without overflow.

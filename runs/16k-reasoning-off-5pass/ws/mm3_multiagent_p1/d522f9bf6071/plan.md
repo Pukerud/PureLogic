@@ -1,4 +1,0 @@
-We need to select up to 4 non-overlapping intervals (no shared endpoints) to maximize total weight, and among all optimal weight solutions output the lexicographically smallest list of original indices (shorter list preferred when prefixes match).  
-Sort intervals by end (then start) to enable DP; let `dp[k][i]` be the best lexicographically smallest index list using up to k intervals among the first i sorted intervals, and `pref[i]` the best list using up to 4 intervals among the first i for quick lookup when transitioning.  
-For each interval we try including it (find previous non-overlapping interval by binary search on end < current start) and combine lists, preferring higher weight, then lexicographically smaller list, then shorter list.  
-Finally pick the best list across all `i` and return it (or empty list).

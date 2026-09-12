@@ -1,8 +1,0 @@
-- **Feasibility:** For a proposed maximum run length `limit`, determine the minimum number of flips needed so every equal-character substring has length at most `limit`.
-- **DP state:** `dp[bit][length]` stores the minimum flips for the processed prefix when the resulting string ends with character `bit` and its final run has length `length`.
-- **Transitions:** For each next position, either extend the current run when its length is below `limit`, or start a new run with the opposite character. The chosen character costs `0` if it matches the original character and `1` otherwise.
-- **Initialization:** The first character can remain unchanged or be flipped, giving a run of length `1`.
-- **Correctness:** Every valid transformed prefix ends in exactly one character and final-run length, so the DP considers all valid transformations and records the minimum flip count for each state.
-- **Binary search:** Feasibility is monotonic: if a limit is achievable, every larger limit is also achievable. Therefore binary search over `[1, n]` returns the smallest feasible maximum run length.
-- **Complexity:** A feasibility check uses `O(n * limit)` time and `O(limit)` memory. Across binary search, the total time is `O(n^2)` in the worst case because the tested limits decrease geometrically, and memory is `O(n)`.
-- **Validation:** The implementation gives `2` for `"000001", 1`, `1` for `"0000", 2`, and `1` for `"0101", 0`. It also handles length-one strings, zero operations, `limit = 1`, and already-valid inputs.

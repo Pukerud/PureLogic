@@ -1,5 +1,0 @@
-1. The problem asks us to minimize the maximum length of consecutive identical characters (either all '0's or all '1's) after flipping at most `numOps` bits.
-2. We can use binary search on the answer, i.e., the maximum allowed length `L`. For a given `L`, we check if it's possible to make all consecutive runs of '0's and '1's have length at most `L` using at most `numOps` flips.
-3. To check feasibility for a given `L`: We can iterate through the string and identify runs of identical characters. For each run of length `k`, we need to break it into segments of length at most `L`. The minimum number of flips required for a run of length `k` is `floor((k - 1) / L)`. This is because we can place a flip every `L` characters to break the run.
-4. Sum the required flips for all runs. If the total flips needed is <= `numOps`, then `L` is feasible.
-5. Binary search for the smallest `L` in the range `[1, n]`.

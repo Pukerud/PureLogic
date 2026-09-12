@@ -1,6 +1,0 @@
-- **Characterization:** For a query interval \([L,R]\) of length \(m\), exactly \(k\) pairs are feasible iff \(k\le\lfloor m/2\rfloor\) and \(k+\max(g[L..L+k-1])\le m\), where \(p[x]\) is the first index with \(A_{p[x]}\ge2A_x\), and \(g[x]=p[x]-x\).
-- **Sufficiency:** Pair the \(k\) smallest mochi \(L,\ldots,L+k-1\) with the \(k\) largest mochi \(R-k+1,\ldots,R\) in order. The condition implies \(p[L+i]\le L+m-k+i\), so every such pair satisfies the doubling requirement.
-- **Necessity:** In any valid set of \(k\) pairs, sort the bottoms and tops by size. The \(i\)-th selected bottom is at least \(A_{L+i}\), while the \(i\)-th selected top is at most \(A_{L+m-k+i}\). Therefore \(2A_{L+i}\le A_{L+m-k+i}\), equivalently \(p[L+i]-(L+i)\le m-k\). Taking the maximum gives the stated condition.
-- **Preprocessing:** Since \(A\) is sorted, all \(p[x]\) values are computed with one monotone two-pointer scan in \(O(N)\).
-- **Queries:** The predicate is monotone in \(k\), because increasing \(k\) both increases \(k\) and enlarges the range maximum. Binary search therefore answers each query in \(O(\log N)\), using a sparse table for \(O(1)\) range maxima.
-- **Complexity:** Preprocessing takes \(O(N\log N)\) time and \(O(N\log N)\) memory for the sparse table. All queries take \(O(Q\log N)\) time.

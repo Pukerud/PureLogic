@@ -1,6 +1,0 @@
-- **Subset size:** Enumerate subsets of size `r = min(K, N-K)`, ensuring the number of generated subsets is exactly `C(N, K)` and is at most `10^6`.
-- **Complement handling:** If `K > N-K`, enumerate the omitted elements. Since XORing all selected and omitted elements gives the total XOR, the selected XOR is `total_xor ^ omitted_xor`.
-- **Enumeration:** Depth-first search chooses increasing indices, so every index subset is generated once and duplicate values at different positions remain distinct.
-- **Efficiency:** XOR is maintained incrementally along recursion. The `left == 1` case is handled directly to reduce recursion overhead.
-- **Edge cases:** When `K == N`, `r == 0`, so the only candidate is the XOR of all elements. Values fit naturally in Python integers.
-- **Complexity:** `O(C(N,K) * r)` in the worst case, with at most `10^6` complete subsets and small feasible `r` under the given guarantee.

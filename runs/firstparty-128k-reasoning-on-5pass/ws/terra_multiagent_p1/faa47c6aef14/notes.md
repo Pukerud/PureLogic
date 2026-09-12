@@ -1,8 +1,0 @@
-- **Reduction:** For each color independently, every ball must lie on the permutation cycle containing `X`; otherwise it can never reach `X`, so the answer is `-1`.
-- **Required route:** Walk backward from `X` using the inverse permutation. If the farthest initially occupied box for a color is at distance `d`, all boxes from that box forward to the predecessor of `X` must be operated on, in exactly farthest-to-nearest order. This route is a sequence of distinct box indices.
-- **Why one route suffices:** Any occupied box closer to `X` lies on the route of the farthest occupied box. Processing the farthest route transports all balls of that color to `X`.
-- **Global scheduling:** A valid operation sequence must contain the red route as a subsequence and the blue route as a subsequence. Conversely, any common supersequence of these two routes is valid: operations appearing only in one route cannot disrupt the other color, because that other color never reaches boxes outside its own required route.
-- **Repeated operations:** Repetition cannot improve the optimum. A farthest initial ball forces one ordered occurrence of every route vertex. Thus every feasible sequence contains both required sequences as subsequences. Extra repeated occurrences can only increase length.
-- **Optimization:** The minimum operations equals the shortest common supersequence length: `len(red) + len(blue) - LCS(red, blue)`.
-- **LCS computation:** Each route has no duplicate vertex. Map each red-route vertex to its position, scan common vertices in blue-route order, and compute a strict LIS of mapped positions in `O(N log N)`.
-- **Complexity:** Route construction is `O(N)` per permutation; LIS is `O(N log N)`; memory is `O(N)`.

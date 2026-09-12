@@ -1,7 +1,0 @@
-- **State representation:** The current orientation is determined solely by the parity of the number of global reversals. Use states `(vertex, parity)`, where parity `0` uses the original graph and parity `1` uses every edge reversed.
-- **Transitions:** Moving along an edge costs `1` and preserves parity. Reversing all edges costs `X` and toggles parity without changing the vertex.
-- **Adjacency:** Store both the original adjacency list and the reversed adjacency list. In parity `0`, use the original list; in parity `1`, use the reversed list.
-- **Shortest path:** All transition costs are positive, so Dijkstra’s algorithm gives the minimum cost. The state graph has `2N` vertices and `2M + 2N` possible directed transitions.
-- **Termination:** The first popped Dijkstra state at vertex `N` is optimal, regardless of its parity, so the algorithm can terminate immediately.
-- **Complexity:** Time is `O((N + M) log N)` and memory is `O(N + M)`, up to constant factors from the two parity layers.
-- **Integer range:** Python integers safely support answers larger than 32-bit values.

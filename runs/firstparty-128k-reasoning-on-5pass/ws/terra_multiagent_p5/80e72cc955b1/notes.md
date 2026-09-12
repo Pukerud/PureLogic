@@ -1,6 +1,0 @@
-- **Sample verification:** For `[[1, 2], [2, 4]]`, workloads are `[1, 1]` and `[1, 1, 2]`, producing `1 + 2 = 3`. The implementation returns `3`.
-- **Sample verification:** For `[[2, 6]]`, workloads are `[1, 1, 2, 2, 2]`, with total workload `8`, producing `4`. The implementation returns `4`.
-- **Workload formula:** A positive integer `x` needs `1 + floor(log_4(x))` divisions by `4` to reach zero.
-- **Minimum operations:** If total workload is `S` and largest individual workload is `M`, the answer is `max(M, ceil(S / 2))`. Each operation handles two workload units, while one element cannot be divided more than once in an operation.
-- **Prefix computation:** Workload `k` applies to `[4^(k-1), 4^k - 1]`. Summing bucket contributions computes range workload as `prefix(r) - prefix(l - 1)`.
-- **Complexity:** Each query takes `O(log_4 r)`, at most about 16 loop iterations for `r <= 10^9`, with `O(1)` extra space.

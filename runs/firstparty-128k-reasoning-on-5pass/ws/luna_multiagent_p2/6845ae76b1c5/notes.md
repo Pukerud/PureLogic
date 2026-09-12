@@ -1,6 +1,0 @@
-- **State:** Maintain active prefixes `A[1..current_x]` and `B[1..current_y]`. The maintained value is the sum of `|A_i-B_j|` over their Cartesian product.
-- **Adding/removing an element:** When an `A` value is added or removed, adjust the answer by its absolute-difference sum against all active `B` values. Handle `B` symmetrically.
-- **Fenwick trees:** For each sequence, store both frequencies and value sums over compressed values. For a value `v`, if `L` is the count/sum of active values `<=v`, its total absolute-difference sum is `v*count_left-sum_left + sum_right-v*count_right`.
-- **Offline ordering:** Sort rectangle queries by blocks of `X`, alternating the direction of `Y` between consecutive blocks (two-dimensional Mo ordering). Block size is approximately `N/sqrt(K)`.
-- **Complexity:** If the block size is `S`, pointer movement is `O(KS+N^2/S)`, and every movement costs `O(log N)` through Fenwick trees. With `S≈N/sqrt(K)`, this is approximately `O(N sqrt(K) log N + K log N)` time and `O(N)` memory.
-- **Arithmetic:** Python integers safely handle the required values, which can exceed signed 32-bit range.

@@ -1,7 +1,0 @@
-- **Potential model:** Set road strength \(w_j=P_{j+1}-P_j\). A person requires equal endpoint potentials. For a rightward journey, every interior potential must be strictly greater than the endpoint value; for a leftward journey, every interior potential must be strictly smaller.
-- **Conflict structure:** Same-direction crossing intervals are contradictory. Nested, disjoint, and endpoint-touching intervals are compatible when directions are the same. Intervals sharing a left endpoint or right endpoint are contradictory only when their directions are opposite.
-- **Previous conflict:** For each person \(i\), `previous[i]` stores the largest earlier index conflicting with \(i\). A query range \([L,R]\) is feasible exactly when every `previous[i]` for \(i\in[L,R]\) is less than \(L\).
-- **Crossing detection:** Two offline sweeps per direction use a segment tree of Fenwick trees to find the latest earlier crossing interval. Both crossing queries use the strict key range `l + 1 ... r - 1`, excluding intervals that only touch at an endpoint.
-- **Endpoint detection:** Separate latest-index maps are maintained for left and right endpoints. Only the map for the opposite direction contributes conflicts.
-- **Complexity:** \(O(M\log^2N+Q\log M)\) time and \(O(M\log N+N)\) memory.
-- **Edge cases handled:** Same-direction intervals sharing endpoints, intervals ending exactly where another starts, opposite-direction intervals sharing endpoints, and reversed journeys with identical undirected intervals.

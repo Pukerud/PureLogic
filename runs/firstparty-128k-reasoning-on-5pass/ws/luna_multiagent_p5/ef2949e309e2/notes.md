@@ -1,9 +1,0 @@
-- **Validation verdict:** Exhaustive brute-force comparison passed for all tested small arrays, including repeated values, all-distinct arrays, negative values, and mixed-frequency cases. The three provided examples also passed with outputs `6`, `4`, and `0`. No counterexample was found.
-- **Fixed middle:** For each index `i`, choose two indices strictly to the left and two strictly to the right. The middle value is `x = nums[i]`.
-- **Frequency cases:** Count selections according to whether the other four positions contain exactly one, two, or at least three additional occurrences of `x`.
-- **One additional `x`:** The remaining three values must all be distinct and different from `x`; otherwise another value ties the frequency of `x`.
-- **Two additional `x` values:** The valid left/right distributions are `(0, 2)`, `(1, 1)`, and `(2, 0)`, counted with combinations of non-`x` positions.
-- **At least three additional `x` values:** Distributions `(1, 2)`, `(2, 1)`, and `(2, 2)` always give `x` a unique maximum frequency.
-- **Distinct-pair correction:** For the one-additional-`x` case, first count pairs of distinct non-`x` values on one side, then subtract pairs sharing the value chosen from the opposite side.
-- **Data maintenance:** `left` stores frequencies before the center and `right` stores frequencies after the center. Both are updated incrementally.
-- **Complexity:** Each center scans the frequency maps, giving `O(n²)` time and `O(n)` auxiliary space.

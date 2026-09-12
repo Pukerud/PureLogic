@@ -1,8 +1,0 @@
-- **Reduction:** At floor level `t`, walkway movement is free within the connected component of grid blocks whose heights are at least `t`. For two blocks, let `L` be the maximum level at which they are connected.
-- **Cost formula:** A route can move horizontally at any level `t <= L`, so its minimum stair cost is `min_t |Y-t|+|Z-t|`. This is `|Y-Z|` if `L >= min(Y,Z)`, otherwise `Y+Z-2L`.
-- **Graph construction:** Each adjacent pair of blocks has edge capacity `min(Fu,Fv)`, the highest floor where that walkway can be used. The desired `L` is the maximum bottleneck capacity over all grid paths between the queried blocks.
-- **Maximum spanning tree:** In any maximum spanning tree, the minimum edge capacity on the tree path between two vertices equals their maximum possible bottleneck capacity in the original graph. Build this tree with descending Kruskal.
-- **Queries:** Root the maximum spanning tree and use binary lifting. Each lifting table stores both the `2^k` ancestor and the minimum edge capacity on the corresponding upward path.
-- **Same block:** If query endpoints are in the same block, use that block's height as `L`; no tree path exists to evaluate.
-- **Memory choices:** The tree adjacency structure and binary-lifting tables use `array('i')` to avoid excessive Python integer-object memory for up to 250,000 blocks.
-- **Complexity:** Grid edges are `O(HW)`. Kruskal sorting costs `O(HW log(HW))`; lifting preprocessing costs `O(HW log(HW))`; each query costs `O(log(HW))`.

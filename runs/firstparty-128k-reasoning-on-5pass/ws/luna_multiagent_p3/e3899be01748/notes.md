@@ -1,7 +1,0 @@
-- **State:** For every modulus `m` from 1 through 9, `dp[m - 1][r]` counts substrings ending at the previous position with remainder `r` modulo `m`.
-- **Transition:** Appending digit `d` to a substring with remainder `r` changes its remainder to `(10 * r + d) % m`.
-- **New substring:** The one-character substring containing the current digit is added separately, including when the digit is zero.
-- **Counting:** If the current digit is nonzero, the answer increases by the number of substrings ending at this position whose remainder modulo that digit is zero.
-- **Leading zeros:** They require no special handling; each starting position is represented independently by the substring-ending states.
-- **Complexity:** There are `1 + 2 + ... + 9 = 45` remainder states. The time complexity is `O(45n) = O(n)` and the auxiliary space complexity is `O(45) = O(1)`.
-- **Sample verification:** The implementation returns `11` for `"12936"`, `18` for `"5701283"`, and `25` for `"1010101010"`.

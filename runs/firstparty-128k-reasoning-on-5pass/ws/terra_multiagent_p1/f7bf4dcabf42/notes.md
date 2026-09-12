@@ -1,5 +1,0 @@
-- **Algorithm:** Represent an LCS DP row after processing a generated-string prefix by an N-bit mask. Bit `i` is 1 iff the row value for the first `i+1` characters of `S` increases from the preceding entry. Since every adjacent difference is 0 or 1 and the row starts with 0, this mask fully reconstructs the row.
-- **Transition:** For every mask and every lowercase letter, reconstruct the old row and compute the next LCS row using the standard recurrence. Convert the new row back to a mask. Equal resulting masks are grouped with their number of producing letters.
-- **Counting:** Start with only mask 0, repeatedly apply transitions for exactly M generated characters, modulo 998244353. The final LCS length equals the popcount of the ending mask, so sum DP counts by popcount.
-- **Complexity:** At most `2^N <= 1024` masks. Transition construction costs `O(2^N * 26 * N)`. Counting costs `O(M * 2^N * 26)` in the worst case. Memory is `O(2^N)`.
-- **Sample results:** The implementation yields `576 99 1` for sample 1, `390625 62500 3750 101` for sample 2, and `309810541 226923474 392073062 146769908 221445233 435648037 862664208 238437587` for sample 3.

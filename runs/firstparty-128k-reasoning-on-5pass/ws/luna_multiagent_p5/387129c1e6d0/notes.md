@@ -1,7 +1,0 @@
-- **Geometric reduction:** A horizontal movement can only pass houses with the same `y` coordinate, while a vertical movement can only pass houses with the same `x` coordinate.
-- **Offline segment collection:** Simulate Santa’s route once, recording every horizontal segment grouped by its fixed `y` and every vertical segment grouped by its fixed `x`.
-- **Interval union:** For each row or column, sort and merge all recorded inclusive intervals. This prevents repeated route traversals from causing repeated work.
-- **House lookup:** Houses are grouped and sorted by their varying coordinate. Each house is checked with binary search against the merged intervals for its row and column.
-- **Duplicate counting:** A global `visited` array ensures each house contributes to the answer at most once.
-- **Complexity:** Sorting all house groups and movement intervals costs `O(N log N + M log M)` in total; each house is tested a constant number of times with binary search.
-- **Arithmetic:** Python integers safely handle the potentially large final coordinates.

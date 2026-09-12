@@ -1,6 +1,0 @@
-- **Algorithm:** Computes Levenshtein distance with dynamic programming, retaining only cells whose diagonal offset is at most `K`.
-- **Band validity:** If `abs(len(S) - len(T)) > K`, the answer is immediately `No`, because length-changing operations alone require more than `K` operations.
-- **Transitions:** Each state uses deletion from the previous row, insertion from the current row, and match/replacement from the previous row and previous column.
-- **Boundary handling:** Each row stores its inclusive column interval `[max(0, i-K), min(len(T), i+K)]`; explicit range checks prevent accessing cells outside the band.
-- **Sentinel:** Values are capped at `K+1`, since larger distances cannot affect whether the final distance is at most `K`.
-- **Complexity:** `O((|S|+|T|)K)` time and `O(K)` memory, with at most `2K+1` cells per active row.

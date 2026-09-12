@@ -1,5 +1,0 @@
-- **Topic:** The prior compressed-run greedy based only on immediate `x,y,x,y` reductions is invalid. The counterexample `(1,2,1,3,2,3)` needs a neutral setup swap before a profitable swap.
-- **Topic:** Equal consecutive elements should be compressed initially, since a whole existing monochromatic run can always be deleted in one operation.
-- **Topic:** The submitted implementation uses a last-occurrence dynamic-programming formulation over compressed runs, intended to account for alternating repeated-color structures without explicitly simulating swaps.
-- **Topic:** Complexity is linear per test case and linear in the total input size.
-- **Topic:** The former BFS oracle remains useful for validating the DP exhaustively on small arrays, especially arrays over three colors, because it includes all legal unequal adjacent swaps and all legal monochromatic-prefix deletions.

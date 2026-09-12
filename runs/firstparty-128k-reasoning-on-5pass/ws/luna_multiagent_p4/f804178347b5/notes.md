@@ -1,5 +1,0 @@
-- **State:** For every ternary-tree subtree, maintain the minimum number of leaf changes needed for the subtree to evaluate to 0 (`cost0`) or 1 (`cost1`).
-- **Leaf initialization:** An unchanged 0 has costs `(0, 1)`, while an unchanged 1 has costs `(1, 0)`.
-- **Transition:** For three child subtrees, enumerate the four assignments whose majority is 0 and the four assignments whose majority is 1. The minimum sum of corresponding child costs gives the parent state.
-- **Final result:** Exactly one root state has cost 0 and represents the original root value. The answer is the cost of the opposite state.
-- **Complexity:** There are `3^N` leaves and fewer than `3^N / 2` internal nodes. The time complexity is `O(3^N)` and the memory complexity is `O(3^N)`.

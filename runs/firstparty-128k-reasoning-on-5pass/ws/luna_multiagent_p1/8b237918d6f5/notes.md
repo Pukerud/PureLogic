@@ -1,8 +1,0 @@
-- **Potential characterization:** For a target distance \(D\), assign each vertex an integer level \(x_v\in[0,D]\), with \(x_1=0\) and \(x_N=D\). Every edge \(u\to v\) must satisfy \(x_v\le x_u+1\). Selecting exactly the edges with \(x_v=x_u+1\) guarantees every path from 1 to \(N\) has at least \(D\) selected edges.
-- **Boolean labels:** Use \(y_{v,i}=[x_v\ge i]\) for \(1\le i\le D\). Label monotonicity is enforced by infinite-capacity arcs \(y_{v,i}\to y_{v,i-1}\).
-- **Edge constraints:** For every original edge \(u\to v\) and \(i\ge2\), add an infinite-capacity arc \(y_{v,i}\to y_{u,i-1}\), expressing \(x_v\le x_u+1\).
-- **Objective:** For each original edge and each \(i\), add a capacity-one arc \(y_{v,i}\to y_{u,i}\). It is cut exactly when \(y_{v,i}=1\) and \(y_{u,i}=0\). Under the difference constraint, this happens for at most one level, precisely when \(x_v=x_u+1\), so the cut counts mandatory selected edges once each.
-- **Boundary conditions:** Arcs from the source to all \(y_{N,i}\) force \(x_N\ge D\). Arcs from all \(y_{1,i}\) to the sink force \(x_1=0\).
-- **Exact \(K\) edges:** If the minimum mandatory count is at most \(K\), select arbitrary additional edges until exactly \(K\) are selected. Extra selected edges cannot decrease the shortest distance.
-- **Search:** Feasibility is monotone in \(D\), so binary search gives the optimum. Distance \(N\) is impossible because a reachable shortest path can be made simple and therefore has at most \(N-1\) edges.
-- **Complexity:** Each flow network has \(O(ND)\) vertices and \(O((N+M)D)\) arcs. Binary search requires \(O(\log N)\) max-flow computations.

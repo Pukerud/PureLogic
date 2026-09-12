@@ -1,7 +1,0 @@
-- **Algorithm:** Maintain the set of currently adjacent unabsorbed slimes in a min-heap keyed by strength.
-- **Greedy choice:** If the weakest frontier slime is absorbable, absorbing it is always safe. It does not decrease Takahashi’s strength or future reachability, and choosing any larger legal slime cannot improve the result.
-- **Stopping condition:** If the weakest frontier slime is not absorbable, no other frontier slime is absorbable either, so the process must stop.
-- **Strict comparison:** Use `value * X < current_strength` to represent the required strict inequality without floating-point errors.
-- **Visited handling:** Mark cells when inserting them into the heap, preventing duplicate frontier entries. Every cell is inserted and processed at most once.
-- **Complexity:** `O(HW log(HW))` time and `O(HW)` memory.
-- **Integer range:** Python integers safely handle the potentially large accumulated strength and products.

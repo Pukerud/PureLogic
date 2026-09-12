@@ -1,8 +1,0 @@
-- **problem:** decide whether Levenshtein distance between S and T is at most K, with K <= 20 and lengths up to 500000.
-- **main idea:** banded threshold DP. Only diagonals delta = j - i that can still reach final delta d = m - n within K edits matter: |delta| + |d - delta| <= K, giving kmin = ceil((d - K) / 2) and kmax = floor((d + K) / 2).
-- **preprocessing:** reject immediately if |n - m| > K; swap so n <= m; strip common prefix and suffix; answer immediately if one side becomes empty or K >= m.
-- **dp indexing:** use padded arrays of length W + 2 where W = kmax - kmin + 1 and off = 1 - kmin, so delta maps to index delta + off. Row 0 is initialized with dp[0][j] = j for valid j.
-- **recurrence:** dp[i][j] = min(dp[i][j-1] + 1, dp[i-1][j] + 1, dp[i-1][j-1] + (S[i-1] != T[j-1])). The padded T with a dummy byte lets the loop use t[j] safely even when j = 0.
-- **thresholding:** cap every value at K + 1; if a row has no value <= K, return No. This is safe because edit costs never decrease.
-- **complexity:** O(K * min(n, m)) time and O(K) memory; worst case is about 10.5 million inner updates, which is feasible.
-- **edge cases:** length difference, empty trimmed strings, K >= m, invalid diagonal at j = 0, and low > high are all handled.

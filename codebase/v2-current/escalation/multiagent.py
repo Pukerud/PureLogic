@@ -35,6 +35,7 @@ import time
 import json
 import hashlib
 import subprocess
+import shutil
 
 from orchestrator import chat  # groq:/ollama dispatch
 
@@ -92,6 +93,19 @@ def _write(ws, name, content):
 def _append(ws, name, content):
     with open(os.path.join(ws, name), "a", encoding="utf-8") as f:
         f.write(content)
+
+
+def _reset_workspace(ws):
+    """Reset the run-owned directory so stale generated artifacts cannot be reused."""
+    os.makedirs(ws, exist_ok=True)
+    for entry in os.scandir(ws):
+        try:
+            if entry.is_dir(follow_symlinks=False):
+                shutil.rmtree(entry.path)
+            else:
+                os.unlink(entry.path)
+        except FileNotFoundError:
+            pass
 
 
 # --- transcript logging ----------------------------------------------------
@@ -227,7 +241,8 @@ def _primary_plan(problem, spec, ws, log):
     kind = spec["kind"]
     sys = (
         "You are the PRIMARY orchestrator (manager) of a small team of workers, all "
-        f"expert at {'competitive programming' if kind == 'code' else 'olympiad mathematics'}. "
+        f"expert at {('competitive programming' if kind == 'code' else 'frontend and '
+                     'web product engineering' if kind == 'visual' else 'olympiad mathematics')}. "
         "Given a problem, produce a short overarching plan to solve it, then a task list "
         "the workers can pick up. Respond with EXACTLY these sections:\n"
         "### PLAN\n<3-6 sentence strategy>\n"
@@ -533,12 +548,10 @@ def multiagent_solve(problem_text, spec, log=None, status_out=None, tests=None):
     truncated (finish_reason=length) calls over the whole problem."""
     log = log or (lambda *a, **k: None)
     ws = os.path.join(WS_ROOT, _slug(problem_text))
-    os.makedirs(ws, exist_ok=True)
-    # Clean-slate reset: the ws dir is keyed by md5(problem_text), so a re-run of the same
-    # problem reuses it. Clear ALL artifacts, not just task/notes/transcript -- otherwise the
-    # prior run's plan.md/solution.py/answer.md/tasks.json survive, the manager reads a stale
-    # solution.py as "CURRENT SOLUTION" (defeating the not-cur invariant below), and it can be
-    # returned verbatim as this run's answer.
+    # The directory is keyed by prompt for convenient lookup, so clear the complete
+    # run-owned directory before starting. This prevents stale visual files from being
+    # inspected or returned on a rerun.
+    _reset_workspace(ws)
     for f in ("task.md", "notes.md", "transcript.jsonl", "plan.md",
               "solution.py", "answer.md", "tasks.json"):
         _write(ws, f, "")
@@ -602,10 +615,13 @@ def multiagent_solve(problem_text, spec, log=None, status_out=None, tests=None):
         status_out["ws"] = ws  # so a result row can be traced back to its transcript
         # summarize call outcomes across the whole problem from the transcript
         recs = []
-        for ln in open(os.path.join(ws, "transcript.jsonl")):
-            r = json.loads(ln)
-            if not r.get("_meta"):
-                recs.append(r)
+        transcript_path = os.path.join(ws, "transcript.jsonl")
+        if os.path.exists(transcript_path):
+            with open(transcript_path, encoding="utf-8") as transcript:
+                for ln in transcript:
+                    r = json.loads(ln)
+                    if not r.get("_meta"):
+                        recs.append(r)
         status_out["finish_reason"] = recs[-1].get("finish_reason") if recs else None
         status_out["truncated_calls"] = sum(1 for r in recs if r.get("finish_reason") == "length")
         status_out["n_calls"] = len(recs)

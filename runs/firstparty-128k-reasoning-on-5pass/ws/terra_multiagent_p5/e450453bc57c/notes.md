@@ -1,9 +1,0 @@
-- **Verification:** The implementation matches both provided examples: example 1 returns `8`, and example 2 returns `3`.
-- **Adjacent windows:** For `nums = [1, 4, 7, 10]`, `x = 2`, `k = 2`, the best adjacent windows are `[1,4]` and `[7,10]`, with total cost `3 + 3 = 6`. The transition from `prev[i-x]` permits this adjacency.
-- **Duplicates and negatives:** Coordinate compression preserves negative values and duplicates. For `nums = [-5, -5, -5, -5]`, `x = 2`, `k = 2`, both selected windows already have cost `0`.
-- **x = 2:** The lower median rank is `1`, which correctly gives the cost `abs(a-b)` for every pair. Duplicate pair values yield zero cost.
-- **Window cost:** A length-`x` window is optimally made constant by changing every value to a median. Fenwick trees maintain frequencies and sums, allowing median lookup and absolute-deviation cost in `O(log n)` per window.
-- **DP state:** For each selected-window count, `cur[i]` is the minimum cost to choose exactly that many non-overlapping windows from prefix `nums[0:i]`.
-- **DP transition:** Either skip position `i` via `cur[i-1]`, or choose `nums[i-x:i]` and combine its cost with `prev[i-x]`. This prevents overlap while allowing adjacent windows.
-- **At least versus exactly k:** Since all operation costs are nonnegative, an optimal arrangement with at least `k` valid non-overlapping subarrays can retain any `k`; therefore optimizing exactly `k` is sufficient.
-- **Complexity:** Window costs use `O(n log n)` time. DP uses `O(k n)` time and `O(n)` memory. This fits `n <= 10^5` and `k <= 15`.

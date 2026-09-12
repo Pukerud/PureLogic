@@ -1,6 +1,0 @@
-- **Cumulative displacement invariant:** Let `P[t]` be the cumulative wind displacement after step `t`, with `P[0] = (0,0)`. Smoke created at a source corresponding to prefix position `P[k]` is at `P[t] - P[k]` after wind step `t`.
-- **Source positions:** The smoke-generation rule means a source is created exactly when the current prefix position has not previously been a source position. Thus, source positions are precisely the distinct prefix coordinates encountered, initialized with `(0,0)`.
-- **Query transformation:** Smoke exists at target `(R,C)` after step `t` iff some previous source position equals `P[t] - (R,C)`. Maintain a hash set of prefix/source coordinates and test `(pr - R, pc - C)`.
-- **Order:** Update the prefix for the current wind, query against source positions from previous times, then insert the current prefix coordinate. Since `(R,C) != (0,0)`, inserting before the query would also not change that step's answer, but querying first directly matches the process.
-- **Complexity:** Expected `O(N)` time and `O(N)` memory. Tuple hashing is suitable for `N <= 200000`.
-- **Implementation:** Track row/column prefix displacement with `N: row-1`, `S: row+1`, `W: col-1`, `E: col+1`; append answer characters and print once.

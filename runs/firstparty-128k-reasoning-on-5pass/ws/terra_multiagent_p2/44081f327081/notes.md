@@ -1,7 +1,0 @@
-- **Observation:** For a value `x`, a divisor `d` is feasible exactly when `d` divides `x` and at least `K` array positions contain values divisible by `d`.
-- **Correctness:** If `d` is feasible for `x`, choose the designated occurrence of `x` plus any other `K-1` occurrences divisible by `d`; their GCD is at least `d`. Conversely, any chosen group containing `x` with GCD `g` has all `K` values divisible by `g`, so `g` is among the feasible divisors of `x`. Thus the largest feasible divisor is the answer.
-- **Frequency handling:** Frequencies rather than presence flags are required because duplicate values represent distinct selectable positions.
-- **Counting multiples:** Let `freq[v]` be the number of occurrences of `v`. For every divisor `d`, compute `divisible_count[d] = sum(freq[m] for m in multiples of d)`.
-- **Answer construction:** Process divisors in descending order. For every feasible divisor (`divisible_count[d] >= K`), assign it to occurring multiples that do not already have an answer. The first assignment is the maximum feasible divisor.
-- **Complexity:** Both multiples traversals take `O(M log M)` time where `M = max(A) <= 10^6`; more precisely their iteration total is `sum(M // d) = O(M log M)`. Memory use is `O(N + M)`.
-- **Implementation detail:** `sum(freq[d::d])` computes each multiples count using a slice and C-level summation. The assignment phase still uses explicit multiples traversal to set answers only for values appearing in the input.

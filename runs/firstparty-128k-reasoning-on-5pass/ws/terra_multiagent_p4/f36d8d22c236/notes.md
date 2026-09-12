@@ -1,5 +1,0 @@
-- **Mapping consistency:** For each source letter in `S`, all its occurrences must correspond to one identical target letter in `T`. If a source letter has multiple required targets, the answer is `-1`.
-- **Graph model:** Store each required mapping as a functional directed edge over the 26 lowercase letters. Ignore identity edges when counting operations and cycles.
-- **Minimum operations:** Every non-identity mapping edge requires one operation. Each directed cycle among non-identity edges requires one additional operation to use a temporary letter, so the answer is `non_identity_edges + cycle_count`.
-- **Cycle feasibility:** A cycle can be broken only if some lowercase letter does not occur in final string `T`, allowing it to be used as temporary storage. If every one of the 26 letters occurs in `T` and at least one cycle exists, output `-1`.
-- **Complexity:** Mapping validation is `O(N)`. Graph processing is `O(26)`. Memory usage is `O(26)`.

@@ -1,7 +1,0 @@
-- **Characterization:** The answer is the length of a shortest `S-T` path plus the length of a shortest `S-T` path distinct from it.
-- **Reasoning:** The two pieces’ trajectories form two distinct walks from `S` to `T` when viewed with one trajectory reversed. Removing cycles yields two distinct `S-T` paths, giving a lower bound. Conversely, two distinct paths can be temporally interleaved so that the pieces never occupy the same vertex.
-- **Shortest-path trees:** Choose one shortest path `P` from `S` to `T`. Build shortest-path trees rooted at `S` and `T`, forcing the vertices of `P` to use the path edges. Each vertex receives an attachment index on `P` in both trees.
-- **Detour candidates:** For every edge not belonging to `P`, orient it in either direction. If the `S`-tree attachment index of its first endpoint is smaller than the `T`-tree attachment index of its second endpoint, it forms a path candidate with length `distS[u] + 1 + distT[v]`.
-- **Critical fix:** Edges on the chosen path must be explicitly excluded from the candidate scan. Otherwise, a fixed path edge can reproduce the original shortest path and be incorrectly treated as a distinct alternative, especially yielding an invalid answer of twice the shortest distance.
-- **Complexity:** Two BFS traversals, tree attachment propagation, and one edge scan take `O(N+M)` time and `O(N+M)` memory.
-- **Validation:** The corrected implementation gives `3`, `-1`, and `4` on the three samples. It also handles trees, the two-vertex graph, triangles, cycles, and graphs with multiple shortest paths.

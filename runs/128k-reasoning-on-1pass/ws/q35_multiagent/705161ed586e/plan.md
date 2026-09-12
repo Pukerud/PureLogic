@@ -1,5 +1,0 @@
-1. Handle edge cases where the string length is less than 3 or cannot be partitioned into blocks of size $\ge 3$ (lengths 4, 5, 7). Return `""` for these.
-2. Precompute prefix counts of each character to efficiently calculate the cost of converting any substring to a target character in $O(26)$ time.
-3. Use Dynamic Programming to compute `dp[i]`, the minimum operations needed to make the prefix `caption[:i]` a good caption. For each `i`, iterate over all possible last block lengths $L \ge 3$, find the optimal target character (median), and update `dp[i]`.
-4. Reconstruct the lexicographically smallest result by recursively determining the best block at each position. At each step, try all valid blocks that achieve the minimum cost, and pick the one that yields the lexicographically smallest string. Use memoization to avoid recomputation.
-5. Return the reconstructed string or `""` if `dp[n]` remains infinity.

@@ -1,7 +1,0 @@
-- **Characterization:** Fix the center of the retained Snowflake Tree. Each selected middle-layer vertex must be an original neighbor of the center, and its available leaves are its neighbors other than the center.
-- **Capacity:** For a neighbor \(m\) of center \(c\), define its capacity as \(\deg(m)-1\). For a fixed positive \(y\), \(m\) can be selected as a middle-layer vertex exactly when its capacity is at least \(y\).
-- **Optimal selection:** If \(k\) neighbors have capacity at least \(y\), selecting all of them is optimal. The resulting Snowflake has \(1+k(y+1)\) vertices: one center, \(k\) middle-layer vertices, and \(ky\) leaves.
-- **Threshold enumeration:** For each center, sort all neighbor capacities. The set of usable neighbors changes only when \(y\) equals one of the distinct positive capacity values. For a value at sorted index \(i\), the number of usable neighbors is `degree(center) - i`.
-- **Correctness:** Since the input is a tree, different middle-layer vertices cannot share a leaf or have edges between them. Extra neighbors and leaves are deleted, so every candidate counted by the formula is realizable.
-- **Complexity:** Sorting the capacities for every vertex costs \(O(\sum_v \deg(v)\log\deg(v))\), which is \(O(N\log N)\). The adjacency structure and temporary arrays use \(O(N)\) memory.
-- **Edge cases:** Values of \(y=0\) are ignored because both Snowflake parameters must be positive. A path of three vertices is handled by choosing an endpoint as the center, giving \(x=y=1\).

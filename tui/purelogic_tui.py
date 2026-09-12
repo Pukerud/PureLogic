@@ -49,6 +49,7 @@ vars (GVS5H_* are kept for scaffold compatibility).
 from __future__ import annotations
 
 import argparse
+import base64
 import json
 import os
 import re
@@ -112,8 +113,14 @@ def parse_args(argv=None):
                    help="mode (default: harness = full agent loop)")
     p.add_argument("--run", metavar="PROMPT", default=None,
                    help="run one prompt non-interactively and exit")
-    p.add_argument("--spec", choices=["general", "code", "math"], default="general",
-                   help="harness task spec (default: general)")
+    p.add_argument("--spec", choices=["general", "code", "math", "visual"], default="general",
+                   help="harness task spec (default: general; visual enables browser iteration)")
+    p.add_argument("--task-mode", choices=["general", "code", "math", "visual"], default=None,
+                   help="explicit task mode alias for --spec")
+    p.add_argument("--visual", action="store_true",
+                   help="shortcut for --spec visual")
+    p.add_argument("--no-auto-visual", action="store_true",
+                   help="do not route obvious web/UI prompts from general to visual")
     p.add_argument("--stages", "--iters", dest="stages", type=int, default=None,
                    help="manager->worker stage budget (default 6)")
     p.add_argument("--cap", type=int, default=None,
@@ -132,6 +139,22 @@ def parse_args(argv=None):
     p.add_argument("--no-stream", action="store_true", help="--run chat: print only the final answer")
     p.add_argument("--json", action="store_true", dest="as_json",
                    help="--run: print a JSON result object")
+    p.add_argument("--inspect", choices=["auto", "required", "off"], default=None,
+                   help="visual browser inspection policy (default: auto)")
+    p.add_argument("--vision", choices=["auto", "required", "off"], default=None,
+                   help="visual screenshot review policy (default: auto)")
+    p.add_argument("--vision-base", default=None,
+                   help="OpenAI-compatible vision endpoint base URL")
+    p.add_argument("--vision-model", default=None,
+                   help="vision-capable model id")
+    p.add_argument("--vision-cap", type=int, default=None,
+                   help="max output tokens for vision review (default 1024)")
+    p.add_argument("--keep-transcript", action="store_true",
+                   help="retain verbose transcript.jsonl after a run")
+    p.add_argument("--keep-evidence", action="store_true",
+                   help="retain the latest browser screenshot under visual-evidence/")
+    p.add_argument("--verbose", action="store_true",
+                   help="retain verbose transcripts and browser evidence")
     return p.parse_args(argv)
 
 
@@ -148,7 +171,18 @@ class Cfg:
             args.temp if args.temp is not None else DEFAULT_TEMP)
         self.no_think = args.no_think
         self.mode = args.mode
-        self.spec = args.spec
+        self.spec = args.task_mode or ("visual" if args.visual else args.spec)
+        self.auto_visual = not args.no_auto_visual and os.environ.get(
+            "PURELOGIC_AUTO_VISUAL", "1").lower() not in {"0", "false", "off", "no"}
+        self.inspect = args.inspect or os.environ.get("PURELOGIC_INSPECT", "auto")
+        self.vision = args.vision or os.environ.get("PURELOGIC_VISION", "auto")
+        self.vision_base = (args.vision_base or os.environ.get("PURELOGIC_VISION_BASE", "")).rstrip("/")
+        self.vision_model = args.vision_model or os.environ.get("PURELOGIC_VISION_MODEL", "")
+        self.vision_cap = args.vision_cap or int(os.environ.get("PURELOGIC_VISION_CAP", "1024"))
+        self.keep_transcript = args.keep_transcript or args.verbose or \
+            os.environ.get("PURELOGIC_KEEP_TRANSCRIPT", "").lower() in {"1", "true", "yes"}
+        self.keep_evidence = args.keep_evidence or args.verbose or \
+            os.environ.get("PURELOGIC_KEEP_EVIDENCE", "").lower() in {"1", "true", "yes"}
         ws = Path(args.workspace_dir) if args.workspace_dir else Path.cwd() / "Workspace"
         self.ws_dir = ws.resolve()
         self.ws_dir.mkdir(parents=True, exist_ok=True)
@@ -196,6 +230,29 @@ GENERAL_SPEC = {
     ),
 }
 SPECS = {"general": GENERAL_SPEC}  # code/math come from the scaffold once imported
+
+VISUAL_HINT_RE = re.compile(
+    r"\b(html?|css|javascript|js|web(?:site|app)?|frontend|front-end|ui|ux|browser|"
+    r"dashboard|landing page|visual(?:ize|ization)?|canvas|svg|component)\b", re.I)
+
+VISUAL_SPEC = {
+    "kind": "visual",
+    "solver_system": (
+        "You are an expert frontend and visual-product engineer. Build the requested web "
+        "artifact in the shared workspace. Use semantic HTML, accessible labels, responsive "
+        "CSS, and self-contained JavaScript unless the task requests another structure. "
+        "The browser inspector will check the files after each implementation stage, and its "
+        "findings are authoritative feedback to fix. End with a concise ANSWER: line."
+    ),
+    "critic_system": "Review the generated visual artifact and browser findings for correctness.",
+}
+
+
+def resolve_spec(requested, prompt, auto_visual=True):
+    """Choose a task spec without changing explicit code/math/visual selections."""
+    if requested != "general":
+        return requested
+    return "visual" if auto_visual and VISUAL_HINT_RE.search(prompt or "") else requested
 
 
 def local_extra(cfg):
@@ -258,6 +315,17 @@ In the CODE section put only a one-line pointer, e.g. '(complete program written
 solution.py)', and keep NOTES concise.
 """
 
+TOOL_NOTE_VISUAL = """
+
+VISUAL ARTIFACT WORKFLOW — create every requested HTML, CSS, JS, SVG, JSON, or other
+frontend asset with write_file in the shared workspace. Start with the requested entry
+point (prefer index.html), keep file references relative, and make the page usable by
+keyboard and screen readers. After each implementation task, a disposable Playwright
+browser will inspect the entry point. Treat the returned VISUAL INSPECTION findings as
+test feedback: fix them in the next task and re-check. Do not paste large artifacts in
+your response; write complete files and keep the ANSWER section concise.
+"""
+
 
 class LiveState:
     """Shared live state: written by the model-call threads, read by the panel.
@@ -281,6 +349,11 @@ class LiveState:
         self.files = []           # [(relpath, bytes)] files written by the agent this run
         self.retries = 0          # infra retries across the run
         self.inflight = 0         # scaffold calls currently in flight
+        self.calls = 0
+        self.completion_tokens = 0
+        self.prompt_tokens = 0
+        self.truncated_calls = 0
+        self.last_finish_reason = None
 
     def begin_call(self, role):
         with self.lock:
@@ -334,10 +407,10 @@ class _InfraError(RuntimeError):
     pass
 
 
-def _stream_one(cfg, body, live):
+def _stream_one(cfg, body, live, base=None):
     """One streaming request; returns (content, tool_calls, usage, finish, reasoning)."""
     req = urllib.request.Request(
-        cfg.base + "/chat/completions", data=json.dumps(body).encode(),
+        (base or cfg.base) + "/chat/completions", data=json.dumps(body).encode(),
         headers={"Content-Type": "application/json", "User-Agent": "purelogic-tui/2.0"})
     content_parts, reasoning_parts = [], []
     tool_calls = {}
@@ -404,9 +477,10 @@ def _unesc(s):
         return s
 
 
-def _stream_with_retry(cfg, messages, tools, temperature, live, cap=None, extra=None):
+def _stream_with_retry(cfg, messages, tools, temperature, live, cap=None, extra=None,
+                       base=None, model=None):
     body = {
-        "model": cfg.model,
+        "model": model or cfg.model,
         "messages": messages,
         "stream": True,
         "temperature": temperature,
@@ -426,7 +500,7 @@ def _stream_with_retry(cfg, messages, tools, temperature, live, cap=None, extra=
     while True:
         attempt += 1
         try:
-            return _stream_one(cfg, body, live)
+            return _stream_one(cfg, body, live, base=base)
         except urllib.error.HTTPError as e:
             snippet = ""
             try:
@@ -438,7 +512,7 @@ def _stream_with_retry(cfg, messages, tools, temperature, live, cap=None, extra=
                 live.last_log = f"endpoint error {e.code}; retry {attempt}/{MAX_RETRIES - 1}"
                 time.sleep(min(5.0 * attempt, 30.0))
                 continue
-            raise _InfraError(f"HTTP {e.code} from {cfg.base}: {snippet}") from e
+            raise _InfraError(f"HTTP {e.code} from {base or cfg.base}: {snippet}") from e
         except (urllib.error.URLError, TimeoutError, ConnectionError, OSError) as e:
             if attempt < MAX_RETRIES:
                 live.retries += 1
@@ -451,7 +525,7 @@ def _stream_with_retry(cfg, messages, tools, temperature, live, cap=None, extra=
 # --- the write_file tool -------------------------------------------------------
 
 BOOKKEEPING = {"task.md", "plan.md", "tasks.json", "transcript.jsonl", "notes.md",
-               "answer.md", "solution.py"}
+               "answer.md", "solution.py", "inspection.json", "result.json"}
 
 
 def _safe_ws_path(ws, p):
@@ -561,9 +635,10 @@ def _exec_tool(ws, tc, live):
 
 def _ws_mtimes(ws):
     out = {}
-    for f in Path(ws).iterdir():
+    root = Path(ws)
+    for f in root.rglob("*"):
         if f.is_file():
-            out[f.name] = f.stat().st_mtime_ns
+            out[f.relative_to(root).as_posix()] = f.stat().st_mtime_ns
     return out
 
 
@@ -573,17 +648,29 @@ def _ws_artifact_advanced(ws, before, kind):
     if kind == "code":
         return "solution.py" in after and after["solution.py"] > before.get("solution.py", 0)
     return any(n not in before or after[n] > before[n]
-               for n in after if n not in BOOKKEEPING)
+               for n in after if Path(n).name not in BOOKKEEPING)
 
 
 # --- replacement for the scaffold's _chat (records the transcript exactly as
 #     the original did, but every call streams and workers get the tool loop) ---
 
 def install_model_layer(cfg, live, multiagent):
+    _orig_record = multiagent._record
+
+    def _record2(ws, rec):
+        if cfg.keep_transcript:
+            _orig_record(ws, rec)
+
     def _chat2(ws, role, messages, temperature, meta=None):
         m = meta if meta is not None else {}
         resp = tui_model_call(cfg, live, ws, role, messages, temperature, m)
-        multiagent._record(ws, {
+        live.calls += 1
+        live.completion_tokens += m.get("completion_tokens") or 0
+        live.prompt_tokens += m.get("prompt_tokens") or 0
+        if m.get("finish_reason") == "length":
+            live.truncated_calls += 1
+        live.last_finish_reason = m.get("finish_reason")
+        _record2(ws, {
             "t": time.time(), "role": role, "request": messages, "response": resp,
             "reasoning": m.get("reasoning"), "thinking_blocks": m.get("thinking_blocks"),
             "reasoning_is_summary": m.get("reasoning_is_summary"),
@@ -599,11 +686,74 @@ def install_model_layer(cfg, live, multiagent):
         status, nexts, summary, wrote = _orig_worker(problem, spec, ws, task, log, finalize)
         if not wrote:
             wrote = _ws_artifact_advanced(ws, before, spec["kind"])
+        if spec["kind"] == "visual" and not finalize and cfg.inspect != "off":
+            try:
+                from .visual_inspector import (concise_summary, inspect_visual_artifact,
+                                               write_result)
+            except ImportError:
+                from visual_inspector import (concise_summary, inspect_visual_artifact,
+                                              write_result)
+
+            def vision_call(screenshot, evidence):
+                return _vision_review(cfg, live, screenshot, evidence)
+
+            vision = vision_call if cfg.vision != "off" else None
+            inspection = inspect_visual_artifact(
+                ws, vision=vision, retain_evidence=cfg.keep_evidence)
+            write_result(Path(ws) / "inspection.json", inspection)
+            feedback = concise_summary(inspection)
+            summary = f"{summary} {feedback}"
+            if cfg.inspect == "required" and not inspection.get("available"):
+                raise RuntimeError(feedback)
+            if cfg.vision == "required" and not (inspection.get("vision") or {}).get("ok"):
+                raise RuntimeError(feedback)
+            if inspection.get("available") and (inspection.get("findings") or not inspection.get("ok")):
+                status = "continue"
+                nexts = nexts or [
+                    "Fix every browser inspection finding in the generated visual artifact, then re-check it."
+                ]
         return status, nexts, summary, wrote
 
     _orig_worker = multiagent._worker
     multiagent._chat = _chat2
+    multiagent._record = _record2
     multiagent._worker = _worker2
+
+
+def _vision_review(cfg, live, screenshot, evidence):
+    """Run one optional screenshot review through the same streaming model layer."""
+    if not cfg.vision_base:
+        raise RuntimeError("vision endpoint is not configured (set PURELOGIC_VISION_BASE)")
+    if not cfg.vision_model:
+        raise RuntimeError("vision model is not configured (set PURELOGIC_VISION_MODEL)")
+    image = base64.b64encode(screenshot).decode("ascii")
+    messages = [
+        {"role": "system", "content": (
+            "You are reviewing a generated web page screenshot. Identify concrete visual "
+            "or usability defects that should be fixed. Be concise and return either "
+            "'No visual issues found.' or a short bullet list."
+        )},
+        {"role": "user", "content": [
+            {"type": "text", "text": "Review this screenshot using the DOM evidence below:\n" +
+             json.dumps(evidence, ensure_ascii=False)[:6000]},
+            {"type": "image_url", "image_url": {"url": "data:image/png;base64," + image}},
+        ]},
+    ]
+    live.begin_call("vision")
+    live.inflight += 1
+    try:
+        content, _tcs, _usage, _finish, _reasoning = _stream_with_retry(
+            cfg, messages, None, cfg.temp, live, cap=cfg.vision_cap,
+            base=cfg.vision_base, model=cfg.vision_model)
+        live.calls += 1
+        live.completion_tokens += _usage.get("completion_tokens") or 0
+        live.prompt_tokens += _usage.get("prompt_tokens") or 0
+        live.last_finish_reason = _finish
+        if _finish == "length":
+            live.truncated_calls += 1
+        return content.strip()
+    finally:
+        live.inflight = max(0, live.inflight - 1)
 
 
 def tui_model_call(cfg, live, ws, role, messages, temperature, meta):
@@ -613,7 +763,8 @@ def tui_model_call(cfg, live, ws, role, messages, temperature, meta):
     msgs = list(messages)
     if is_file_role:
         tools = TOOL_DEFS
-        note = {"code": TOOL_NOTE_CODE}.get(live.kind, TOOL_NOTE_GENERAL)
+        note = {"code": TOOL_NOTE_CODE, "visual": TOOL_NOTE_VISUAL}.get(
+            live.kind, TOOL_NOTE_GENERAL)
         if live.kind == "math":
             note = ""
         if note:
@@ -805,10 +956,16 @@ def run_once(cfg, args, orchestrator, multiagent, live):
         return 1
     ws = tui.last_ws
     stats = read_transcript(ws) if ws else {}
+    if not stats.get("n_calls"):
+        stats.update({"n_calls": live.calls, "completion_tokens": live.completion_tokens,
+                      "prompt_tokens": live.prompt_tokens,
+                      "truncated_calls": live.truncated_calls})
+    if not tui.last_status.get("finish_reason"):
+        tui.last_status["finish_reason"] = live.last_finish_reason
     elapsed = time.time() - t0
-    files_written = list(live.files)
+    files_written = list(dict(live.files).items())
     artifact = None
-    if cfg.spec == "general" and not files_written and answer and ws:
+    if tui.spec == "general" and not files_written and answer and ws:
         artifact = extract_artifact(answer)
         if artifact:
             (Path(ws) / artifact[0]).write_text(artifact[1], encoding="utf-8")
@@ -816,7 +973,7 @@ def run_once(cfg, args, orchestrator, multiagent, live):
     if args.as_json:
         files = sorted(f.name for f in Path(ws).iterdir() if f.is_file()) if ws else []
         result = {
-            "mode": "harness", "spec": cfg.spec,
+            "mode": "harness", "spec": tui.spec,
             "ok": bool(answer and answer.strip()) or bool(files_written),
             "answer": answer, "workspace": ws, "files": files,
             "files_written": [{"path": p, "bytes": b} for p, b in files_written],
@@ -1180,10 +1337,16 @@ def build_tui(cfg, orchestrator, multiagent, live):
         # ---- harness ----
         def do_harness(self, problem):
             self.add(Rule(style="magenta"))
+            self.spec = resolve_spec(self.spec, problem, cfg.auto_visual)
             live.kind = self.spec
             live.stage = 0
             live.files = []
             live.last_log = ""
+            live.calls = 0
+            live.completion_tokens = 0
+            live.prompt_tokens = 0
+            live.truncated_calls = 0
+            live.last_finish_reason = None
             ws = {"v": None}
             status_out = {}
             act = Activity("harness")
@@ -1215,9 +1378,9 @@ def build_tui(cfg, orchestrator, multiagent, live):
                 w = ws["v"] or status_out.get("ws")
                 if w:
                     tr = read_transcript(w)
-                    st["calls"] = tr["n_calls"]
-                    st["tokens"] = tr["completion_tokens"]
-                    st["ptokens"] = tr["prompt_tokens"]
+                    st["calls"] = tr["n_calls"] or live.calls
+                    st["tokens"] = tr["completion_tokens"] or live.completion_tokens
+                    st["ptokens"] = tr["prompt_tokens"] or live.prompt_tokens
                     st["tasks"] = read_tasks(w)
 
             def prompt_echo():
@@ -1256,11 +1419,17 @@ def build_tui(cfg, orchestrator, multiagent, live):
                 except Exception:  # noqa: BLE001
                     pass
             self.last_status = status_out
+            if not status_out.get("finish_reason"):
+                status_out["finish_reason"] = live.last_finish_reason
             self.add_harness_result(ws["v"], status_out, time.time() - act.state["t0"],
                                     error["v"], problem=problem)
 
         def add_harness_result(self, ws, status_out, elapsed, error, problem=None):
             st = read_transcript(ws) if ws else {}
+            if not st.get("n_calls"):
+                st.update({"n_calls": live.calls, "completion_tokens": live.completion_tokens,
+                           "prompt_tokens": live.prompt_tokens,
+                           "truncated_calls": live.truncated_calls, "calls": []})
             answer = None
             if ws:
                 wsd = Path(ws)
@@ -1271,7 +1440,7 @@ def build_tui(cfg, orchestrator, multiagent, live):
                         break
             if not answer:
                 answer = ""
-            files_written = list(live.files)
+            files_written = list(dict(live.files).items())
             # fallback artifact extraction (only when the agent used no file writes)
             if self.spec != "code" and not files_written:
                 art = extract_artifact(answer)
@@ -1279,6 +1448,13 @@ def build_tui(cfg, orchestrator, multiagent, live):
                     (Path(ws) / art[0]).write_text(art[1], encoding="utf-8")
                     files_written.append((art[0], os.path.getsize(Path(ws) / art[0])))
             has_answer = bool(answer.strip())
+            inspection = {}
+            if ws and (Path(ws) / "inspection.json").exists():
+                try:
+                    inspection = json.loads((Path(ws) / "inspection.json").read_text(
+                        encoding="utf-8", errors="replace"))
+                except ValueError:
+                    inspection = {"error": "inspection.json was not valid JSON"}
             ok = (error is None) and (has_answer or bool(files_written))
             blocks = []
             meta = T(M(f"[bold]{'✓' if ok else '✗'}[/] "),
@@ -1290,6 +1466,12 @@ def build_tui(cfg, orchestrator, multiagent, live):
                        f"finish={status_out.get('finish_reason', '-')}", "dim"))
             if error:
                 blocks.append(T(M("[bold red]✗ failed:[/] "), P(error)))
+            if self.spec == "visual" and inspection:
+                browser_state = "available" if inspection.get("available") else "unavailable"
+                findings = inspection.get("findings") or []
+                blocks.append(P(f"browser inspection: {browser_state} · "
+                                f"{len(findings)} finding(s) · cleaned="
+                                f"{inspection.get('cleaned', True)}", "dim"))
             blocks.append(meta)
             if answer:
                 if self.spec == "code" and ws and (Path(ws) / "solution.py").exists():
@@ -1307,6 +1489,15 @@ def build_tui(cfg, orchestrator, multiagent, live):
                     blocks.append(Markdown(shown))
             elif not error:
                 blocks.append(P("no answer produced", "red"))
+            if ws:
+                # The scaffold initializes both answer.md and solution.py for every kind.
+                # Do not retain empty placeholders in the final artifact set.
+                try:
+                    for placeholder in (Path(ws) / "solution.py", Path(ws) / "answer.md"):
+                        if placeholder.exists() and placeholder.stat().st_size == 0:
+                            placeholder.unlink()
+                except FileNotFoundError:
+                    pass
             if ws:
                 if files_written:
                     fw = T(M("[bold]files written by the agent:[/]"))
@@ -1327,13 +1518,38 @@ def build_tui(cfg, orchestrator, multiagent, live):
                                         mark))
                 blocks.append(Rule(style="dim"))
                 blocks.append(T(M("[bold]artifacts →[/] "), P(ws, "bold green")))
-                files = T(M("[dim]files:[/] "))
+                files = T(M("[dim]final files:[/] "))
                 for f in sorted(Path(ws).iterdir()):
-                    if f.is_file():
+                    if f.is_file() and f.name not in {
+                            "task.md", "plan.md", "notes.md", "tasks.json", "transcript.jsonl"}:
                         files.append(f" {f.name}")
                         files.append_text(Text(f" {f.stat().st_size:,}B", style="dim"))
                 blocks.append(files)
             self.last_ws = ws
+            if ws:
+                result_payload = {
+                    "mode": "harness", "spec": self.spec,
+                    "ok": ok, "answer_present": has_answer,
+                    "artifacts": [p for p, _ in files_written],
+                    "inspection": inspection or None,
+                    "calls": st.get("n_calls", 0),
+                }
+                (Path(ws) / "result.json").write_text(
+                    json.dumps(result_payload, ensure_ascii=False, indent=2) + "\n",
+                    encoding="utf-8")
+                files.append(" result.json")
+                files.append_text(Text(f" {os.path.getsize(Path(ws) / 'result.json'):,}B", style="dim"))
+                if not cfg.keep_transcript:
+                    for name in ("task.md", "plan.md", "notes.md", "tasks.json", "transcript.jsonl"):
+                        try:
+                            (Path(ws) / name).unlink()
+                        except FileNotFoundError:
+                            pass
+                if not cfg.keep_evidence:
+                    evidence_dir = Path(ws) / "visual-evidence"
+                    if evidence_dir.exists():
+                        import shutil
+                        shutil.rmtree(evidence_dir)
             panel = Panel(Group(*blocks), box=box.DOUBLE,
                           border_style="green" if ok else "red",
                           title=M(f"[bold]RESULT[/] · {self.spec} · "
@@ -1364,7 +1580,7 @@ def build_tui(cfg, orchestrator, multiagent, live):
             elif cmd == "help":
                 self.add(Panel(Group(
                     M("[bold]/mode[/] [dim]harness|chat   switch mode (default harness)[/]"),
-                    M("[bold]/spec[/] [dim]general|code|math   harness task spec[/]"),
+                    M("[bold]/spec[/] [dim]general|code|math|visual   harness task spec[/]"),
                     M("[bold]/stages[/] [dim]N    manager→worker stage budget (default 6)[/]"),
                     M("[bold]/cap[/] [dim]N     max output tokens per model call (file calls use[/] "
                       "[dim]--file-cap[/] [dim], default 20480)[/]"),
@@ -1392,9 +1608,21 @@ def build_tui(cfg, orchestrator, multiagent, live):
                 else:
                     self.add(T(M("mode: "), M(f"[bold]{self.mode}[/]")))
             elif cmd == "spec":
-                if arg in ("general", "code", "math"):
+                if arg in ("general", "code", "math", "visual"):
                     self.spec = arg
                     self.add(T(M("harness spec → "), M(f"[bold]{self.spec}[/]")))
+            elif cmd == "inspect":
+                if arg in ("auto", "required", "off"):
+                    cfg.inspect = arg
+                    self.add(T(M("visual inspection → "), M(f"[bold]{arg}[/]")))
+                else:
+                    self.add(P(f"visual inspection: {cfg.inspect}", "dim"))
+            elif cmd == "vision":
+                if arg in ("auto", "required", "off"):
+                    cfg.vision = arg
+                    self.add(T(M("vision review → "), M(f"[bold]{arg}[/]")))
+                else:
+                    self.add(P(f"vision review: {cfg.vision}", "dim"))
             elif cmd in ("stages", "iters"):
                 try:
                     cfg.stages = max(1, int(arg or cfg.stages))
@@ -1518,7 +1746,8 @@ def main(argv=None):
     except Exception:  # noqa: BLE001
         pass
     orchestrator, multiagent = import_scaffold(cfg)
-    SPECS.update({"code": orchestrator.CODE_SPEC, "math": orchestrator.MATH_SPEC})
+    SPECS.update({"code": orchestrator.CODE_SPEC, "math": orchestrator.MATH_SPEC,
+                  "visual": VISUAL_SPEC})
     live = LiveState()
     live.kind = cfg.spec
     install_model_layer(cfg, live, multiagent)

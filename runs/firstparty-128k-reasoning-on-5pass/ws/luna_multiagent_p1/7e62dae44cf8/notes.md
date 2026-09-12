@@ -1,5 +1,0 @@
-- **Algorithm:** Maintain all currently adjacent unabsorbed slimes in a min-heap. Always inspect the weakest one; if it is absorbable, absorb it and add its unvisited neighbors to the heap.
-- **Greedy correctness:** Since all strengths are positive, Takahashi’s strength only increases. If the weakest adjacent slime is not absorbable, no other adjacent slime is absorbable. Therefore stopping at that point is final. Absorbing the weakest eligible slime cannot prevent absorbing any other currently eligible slime, and it exposes all relevant neighboring cells.
-- **Strict condition:** The requirement `strength < current / X` is checked exactly as `X * strength < current`, avoiding floating-point errors.
-- **Visited handling:** Cells are marked when inserted into the heap, ensuring each grid cell is inserted at most once. The starting cell is marked initially.
-- **Complexity:** Each of the at most `H*W` cells is inserted and removed from the heap once, giving `O(HW log(HW))` time and `O(HW)` memory.

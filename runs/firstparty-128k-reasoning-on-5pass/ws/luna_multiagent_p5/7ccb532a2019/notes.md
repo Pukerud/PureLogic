@@ -1,9 +1,0 @@
-- **Frequency model:** Only the 26 character frequencies matter; character order is irrelevant.
-- **Target frequency:** For a fixed positive `k`, every letter is either absent (frequency `0`) or present exactly `k` times.
-- **Baseline cost:** If a letter with count `c` is assigned final frequency `x`, independently changing it costs `abs(c - x)`. This means deleting surplus characters or inserting missing characters.
-- **Adjacent conversion:** A surplus occurrence at letter `i` and a missing occurrence at letter `i+1` can be matched by changing the former to the latter. This costs one operation instead of one deletion plus one insertion, saving one operation. The maximum saving on an edge is `min(surplus at i, deficit at i+1)`.
-- **Why longer moves are unnecessary:** Changing a letter across at least two alphabet positions costs at least two operations. Deleting it and inserting the destination character also costs two, so a longer move never improves the answer. Consequently, only adjacent transfers need consideration.
-- **Two-state DP:** For each fixed `k`, maintain the minimum cost after each alphabet position for two choices: current letter absent or current letter occurring `k` times. The transition subtracts the possible adjacent-transfer saving from the baseline costs.
-- **Empty result:** Deleting all characters costs `n`, which is included as the initial answer. This also safely handles cases where no positive-frequency choice is better.
-- **Frequency range:** A target `k` greater than the maximum original frequency cannot improve the result: it creates only additional insertions and provides no surplus for useful transfers. Therefore, testing `1..max(count)` is sufficient.
-- **Complexity:** There are at most `n` candidate frequencies, and each uses 26 positions with constant-size transitions: `O(26n)` time and `O(1)` extra space.

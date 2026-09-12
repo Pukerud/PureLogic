@@ -1,6 +1,0 @@
-- **Feasibility:** Every character appearing in `S` must map consistently to one character in `T`. If the same source character corresponds to different target characters, the transformation is impossible.
-- **Basic operation count:** Each non-identity source-to-target mapping requires one operation, so start with the number of changed mappings.
-- **Cycles:** The non-identity mappings form a directed graph with outdegree at most one. Each directed cycle needs one additional operation using a temporary character.
-- **Temporary character:** A character absent from the original `S` can serve as the temporary buffer. If a cycle exists and all 26 letters occur in `S`, no buffer is available and the answer is `-1`.
-- **Cycle detection:** A three-state DFS counts each directed cycle exactly once. Identity mappings and mappings from absent source letters do not create useful edges.
-- **Complexity:** The strings are scanned once, and the graph has only 26 vertices, giving `O(N)` time and `O(1)` auxiliary space.

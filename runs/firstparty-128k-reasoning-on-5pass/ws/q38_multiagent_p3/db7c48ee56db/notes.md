@@ -1,8 +1,0 @@
-- **Core idea:** Use the guarantee C(N,K) <= 10^6 and enumerate the smaller side m = min(K, N-K). If K is the smaller side, enumerate chosen elements; otherwise enumerate omitted elements.
-- **Complement XOR:** Let T be the XOR of all elements. For any omitted set O, the XOR of the chosen elements is T ^ XOR(O), because T = chosen_XOR ^ omitted_XOR and XOR is self-inverse.
-- **Size bound:** Since C(N,m) <= 10^6 and N >= 2m, we have C(2m,m) <= C(N,m) <= 10^6. This forces m <= 11, so the total number of XORed elements over all enumerated combinations is small, around at most 8 million.
-- **Algorithm:** Read N, K, and A. Compute total XOR. If m = 0, i.e. K = N, the answer is total. If m = 1, handle linearly: K = 1 gives max(A), K = N-1 gives max(total ^ x). Otherwise iterate over combinations(A, m), accumulate XOR starting from 0 for the chosen side or from total for the omitted side, and track the maximum.
-- **Duplicates:** Positions are distinct even when values repeat. Enumerating combinations over the list preserves positions; do not deduplicate values.
-- **Complexity:** Time O(C(N,m) * m) plus O(N) to read input and compute total XOR. Memory O(N) for the array. The worst-case work is bounded by the binomial guarantee.
-- **Edge cases:** K = N gives m = 0; K = 1 or K = N-1 are handled in O(N); all-zero arrays produce answer 0, so initializing best to 0 is safe because XOR values are non-negative.
-- **Rejected alternatives:** A linear basis does not enforce exact cardinality. Meet-in-the-middle can become exponential in N/2. Full mask DP fails for large N with small K. Direct enumeration of the smaller side is simplest and tight.

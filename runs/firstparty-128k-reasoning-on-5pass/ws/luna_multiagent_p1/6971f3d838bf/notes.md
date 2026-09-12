@@ -1,7 +1,0 @@
-- **Validation:** The segment-tree implementation passes the supplied examples and exhaustive brute-force comparisons on small arrays.
-- **Edge cases:** All-negative arrays return the best negative non-empty subarray, never an invalid zero-length result. Singleton arrays and arrays containing only one distinct value correctly disallow deletion because it would empty the array. Repeated values, zero values, and mixtures of positive and negative values also pass.
-- **DP meaning:** For each distinct value `x`, the state stores the best non-empty subarray sum ending at the current scan position after deleting every occurrence of `x`.
-- **Initialization:** Every deletion state starts at negative infinity. This prevents an empty subarray from contributing zero.
-- **Transition:** At value `v`, the state for deleting `v` is unchanged because this occurrence disappears. Every other state becomes `max(previous + v, v)`.
-- **Segment tree:** The simultaneous transition for all non-exceptional states is a global addition by `v`, followed by a global `chmax(v)`. The exceptional state is saved before these operations and restored with a point assignment.
-- **Complexity:** Segment-tree-beats supports the required operations in amortized `O(log m)` time, giving `O(n log m)` total time and `O(m)` memory, where `m` is the number of distinct values.

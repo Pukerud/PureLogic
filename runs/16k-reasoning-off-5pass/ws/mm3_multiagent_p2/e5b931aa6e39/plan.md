@@ -1,3 +1,0 @@
-We need to find positive integers `x > y` such that `x^3 - y^3 = N`. The difference of cubes factors as `(x - y)(x^2 + xy + y^2)`. We can iterate over all possible values of `d = x - y` (where `d >= 1`). For a fixed `d`, we have `x = y + d`, and substituting gives `N = d * (3y^2 + 3dy + d^2)`. This becomes a quadratic in `y`: `3d * y^2 + 3d^2 * y + d^3 - N = 0`. Solve the quadratic and check if the positive root is an integer and yields `x = y + d` positive. Since `N ≤ 1e18`, `d` cannot be too small (as `x^3 - y^3 ≥ 1`), but `d` can be up to about `N^(1/3)`. We iterate `d` from 1 to `N^(1/3) + 1` and check each. If any yields integer positive `y`, we output the pair; otherwise print `-1`.
-
-Complexity: O(N^(1/3)) which is at most ~1e6 iterations, fine.

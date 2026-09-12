@@ -1,5 +1,0 @@
-1. Since we need to maximize the minimum Manhattan distance, this is a classic "maximize the minimum" problem which can be solved using binary search on the answer (the distance).
-2. The possible range for the minimum distance is from 0 to 2*side (the maximum possible Manhattan distance on the boundary).
-3. For a given candidate distance `mid`, we need to check if it's possible to select at least `k` points such that every pair of selected points has a Manhattan distance >= `mid`.
-4. Because k is small (<= 25), we can use a backtracking/DFS approach to check feasibility. We iterate through the points and try to build a valid subset. To optimize, we can sort points by their "perimeter" coordinate (Manhattan distance from (0,0) along the boundary) and use greedy selection with backtracking.
-5. The check function will use DFS: maintain a list of selected points, and for each new candidate point, verify it is at least `mid` away from all previously selected points. If we can select k points, return True.

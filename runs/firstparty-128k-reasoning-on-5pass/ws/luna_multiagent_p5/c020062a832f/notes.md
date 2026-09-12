@@ -1,5 +1,0 @@
-- **Initial inversion count:** Scan the sequence from left to right using a Fenwick tree indexed by values. For each value `x`, the number of previously seen values strictly greater than `x` is `seen - count(values <= x)`.
-- **Effect of one shift:** During the transition from shift `k` to `k+1`, precisely the elements with original value `M-1-k` wrap from `M-1` to `0`.
-- **Per-element delta:** For an occurrence at zero-based position `i` of value `x`, with `rank` previous occurrences of `x` and total frequency `t`, its inversion contribution changes by `2*i - N + t - 2*rank`. Equal-valued elements are excluded automatically.
-- **Aggregation:** Compute the total transition delta for every residue in one scan. Then iterate through all shifts, applying the delta associated with the value that wraps.
-- **Complexity:** Fenwick processing costs `O(N log M)`. Delta preparation and output generation cost `O(N + M)`. Memory usage is `O(M)`.

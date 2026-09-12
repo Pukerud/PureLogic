@@ -1,8 +1,0 @@
-- **Core decomposition:** Let t = v2(Ai+Aj). Then f(Ai+Aj) = (Ai+Aj)/2^t, and the pair has this t exactly when Ai+Aj ≡ 2^t (mod 2^{t+1}).
-- **Residue matching:** For fixed t, set half = 2^t and M = 2^{t+1}. Group values by r = a mod M, storing count c_r and sum s_r. The matching residue is sr = (half - r) mod M. If r < sr, cross-class pairs contribute c_sr*s_r + c_r*s_sr to the numerator. If r = sr, all pairs inside the class, including i=j, contribute s_r*(c_r+1). Accumulate the numerator for the t and add numerator//half to the answer.
-- **Self classes:** t=0 has no self residue. For t>=1 there are two self residues, and the r=sr case handles them.
-- **t range:** half only needs to run while half <= 2*maxA; at most 25 iterations for the constraints.
-- **Implementation:** Hybrid aggregation. For M <= 1<<20, use reusable cnt/sm arrays and a used list, resetting only used residues. For larger M, use a dict residue -> [count, sum]. This avoids huge arrays and keeps passes fast.
-- **Complexity:** O(N log maxA) time, roughly 25 passes over N plus occupied-residue processing. Memory O(N + min(N, 2^20)) plus the input list.
-- **Edge cases:** N=1, all even, all odd, and diagonal pairs are handled. The per-t numerator is a sum of pair sums each divisible by half, so integer division is exact.
-- **Validation:** Samples 1, 2, 3 give 5, 384, 20241214. A brute-force checker using direct repeated division matches on small random arrays.

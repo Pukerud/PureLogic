@@ -1,6 +1,0 @@
-- **Approach:** Collect zero-based positions of every `1`. If the final consecutive block begins at position `x`, the one with rank `i` must move from `pos[i]` to `x + i`, because adjacent swaps preserve the relative order of ones.
-- **Transformation:** The total swaps for block start `x` is `sum(abs(pos[i] - (x + i)))`, equivalent to `sum(abs((pos[i] - i) - x))`.
-- **Optimization:** The sum of absolute deviations is minimized by a median. Since original positions are increasing and ranks increase by one, adjusted coordinates `pos[i] - i` are nondecreasing, so their middle element is directly a median.
-- **Complexity:** O(N) time to scan the string and O(K) time for the final sum, where K is the number of ones. Memory usage is O(K).
-- **Correctness details:** With one `1`, the adjusted list has one value and the resulting cost is zero. Zero-based indexing is used consistently for both positions and ranks.
-- **Integer safety:** Python integers handle the possible swap total safely.

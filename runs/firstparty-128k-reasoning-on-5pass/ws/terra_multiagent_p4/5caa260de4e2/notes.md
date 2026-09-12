@@ -1,9 +1,0 @@
-- **Telescoping derivation:** Let group endpoints be `t1 < t2 < ... < tm = n`, with `t0 = 0`. The original total is `sum(A[tq] * (C[tq] - C[t(q-1)])) + k * sum(q * (C[tq] - C[t(q-1)]))`, where `A` and `C` are prefix sums of `nums` and `cost`.
-- **Group-index identity:** `sum(q * (C[tq] - C[t(q-1)])) = m * C[n] - sum(C[tq])` over internal endpoints `q = 1..m-1`. Thus each group is charged `k * C[n]`, while each internal cut after prefix `j` receives a refund of `k * C[j]`.
-- **Recurrence:** For a final segment beginning at `j + 1` and ending at `i`, use `dp[i] = min(dp[j] + A[i] * (C[i] - C[j]) + k*C[n] - k*C[j])` for all `0 <= j < i`.
-- **State meaning:** `dp[i]` is a transformed partition cost using the full-array cost sum `C[n]`; it is not generally the literal original objective for a prefix. At `i=n`, the telescoping identity makes it exactly equal to the requested total cost.
-- **Sample verification:** For `[3,1,4]`, `[4,6,6]`, `k=1`, the recurrence returns `110`, with cuts after position 2. For the second sample, it returns `985`, with cuts after positions 4 and 7.
-- **Boundary verification:** For `n=1`, the only transition is `j=0`, yielding `A[1]*C[1] + k*C[1] = (nums[0]+k)*cost[0]`, the required single-group result.
-- **Forced one-subarray check:** Choosing `j=0` at the final endpoint gives `A[n]*C[n] + k*C[n]`, exactly `(sum(nums)+k)*sum(cost)`, which is the cost of one subarray.
-- **Complexity:** `O(n^2)` time and `O(n)` memory. With `n <= 1000`, this is safe.
-- **Integer safety:** Python integers safely handle all intermediate values.

@@ -1,7 +1,0 @@
-- **Normalization:** Each conflict is represented as `(l, r)` with `l < r`. A subarray ending at position `x` is affected by this conflict exactly when `x >= r` and its left endpoint is at most `l`.
-- **Baseline sweep:** For each right endpoint `r`, maintain the largest `l` among all conflicts whose right endpoint is at most `r`. Every valid subarray ending at `r` must start after this value, contributing `r - best_left` subarrays.
-- **Removal gain:** Maintain the two largest left bounds among active conflicts. If the largest bound is unique, removing its associated pair changes the bound from `best_left` to `second_left`, yielding gain `best_left - second_left` for the current right endpoint.
-- **Ties:** When multiple active pairs have the same maximum left bound, `best_left == second_left`, so no single pair is uniquely decisive and the gain is zero. The update logic preserves this by treating each pair as an individual entry.
-- **Accumulation:** Gains are added to the pair currently providing the unique maximum bound. A pair can remain decisive across many right endpoints, so its total gain is accumulated.
-- **Exactly one removal:** The baseline is always combined with the maximum gain over all pairs. A zero gain is allowed, so this also handles cases where removing any pair does not improve the result.
-- **Complexity:** The sweep processes every conflicting pair once, using `O(n + m)` time and `O(n + m)` memory.

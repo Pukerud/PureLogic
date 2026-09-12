@@ -1,1 +1,0 @@
-Since the number of ways to choose K elements is small (at most $10^6$), we can generate all possible combinations of K elements from the input array A. For each combination, we calculate the XOR sum of the selected elements and track the maximum value found. This brute-force approach over combinations is efficient enough given the constraint $\binom{N}{K} \le 10^6$.

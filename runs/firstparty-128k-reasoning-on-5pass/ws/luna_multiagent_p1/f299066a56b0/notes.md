@@ -1,6 +1,0 @@
-- **Feasibility criterion:** For a candidate `K`, it is sufficient and necessary to pair the `K` smallest mochi with the `K` largest mochi in order: `A[i]` as the top and `A[N-K+i]` as the bottom for `0 <= i < K`.
-- **Why sufficient:** These pairs are disjoint because `2K <= N`. If every pair satisfies `2*A[i] <= A[N-K+i]`, then `K` kagamimochi can be formed directly.
-- **Why necessary:** In any valid solution, sort the chosen tops and bottoms independently. Pairing them in sorted order preserves validity by monotonicity. The `i`-th chosen top is at least `A[i]`, while the `i`-th chosen bottom is at most `A[N-K+i]`. Therefore, any valid solution implies `2*A[i] <= A[N-K+i]` for every `i`; otherwise even the most favorable extreme pairing would fail.
-- **Binary search:** Feasibility is monotone: if `K` pairs can be formed, then any smaller number can be formed by discarding pairs. Search `K` over `[0, floor(N/2)]`.
-- **Complexity:** Each feasibility check takes `O(K)`, and binary search performs `O(log N)` checks, for `O(N log N)` time and `O(N)` input storage.
-- **Edge cases:** `K=0` is always feasible; multiplication by `2` avoids floating-point precision issues.

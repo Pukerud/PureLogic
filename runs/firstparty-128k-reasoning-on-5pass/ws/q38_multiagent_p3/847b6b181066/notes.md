@@ -1,7 +1,0 @@
-- **Model:** Let P_t be the cumulative wind displacement after t steps, with P_0 = (0,0). A smoke parcel born at time b at the origin is at position P_t - P_b at time t+0.5.
-- **Birth rule:** After the wind at step t, the origin is occupied iff P_t equals some earlier prefix position P_b. Therefore a new parcel is born exactly when P_t is a new prefix coordinate. Repeated prefix coordinates do not create new parcels, but the first occurrence already represents the same future trajectory.
-- **Query:** Target (R,C) is occupied at time t+0.5 iff P_t - (R,C) is a prefix coordinate that has already appeared. Since (R,C) != (0,0), the current P_t cannot be the needed coordinate, so checking before adding P_t is correct.
-- **Implementation:** Scan S once, maintain x,y for P_t, and keep a set seen initialized with (0,0). For each wind character, update x,y, test whether (x-R, y-C) is in seen, append 1 or 0, then add (x,y) to seen.
-- **Coordinates:** Use row x and column y. N: x -= 1, W: y -= 1, S: x += 1, E: y += 1. Negative coordinates are handled naturally by Python tuples.
-- **Complexity:** O(N) expected time and O(N) memory for the set of prefix coordinates; N = 200000 is easily within limits.
-- **Samples:** The traced outputs for samples 1, 2, and 3 are 001010, 0001101011, and 00100111111000101111, matching the given answers.

@@ -1,6 +1,0 @@
-- **Algorithm:** Sort queries by increasing prefix endpoint `R`. Sweep the array left to right, maintaining a Fenwick tree indexed by compressed array values, where each node supports prefix maximum.
-- **DP:** For appended element `A[i]`, compute `dp[i] = 1 + max(dp[j])` among prior positions with `A[j] < A[i]`. With compressed coordinate `idx`, this is Fenwick prefix maximum at `idx - 1`, ensuring strict increase.
-- **Query answer:** For a prefix already swept through `R`, the answer for threshold `X` is the maximum `dp[i]` among inserted elements with `A[i] <= X`. This is Fenwick prefix maximum through the largest compressed array value at most `X`.
-- **Correctness:** Any increasing subsequence ending at value at most `X` has every element at most `X`; conversely, `dp[i]` represents an increasing subsequence ending at `A[i]`. Therefore the maximum eligible DP value is exactly the requested result.
-- **Compression:** Only `A` values need compression. Use `bisect_right(values, X)` for inclusive threshold queries, including when `X` is absent from the array.
-- **Complexity:** Sorting queries costs `O(Q log Q)`. Each insertion and query costs `O(log N)`, for total `O((N+Q) log N)` time and `O(N+Q)` memory.

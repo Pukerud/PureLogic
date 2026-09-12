@@ -1,6 +1,0 @@
-- **Graph representation:** Each constraint is an undirected edge with XOR value `z`. Along an edge `(x, y, z)`, propagated potentials must satisfy `potential[y] = potential[x] ^ z`.
-- **Consistency check:** Iterative DFS assigns potentials in every connected component. If an already assigned vertex receives a different required value, the constraints are contradictory and the answer is `-1`.
-- **Component freedom:** In a consistent component, every valid assignment has the form `A[v] = potential[v] ^ offset`, where one common offset is chosen for the component.
-- **Minimization:** XOR acts independently on each binary bit. For a given bit, choosing offset bit `0` leaves the number of ones equal to the count among potentials; choosing `1` changes it to `component_size - count`. Therefore the offset bit is set when the potential bit is present in more than half of the component's vertices.
-- **Isolated vertices:** They form singleton components with potential zero, so the minimizing value is zero.
-- **Complexity:** With at most 30 relevant bits, the time complexity is `O(N + M + 30N)` and memory usage is `O(N + M)`.

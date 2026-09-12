@@ -1,5 +1,0 @@
-1. Identify all starting positions of '1' in the grid, as every valid segment must start with a 1.
-2. For each starting '1', explore all 4 diagonal directions. For each direction, extend the sequence following the pattern 2, 0, 2, 0, ... until it breaks or goes out of bounds.
-3. At each step in the initial diagonal run (including the start), check if a 90-degree clockwise turn is possible. A 90-degree clockwise turn from a diagonal direction means switching to the next diagonal direction in the order: (1,1) -> (1,-1) -> (-1,-1) -> (-1,1) -> (1,1).
-4. For each potential turn point, extend the sequence in the new diagonal direction, continuing the same 2,0,2,0... pattern.
-5. Track the maximum total length (initial run + turn run) across all possibilities. Handle edge cases where the segment might not turn (just a straight diagonal) or where the turn itself is invalid.

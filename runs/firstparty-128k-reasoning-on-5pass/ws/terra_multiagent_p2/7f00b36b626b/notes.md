@@ -1,6 +1,0 @@
-- **Core reduction:** Every value greater than `threshold` is an isolated component, since `lcm(a, b) >= max(a, b)` for positive integers and all input values are distinct.
-- **Eligible connections:** For eligible values `a, b <= threshold`, they have an edge precisely when they divide a common integer at most `threshold`; their least such common multiple is `lcm(a, b)`.
-- **DSU construction:** Scan multiples of every eligible input value. `owner[m]` stores one eligible value that divides `m`. When another eligible value divides the same `m`, union their DSU sets. This captures all pairs with LCM at most `threshold`.
-- **Important case:** Values need not divide one another. For example, with `6`, `10`, and threshold at least `30`, both divide `30`, so the sieve traversal unions them.
-- **Verification:** The implementation gives example outputs `4` for `[2,4,8,3,9], 5` and `2` for `[2,4,8,3,9,12], 10`. It also handles no eligible values, a single value, `threshold = 1`, and all values above the threshold.
-- **Complexity:** Multiple scanning costs `sum(threshold // x)` over eligible distinct values, bounded by `O(threshold log threshold)`. DSU operations are amortized near constant. Memory usage is `O(threshold + n)`.

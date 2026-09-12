@@ -1,6 +1,0 @@
-- **Separation by vitamin:** Every food belongs to exactly one vitamin group. For a fixed target \(T\), the three groups can be optimized independently; the target is feasible exactly when the minimum calorie costs for obtaining at least \(T\) units from each group sum to at most \(X\).
-- **Knapsack DP:** For each vitamin, `dp[c]` stores the maximum vitamin intake achievable using exactly `c` calories. Unreachable states are `-1`, and `dp[0] = 0`.
-- **0/1 handling:** Each food is processed with calorie states in descending order, ensuring that no item is selected more than once.
-- **Target checking:** For a target \(T\), scanning each DP from calorie zero upward finds the minimum exact calorie cost whose intake is at least \(T\). The sum of the three costs determines feasibility.
-- **Binary search:** Feasibility is monotonic in \(T\), so binary search finds the largest feasible target. `min(total_amount)` is a safe inclusive upper bound, and one larger than it is used as an infeasible exclusive bound.
-- **Complexity:** Knapsack preprocessing takes \(O(NX)\) time and \(O(X)\) memory per group. Binary search takes \(O(X \log M)\) additional time, where \(M\) is the answer range.

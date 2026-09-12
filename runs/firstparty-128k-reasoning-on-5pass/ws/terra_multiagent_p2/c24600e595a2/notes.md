@@ -1,6 +1,0 @@
-- **Optimal operation form:** Positions initially and finally equal to `0` are never flipped. A `1 -> 0` position is flipped once off, and a `0 -> 1` position is flipped once on. A `1 -> 1` position may either stay on throughout or be flipped off once and restored once.
-- **Phase ordering:** All off-flips can be moved before all on-flips without increasing cost. Within off-flips, descending `C` is optimal; within on-flips, ascending `C` is optimal.
-- **Common-one selection:** For any fixed number `t` of temporarily disabled `1 -> 1` positions, selecting the `t` largest costs is optimal. Therefore, examine prefixes of common-one costs sorted descending.
-- **Cost formula:** Let `D` be required off-flip weights, `E` required on-flip weights, `T` selected temporary common-one weights, `U=sum(common_one)`, `S0=sum(D)+U`, `m=|D|+|T|`, `k=|E|+|T|`. If `WR` is `sum((m-j+1)*r_j)` for descending merged removals and `WP` is `sum((k-j+1)*p_j)` for ascending merged additions, total cost is `m*S0 - WR + k*(U-sum(T)) + WP`.
-- **Incremental computation:** Add common-one weights from largest to smallest. Use binary search and prefix sums over sorted `D` and `E` to update `WR` and `WP` in `O(log N)` per candidate.
-- **Complexity:** Sorting is `O(N log N)` and all candidate evaluations total `O(N log N)`. Python integers safely handle the required range.

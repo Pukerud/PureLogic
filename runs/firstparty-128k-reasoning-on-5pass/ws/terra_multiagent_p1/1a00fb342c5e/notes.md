@@ -1,8 +1,0 @@
-- **Graph formulation:** Each constraint is an undirected edge `(x, y, z)` requiring `A[x] XOR A[y] = z`.
-- **XOR potentials:** In a connected component, choose a root with provisional value `0`. Traversal assigns `dist[v]` as the XOR of labels along a root-to-`v` path. Every feasible assignment is `A[v] = dist[v] XOR t` for one component-wide offset `t`.
-- **Consistency check:** When traversal sees an already assigned endpoint, verify `dist[to] == dist[v] XOR z`. Failure means no good sequence exists. Self-loops are therefore accepted exactly when `z = 0`.
-- **Minimization:** For a component of size `s`, at bit `b`, let `ones` be the number of provisional distances with that bit set. With offset bit `0`, this bit contributes `ones * 2^b`; with offset bit `1`, it contributes `(s - ones) * 2^b`. Set the offset bit iff `ones > s - ones`. Either choice is optimal on ties; code keeps it `0`.
-- **Bit range:** Since every `Z_i <= 10^9 < 2^30`, all XOR distances use only bits `0..29`. Higher offset bits only increase the sum, so they remain zero.
-- **Complexity:** Iterative DFS visits `O(N + M)` graph entries. Per-component bit counting totals `O(30N)`. Memory usage is `O(N + M)`.
-- **Implementation:** Uses adjacency lists, `dist = -1` as unvisited marker, iterative stack traversal, and directly writes minimized values into `answer`.
-- **Sample behavior:** The method produces valid minimum-sum assignments for all provided sample cases and prints `-1` for inconsistent cycles.

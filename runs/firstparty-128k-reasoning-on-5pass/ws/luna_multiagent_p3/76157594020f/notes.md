@@ -1,6 +1,0 @@
-- **Binary search:** Search for the smallest feasible maximum run length from 1 through `n`.
-- **Length 1:** The resulting string must be alternating, so calculate the flips needed for both possible alternating patterns and take the smaller value.
-- **Length at least 2:** For each maximal original run of length `k`, the minimum flips needed to split it into runs of length at most `limit` is `k // (limit + 1)`. Sum this over all runs.
-- **Correctness of run processing:** Runs can be handled independently for limits at least 2; strategically flipping positions inside a run creates separators and achieves the stated bound.
-- **Complexity:** Each feasibility check takes `O(n)` time, and binary search performs `O(log n)` checks, for total `O(n log n)` time and `O(1)` extra space.
-- **Edge cases:** A string of length one immediately returns one; zero operations is handled naturally by the feasibility checks.

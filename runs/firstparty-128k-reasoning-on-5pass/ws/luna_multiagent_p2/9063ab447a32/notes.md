@@ -1,7 +1,0 @@
-- **Marginal costs:** For product \(i\), the \(k\)-th unit costs \(P_i(2k-1)\). Therefore, an optimal purchase always consists of the globally cheapest marginal costs.
-- **Prefix under threshold:** For a threshold \(T\), the number of units of product \(i\) whose marginal cost is at most \(T\) is \(\left\lfloor (T/P_i+1)/2 \right\rfloor\), implemented as `(T // P_i + 1) // 2`.
-- **Cost calculation:** If this count is \(c_i\), the total cost of that product prefix is \(P_i c_i^2\). Summing these values gives the cost of buying every marginal unit at most \(T\).
-- **Threshold binary search:** The prefix cost is monotone in \(T\). Binary search finds the largest threshold whose complete prefix costs at most \(M\). The upper bound is chosen using the product with minimum \(P_i\), whose prefix alone is guaranteed to exceed \(M\) there.
-- **Remaining budget:** After buying all units up to the threshold, the next globally cheapest marginal cost is \(\min_i P_i(2c_i+1)\). Any remaining budget can buy exactly the quotient of remaining money by this cost.
-- **Correctness with ties:** All marginal costs equal to the threshold are included together, since the threshold represents a complete affordable prefix. If the next cost is tied across products, dividing the remaining budget by that common cost correctly distributes units among them.
-- **Complexity:** The binary search uses \(O(\log T)\) iterations, each scanning all \(N\) products. Total complexity is \(O(N\log T)\), with \(O(1)\) additional space besides the input.

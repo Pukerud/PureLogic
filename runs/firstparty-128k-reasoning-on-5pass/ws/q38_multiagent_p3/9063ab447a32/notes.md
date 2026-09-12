@@ -1,9 +1,0 @@
-- Marginal model: the j-th unit of product i has cost P_i(2j-1), so k units cost P_i k^2. An optimal purchase is a prefix of the globally sorted marginal costs; exchange any selected larger marginal for an unselected smaller one.
-- Threshold formulas: for x, product i contributes c_i = floor((x+P_i)/(2P_i)) units and cost P_i c_i^2. S(x) is the total cost of all marginals <= x and is monotone.
-- Binary search: find minimal T with S(T) > M. The predicate caps the running sum at M+1 to avoid unnecessary growth and to stop early.
-- Upper bound: let p = min P and r = isqrt(M // p). The (r+1)-th unit of a p-product has marginal cost 2pr+p and cumulative cost p(r+1)^2 >= p(floor(M/p)+1) > M, so hi = 2pr+p is a valid true bound.
-- Answer: after search, lo = T-1 and S(lo) <= M. Take all marginals <= lo, then buy as many T-cost marginals as the remainder allows: ans = C(lo) + (M - S(lo)) // T.
-- Availability of T-cost units: if E is the number of marginals equal to T, S(T)-S(lo)=E*T > M-S(lo), so floor((M-S(lo))/T) is at most E-1 and can be taken validly.
-- Edge cases: T=1 gives C(0)=0; pmin > M gives answer 0; x=0 is handled by the sorted break; all arithmetic is integer.
-- Alternatives: heap merge and continuous Cauchy estimates are less safe; threshold binary search is the final approach.
-- Complexity: sorting O(N log N), binary search O(log hi) with hi up to about 9e13, each check O(number of P_i <= x) with early cap, worst around 1e7 simple operations, acceptable in Python.

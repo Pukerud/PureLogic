@@ -1,7 +1,0 @@
-- **Greedy frontier algorithm:** Maintain Takahashi's absorbed cells as a connected region and all currently adjacent unabsorbed cells in a min-heap ordered by slime strength.
-- **Correctness:** If the minimum-strength frontier slime is absorbable, absorbing it only increases Takahashi's strength and expands the frontier, so it cannot make any future action impossible. If the minimum frontier slime is not absorbable, no other frontier slime is absorbable either, so the process must terminate.
-- **Condition:** A slime with strength `s` can be absorbed exactly when `s * X < current_strength`. The comparison is strict; equality is not allowed.
-- **Visited handling:** Mark a cell visited when it is pushed into the heap, not when it is popped. This prevents duplicate insertions from multiple adjacent absorbed cells.
-- **Initialization:** The starting cell is initially owned by Takahashi. Set current strength to its value and insert its valid four-directional neighbors into the heap.
-- **Complexity:** Every cell is inserted and removed from the heap at most once. Time complexity is `O(HW log(HW))`; memory complexity is `O(HW)`.
-- **Integer safety:** Python integers safely handle both accumulated strengths and products `s * X`.

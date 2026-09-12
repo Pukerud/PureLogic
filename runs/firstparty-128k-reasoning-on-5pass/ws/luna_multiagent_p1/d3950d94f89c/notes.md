@@ -1,7 +1,0 @@
-- **Rooting and distances:** An iterative enter/exit DFS roots the tree at node 0, computes parent and depth arrays, and stores weighted distance from the root.
-- **Repeated values:** `last_depth[value]` stores the deepest ancestor with that value on the active root-to-node path. Exit events restore the previous mapping, so sibling subtrees do not interfere.
-- **Valid suffix:** For each node, `nearest_repeat` is the depth of its nearest equal-valued ancestor, or `-1` if none exists. The invalid starting-depth bound is propagated as the maximum of the parent bound and the current repeated depth.
-- **Evaluation:** A second iterative DFS maintains the current root-to-node path. Since path indices equal node depths, the earliest valid start is `path[valid_start_bound[node] + 1]`.
-- **Tie-breaking:** Every node evaluates its singleton path as well. The algorithm maximizes weighted path length and minimizes node count among paths with equal maximum length.
-- **Test behavior:** The two given examples produce `[6, 2]` and `[0, 1]`. Repeated-value chains reduce to singleton paths when necessary; branching equal values restore correctly; zero-length optima return one node; a 50,000-node skewed tree avoids recursion limits.
-- **Complexity:** O(n) time and O(n) auxiliary space.

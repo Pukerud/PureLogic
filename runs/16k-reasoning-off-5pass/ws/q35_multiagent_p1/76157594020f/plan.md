@@ -1,6 +1,0 @@
-1. The problem asks us to minimize the maximum length of consecutive identical characters (either all '0's or all '1's) after flipping at most `numOps` bits.
-2. We can use binary search on the answer, i.e., the maximum allowed length of identical character substrings. Let's call this target length `L`.
-3. For a given `L`, we need to check if it's possible to modify the string such that no substring of identical characters has length greater than `L`, using at most `numOps` flips.
-4. To check feasibility for a given `L`: We can iterate through the string and identify contiguous blocks of identical characters. For each block of length `len_block`, we need to break it into segments of length at most `L`. The minimum number of flips required for a block of length `k` to ensure no segment exceeds `L` is `floor((k - 1) / L)`. This is because we can place a flip every `L` characters to break the block.
-5. Sum up the required flips for all blocks. If the total flips needed is <= `numOps`, then `L` is feasible.
-6. Binary search for the smallest feasible `L` in the range [1, n].

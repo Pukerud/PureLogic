@@ -1,6 +1,0 @@
-1. Since k is small (up to 15), we can use dynamic programming where the state tracks how many subarrays we've formed so far and the ending index of the last subarray.
-2. Precompute the cost to make every possible subarray of length x equal to its median value (which minimizes the sum of absolute differences). The cost for a subarray starting at i is the sum of absolute differences between each element and the median of nums[i:i+x].
-3. Use DP: dp[j] represents the minimum operations to form j non-overlapping subarrays ending at or before the current index. We iterate through all possible starting positions for the j-th subarray.
-4. For each position i that can be the start of a subarray of length x, if i+x <= n, we consider forming a subarray ending at i+x-1. We update dp[j] using dp[j-1] from indices before i.
-5. To optimize, we can iterate j from 1 to k and for each j, iterate through all valid start positions, updating the DP table. We need to ensure non-overlapping, so when forming the j-th subarray starting at i, we take the best dp[j-1] value from indices <= i-1.
-6. The answer is dp[k] after processing all possibilities.

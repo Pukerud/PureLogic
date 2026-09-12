@@ -1,6 +1,0 @@
-- **Reverse reconstruction:** Process values from \(N\) down to \(1\). At the moment value \(i\) is processed, the final positions occupied by values \(i+1,\ldots,N\) are already known.
-- **Available positions:** The \(P_i\)-th element at insertion time becomes the \(P_i\)-th currently unoccupied position in the final array.
-- **Fenwick tree:** Store 1 for every available position and 0 for every occupied position. It supports finding the \(k\)-th available position and removing it in \(O(\log N)\).
-- **Initialization:** Since every position initially has value 1, the Fenwick tree can be initialized directly with `bit[i] = i & -i`.
-- **Complexity:** The algorithm uses \(O(N)\) memory and \(O(N\log N)\) time.
-- **Indexing:** Fenwick positions and insertion positions are one-based; the resulting answer array is zero-based only when assigning the selected position.

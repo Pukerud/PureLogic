@@ -1,6 +1,0 @@
-- **State modeling:** Use `(vertex, parity)`, where parity is the number of global reversals modulo 2.
-- **Movement:** With even parity, outgoing original edges are available. With odd parity, incoming original edges are available because every edge has been reversed.
-- **Reversal:** Switching parity costs `X`. Since states are encoded as `parity * N + vertex`, toggling must use `state + N` for parity 0 and `state - N` for parity 1. Bitwise XOR with `N` is not generally a valid block toggle.
-- **Algorithm:** Run Dijkstra’s algorithm on the `2N` expanded states, starting from `(1, 0)`. The first popped state whose vertex is `N` gives the answer.
-- **Complexity:** `O((N + M) log N)` time and `O(N + M)` memory.
-- **Integer safety:** Python integers handle answers larger than 32-bit range.

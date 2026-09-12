@@ -1,5 +1,0 @@
-- **Structural characterization:** The minimum number of operations for a subarray equals the number of connected components formed by its distinct values on the integer line. Each component can be erased in one operation, and separate components cannot be erased together.
-- **Fixed right endpoint:** Let `last[x]` be the latest position of value `x` up to the current right endpoint `R`, or zero if absent. For a starting position `L`, value `x` is present exactly when `L <= last[x]`, while `x-1` is absent exactly when `L > last[x-1]`.
-- **Summed contribution:** The number of subarrays ending at `R` where `x` starts a component is `max(last[x] - last[x-1], 0)`. Therefore the total number of components over all subarrays ending at `R` is `C = sum_x max(last[x] - last[x-1], 0)`.
-- **Incremental update:** When processing a new occurrence of value `v`, only terms for `x=v` and `x=v+1` can change. Subtract both old contributions, update `last[v]`, then add both new contributions.
-- **Complexity:** The sweep takes `O(N)` time and `O(N)` memory. Python integers safely handle the potentially quadratic answer.

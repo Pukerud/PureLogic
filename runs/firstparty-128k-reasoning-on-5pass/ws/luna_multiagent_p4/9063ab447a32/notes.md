@@ -1,6 +1,0 @@
-- **Marginal costs:** Buying the \(k\)-th unit of product \(i\) increases the cost by \(P_i(2k-1)\). These marginal costs are nondecreasing for each product.
-- **Threshold selection:** For a threshold \(T\), all marginal costs at most \(T\) can be bought optimally. The number selected from product \(i\) is \(q_i=((T//P_i)+1)//2\), because \(2k-1 \le T/P_i\).
-- **Total cost:** Buying these prefixes costs \(\sum_i P_i q_i^2\). A threshold is feasible when this sum is at most \(M\).
-- **Binary search:** Feasibility is monotone in \(T\). Start with an infeasible bound obtained by doubling, then binary-search the largest feasible threshold.
-- **Tie handling:** The formula includes every marginal cost exactly equal to \(T\). At the largest feasible threshold, the next global marginal cost is greater than \(T\); otherwise the threshold could be increased. Since adding that next unit would exceed \(M\), no leftover budget can purchase another unit. Thus the sum of all \(q_i\) is the answer.
-- **Complexity:** Each feasibility check is \(O(N)\), and the binary search uses \(O(\log T)\) checks, giving \(O(N\log T)\) time and \(O(1)\) extra space besides the input. Python integers safely handle all intermediate products.

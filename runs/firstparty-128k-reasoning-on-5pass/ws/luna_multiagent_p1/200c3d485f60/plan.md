@@ -1,1 +1,0 @@
-Choose the `k` adjacent positions that remain equal among the `n - 1` transitions. The first element has `m` choices, each remaining unequal transition has `m - 1` choices, and equal transitions have exactly one choice. Therefore, the result is `m * C(n - 1, k) * (m - 1)^(n - 1 - k)` modulo `10^9 + 7`, computed efficiently using factorials and modular inverses.

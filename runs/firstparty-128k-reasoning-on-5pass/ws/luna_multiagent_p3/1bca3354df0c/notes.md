@@ -1,7 +1,0 @@
-- **Bipartite structure:** Every reachable graph remains bipartite. A legal edge is either a missing edge between opposite color classes of one connected component, or an edge joining two distinct components.
-- **Parity DSU:** A DSU with parity computes the bipartition sizes `(a,b)` of every initial connected component in `O(N+M)`.
-- **No odd-sized component:** If every component has even order, merging components preserves the parity of the global color-class sizes. Hence the number of remaining moves has fixed parity `A*B-M`, where `A` and `B=N-A` are the global color-class totals. Aoki wins exactly when this value is odd.
-- **One odd component:** If it is the sole component, no merge is possible, so the game has exactly `a*b-M` remaining moves. If another component exists, Aoki can merge components in a way that leaves a losing position, so Aoki wins.
-- **Two odd components:** Aoki wins. A suitable merge of the two odd components leaves a position with fixed even remaining-move parity.
-- **At least three odd components:** A pairing/mirror strategy for the second player applies, so Takahashi wins.
-- **Small-state checks:** Exhaustive enumeration for `N<=5` confirms the cases that invalidate the earlier simplified rule: a connected 3-vertex path is terminal and losing; the empty 2-vertex graph has one move and is winning for Aoki; the empty 3-vertex graph is losing; and positions with three odd components can remain losing even when edges already exist.

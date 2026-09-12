@@ -1,7 +1,0 @@
-- **Feasibility:** A solution exists exactly when `R` is even and, additionally, when `R = 0`, `B` is even. Every red move flips checkerboard parity, so a closed cycle requires an even number of red moves. If all pieces are blue, every move flips row parity, requiring an even number of blue moves.
-- **Construction:** Explicit coordinate gadgets cover pure red, pure blue, mixed odd-blue, and mixed positive even-blue cases. All generated coordinates have magnitude `O(R+B)`.
-- **Pure red:** An orthogonal rectangle perimeter gives every even `R >= 2`, including the two-adjacent-vertices cycle for `R = 2`.
-- **Pure blue:** A rectangle in transformed coordinates `(u,v)`, mapped by `(r,c)=(u+v,u-v)`, gives every even `B`. Each transformed unit edge becomes a diagonal board move.
-- **Mixed odd blue:** Use all red vertices as an orthogonal path ending at `(0,1)`, then a blue diagonal path ending diagonally adjacent to the initial red vertex.
-- **Mixed even blue:** Use `R-1` initial red vertices, a blue path, then one red and one blue vertex to close. `B=2` has a separate small gadget.
-- **Bounds and complexity:** A shift of `500000000` keeps every coordinate safely within the `10^9 x 10^9` board. Time and output memory are `O(R+B)` per case, with total size at most `2e5`.

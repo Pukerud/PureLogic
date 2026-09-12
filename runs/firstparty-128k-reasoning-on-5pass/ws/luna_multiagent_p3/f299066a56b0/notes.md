@@ -1,5 +1,0 @@
-- **Approach:** For a fixed number `K` of kagamimochi, use the smallest `K` mochi as top pieces and the largest `K` mochi as bottom pieces. Since `K <= N//2`, these two groups are disjoint.
-- **Feasibility:** Pair the top pieces and bottom pieces in ascending order. The candidate is feasible exactly when `2 * A[i] <= A[N-K+i]` for every `0 <= i < K`.
-- **Correctness idea:** Choosing smaller tops and larger bottoms can only make the conditions easier. For sorted groups, pairing in corresponding ascending order is optimal for satisfying all threshold conditions.
-- **Monotonicity:** If `K` pairs are feasible, every smaller number of pairs is also feasible. Therefore binary search can find the maximum feasible `K`.
-- **Complexity:** Each feasibility check takes `O(K)` time, and binary search performs `O(log N)` checks, for `O(N log N)` total time and `O(N)` memory for the input array.

@@ -1,5 +1,0 @@
-The problem can be modeled as a shortest path problem on a state graph where each state is defined by `(vertex, orientation)`. The orientation can be either 0 (original) or 1 (reversed). We have two types of transitions:
-1. Moving along an edge in the current orientation costs 1.
-2. Reversing the orientation at the current vertex costs X.
-
-We can use 0-1 BFS (or Dijkstra's algorithm) to find the minimum cost to reach state `(N, 0)` or `(N, 1)`. Since edge weights are either 1 or X, and X can be large, we use Dijkstra's algorithm for generality. The number of states is $2N$ and the number of edges is $2M + 2N$ (each original edge gives two directed edges in the state graph for the respective orientation, plus two reversal edges per vertex). This approach runs in $O((N+M) \log N)$ time, which is efficient enough for the given constraints.

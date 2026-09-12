@@ -1,7 +1,0 @@
-- **Approach:** Separate foods by vitamin type. For each type, compute a 0/1 knapsack DP indexed by calories, storing the maximum vitamin amount obtainable.
-- **DP construction:** Initialize `dp[type][0] = 0` and all other states to `-1`. For each food `(V, A, C)`, update only its vitamin type's DP in descending calorie order, ensuring each food is selected at most once.
-- **At-most conversion:** After all foods are processed, apply prefix maxima over calories. Then `dp[v][c]` means maximum amount of vitamin `v` achievable using at most `c` calories.
-- **Feasibility:** For a target minimum intake `m`, binary-search the smallest calorie count for each vitamin type whose DP amount is at least `m`. The target is feasible iff the sum of these three minimum calorie requirements is at most `X`.
-- **Correctness:** Foods of distinct vitamin types only share the calorie budget, so independently minimizing calories for each required vitamin amount yields the least total calories needed for that target. Feasibility is monotone in `m`, enabling binary search.
-- **Bounds:** Binary-search answer from `0` through `min(total amounts of each vitamin type)`. If a vitamin type is absent, this upper bound is zero.
-- **Complexity:** Knapsack preprocessing is `O(NX)`. Prefix maxima cost `O(X)`. Each target check performs three `O(log X)` searches; binary search over intake values costs `O(log(sum A))`. Memory is `O(X)` per vitamin type.

@@ -1,6 +1,0 @@
-- **Monotonicity:** The rating as a function of the initial rating is nondecreasing. Each contest transformation maps `v` to `v + 1` on one interval and leaves it unchanged elsewhere, preserving order.
-- **Contiguous affected range:** For a contest interval `[L, R]`, all initial ratings whose current values lie in `[L, R]` form one contiguous index range because the current-value array is nondecreasing.
-- **Segment tree:** The tree stores the maximum current value in each segment and a lazy range-add value. Since values are nondecreasing, the first index with value at least a threshold can be found by descending left first and pruning nodes whose maximum is too small.
-- **Contest processing:** Find the first index with current value at least `L`, then the first index with current value at least `R + 1`. Add one to the resulting half-open index interval.
-- **Domain:** Initial ratings are indexed as `0..499999`, corresponding to ratings `1..500000`. The final rating may exceed `500000`, so tree values are not bounded by the initial domain.
-- **Complexity:** Each contest performs two threshold searches and one range addition, all `O(log 500000)`. Each query is answered by a point lookup in `O(log 500000)`. Total complexity is `O((N + Q) log 500000)`.

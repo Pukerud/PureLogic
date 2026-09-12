@@ -1,5 +1,0 @@
-- **Greedy split:** Use the first `N//2` mochi as candidate tops and the remaining mochi starting at index `(N+1)//2` as candidate bottoms. These groups are disjoint, so no mochi is reused.
-- **Two pointers:** For each top `A[i]`, advance the bottom pointer `j` until `2*A[i] <= A[j]`. If such a bottom exists, pair them and advance both pointers.
-- **Correctness:** Mochi sizes are sorted, so a bottom that can support a top can also support every smaller top. Matching each current smallest top with the earliest possible bottom never hurts future matches.
-- **Complexity:** The pointers only move forward, giving `O(N)` time and `O(1)` additional space besides the input array.
-- **Edge cases:** The answer is at most `N//2`; equal sizes are valid only when doubling the top size does not exceed the bottom size.

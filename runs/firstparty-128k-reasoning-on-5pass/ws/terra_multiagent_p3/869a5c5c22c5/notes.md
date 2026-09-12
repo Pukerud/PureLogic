@@ -1,8 +1,0 @@
-- **Feasibility:** A placement exists exactly when `R` is even, and additionally `B` must be even when `R=0`. A red move flips parity of `r+c`, while a blue diagonal move preserves it, so a closed cycle requires even `R`. If all moves are blue, every move flips row parity, requiring even `B`.
-- **Pure red construction:** For every even `R>=2`, `cardinal_cycle(R)` creates a simple cycle of cardinal unit steps using two adjacent columns.
-- **Pure blue construction:** Under `x=(r+c)/2`, `y=(r-c)/2`, a cardinal unit step in transformed coordinates becomes a diagonal unit step in board coordinates `(r,c)=(x+y,x-y)`. Thus `cardinal_cycle(B)` gives a blue cycle for every even positive `B`.
-- **Mixed construction:** For even positive `R`, construct a red path from `A=(0,0)` to an endpoint `P`, then a blue transformed-coordinate path from `P` back to `A`. The endpoint is excluded from the red output and included as the first blue position.
-- **Even blue count:** Use red endpoint `P=(0,2)`, represented by transformed coordinate `(1,-1)`. The blue path has an even number of vertices and returns to transformed `(0,0)`.
-- **Odd blue count:** Use red endpoint `P=(1,1)`, represented by transformed coordinate `(1,0)`. This supports every odd positive `B`, including `B=1`.
-- **Distinctness:** The red paths stay in a narrow nonnegative corridor. Apart from the shared virtual transition endpoint, blue paths move into separate diagonal corridors, so all emitted board squares are distinct.
-- **Bounds and complexity:** Relative coordinates have magnitude `O(R+B)`, at most about `2e5`. Translating both coordinates by `300000` keeps every output square safely within `1..10^9`. Time and output size are `O(R+B)` per test case, with total `O(sum(R+B))`.

@@ -1,7 +1,0 @@
-- **Pattern decomposition:** Split the pattern at its two stars into fragments `a`, `b`, and `c`, preserving empty fragments.
-- **Occurrence detection:** KMP finds every occurrence of each nonempty fragment in `s` in linear time.
-- **Empty fragments:** An empty fragment occurs at every boundary from `0` through `n`. Instead of storing those lists, its earliest valid occurrence after a previous fragment ending at `x` is simply boundary `x`.
-- **Chaining:** For every possible start of `a`, select the earliest occurrence of `b` whose start is at least `a`'s end, then the earliest occurrence of `c` whose start is at least `b`'s end. Earliest successors are optimal for a fixed first start.
-- **Length:** The candidate substring length is `end(c) - start(a)`.
-- **Edge cases:** Consecutive stars, leading/trailing stars, all-wildcard patterns, fragments longer than `s`, and no valid chain are handled naturally.
-- **Complexity:** KMP preprocessing and scanning take `O(|s| + |p|)`. Successor searches take `O(|s| log |s|)` in the worst case. Memory usage is `O(|s| + |p|)`.

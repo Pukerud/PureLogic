@@ -1,1 +1,0 @@
-Choose the k positions among the n−1 adjacent pairs that must be equal. The first element has m choices, each selected equal transition has exactly one continuation, and every remaining transition must differ with m−1 choices. Thus the answer is \(m \times \binom{n-1}{k} \times (m-1)^{n-1-k}\) modulo \(10^9+7\), computed using modular inverses or factorials.

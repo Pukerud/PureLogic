@@ -1,9 +1,0 @@
-
-## ideation
-The core difficulty lies in efficiently computing the inversion number for $M$ different shifted sequences. A naive $O(MN \log N)$ approach is too slow. The key observation is that transitioning from $k$ to $k+1$ only affects pairs involving elements that wrap around from $M-1$ to $0$. Specifically, elements equal to $M-1-k$ wrap around. We can derive a closed-form formula for the change in inversion count based on the count and sum of indices of these wrapping elements. This allows us to compute all answers in $O(N \log M + M)$ time by first computing the initial inversion count with a Fenwick Tree and then applying the update formula iteratively.
-
-## worker: Implement a Fenwick Tree (BIT) to compute the init
-- **Algorithm**: The inversion count changes predictably when shifting all elements by $+1 \pmod M$. Only elements equal to $M-1$ wrap around to $0$. For each such element at index $p$, pairs with elements to its right lose an inversion, and pairs with elements to its left gain an inversion.
-- **Formula Derivation**: Let $S_{M-1}$ be the set of indices wrapping around. The net change is $2\sum_{p \in S_{M-1}} (p - \text{rank}(p)) - |S_{M-1}|(N - |S_{M-1}|)$, where $\text{rank}(p)$ is the 1-based rank of $p$ within $S_{M-1}$. This simplifies to `2 * S - cnt * (N - cnt)` where `S = sum(indices) - cnt*(cnt+1)//2`.
-- **Complexity**: Initial inversion count uses a Fenwick Tree in $O(N \log M)$. Precomputing positions takes $O(N)$. The loop runs $M$ times, but each array index is processed exactly once across all iterations, making the update phase $O(N)$. Total time: $O(N \log M + M)$, well within limits for $2 \times 10^5$.
-- **Edge Cases**: Handles $N=1$, $M=1$, all equal elements, and strictly increasing/decreasing sequences correctly. Python's arbitrary precision integers prevent overflow during intermediate calculations.

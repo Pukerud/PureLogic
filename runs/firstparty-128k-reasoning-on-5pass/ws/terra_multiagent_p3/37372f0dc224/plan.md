@@ -1,1 +1,0 @@
-Find the longest suffix of `S` that is already a palindrome. Then append the reverse of the remaining prefix before that suffix, yielding the shortest palindrome beginning with `S`. Compute the longest palindromic suffix in linear time using the KMP prefix-function on `reverse(S) + separator + S`. This supports strings up to 500,000 characters efficiently.

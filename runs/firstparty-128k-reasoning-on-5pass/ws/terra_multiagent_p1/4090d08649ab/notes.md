@@ -1,8 +1,0 @@
-- **Core observation:** For a fixed subarray, only the set of distinct values matters. The minimum number of erasing operations equals the number of connected components of present values on the integer line.
-- **Formula:** If `S` is the set of values present in a subarray, then `f = |S| - #{x : x and x+1 are both in S}`.
-- **Right-endpoint sweep:** For a fixed right endpoint `R`, let `last[x]` be the last occurrence of value `x` in positions `1..R`, or zero if absent. Among subarrays `[L,R]`, value `x` appears for exactly `last[x]` possible left endpoints. Thus the total distinct-value contribution is `sum_last = Σ last[x]`.
-- **Adjacent-pair contribution:** Both `x` and `x+1` appear in `[L,R]` exactly when `L <= min(last[x], last[x+1])`. Thus their total contribution is `sum_adj = Σ min(last[x], last[x+1])`.
-- **Per endpoint result:** The sum of `f(L,R)` over all `L <= R` is `sum_last - sum_adj`. Add this at every right endpoint.
-- **Update:** On processing `A[R]=x`, only `last[x]` changes, so only pairs `(x-1,x)` and `(x,x+1)` can change. Subtract their old minimum contributions, update `last[x]`, then add new contributions.
-- **Complexity:** `O(N)` time and `O(N)` memory. Python integers safely handle the potentially cubic-sized answer.
-- **Bounds:** Since values are in `1..N`, neighbor checks use `x > 1` and `x < N`; an array of length `N+2` is sufficient.

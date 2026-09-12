@@ -1,9 +1,0 @@
-- **Reduction to maximum height:** If the final common pair-sum is `H`, the total final length is exactly `N*H`. Since all changes are reductions, the cost is `sum(U_i+D_i) - N*H`. Therefore maximize feasible integer `H`.
-- **Per-position interval:** For fixed `H`, final upper length `a_i` must satisfy `max(0, H-D_i) <= a_i <= min(U_i, H)`. Lower length is then `H-a_i`.
-- **Lipschitz interval criterion:** A sequence satisfying all intervals and `|a_i-a_{i+1}|<=X` exists iff for every pair `(i,j)`, `L_i <= R_j + X*|i-j|`, where `L_i=max(0,H-D_i)` and `R_j=min(U_j,H)`.
-- **Why the criterion is sufficient:** Define `a_i = max_j(L_j - X*|i-j|)`. It is `X`-Lipschitz, is at least `L_i`, and the pairwise inequalities imply every term in the maximum is at most `R_i`, hence `a_i<=R_i`.
-- **Direct bound on H:** The pairwise interval inequality is equivalent to `H <= D_i + U_j + X*|i-j|` for all `i,j`. Cases where `H<=D_i` or `H<=U_j` are automatically valid; otherwise substituting the active interval endpoints gives exactly this bound.
-- **Maximum feasible height:** Thus `H_max = min_{i,j}(D_i + U_j + X*|i-j|)`.
-- **O(N) computation:** Compute `M_i=min_j(U_j+X*|i-j|)` via two passes. Left pass: `left[i]=min(U_i,left[i-1]+X)`. Right pass analogously. Then `M_i=min(left[i],right[i])`, and `H_max=min_i(D_i+M_i)`.
-- **Complexity:** O(N) time, O(N) memory. Python integers safely handle all totals and products.
-- **Edge cases:** Final teeth may be zero, so lower bounds include zero. The `i=j` term automatically includes the individual pair constraint `H<=U_i+D_i`.

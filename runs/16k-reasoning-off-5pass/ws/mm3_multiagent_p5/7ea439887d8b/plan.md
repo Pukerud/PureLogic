@@ -1,6 +1,0 @@
-We have a directed graph with N vertices and M edges. We start at vertex 1, want to reach vertex N. Two operations: traverse an outgoing edge (cost 1), or reverse all edges (cost X). The reversal toggles the direction of the entire graph. Since reversal can be done any number of times, we can model the state as (current vertex, current edge direction parity). Let state 0 = original orientation, state 1 = reversed. Transitions:
-- From state 0: follow edge u→v in original graph, cost 1, stay in state 0.
-- From state 0: reverse, cost X, move to state 1 (no vertex change).
-- From state 1: follow edge which is the reverse of original, i.e., for each original edge u→v, in reversed state we can go v→u, cost 1, stay in state 1.
-- From state 1: reverse, cost X, back to state 0.
-Goal: minimum cost from (1, 0) to (N, 0) or (N, 1). Run Dijkstra on graph with 2N nodes. Use adjacency: from v in state s, for each edge v→to in direction s, edge to (to, s) weight 1. And edge to (v, 1-s) weight X. Since weights are non-negative, Dijkstra works. N, M up to 2e5, so 2N up to 4e5 nodes, ~ (M + N) edges per state = O(M+N) total. Use heap. Complexity O((N+M) log N). Print min(dist[N][0], dist[N][1]).

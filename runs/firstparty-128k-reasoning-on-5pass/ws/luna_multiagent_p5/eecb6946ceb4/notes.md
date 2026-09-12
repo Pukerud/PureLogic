@@ -1,7 +1,0 @@
-- **Counting formulation:** Let `f[x]` be `1` when `x` belongs to the set and `0` otherwise. The coefficient of `x^(2B)` in `f(x)^2` counts ordered pairs `(A, C)` with `A + C = 2B`.
-- **Removing duplicates:** For each middle value `B`, the ordered pair `(B, B)` contributes once and must be removed. Every valid pair with `A < C` appears in both orders, so its contribution is `(coefficient[2B] - 1) // 2`.
-- **Exact convolution:** All convolution coefficients are at most `N`, hence below `998244353`. Therefore one NTT modulus is sufficient; no CRT or multiple-modulus reconstruction is needed.
-- **Transform size:** If `M = max(S)`, the largest needed convolution index is `2M`. The transform length is the smallest power of two at least `2M + 1`, at most `2^21` under the constraints.
-- **NTT details:** Modulus `998244353` is `119 * 2^23 + 1` and has primitive root `3`, so it supports every required power-of-two transform length.
-- **Efficiency:** Since the polynomial is convolved with itself, only one forward NTT is needed, followed by pointwise squaring and one inverse NTT. The complexity is `O(M log M)` and memory usage is `O(M)`.
-- **Input handling:** Values are marked directly in a `bytearray`, avoiding a large set and allowing the original parsed values to be released immediately.

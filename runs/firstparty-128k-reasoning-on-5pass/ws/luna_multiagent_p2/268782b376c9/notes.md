@@ -1,7 +1,0 @@
-- **Binary search:** Feasibility is monotone in the target score, so binary search finds the maximum achievable minimum score.
-- **Required visits:** For target `x`, index `i` must be visited at least `ceil(x / points[i])` times.
-- **Greedy traversal:** If the current index needs `extra` additional visits, each round trip to the next index and back costs two moves, followed by one move forward. This costs `2 * extra + 1` moves.
-- **Visit carry:** Those excursions plus the final forward move provide `extra + 1` visits to the next index.
-- **Final two indices:** Excursions from `n - 2` to `n - 1` can satisfy the final index without a final forward move if enough visits are produced. Otherwise, one final forward move is made, followed by any required bounces at the last index.
-- **Bounds and complexity:** `max(points) * m` is a valid upper bound. Each feasibility check is `O(n)`, giving total complexity `O(n log(max(points) * m))` and `O(1)` auxiliary space.
-- **Testing:** The implementation passes the provided examples: `[2, 4], 3 -> 4` and `[1, 2, 3], 5 -> 2`. It also handles `n = 2`, insufficient moves such as `m < n`, `m = 1`, and repeated back-and-forth visits correctly.

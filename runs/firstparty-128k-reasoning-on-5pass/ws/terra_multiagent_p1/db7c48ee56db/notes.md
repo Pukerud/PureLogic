@@ -1,6 +1,0 @@
-- **Complement reduction:** Let `total_xor` be the XOR of every element. If a chosen set has complement XOR `c`, then its XOR is `total_xor ^ c`. Therefore enumerate subsets of size `T = min(K, N-K)`, rather than necessarily size `K`.
-- **Why this is needed:** Although the number of valid selections is at most `10^6`, recomputing a full XOR for each choice can be too slow when `K` is large, such as `K = N-1`.
-- **DFS enumeration:** The recursive DFS state is `(start, remaining, current_xor)`. It chooses the next index in increasing order, so every subset is generated exactly once. XOR is maintained incrementally with `current_xor ^ A[i]`.
-- **Complexity:** There are exactly `C(N, T) = C(N, K) <= 10^6` leaves. The recursion depth is small under the binomial bound except for trivial cases, and the total work is acceptable.
-- **Edge cases:** If `K = N`, then `T = 0`; the only candidate is `total_xor`. If `K = 1`, all individual values are checked. Values fit safely in Python integers.
-- **Verification:** The algorithm produces `7` for sample 1 and `2024` for sample 2.

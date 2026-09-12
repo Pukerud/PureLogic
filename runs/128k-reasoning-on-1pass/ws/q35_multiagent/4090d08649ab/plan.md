@@ -1,6 +1,0 @@
-The problem asks for the sum of $f(L, R)$ over all subarrays, where $f(L, R)$ is the minimum number of operations to erase the subarray. The operation allows erasing a contiguous range of values present on the blackboard. This is equivalent to finding the number of connected components of values present in the subarray.
-The number of connected components for a set of values $S$ is $|S| - \sum_{v \in S} \mathbb{I}(v-1 \in S)$.
-Thus, $f(L, R) = |S_{L,R}| - \text{count of pairs } (v, v-1) \text{ both present in } A[L \dots R]$.
-We need to compute $\sum_{L, R} |S_{L,R}|$ and $\sum_{L, R} \text{count of pairs}$.
-1. $\sum |S_{L,R}|$ can be computed by summing the contribution of each element $A_i$ as the first occurrence of its value in subarrays.
-2. The pair count can be computed by iterating $R$ from 1 to $N$ and maintaining the rightmost occurrence of each value. For a fixed $R$, the number of $L$'s such that a pair $(v, v-1)$ is present is $\min(\text{last\_occ}[v], \text{last\_occ}[v-1]) + 1$. We maintain the sum of these minimums efficiently.

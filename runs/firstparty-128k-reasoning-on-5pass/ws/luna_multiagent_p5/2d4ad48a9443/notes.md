@@ -1,7 +1,0 @@
-- **Target values:** For any window, the minimum final value assigned to each position is the prefix maximum of the original values in that window. The total increments needed are the sum of target value minus original value.
-- **Group invariant:** `groups` stores contiguous runs of equal target values from left to right. Group target values are non-decreasing, and the groups exactly represent the current window `[left, right]`.
-- **Adding on the left:** When `nums[left] = x` is prepended, every leading group with target below `x` must be raised to `x`. Their operation costs are added and the groups merge with the new element.
-- **Removing on the right:** Removing the final original element cannot affect targets of earlier elements. Its contribution is `target - nums[right]`; decrementing or deleting the final group preserves the invariant.
-- **Sliding window:** Required cost is monotonic when extending a fixed-left window. After shrinking until cost is at most `k`, all windows ending between `left` and `right` are valid, contributing `right - left + 1`.
-- **Complexity:** Every group is created, merged, and removed amortized once. Time complexity is `O(n)` and space complexity is `O(n)`.
-- **Validation:** The implementation returns `17` for `[6, 3, 1, 2, 4, 4]` with `k = 7` and `12` for `[6, 3, 1, 3, 6]` with `k = 4`. Targeted cases such as a singleton, an already non-decreasing array, `[3, 1]` with `k = 1`, and `[2, 1, 2]` with `k = 0` preserve the group and cost invariants.

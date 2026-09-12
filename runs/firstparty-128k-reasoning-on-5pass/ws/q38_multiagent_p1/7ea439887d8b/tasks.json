@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement the complete Python solution using two-layer Dijkstra: parse input, build outgoing/incoming adjacency lists, run heap-based Dijkstra over (vertex, orientation) states, relax move edges with cost 1 and flip edges with cost X, and print the minimum distance to vertex N in either orientation.",
-    "status": "done",
-    "result": ""
-  }
-]

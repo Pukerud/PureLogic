@@ -1,6 +1,0 @@
-- **Terminal graph structure:** Any terminal position is a complete bipartite graph on all vertices. Legal moves preserve bipartiteness, and disconnected components can always be connected with a valid bipartite orientation.
-- **Component representation:** Run BFS/DFS to color every connected component bipartitely and count its color-class sizes `(a, b)`.
-- **Odd N:** Every terminal graph is `K(x, N-x)`. If `N` is odd, `x(N-x)` is always even. Therefore the parity of the number of remaining moves is `M mod 2`. Aoki wins exactly when `M` is odd.
-- **Even N classification:** Let `k` be the number of odd-order connected components. Let `r` be the xor of `a mod 2` over all even-order components, where `a` is either bipartition-side size. This is well-defined because the two sides of an even-order component have equal parity. A position is losing for the player to move iff `M + k/2 + r` is even. Thus Aoki wins iff it is odd.
-- **Checks:** For connected even `N`, `k=0`, and the criterion is `M + a mod 2`, matching parity of `ab-M`. `K(1,7)` has `M=7, r=1`, so it is losing. Empty `N=4` has `k=4`, giving an even value, so it is losing. For odd `N=9, M=5`, Aoki wins.
-- **Complexity:** BFS coloring and statistics use `O(N+M)` time and `O(N+M)` memory.

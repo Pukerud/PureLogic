@@ -1,8 +1,0 @@
-- **Core formula:** The maximum feasible common height is H = min over all i,j of U_i + D_j + X * |i-j|. The minimum cost is total_initial_length - N * H.
-- **Why this upper bound:** In any feasible final upper sequence a, for any i and j we have a_j >= H - D_j and a_j <= a_i + X * |i-j| <= U_i + X * |i-j|. Therefore H <= U_i + D_j + X * |i-j| for every pair i,j.
-- **Why it is sufficient:** If H satisfies all those inequalities, define a_i = max over j of max(0, H - D_j) - X * |i-j|. This sequence is X-Lipschitz, satisfies a_i >= max(0, H - D_i), and the inequalities guarantee a_i <= U_i. Also a_i <= H, so the final lower lengths H - a_i are between 0 and D_i.
-- **Distance transform:** f_i = min_j(U_j + X * |i-j|) is computed in linear time. A left-to-right pass with f[i] = min(f[i], f[i-1] + X) handles j <= i, and a right-to-left pass with f[i] = min(f[i], f[i+1] + X) handles j >= i.
-- **Cost relation:** Once the common pair sum is H, every final pair has total length H, so the final total length is exactly N * H. Since only reductions are allowed, cost is initial total minus final total.
-- **Implementation details:** Python integers are used, so overflow is not a concern. The input size is up to 2e5, and the algorithm uses O(N) memory and O(N) time.
-- **Samples:** Manually checked: sample 1 gives H = 4 and cost 15; sample 2 gives H = 6 and cost 0; sample 3 gives H = 2 and cost 5999999994; sample 4 gives H = 380 and cost 9460.
-- **Superseded approach:** Binary searching H with interval propagation is no longer needed because the maximum H has this closed form.

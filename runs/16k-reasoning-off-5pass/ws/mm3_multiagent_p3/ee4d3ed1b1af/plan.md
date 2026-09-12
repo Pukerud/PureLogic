@@ -1,7 +1,0 @@
-We need to find the shortest substring of `s` that matches a pattern containing exactly two `*` characters, where `*` matches any (possibly empty) sequence of characters. Since there are exactly two `*`s, we can split `p` into three literal parts: `left`, `mid`, `right` (where `left` is the prefix before the first `*`, `mid` is the part between the two `*`s, and `right` is the part after the second `*`).
-
-The approach:
-1. For each of the three parts (`left`, `mid`, `right`), find all occurrences of that part as a substring in `s` (non-overlapping for `left` and `right`; `mid` can be anything).
-2. For each occurrence of `left` ending at index `i`, and for each occurrence of `right` starting at index `j` such that the `mid` part also matches somewhere in between (i.e., there exists a `mid` occurrence that starts after `i` and ends before `j`), compute the candidate substring length `j + len(right) - start_of_left`.
-3. Minimize over all valid combinations, and also check the case where `left` or `right` is empty (matching zero characters), which gives more candidates.
-4. To efficiently find valid `mid` matches between `left` end and `right` start, precompute for each position the next `mid` occurrence that ends after that position, and for each `right` start, find the closest preceding `mid` end.

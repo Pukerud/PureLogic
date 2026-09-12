@@ -1,5 +1,0 @@
-- **Enumeration strategy:** Enumerate subsets of positions, not values, so duplicate array values are handled as distinct elements.
-- **Complement transformation:** If \(K > N-K\), enumerate the \(N-K\) omitted positions. If the XOR of all elements is \(T\) and omitted XOR is \(X\), the selected XOR is \(T \oplus X\).
-- **Why enumeration is feasible:** \(\binom{N}{K}=\binom{N}{N-K}\leq 10^6\), so enumerating subsets of size \(r=\min(K,N-K)\) is within the limit.
-- **Complexity:** Each combination is processed in \(O(r)\) time, for total \(O(r\binom{N}{r})\) time and \(O(N)\) additional storage.
-- **Edge cases:** For \(K=N\), \(r=0\), the sole empty omitted subset produces the XOR of all elements. For \(K=1\), all individual positions are enumerated normally.

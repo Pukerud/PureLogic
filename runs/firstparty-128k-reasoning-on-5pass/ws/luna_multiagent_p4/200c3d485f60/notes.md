@@ -1,4 +1,0 @@
-- **Counting formula:** Choose the `k` adjacent positions that are equal. The first element has `m` choices, each equal transition is forced, and each of the remaining `n - 1 - k` transitions has `m - 1` choices. Therefore the answer is `m * C(n - 1, k) * (m - 1)^(n - 1 - k)`.
-- **Combinations:** Compute `C(n - 1, k)` using factorials and inverse factorials modulo `10^9 + 7`.
-- **Edge cases:** Python’s modular exponentiation correctly handles `(m - 1)^0 = 1`, including `m = 1` and `k = n - 1`. If `m = 1` and `k < n - 1`, the positive power of zero makes the result zero.
-- **Complexity:** `O(n)` time and `O(n)` memory.

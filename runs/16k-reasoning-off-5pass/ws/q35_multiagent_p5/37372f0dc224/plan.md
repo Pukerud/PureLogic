@@ -1,5 +1,0 @@
-1. To find the shortest palindrome with prefix S, we need to append the minimum number of characters to the end of S such that the result is a palindrome.
-2. This is equivalent to finding the longest suffix of S that is a palindrome. Let this suffix start at index `i`. Then the prefix `S[0:i]` needs to be reversed and appended to S.
-3. We can use KMP algorithm on the string `T = S + '#' + reverse(S)` to compute the prefix function (pi array).
-4. The last value of the pi array for `T` gives the length of the longest prefix of `T` that is also a suffix of `T`. Since `T` ends with `reverse(S)`, this corresponds to the longest prefix of `S` that matches a suffix of `reverse(S)`, which is the longest palindromic suffix of `S`.
-5. Let `len` be this length. Then the part of S that is not part of the palindromic suffix is `S[0 : n - len]`. We reverse this part and append it to S.

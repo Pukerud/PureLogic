@@ -1,6 +1,0 @@
-- **Algorithm:** Use thresholded banded Levenshtein DP. Any edit sequence costing at most `K` stays within `|i-j| <= K`, so states outside this diagonal band are irrelevant.
-- **Complexity:** At most `2K+1 <= 41` DP states are processed per source prefix. Time is `O(K * min(|S|, |T|))`; memory is `O(K)`.
-- **DP rows:** Each row stores only its actual valid target-position interval `[max(0, i-K), min(m, i+K)]`. Values greater than `K` are clamped to `K+1`.
-- **Transitions:** For `dp[i][j]`, consider deletion from `dp[i-1][j] + 1`, insertion from `dp[i][j-1] + 1`, and replacement/match from `dp[i-1][j-1] + (S[i-1] != T[j-1])`.
-- **Preprocessing:** Immediately reject if the length difference exceeds `K`. Equal common prefixes and suffixes are removed, since they can be matched at zero cost. The shorter remaining string is used for the row dimension to reduce work.
-- **Validation:** Sample 1 yields `Yes`, sample 2 yields `No`, and sample 3 yields `Yes`.

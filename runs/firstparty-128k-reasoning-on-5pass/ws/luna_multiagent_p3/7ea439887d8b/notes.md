@@ -1,6 +1,0 @@
-- **State representation:** Use `(vertex, parity)`, where parity `0` means the original edge directions and parity `1` means all directions are reversed.
-- **Transitions:** Reversing toggles parity with cost `X`. Moving costs `1`; use the original outgoing adjacency list for parity `0` and the original incoming adjacency list for parity `1`.
-- **Algorithm:** Run Dijkstra’s algorithm over the implicit graph of `2N` states. Each original edge contributes one movement transition in each parity layer, and every state has one reversal transition.
-- **Termination:** The first state for vertex `N` removed from the priority queue has the minimum possible cost, since Dijkstra processes states in nondecreasing distance order.
-- **Complexity:** `O((N + M) log N)` time and `O(N + M)` memory.
-- **Integer range:** Python integers safely handle answers larger than 32-bit range.

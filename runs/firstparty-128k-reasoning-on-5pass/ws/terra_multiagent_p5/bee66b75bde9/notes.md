@@ -1,7 +1,0 @@
-- **Structural observation:** Valid black cells form a northwest-closed set. If cell `(x, y)` is black, every cell `(x', y')` with `x' <= x` and `y' <= y` must be black, due to row black-prefix and column black-prefix conditions.
-- **Contradiction criterion:** A required white cell `(xw, yw)` conflicts with a required black cell `(xb, yb)` exactly when `xw <= xb` and `yw <= yb`. The black cell would force the white cell to be black.
-- **Sufficiency:** If no such white-black pair exists, color precisely the northwest closure of all required black cells black. No required white cell belongs to this closure, so this yields a valid coloring.
-- **Algorithm:** Sort white constraints and black constraints by row. Sweep black points in increasing row order, inserting every white point with row at most the current black row. Maintain the minimum column among inserted white points. If this minimum is at most the black point's column, output `No`; otherwise output `Yes`.
-- **Complexity:** Sorting costs `O(M log M)` and the sweep costs `O(M)`. Memory usage is `O(M)`.
-- **Equality:** Both comparisons are inclusive. Same-row or same-column white/black constraints can conflict.
-- **Sample verdicts:** The implementation gives `Yes`, `No`, `Yes`, `No` for samples 1 through 4 respectively.

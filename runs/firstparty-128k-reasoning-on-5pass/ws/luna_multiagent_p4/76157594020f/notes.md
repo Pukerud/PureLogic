@@ -1,7 +1,0 @@
-- **Feasibility:** For a fixed maximum run length `L`, find the minimum Hamming distance between the original string and any binary string whose equal-character runs all have length at most `L`.
-- **Dynamic programming:** `dp[bit][r]` stores the minimum flips for the processed prefix when the final character is `bit` and the final run has length `r + 1`.
-- **Transitions:** A character either extends the current run, when its length remains below `L`, or changes the final bit and starts a new run of length one. Each transition adds zero or one flip according to whether the produced character matches the original.
-- **Special case `L = 1`:** Every resulting character must alternate, so only the two alternating strings need to be compared.
-- **Monotonicity:** If maximum run length `L` is feasible, every larger limit is also feasible. Therefore binary search finds the smallest feasible `L`.
-- **Complexity:** A feasibility check takes `O(nL)` time and `O(L)` memory. Across binary search, the worst-case time is `O(n^2 log n)` for `n <= 1000`.
-- **Validation:** The method returns `2` for `"000001", 1`, `1` for `"0000", 2`, and `1` for `"0101", 0`. It also handles `n = 1`, zero operations, and already alternating strings.

@@ -1,9 +1,0 @@
-- **Model:** Let P_t be the cumulative wind displacement after t steps, with P_0=(0,0). A smoke particle created at time k at the origin is at P_t-P_k at time t+0.5, because it experiences winds k+1 through t.
-- **Generation rule:** After the wind at time t, the origin is empty exactly when P_t was not among P_0,...,P_{t-1}. If it is empty, a new particle is added at the origin, which corresponds to including P_t in the prefix set. Thus the occupied cells at time t are P_t - V_t, where V_t is the set of all prefix positions P_0,...,P_t.
-- **Answer condition:** For target T=(R,C), smoke is present at time t+0.5 iff T = P_t - v for some v in V_t, equivalently P_t - T in V_t. This includes the current prefix position, matching the after-generation timing.
-- **Algorithm:** Simulate the walk once. Maintain a set of visited prefix coordinates. For each character, update (r,c), insert its encoded coordinate, then test whether the encoded point (r-R, c-C) is in the set. Append 1 or 0.
-- **Coordinate encoding:** All prefix coordinates have components in [-N,N], and all query points (r-R,c-C) have components in [-2N,2N]. Use base B=4N+5 and key=x*B+y. Since the possible y-range has width 4N+1 < B, the mapping is injective on all keys used, avoiding tuple overhead.
-- **Complexity:** O(N) expected time and O(N) memory. N=200000 is easily within limits.
-- **Implementation details:** Read all tokens from sys.stdin.buffer. Keep S as bytes and compare ascii codes 78,87,83, else E. Use a bytearray for the answer and write it with a trailing newline.
-- **Edge cases:** Repeated prefix positions do not create new smoke, but the set representation naturally keeps the origin occupied when P_t is repeated. The target is not (0,0) by constraints, though the formula would also correctly return 1 for the origin at every time.
-- **Sample check:** For sample 1, the shifted query points are absent, absent, present, absent, present, absent, giving 001010.

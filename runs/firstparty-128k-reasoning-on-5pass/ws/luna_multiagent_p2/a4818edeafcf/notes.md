@@ -1,7 +1,0 @@
-- **Prefix and suffix counts:** `prefix[i]` stores the number of distinct values in `A[1..i]`, while `suffix[i]` stores the number in `A[i..N]`.
-- **Sweep variable:** For every middle-segment right endpoint `j` from `2` through `N-1`, optimize all left endpoints `i < j`.
-- **Segment-tree value:** The value at position `i` is `prefix[i] + distinct(A[i+1..j])`.
-- **Appending an element:** If the previous occurrence of `A[j]` is at position `p`, appending `A[j]` increases the middle distinct count exactly for `i >= p`. Thus, add one on `[max(1,p), j-1]`.
-- **Activating candidates:** Position `i=j-1` becomes valid when processing `j`; it is initialized to `prefix[j-1]` before the range update, so its one-element middle segment receives the update.
-- **Final combination:** The segment-tree maximum gives the best first-plus-middle contribution for the current `j`; adding `suffix[j+1]` accounts for the non-empty third segment.
-- **Complexity:** Each position causes one point assignment and one range addition, both in `O(log N)`. Total complexity is `O(N log N)` with `O(N)` memory.

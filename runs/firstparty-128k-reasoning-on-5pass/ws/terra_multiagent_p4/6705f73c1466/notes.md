@@ -1,6 +1,0 @@
-- **Approach:** Record each `1` position `pos[i]` using 0-based indices. If the final contiguous block starts at `x`, the i-th `1` is assigned target position `x + i`, preserving order.
-- **Transformation:** The total swaps for a chosen start is `sum(abs(pos[i] - (x + i)))`, equivalent to `sum(abs((pos[i] - i) - x))`.
-- **Optimization:** A sum of absolute deviations is minimized by any median. Since transformed positions remain sorted, choose `transformed[k // 2]`, where `k` is the number of ones.
-- **Correctness:** Moving ordered ones to ordered consecutive destinations requires exactly their total crossings with zeros; swaps between identical ones are unnecessary.
-- **Complexity:** O(N) time and O(K) memory, where K is the number of ones. Python integers safely hold the answer.
-- **Edge cases:** One `1`, all `1`s, already contiguous ones, and even counts of ones all work directly.

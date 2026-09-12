@@ -1,1 +1,0 @@
-Reconstruct the final permutation in reverse order. At reverse step `i`, the value `i` must occupy the `P_i`-th currently empty position, because later insertions have already fixed their final locations. Maintain empty positions with a Fenwick tree supporting selection of the k-th available position in `O(log N)`. Fill the answer array from `i = N` down to `1`, then print it.

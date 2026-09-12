@@ -1,7 +1,0 @@
-- **Feasibility:** A red ball can only move along its cycle in permutation `P`, so every initially red box must belong to the `P`-cycle containing `X`. Similarly, every initially blue box must belong to the `Q`-cycle containing `X`. Otherwise the answer is `-1`.
-- **Relevant paths:** Remove `X` conceptually from the relevant permutation cycle. Every ball on that cycle follows the unique directed path toward `X`. For each color, only the initially occupied vertex farthest from `X` matters: its path contains every path required by all closer initial balls of that color.
-- **Repeated operations:** Repeated operations can be necessary. Example with red path `[a, b]` and blue path `[b, a]` requires a schedule such as `[a, b, a]`, so counting distinct required boxes is insufficient.
-- **Scheduling characterization:** The operations performed form a common supersequence of the red path and blue path. Conversely, any common supersequence drains both farthest balls and therefore all balls. Thus the minimum is the shortest common supersequence length:
-  `len(red_path) + len(blue_path) - LCS(red_path, blue_path)`.
-- **LCS optimization:** Each path contains distinct vertices, since it is a segment of a permutation cycle. Map each vertex of the blue path to its position; scan common vertices in red-path order and compute the LIS of their blue positions. This LIS length equals the LCS length.
-- **Complexity:** Building cycles and paths is `O(N)`. LIS is `O(N log N)`. Memory usage is `O(N)`.

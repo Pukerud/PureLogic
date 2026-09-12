@@ -1,9 +1,0 @@
-- **State:** dp0/dp1 store bitsets of alternating sums for non-empty no-zero subsequences with exact positive product p <= limit and even/odd length. zero0/zero1 store product-zero subsequences. all0/all1 store capless reachability of all non-empty subsequences.
-- **Bitset encoding:** sum s is stored at bit s + offset, where offset = sum(nums), and mask = (1 << (2*offset + 1)) - 1. Adding the next value x is a left shift by x; subtracting x is a right shift by x. Left shifts are masked.
-- **Positive transition:** for x > 0, snapshot dp0/dp1, zero, and all. For q = 1..limit//x, even product q adds x to odd product q*x, and odd product q subtracts x to even product q*x. Singleton x is added to dp1[x] only if x <= limit.
-- **Zero transition:** for x > 0, zero states shift only from old zero states. For x = 0, any old all state, or the empty subsequence via bit0, becomes a zero-product state in the flipped parity with unchanged sum. Positive dp is unchanged when x = 0.
-- **Capless all:** all states update from old all for every x, plus singleton x for x > 0 and singleton zero bit0 for x = 0. This preserves subsequences whose product exceeds limit, so a later zero can still create a valid zero-product subsequence.
-- **Non-empty:** no empty state is stored; singletons are inserted explicitly, so the empty subsequence with sum 0 and product 1 is never returned.
-- **Answer:** scan p = limit..1 for the target bit in dp0[p] or dp1[p]; if none, check zero0/zero1 and return 0; otherwise return -1.
-- **Complexity:** bitset length is at most 3601 bits, product dimension is at most 5001, and n <= 150. The positive loop cost is O(sum(limit / x)) over positive elements, with big-int bit operations, which is easily within limits.
-- **Examples:** [1,2,3] returns 6, [0,2,3] returns -1, and [2,2,3,3] returns 9; asserts are included in the main block.

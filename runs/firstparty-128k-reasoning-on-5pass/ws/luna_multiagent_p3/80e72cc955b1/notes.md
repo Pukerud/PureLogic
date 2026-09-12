@@ -1,6 +1,0 @@
-- **Required selections:** An integer `x > 0` needs `d(x) = floor(log_4(x)) + 1` selections before repeated division by 4 reaches zero.
-- **Operations versus selections:** Each operation supplies two selections, so at least `ceil(total_required / 2)` operations are necessary.
-- **Pairing feasibility:** For any query with `l < r`, the largest requirement is `d(r)`. Since `r - 1` is also present and `d(r - 1) >= d(r) - 1`, the total requirement is at least `d(r) + d(r - 1) >= 2*d(r) - 1`. Therefore `ceil(total_required / 2) >= d(r)`, so no element needs more operations than the available operation count. Required selections can consequently be paired, using already-zero elements as fillers when necessary.
-- **Prefix sum:** All values in `[4^(k-1), 4^k - 1]` require exactly `k` selections. The `prefix(n)` function sums these groups in `O(log_4 n)` time.
-- **Complexity:** Each query takes `O(log_4 r)` time and `O(1)` extra space. With `r <= 10^9`, there are at most 16 groups per prefix computation.
-- **Edge cases:** `prefix(0)` returns zero; powers of four are handled by the inclusive interval boundaries; Python integers safely handle the total answer.

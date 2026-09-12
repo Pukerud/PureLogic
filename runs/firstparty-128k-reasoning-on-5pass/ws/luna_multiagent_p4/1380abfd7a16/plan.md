@@ -1,1 +1,0 @@
-Reconstruct the final array in reverse order, placing each value \(i\) into the \(P_i\)-th currently available position. A Fenwick tree stores which final positions remain empty and supports finding the \(k\)-th empty position in \(O(\log N)\). Process \(i=N\) down to \(1\), assign it to the queried position, and remove that position from the tree.

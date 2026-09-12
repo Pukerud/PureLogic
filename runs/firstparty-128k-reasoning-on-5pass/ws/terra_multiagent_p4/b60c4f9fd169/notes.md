@@ -1,7 +1,0 @@
-- **Algorithm:** Use rolling banded Levenshtein DP. A solution with at most `K` edits can only visit prefix pairs `(i, j)` satisfying `abs(i - j) <= K`, so each row has at most `2K+1 <= 41` states.
-- **State:** For row `i`, diagonal `d = j - i`, store the edit distance from `S[:i]` to `T[:j]`. The transition takes the minimum of substitution/match, deletion, and insertion.
-- **Memory:** Two arrays of length `2K+1` are sufficient. Values above `K` are saturated to `K+1`, since they cannot affect the final decision.
-- **Complexity:** `O(K * min(|S|, |T|))` time after swapping strings if needed, and `O(K)` memory. With `K <= 20`, the worst-case work is about 20 million state updates.
-- **Preprocessing:** Reject immediately if the length difference exceeds `K`. Strip equal common prefixes and suffixes before DP; this preserves edit distance and can greatly reduce work on similar strings.
-- **Boundary handling:** For each DP row, process only diagonals with valid matrix coordinates. The recurrence guards insertion at `j = 0` and transitions that would leave the allowed band.
-- **Correctness detail:** At diagonal `d`, deletion comes from prior-row diagonal `d+1`, insertion from current-row diagonal `d-1`, and match/substitution from prior-row diagonal `d`.

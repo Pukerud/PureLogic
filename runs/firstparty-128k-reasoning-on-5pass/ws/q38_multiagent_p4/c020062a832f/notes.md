@@ -1,8 +1,0 @@
-- **Approach:** Compute the inversion count for k=0 once, then sweep k from 0 to M-1. A shift by 1 only changes relative order when exactly one of two elements wraps from M-1 to 0.
-- **Initial count:** Use a Fenwick tree over values 0..M-1. For position idx (1-based) with value a, the number of previous greater elements is (idx-1) - prefix_count(<=a). Add this to ans and insert a.
-- **Delta derivation:** At transition k -> k+1, elements with current value M-1 wrap to 0. For a wrapping position p, pairs with non-wrapping positions before p become inversions (+1), and pairs with non-wrapping positions after p cease to be inversions (-1). Pairs where both positions wrap are unchanged. Summing over all wrapping positions, internal wrapping-pair contributions cancel, leaving sum_p (2p-1-N).
-- **Value mapping:** The original value that wraps at transition k is v = (M-1-k) mod M. For the M printed answers we only need transitions k=0..M-2, so v = M-1, M-2, ..., 1. delta[0] is computed but not used unless one wanted to return to k=0.
-- **Indexing:** Positions are 1-based in the delta formula. Fenwick uses 1-based value indices a+1.
-- **Complexity:** O(N log M + M) time and O(M) auxiliary memory for the Fenwick tree and delta array. Python integers safely handle answers up to about 2e10.
-- **Edge cases:** M=1 works: the Fenwick tree has size 2, no updates are performed, and the only answer is 0. Equal values are not inversions; using prefix_count(<=a) handles them correctly.
-- **Validation:** The formula reproduces the provided samples. A brute-force per-k inversion count on small random cases would match the sweep.

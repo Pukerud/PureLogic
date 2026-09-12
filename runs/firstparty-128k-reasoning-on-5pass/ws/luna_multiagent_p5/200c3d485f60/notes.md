@@ -1,6 +1,0 @@
-- **Counting formula:** There are `n - 1` adjacent transitions. Choose exactly `k` transitions to be equal; the remaining `n - 1 - k` transitions must be different.
-- **Choices:** The first element has `m` choices. Each equal transition has one choice, while each different transition has `m - 1` choices. Thus the answer is `m * C(n - 1, k) * (m - 1)^(n - 1 - k)`.
-- **Combinations:** Factorials and inverse factorials modulo `10^9 + 7` compute `C(n - 1, k)` efficiently using Fermat's little theorem.
-- **Edge cases:** For `n = 1`, there are no transitions and the result is `m`. For `m = 1`, any required different transition makes the result zero; if all transitions are equal, the result is one.
-- **Verification:** The implementation returns `4` for `(3, 2, 1)`, `6` for `(4, 2, 2)`, and `2` for `(5, 2, 0)`.
-- **Complexity:** Time and space complexity are `O(n)`.

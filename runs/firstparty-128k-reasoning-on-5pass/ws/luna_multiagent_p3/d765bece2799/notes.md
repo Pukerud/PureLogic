@@ -1,7 +1,0 @@
-- **Contribution ownership:** For maxima, each index owns subarrays bounded by the previous strictly greater element and the next greater-or-equal element. For minima, the comparisons are reversed. This asymmetric tie-breaking ensures duplicate extrema are counted exactly once.
-- **Endpoint ranges:** If an element has `left` possible starting positions and `right` possible ending positions, choosing extensions `a` and `b` gives a subarray length of `a + b - 1`.
-- **Length restriction:** Valid endpoint choices satisfy `1 <= a <= left`, `1 <= b <= right`, and `a + b <= k + 1`.
-- **Counting formula:** The number of valid pairs is computed by inclusion-exclusion. If `F(t) = t(t-1)/2` for `t >= 2`, otherwise `0`, then the count is `F(k+1) - F(k+1-left) - F(k+1-right) + F(k+1-left-right)`.
-- **Monotonic stacks:** One left-to-right pass computes left distances. A second pass computes right distances by assigning the first qualifying future index when stack elements are popped.
-- **Validation:** The implementation matches the two supplied examples and exhaustive brute-force comparisons on small arrays, including duplicate values, negative values, `k = 1`, and `k = n`.
-- **Complexity:** Each extrema contribution uses linear-time stack passes and O(n) auxiliary memory. The overall complexity is O(n) time and O(n) space.

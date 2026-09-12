@@ -1,6 +1,0 @@
-- **Marginal-cost formulation:** The \(k\)-th purchased unit of product \(i\) costs \((2k-1)P_i\) additionally. Since each product's marginal costs are increasing, an optimal solution selects globally cheapest marginal units.
-- **Threshold counting:** For a marginal-cost threshold \(x\), the number of units of product price \(P_i\) whose marginal cost is at most \(x\) is `k = (x // P_i + 1) // 2`. Their total cost is `k*k*P_i`.
-- **Feasibility binary search:** Define `F(x)` as the total cost of all marginal units costing at most `x`. It is monotone. Binary search for the largest integer `x` such that `F(x) <= M`.
-- **Upper bound:** `2*M + max(P)` is always infeasible. If some product has `P > M`, its first unit alone exceeds budget once included. Otherwise, this threshold includes enough units of any product to make its quadratic cost exceed `M`.
-- **Tie handling:** After selecting all units with marginal cost at most the final threshold, compute each product's next marginal cost `(2*k+1)*P_i`. Let `c` be the minimum such cost and let `t` be the number of products attaining it. Buy `min(t, remaining_budget // c)` more units. Subsequent units for those products are more expensive, so no further purchase can be cheaper.
-- **Complexity:** Binary search uses \(O(\log(M+\max P))\) iterations, each taking \(O(N)\), for about 61 passes. Memory usage is \(O(N)\).

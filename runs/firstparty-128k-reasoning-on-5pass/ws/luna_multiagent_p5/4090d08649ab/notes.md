@@ -1,5 +1,0 @@
-- **Characterization:** The present values in a subarray form connected components on the integer line. One operation can erase exactly one such component, so \(f(L,R)\) equals the number of present values \(x\) whose predecessor \(x-1\) is absent.
-- **Latest occurrences:** For fixed \(R\), let `last[x]` be the latest position at most \(R\) containing \(x\), or zero if absent. Value \(x\) is present in \([L,R]\) iff \(L \le \text{last}[x]\), while \(x-1\) is absent iff \(L > \text{last}[x-1]\).
-- **Contribution formula:** Summed over all possible \(L\), value \(x\) contributes \(\max(0,\text{last}[x]-\text{last}[x-1])\).
-- **Dynamic updates:** When processing position \(R\) with value \(v\), only `last[v]` changes. Therefore only the terms for \(x=v\) and \(x=v+1\) can change. Remove their old contributions, update `last[v]`, then add their new contributions.
-- **Complexity:** The algorithm runs in \(O(N)\) time and uses \(O(N)\) memory. Python integers safely handle the answer size.

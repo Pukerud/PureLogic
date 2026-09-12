@@ -1,6 +1,0 @@
-- **Prefix transformation:** Let \(P_0=0\) and \(P_i=A_1+\cdots+A_i\). Every subarray sum is \(P_r-P_{l-1}\), so the target is \(\sum_{0\le x<y\le N}(P_y-P_x)^K\).
-- **Binomial expansion:** For a newly processed prefix \(P_y\), its contribution is \(\sum_{x<y}\sum_{j=0}^K \binom Kj P_y^{K-j}(-P_x)^j\).
-- **Maintained state:** `power_sums[j]` stores \(\sum_{x<y}P_x^j\) modulo `MOD`. Initially only \(P_0=0\) is present, so the zeroth-power sum is 1 and all positive-power sums are 0.
-- **Online update:** Compute powers of the current prefix through degree \(K\), evaluate the expanded contribution in \(O(K)\), then add those powers to `power_sums`.
-- **Modular arithmetic:** Prefix values and all powers may be reduced modulo 998244353 because the expression is polynomial with integer coefficients. Alternating signs are applied before the final modular normalization.
-- **Complexity:** The algorithm uses \(O(NK)\) time and \(O(K)\) memory.

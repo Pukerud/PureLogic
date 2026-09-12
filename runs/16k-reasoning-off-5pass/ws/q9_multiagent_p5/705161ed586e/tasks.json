@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement the `minCostGoodCaption` method using the precomputation strategy: calculate prefix and suffix costs for all 26 characters, then iterate through all valid split points (for 2 blocks) and the single block case to find the minimum cost and lexicographically smallest string.",
-    "status": "done",
-    "result": ""
-  }
-]

@@ -1,7 +1,0 @@
-- **Model:** Exactly k equal adjacent pairs means exactly k of the n - 1 gaps are inside runs, so the array has r = n - k runs.
-- **Formula:** For a fixed choice of equal gaps, adjacent runs must have different values. The first run has m choices and each later run has m - 1 choices, giving C(n - 1, k) * m * (m - 1)^(n - k - 1) modulo 10^9 + 7.
-- **Implementation:** Precompute factorials and inverse factorials up to n - 1, compute the binomial coefficient with Fermat modular inverse, then multiply by m and the required power of m - 1.
-- **Edge cases:** n = 1 gives C(0, 0) * m * (m - 1)^0 = m. m = 1 is special-cased: the only valid case is k = n - 1, with answer 1. Invalid k values return 0.
-- **Complexity:** O(n) time and O(n) memory per call, which is safe for n up to 100000.
-- **Test verdict:** The three examples pass: (3, 2, 1) -> 4, (4, 2, 2) -> 6, (5, 2, 0) -> 2. Edge cases also pass: (1, 5, 0) -> 5, (1, 1, 0) -> 1, (2, 1, 1) -> 1, (2, 1, 0) -> 0, (3, 3, 0) -> 12, (3, 3, 1) -> 12, (3, 3, 2) -> 3, invalid k -> 0.
-- **Sanity check:** For small cases, summing over all valid k gives m^n; for example n = 3, m = 3 gives 12 + 12 + 3 = 27.

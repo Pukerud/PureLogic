@@ -1,8 +1,0 @@
-- **Reduction:** Fix a retained snowflake center `c` and leaf count `y >= 1`. A neighbor `v` of `c` can be a middle vertex exactly when `deg(v) - 1 >= y`, because it needs `y` neighbors other than `c` to serve as retained leaves.
-- **Fixed center and threshold:** For fixed `(c, y)`, retaining every eligible neighbor as a middle vertex is optimal. If `k` neighbors are eligible, the largest snowflake has `1 + k * (y + 1)` vertices: one center, plus one middle and `y` leaves per eligible neighbor.
-- **Threshold sweep:** Activate vertex `v` at threshold `y = deg(v) - 1`. During a descending sweep over `y`, activated vertices are exactly those capable of being middles for that `y`. When activating `v`, increment the eligible-middle count of every neighbor of `v`, since each such neighbor can be a possible center.
-- **Global evaluation:** After processing all vertices activated at a given threshold `y`, let `M` be the maximum eligible-middle count over all possible centers. The best snowflake for this `y` has size `1 + (y + 1) * M`. Maintaining a global maximum count is valid because every count only increases during the descending sweep.
-- **Batching:** All vertices with the same `deg(v)-1` must be activated before evaluating that threshold, so vertices whose degree is exactly `y+1` are included.
-- **Validity:** Thresholds only run for `y >= 1`, satisfying the positive-integer requirement. Any positive eligible count gives `x >= 1`.
-- **Complexity:** Bucket construction and the threshold loop use `O(N)` space. Each tree edge is processed at most twice when its endpoint is activated, so total time is `O(N)`.
-- **Answer:** If the maximum retained snowflake size is `best_size`, the required number of deletions is `N - best_size`.

@@ -1,7 +1,0 @@
-- **Observation:** For an element value `x`, a GCD obtainable from a chosen set containing `x` must divide `x`. A divisor `d` of `x` is achievable exactly when at least `K` array elements are divisible by `d`, since those elements can form the selected set.
-- **Sieve method:** Build `freq[v]`, the multiplicity of each value. For every divisor candidate `d`, sum `freq[m]` over multiples `m = d, 2d, ...`. Mark `d` valid when this sum reaches `K`.
-- **Answer assignment:** Process valid divisors in descending order. For every present multiple `m` of a valid divisor `d`, assign `answer[m] = d` only if it is still unassigned. Descending order guarantees this is the largest valid divisor of `m`.
-- **Complexity:** The sieve-style loops have harmonic complexity `O(M log M)`, where `M = max(A) <= 10^6`. Memory is `O(M + N)` with compact arrays for input and answers.
-- **Early stopping:** While counting multiples for a divisor, stop immediately once the count reaches `K`, because only validity matters. This improves performance for small `K`.
-- **Special case:** If `K = 1`, each element can be selected alone, so every answer is the element itself. The implementation returns immediately for this case.
-- **Input/output:** A custom integer generator avoids creating a large `split()` list. Input values are stored in `array('I')`, and output preserves original input order by looking up each original value's computed answer.

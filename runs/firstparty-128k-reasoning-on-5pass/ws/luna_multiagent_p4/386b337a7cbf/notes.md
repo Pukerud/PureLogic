@@ -1,8 +1,0 @@
-- **State representation:** `dp[(alternating_sum, parity)]` stores every attainable product for non-empty subsequences, where parity is the subsequence length modulo two.
-- **Appending values:** An appended number is added when the current length is even and subtracted when it is odd; the parity then toggles.
-- **Product limit:** Products greater than `limit` are discarded immediately. Product zero is retained and can be extended by later elements, including zero-valued elements.
-- **Element usage:** Transitions are accumulated in a separate `additions` dictionary and merged only after processing the current number, ensuring each array element is used at most once.
-- **Initialization:** Every number directly creates a one-element subsequence with alternating sum equal to that number, odd parity, and product equal to that number.
-- **Validity:** The empty subsequence is never inserted, so zero-length states cannot produce false answers.
-- **Bounds:** Alternating sums always lie between `-sum(nums)` and `sum(nums)`; an immediate range check handles impossible targets.
-- **Result:** The maximum attainable product among both parity states with alternating sum `k` is returned, or `-1` if no such subsequence exists.

@@ -1,7 +1,0 @@
-- **Direction order:** Southeast, southwest, northwest, northeast. Advancing cyclically in this order represents a clockwise 90-degree turn.
-- **Straight dynamic programming:** Each `straight[d]` table stores the longest alternating sequence beginning at a `0` or `2` cell and continuing in one fixed diagonal direction.
-- **One-turn dynamic programming:** Each `one_turn[d]` table allows either continuation in direction `d` or one immediate clockwise turn followed by a straight-only sequence.
-- **Sequence validation:** From a current value `v`, the next value must be `2 - v`, enforcing the pattern `2, 0, 2, 0, ...`.
-- **Counting:** DP values include their starting cell. The initial `1` is added separately, so the turning cell is counted exactly once.
-- **Complexity:** The algorithm uses eight diagonal passes and runs in `O(nm)` time. `array('H')` stores lengths compactly and supports all possible lengths because the maximum is at most 500.
-- **Verification:** The four provided samples produce `5, 4, 5, 1`. A single-cell grid containing `1` returns `1`; a grid with no `1` returns `0`; straight-only diagonals and paths with an immediate turn are handled correctly.

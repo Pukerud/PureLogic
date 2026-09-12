@@ -1,6 +1,0 @@
-1. Since we need to maximize the minimum Manhattan distance between any two selected points, this is a classic "maximize the minimum" problem which can be solved using binary search on the answer (the distance).
-2. The possible range for the minimum distance is from 0 to 2*side (the maximum possible Manhattan distance on the boundary).
-3. For a given candidate distance `d`, we need to check if it's possible to select at least `k` points from `points` such that every pair of selected points has a Manhattan distance >= `d`.
-4. This feasibility check can be modeled as finding an independent set of size `k` in a graph where edges connect points with Manhattan distance < `d`. However, since k is small (<=25), we can use a greedy approach or backtracking. Given the constraints, a greedy approach might not be optimal, so we use backtracking with pruning to find if a subset of size k exists.
-5. To optimize, we can sort the points by their perimeter coordinate (since they lie on the boundary, we can map each point to a single value representing its position along the perimeter). This helps in organizing the search.
-6. Binary search over the distance range, using the backtracking feasibility check, will give us the maximum possible minimum distance.

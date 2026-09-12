@@ -1,8 +1,0 @@
-- **Reduction:** Set d=x-y>0 and x=y+d. Then N=d(3y^2+3dy+d^2), so d must divide N and y is positive.
-- **Search bound:** For y>=1, 3y^2+3dy+d^2 >= d^2+3d+3 > d^2, hence N>d^3. Therefore d^3<=N-1, so d only needs to be checked up to floor(cuberoot(N-1)), at most 999999 under N<=1e18.
-- **Exact cube root:** Use binary search with hi=1<<((n.bit_length()+2)//3), which is strictly greater than the real cube root. This avoids floating-point rounding errors.
-- **Quadratic test:** For each divisor d, let m=N//d. The equation is 3y^2+3dy+d^2=m. Completing the square gives (6y+3d)^2=3(4m-d^2). Let t=isqrt(3(4m-d^2)). A valid positive integer y exists exactly when t^2 equals the radicand, rem=t-3d is positive, and rem is divisible by 6; then y=rem//6 and x=y+d.
-- **Why rem conditions:** t=6y+3d for a valid solution, so rem=6y. The positivity rejects y=0 cases such as N being a perfect cube with x^3=N. The divisibility by 6 ensures y is integral.
-- **Edge cases:** N=1 gives limit=0 and prints -1. Consecutive-cube cases are handled by d=1, e.g. 397 gives y=11, x=12. Perfect cubes with no positive y are not falsely accepted.
-- **Complexity:** The loop performs about 1e6 modulo operations in the worst case. Integer square roots are computed only for divisors d of N, so the extra cost is small. Python big integers avoid overflow.
-- **Rejected alternatives:** Direct enumeration of x or y is too slow because x can be around sqrt(N/3). Generating divisors or gcd/cube reduction is more complex and unnecessary for this limit. Modular filters are only optional speedups.

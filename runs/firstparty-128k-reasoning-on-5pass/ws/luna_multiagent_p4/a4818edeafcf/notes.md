@@ -1,7 +1,0 @@
-- **Sweep invariant:** Before evaluating split position `j`, the segment tree stores `prefix_distinct[i] + middle_distinct(i+1..j)` for every active first split `1 <= i < j`.
-- **Activation:** At iteration `j`, activate the new candidate `i = j-1` with initial value `prefix_distinct[j-1]`, corresponding to an empty middle segment before adding `A[j]`.
-- **Range update:** If the previous occurrence of `A[j]` is at position `p`, adding `A[j]` increases the middle distinct count exactly for `i` in `[max(1,p), j-1]`.
-- **Answer calculation:** For each `j`, add the maximum tree value to the number of distinct values in the suffix `A[j+1..N]`.
-- **Data structure:** A lazy segment tree supports point activation, range addition, and global maximum in `O(log N)` per operation.
-- **Complexity:** Prefix/suffix preprocessing is `O(N)`; the sweep is `O(N log N)` time and `O(N)` memory.
-- **Validity:** Iterating `j` from `2` through `N-1` guarantees all three subarrays are non-empty.

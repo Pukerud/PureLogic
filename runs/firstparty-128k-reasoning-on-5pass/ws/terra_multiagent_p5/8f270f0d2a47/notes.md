@@ -1,9 +1,0 @@
-- **Approach:** Uses `count_up_to(r) - count_up_to(l - 1)`.
-- **Zero-containing values:** A number with an actual decimal digit zero has digit product zero and is automatically beautiful. A separate digit DP counts these values while distinguishing actual zeros from leading padding.
-- **Zero-free values:** For every possible final digit sum `S` from `1` through `9 * digit_count`, a digit DP tracks position, accumulated sum, product modulo `S`, whether the number started, and tightness.
-- **Acceptance:** A zero-free state is accepted only when its final digit sum is exactly `S` and its digit product modulo `S` is zero.
-- **Pruning:** States are rejected if their sum exceeds `S`, or if even filling all remaining positions with nines cannot reach `S`.
-- **Sample test results:** `beautifulNumbers(10, 20) = 2`; `beautifulNumbers(1, 15) = 10`.
-- **Boundary checks:** Single-value checks give `1->1`, `9->1`, `10->1`, `11->0`, `99->0`, `100->1`, `101->1`, and `999999999->1`.
-- **Brute-force validation:** Compared digit-DP range counts against direct enumeration for small bounds and subranges, including ranges crossing `9/10`, `99/100`, and values with internal/trailing zeros. No discrepancies found.
-- **Complexity:** At most 81 target sums are considered for a 9-digit bound. DP state space is bounded by digit position, target sum, accumulated sum, remainder, started flag, and tight flag; pruning substantially reduces reachable states.

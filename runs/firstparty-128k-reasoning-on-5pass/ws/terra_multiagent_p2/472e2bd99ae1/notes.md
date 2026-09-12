@@ -1,7 +1,0 @@
-- **Algorithm:** Sort `A`, `B`, and `C` in descending order. The expression is non-increasing when any one sorted index is increased because each variable has a positive coefficient equal to the sum of the other two variables.
-- **Traversal:** Treat triples `(i, j, k)` as a monotone 3D grid. Start from `(0, 0, 0)` and use a max-heap implemented with negated values. After popping a state, add valid neighbors obtained by incrementing one coordinate.
-- **Correctness:** Every state is reachable from `(0,0,0)` by index increments. Since a state’s predecessors have values at least as large as it, best-first heap traversal outputs triples in non-increasing expression value order. The K-th pop is therefore the K-th largest value, including duplicates.
-- **Duplicates:** States rather than values are tracked, so equal expression values correctly occupy multiple ranks.
-- **Memory optimization:** Triple indices are encoded as `i*N*N + j*N + k` in the visited set and heap, avoiding memory-heavy Python index tuples.
-- **Complexity:** At most `K` heap pops and at most `3K` neighbor attempts. Time is `O(N log N + K log K)` and memory is `O(K)`.
-- **Integer range:** Values can approach `3 * 10^18`; Python integers safely handle this.

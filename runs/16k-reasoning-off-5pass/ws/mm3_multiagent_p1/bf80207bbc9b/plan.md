@@ -1,5 +1,0 @@
-We can flip any subset of rows and any subset of columns (order doesn't matter, each row/col flipped at most once). After flips, cell (i,j) becomes `A[i][j] XOR r[i] XOR c[j]`. For each row i, define its bitmask `row[i]` over W bits. Flipping row i toggles all bits in that mask. Flipping column j toggles bit j in every row.
-
-Equivalently, choose a column-flip mask `C` (W bits). Then for each row i, the resulting row mask is `row[i] XOR C`. The number of 1s in that row is `popcount(row[i] XOR C)`. We can also optionally flip the whole row (which toggles all W bits), i.e., choose `r[i] ∈ {0,1}` per row to minimize `popcount(row[i] XOR C XOR r[i]*(2^W-1))`.
-
-So for a fixed `C`, the cost is `Σ_i min(popcount(row[i] XOR C), W - popcount(row[i] XOR C))`. We try all `2^W` column masks (W ≤ 18 ⇒ at most 262144) and take the minimum.

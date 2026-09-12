@@ -1,8 +1,0 @@
-- **Algorithm:** Binary search the answer `target`. For each index, its required number of visits is `ceil(target / points[i])`. A greedy left-to-right walk computes the minimum moves needed to satisfy those quotas.
-- **Greedy recurrence:** Enter index `0` once using the mandatory initial move. At non-last index `i`, if its required visits exceed visits already received, bounce on edge `(i, i+1)` exactly for the deficit. Each bounce costs two moves and gives one visit to both endpoints. Then make one forward move to `i+1`.
-- **Last index:** Missing visits at the last index require round trips to `n-2`, costing two moves each. If bounces on the final edge alone already meet the last quota, omit the final forward move and finish at `n-2`, saving one move.
-- **Sample test 1:** `points=[2,4], m=3` returned `4` — PASS.
-- **Sample test 2:** `points=[1,2,3], m=5` returned `2` — PASS.
-- **Independent exhaustive validation:** Compared the recurrence's exact minimum-move count against an independently enumerated BFS state-space walk for every positive quota vector with `n=2..5` and each quota in `1..4`. BFS states tracked current position and capped per-index visit counts; the first state satisfying all quotas gives the true shortest walk. All tested quota vectors matched the recurrence — PASS.
-- **Complexity:** Each feasibility check is `O(n)` time and `O(1)` extra space. Overall complexity is `O(n log(m * min(points)))`.
-- **Bounds:** `min(points) * m` is a valid upper bound because no index can receive more than `m` visits in at most `m` moves.

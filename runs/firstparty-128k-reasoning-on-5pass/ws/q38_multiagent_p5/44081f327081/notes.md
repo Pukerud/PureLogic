@@ -1,8 +1,0 @@
-- **Core reduction:** For a fixed value x, any valid chosen set with gcd g must have g dividing x and at least K array elements divisible by g. Conversely, if a divisor d of x has at least K divisible elements, A_i can be included in such a set. So the answer is the maximum good divisor of x, where good means multiple-count >= K.
-- **Multiple counts:** Build frequency f[1..M]. For each prime p, do descending i = M//p .. 1: f[i] += f[i*p]. Descending makes f[i*p] already include p-powers, so after all primes f[d] equals the number of array elements divisible by d.
-- **Good marking:** Replace f[d] by d when f[d] >= K, else 0. Since K <= N, f[1] becomes 1, guaranteeing a fallback answer.
-- **Max good divisor:** Propagate values from divisor to multiple over primes in ascending i: for p in primes, for i = 1 .. M//p, if f[i] and f[i] > f[i*p], set f[i*p] = f[i]. Ascending is required so f[i] already includes current prime p powers; after all primes f[x] is the largest good divisor of x.
-- **Special cases:** K=1 outputs A_i directly. K=N outputs gcd of all A repeated N times. These also cover N=1 quickly.
-- **Edge cases:** M=1 works: primes list empty, f[1]=N>=K, answer 1. Sieve and loops are safe for M=1 and M=2.
-- **Sieve:** Bytearray sieve up to M with slice assignment for composites, then collect primes. M <= 1e6, so this is fast and small.
-- **I/O and memory:** Read tokens, build A with islice to avoid a token slice, delete tokens. Output in chunks of 100000 to avoid one huge list of strings. Complexity is O(N + M log log M + output), about 6e6 inner iterations at M=1e6.

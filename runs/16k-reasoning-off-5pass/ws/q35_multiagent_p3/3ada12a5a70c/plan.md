@@ -1,6 +1,0 @@
-1. Since k is small (up to 25) and the number of points is up to 15,000, we can use binary search on the answer (the minimum Manhattan distance).
-2. For a given candidate distance `d`, we need to check if it's possible to select k points such that every pair has Manhattan distance >= d.
-3. This check can be modeled as a graph problem: create a graph where each point is a node, and an edge exists between two nodes if their Manhattan distance is < d. Then, we need to find an independent set of size k in this graph.
-4. However, finding the maximum independent set is NP-hard. But note that k is very small (<=25). We can use backtracking with pruning to try to select k points such that no two are connected by an edge (i.e., distance < d).
-5. To optimize, we can sort points or use a greedy approach with backtracking. Given the constraints, a backtracking solution that tries to pick points one by one, ensuring the new point is at least distance d from all previously selected points, should work within time limits because k is small.
-6. Binary search range: low = 0, high = 2 * side (max possible Manhattan distance on the boundary).

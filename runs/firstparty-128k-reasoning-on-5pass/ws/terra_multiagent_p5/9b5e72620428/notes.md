@@ -1,7 +1,0 @@
-- **Feasibility characterization:** Let \(p\) and \(q\) be the numbers of fixed (non-\(-1\)) entries in A and B. For a final common sum \(S\), every fixed value must satisfy value \(\le S\), since its paired counterpart must be non-negative.
-- **Required fixed/fixed pairs:** A fixed B entry can avoid pairing with fixed A only if an unknown A slot exists. Thus at least \(q-(N-p)=p+q-N\) fixed B entries must pair with fixed A entries. The same result follows symmetrically from A. Therefore the required number is \(k=\max(0,p+q-N)\).
-- **Matching count for a sum:** For fixed \(S\), values \(x\) in A can only match values \(S-x\) in B. Hence the maximum number of disjoint fixed/fixed pairs is \(m(S)=\sum_x\min(\mathrm{count}_A(x),\mathrm{count}_B(S-x))\).
-- **Exact condition:** A solution exists iff some \(S\) at least the maximum fixed input value has \(m(S)\ge k\). Remaining fixed entries can pair with unknown entries, and all leftover unknown entries can be assigned non-negative complementary values.
-- **Candidate accumulation:** For every distinct fixed value pair \((x,y)\), add \(\min(\mathrm{count}_A(x),\mathrm{count}_B(y))\) to the total for sum \(x+y\). This accumulated total is exactly \(m(x+y)\).
-- **Complexity:** At most \(p\cdot q\le 4{,}000{,}000\) distinct-value-pair iterations. Time is \(O(uv)\), where \(u,v\) are the numbers of distinct fixed values, and memory is the number of relevant pair sums.
-- **Sample results:** The implemented condition yields Yes for sample 1, No for sample 2, and No for sample 3.

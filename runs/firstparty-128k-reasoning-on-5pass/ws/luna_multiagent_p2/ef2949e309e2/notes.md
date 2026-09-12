@@ -1,6 +1,0 @@
-- **Center sweep:** Fix index `j` as the middle element and maintain frequency maps for values strictly left and strictly right of `j`. Selecting two indices from each side uniquely determines a length-5 subsequence.
-- **Frequency classification:** If `t` surrounding elements equal the center value `x`, then `x` occurs `t+1` times. `t=0` is invalid. For `t=1`, the other three values must be pairwise distinct. For `t>=2`, `x` is automatically the unique mode.
-- **Collision counting:** For exactly one extra `x`, aggregate counts compute the number of choices whose non-`x` values are pairwise distinct. The maintained quantities `q`, `ab2`, and `a2b` correct for equal values across the two sides.
-- **Maintained aggregates:** `left_c2` and `right_c2` count same-valued pairs on each side. All aggregate values are updated in constant time whenever one occurrence crosses the sweep boundary.
-- **Validation:** The formulas produce `C(n, 5)` for an all-equal array, zero for an all-distinct array, and match the provided examples with outputs `6`, `4`, and `0`. Exhaustive small-array comparison against direct subsequence enumeration also passes.
-- **Complexity:** Each center is processed in amortized `O(1)` time, for total `O(n)` time and `O(d)` memory, where `d` is the number of distinct values.

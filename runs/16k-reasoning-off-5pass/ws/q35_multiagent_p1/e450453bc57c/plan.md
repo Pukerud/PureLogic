@@ -1,6 +1,0 @@
-1. Since k is small (up to 15), we can use dynamic programming where the state tracks the number of subarrays formed so far and the current position in the array.
-2. For each position i in the array, we consider two choices: either skip nums[i] (move to i+1 with same count of subarrays) or start a new subarray of size x ending at i (if i >= x-1).
-3. If we start a subarray ending at i, it covers indices [i-x+1, i]. We calculate the cost to make all elements in this range equal to the median of the range (which minimizes absolute differences).
-4. We use DP[i][j] to represent the minimum operations to form j non-overlapping subarrays using the first i elements.
-5. To efficiently compute the cost of making a subarray equal, we can precompute prefix sums and use the median property: cost = sum(|nums[m] - median|) for m in the subarray. This can be computed in O(1) or O(log n) with precomputation, but since x is fixed and small relative to n, we can also compute it directly in O(x) which is acceptable given constraints.
-6. The answer is DP[n][k].

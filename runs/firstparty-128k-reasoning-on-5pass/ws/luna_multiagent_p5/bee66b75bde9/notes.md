@@ -1,5 +1,0 @@
-- **Characterization:** A valid coloring has black cells forming a down-left closed set: if a cell is black, every cell above it and every cell to its left must also be black.
-- **Conflict condition:** A prescribed white cell conflicts with a prescribed black cell exactly when its row and column are both no greater than the black cell’s coordinates.
-- **Sweep:** Sort cells by row, placing whites before blacks in the same row. While scanning, maintain the minimum column of all processed white cells. A black cell is impossible if its column is at least this minimum.
-- **Sufficiency:** If no conflict is found, color black every cell above and left of any prescribed black cell, and color all remaining cells white. The resulting set is down-left closed and contains no prescribed white cell.
-- **Complexity:** Sorting takes \(O(M \log M)\) time; the sweep uses \(O(M)\) memory.

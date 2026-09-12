@@ -1,8 +1,0 @@
-- **Approach:** Use bitmask dynamic programming over subsets of `target`. A mask records which target indices already have at least one multiple among the adjusted `nums` values.
-- **LCM:** For every nonempty subset, compute its least common multiple. Making a number divisible by this LCM makes it a multiple of every target in that subset.
-- **Cost:** For value `x` and subset LCM `L`, the minimum increment is `(-x) % L`.
-- **Transition:** Each `nums` element is either skipped or incremented to cover any nonempty target subset. The resulting covered mask is the bitwise OR of the previous mask and the chosen subset.
-- **Correctness:** Every valid solution can associate each adjusted number with the target indices it covers. Divisibility by the LCM of those indices is sufficient, and the DP checks all such assignments. Every DP transition corresponds to a valid increment operation, so the minimum full-mask cost is optimal.
-- **Duplicate targets:** Duplicate values are represented by separate indices. Covering one multiple can set both corresponding bits when selecting the combined subset, so duplicates are handled correctly.
-- **Complexity:** With `n = len(nums)` and `m = len(target) <= 4`, the time complexity is `O(n * 4^m)` and memory usage is `O(2^m)`.
-- **Validation:** The stated examples return `1`, `2`, and `0`. Representative cases also behave correctly: duplicate targets such as `nums=[5], target=[4,4]` return `3`; an already-covered target such as `nums=[8], target=[4]` returns `0`; and one number covering multiple targets such as `nums=[8], target=[4,2]` returns `0`.

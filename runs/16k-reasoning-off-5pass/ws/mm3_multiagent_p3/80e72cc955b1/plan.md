@@ -1,9 +1,0 @@
-The operation divides two chosen numbers by 4 (floored). Any element x needs `d(x) = floor(log4(x)) + 1` such operations if we applied the operation to it individually (since each operation reduces its value by a factor of 4). However, since each operation can simultaneously reduce two numbers, the total number of operations needed for a multiset of numbers is at least `max(d(x_i))` (each operation reduces the maximum depth by 1) and at least `ceil(sum(d(x_i)) / 2)`. The optimal answer is `max(ceil(total_depth / 2), max_depth)`. So for each query we need to compute the sum of `d(x)` for all `x` in `[l, r]` and the maximum of `d(x)` in that range.
-
-Both values can be computed in O(log R) using a binary representation of numbers in base 4. For a given range `[l, r]`, the maximum `d(x)` is simply the position (1-indexed) of the most significant base-4 digit of `r`. The sum of depths can be obtained by a recursive count: for each level `k` (where level k corresponds to numbers in `[4^{k-1}, 4^k - 1]`), count how many numbers in `[l, r]` fall into that level, multiply by `k`, and sum.
-
-A helper function `calc(r)` returns the total depth sum for `[1, r]`. Then the sum for `[l, r]` is `calc(r) - calc(l-1)`. `calc(r)` is computed by iterating over powers of 4: for each power `p = 4^k`, the next power is `next = p * 4`. The numbers in `[p, next-1]` that are ≤ r contribute `k * count`. The count is `max(0, min(r, next-1) - p + 1)`. After handling full blocks, the remaining tail `[p, r]` (if any) also contributes `k` per number.
-
-Edge case: numbers equal to 0 are ignored (they need 0 operations). Since l ≥ 1, we never count 0.
-
-Complexities: O(log_4(r)) per query, i.e., at most ~16 steps (since 4^16 > 10^9). With up to 10^5 queries, total operations ~1.6 million, which is trivial.

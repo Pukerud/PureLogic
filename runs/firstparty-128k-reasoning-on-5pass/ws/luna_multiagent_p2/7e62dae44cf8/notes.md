@@ -1,6 +1,0 @@
-- **Algorithm:** Maintain all currently adjacent slimes in a min-heap as `(strength, row, column)` entries. Repeatedly absorb the weakest adjacent slime while `strength * X < current_strength`.
-- **Frontier expansion:** After absorbing a cell, inspect its four neighbors and add every not-yet-seen cell to the heap.
-- **Duplicate prevention:** Mark cells as seen when inserted into the heap. Each cell is therefore inserted at most once.
-- **Greedy correctness:** If the weakest frontier slime is not absorbable, no other frontier slime is absorbable because all others are at least as strong. If it is absorbable, absorbing it increases Takahashi’s strength and exposes any newly adjacent cells.
-- **Strict inequality:** The absorption condition is exactly `value * X < current_strength`; equality is forbidden.
-- **Complexity:** Each cell is processed at most once, so the complexity is `O(HW log(HW))` time and `O(HW)` memory.

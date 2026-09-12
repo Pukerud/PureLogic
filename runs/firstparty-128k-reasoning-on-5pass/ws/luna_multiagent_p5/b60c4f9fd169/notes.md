@@ -1,6 +1,0 @@
-- **Algorithm:** Remove equal prefixes and suffixes, then compute thresholded Levenshtein distance with a banded dynamic program.
-- **Band:** Any edit path using at most `K` operations cannot visit a state with `|i-j| > K`, so only those cells are retained.
-- **Orientation:** The strings are swapped if necessary so the shorter residual string determines the number of DP rows. Since their length difference is at most `K`, the total work is `O(K·min(|S|,|T|))`.
-- **Memory:** Each row stores at most `2K+1` values, giving `O(K)` auxiliary memory. Values larger than `K` are clipped to `K+1`, since they cannot participate in a valid solution.
-- **Boundaries:** Row and column ranges are explicitly tracked, handling insertions, deletions, empty residual strings, and unequal lengths safely.
-- **Complexity:** Time is `O(K·N)` after trimming, where `N` is the shorter residual length; memory is `O(K)`.

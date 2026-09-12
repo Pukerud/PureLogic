@@ -1,9 +1,0 @@
-- **Window cost:** A fixed window is optimally made constant by changing every value to a median. The cost is the sum of absolute deviations from that median.
-- **Sliding median:** Two heaps maintain the lower and upper portions of the active window. Heap entries include indices so duplicate values remain distinct.
-- **Lazy deletion:** Removed indices are marked and discarded when they reach a heap top. Logical heap sizes and sums are updated immediately.
-- **Heap invariant:** The lower heap contains `(x + 1) // 2` active values for a complete window, so its maximum is a valid median. During temporary transitions, the target is capped by the number of active values.
-- **Cost formula:** With median `m`, the cost is `m * low_size - low_sum + high_sum - m * high_size`.
-- **Dynamic programming:** Each transition selects a window `[start, start + x)` after all previously selected windows end at or before `start`. Thus selected windows are non-overlapping.
-- **Exact cardinality:** Each DP layer computes exactly the current number of windows. This also solves “at least `k`”, since any extra selected windows may be discarded without increasing cost.
-- **Validation:** The implementation yields 8 for the first example and 3 for the second. Targeted cases such as already-equal windows, negative values, `x = n`, `k = 1`, and packed windows with `k * x = n` preserve the heap invariants and produce the expected costs.
-- **Complexity:** Sliding median computation is `O(n log x)`. The DP is `O(nk)` with `O(n)` additional memory.

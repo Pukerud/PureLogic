@@ -1,6 +1,0 @@
-- **Approach:** Find the longest suffix of `S` that is a palindrome. If its length is `L`, append the reverse of `S[:n-L]`. This yields a palindrome starting with `S`, and using the longest such suffix minimizes appended characters.
-- **KMP construction:** Build `T = reverse(S) + '#' + S`, where `#` cannot occur because input contains only uppercase English letters. The final prefix-function value of `T` is the longest prefix of `reverse(S)` equal to a suffix of `S`.
-- **Correctness of match:** A prefix of `reverse(S)` of length `L` is the reverse of the suffix of `S` of length `L`. Equality with that suffix means the suffix equals its reverse, so it is palindromic.
-- **Output:** With `L = pi[-1]`, print `S + reverse(S[:n-L])`.
-- **Complexity:** The KMP prefix-function runs in `O(n)` time. The combined string and prefix array use `O(n)` memory. The output length is at most `2n - 1`.
-- **Edge cases:** A one-character string has `L = 1` and is printed unchanged. If the entire string is already a palindrome, `L = n` and nothing is appended.

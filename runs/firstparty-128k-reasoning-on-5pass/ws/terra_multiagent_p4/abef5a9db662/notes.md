@@ -1,7 +1,0 @@
-- **Observation:** The mapping from initial rating to current rating is monotone nondecreasing, because each contest transformation maps ratings in an interval to rating plus one and leaves all other ratings unchanged.
-- **Affected initial ratings:** For a contest interval `[L, R]`, initial ratings whose current values are in `[L, R]` form a contiguous interval due to monotonicity.
-- **Segment tree state:** Maintain `value[x]`, the current rating obtained from initial rating `x`, for every possible query rating `x` from `1` to `500000`.
-- **Contest processing:** Find `a = first position with value >= L` and `b = first position with value > R`. Add one to all positions in `[a, b - 1]`.
-- **Tree operations:** Store node maximum values and lazy range-add tags. Since values are monotone, finding the first value meeting a threshold can descend the tree using node maxima.
-- **Queries:** A final answer is a point query. It can be evaluated by accumulating lazy tags along the root-to-leaf path, without pushing tags.
-- **Complexity:** Each contest performs two boundary searches and one range update, all `O(log 500000)`. Each query is `O(log 500000)`. Memory is `O(500000)`.

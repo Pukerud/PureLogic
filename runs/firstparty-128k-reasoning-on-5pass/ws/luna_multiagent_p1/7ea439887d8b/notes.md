@@ -1,8 +1,0 @@
-- **State modeling:** Use two states for every vertex, representing whether the total number of reversals is even or odd.
-- **Movement transitions:** For each original edge `u -> v`, add `u -> v` in the even layer and `v -> u` in the odd layer, both with cost `1`.
-- **Reversal transitions:** From either layer, add a transition to the corresponding vertex in the other layer with cost `X`.
-- **Shortest path:** All costs are positive, so Dijkstra’s algorithm from `(1, even)` finds the optimum.
-- **Termination:** The target vertex may be reached in either orientation. Dijkstra can stop when either target-layer state is popped.
-- **Complexity:** The expanded graph has `2N` vertices and `2M + 2N` transitions, giving `O((N + M) log N)` time and `O(N + M)` memory.
-- **Integer safety:** Python integers naturally support answers larger than 32-bit range.
-- **Edge cases:** Duplicate edges and self-loops require no special handling.

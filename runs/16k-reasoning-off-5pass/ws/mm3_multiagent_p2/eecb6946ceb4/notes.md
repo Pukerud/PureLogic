@@ -1,6 +1,0 @@
-
-## ideation
-The problem asks for the number of arithmetic progressions of length 3 (fine triplets) within a set of N distinct positive integers. The straightforward approach is to sort the array and then check consecutive triples: for each index i (1 ≤ i ≤ N-2), if `arr[i] - arr[i-1] == arr[i+1] - arr[i]`, then `(arr[i-1], arr[i], arr[i+1])` is a fine triplet. This works because any arithmetic progression of three distinct numbers in a sorted list must consist of three consecutive elements (since the numbers are distinct and sorted). The algorithm is O(N log N) due to sorting, which is fine for N up to 10^6. Memory usage is O(N). Edge case: if N < 3, answer is 0.
-
-## worker: Implement the `solve()` function in Python that re
-The algorithm sorts the N distinct integers and then scans for three consecutive elements that form an arithmetic progression (i.e., the gaps between `arr[i-1]` and `arr[i]` equals the gap between `arr[i]` and `arr[i+1]`). Because the array is sorted and elements are distinct, any fine triplet must consist of three consecutive elements after sorting. The complexity is `O(N log N)` due to sorting, and the counting loop is `O(N)`. Fast I/O via `sys.stdin.buffer.read()` handles N up to 10^6 efficiently. Edge case N<3 returns 0.

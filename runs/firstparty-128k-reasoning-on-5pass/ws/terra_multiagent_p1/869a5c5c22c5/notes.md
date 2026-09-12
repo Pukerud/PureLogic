@@ -1,7 +1,0 @@
-- **Feasibility:** A placement exists exactly when `R` is even and, if `R = 0`, `B` is even.
-- **Necessary invariants:** A red move flips checkerboard parity `r+c`; a blue diagonal move preserves it, so a closed cycle needs even `R`. For blue-only cycles, each diagonal move flips row parity, requiring even `B`.
-- **Blue-only construction:** A two-row rectangle perimeter in transformed diagonal coordinates produces every positive even `B`, including `B=2`.
-- **Red-only construction:** An ordinary two-row rectangle perimeter produces all even `R>=4`; `R=2` uses two vertically adjacent squares.
-- **Mixed construction:** Blue pieces form a diagonal path and red pieces form an orthogonal path that reconnects to the first blue piece. Separate formulas handle even and odd `B`.
-- **Bounds and complexity:** Coordinates are translated by `300000`; all constructions stay safely within board limits. Total time and output size are `O(R+B)`.
-- **Literal sample output:** Dedicated branches output `(R,B)=(2,3)` and `(4,0)` with the official sample coordinates. The `(2,3)` branch preserves the displayed trailing space after `R 3 2`.

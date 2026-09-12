@@ -1,7 +1,0 @@
-- **State representation:** Use `(vertex, parity)`, where parity is 0 after an even number of reversals and 1 after an odd number of reversals.
-- **Movement transitions:** In parity 0, available moves follow the original outgoing edges. In parity 1, available moves follow reversed edges, which are exactly the original incoming edges of the current vertex.
-- **Reversal transitions:** From either parity at a vertex, switching parity costs `X`.
-- **Shortest path:** All transition costs are positive, so Dijkstra’s algorithm computes the minimum cost on the expanded graph with `2N` states.
-- **Memory and time:** The expanded graph is handled implicitly. Each original edge is examined once from its outgoing side and once from its incoming side, giving `O((N + M) log N)` time and `O(N + M)` memory.
-- **Early termination:** The first destination state removed from the Dijkstra heap has the globally minimum distance, so either parity can terminate the search.
-- **Integer range:** Python integers safely handle answers larger than 32-bit values.

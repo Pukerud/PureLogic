@@ -1,6 +1,0 @@
-- **Grouping:** Foods are separated by vitamin. Since each food supplies exactly one vitamin, the choices for the three vitamins are independent except for their combined calorie usage.
-- **Knapsack DP:** For each vitamin, compute `dp[c]`, the maximum intake obtainable using at most `c` calories. Items are processed in descending calorie order, ensuring each food is used at most once.
-- **Prefix normalization:** The raw 0/1 DP is normalized with prefix maxima so `dp[c]` represents the best intake using no more than `c` calories and is nondecreasing.
-- **Minimum cost for a target:** Since each normalized DP is nondecreasing, `bisect_left(dp, target)` gives the minimum calorie capacity needed to obtain at least the target intake. A target is feasible exactly when the three minimum capacities sum to at most `X`.
-- **Binary search:** Feasibility is monotone in the target. Search between zero and one more than the smallest total amount available among the three vitamins.
-- **Complexity:** The knapsack computation costs `O(NX)` time and `O(X)` memory per vitamin. Each feasibility check costs `O(log X)` using binary search, and the outer target search performs `O(log M)` checks, where `M` is the answer bound.

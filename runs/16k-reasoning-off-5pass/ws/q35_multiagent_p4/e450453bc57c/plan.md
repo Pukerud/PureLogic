@@ -1,6 +1,0 @@
-1. Since k is small (up to 15), we can use dynamic programming with bitmask or simply DP over the number of subarrays found. Let `dp[i][j]` be the minimum operations to have `j` valid non-overlapping subarrays using a prefix of `nums` ending at or before index `i`.
-2. However, a more efficient approach is to iterate through all possible starting positions for each of the k subarrays. We can use DP where `dp[j][i]` represents the minimum cost to form `j` subarrays using elements from `nums[0...i]`, where the j-th subarray ends at index `i`.
-3. For each position `i` in `nums`, we can check if a subarray of size `x` ending at `i` (i.e., `nums[i-x+1...i]`) can be made equal with some cost. The optimal value to make all elements equal is the median of the subarray.
-4. Precompute the cost to make each possible window of size `x` uniform. For each window starting at `s` and ending at `e=s+x-1`, calculate the cost to make all elements equal to the median.
-5. Use DP: `dp[j][i]` = min operations to get `j` subarrays from `nums[0...i]`. Transition: either skip index `i` (`dp[j][i] = dp[j][i-1]`) or end a j-th subarray at `i` (`dp[j][i] = dp[j-1][i-x] + cost[i-x+1...i]`).
-6. Initialize DP table with infinity, `dp[0][i] = 0` for all `i`, and return `dp[k][n-1]`.

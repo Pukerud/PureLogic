@@ -1,8 +1,0 @@
-- **Validation result:** The supplied DP approach is correct. Exhaustive comparison against brute-force target enumeration for small strings confirms both minimum operation cost and lexicographic tie-breaking. The supplied examples yield `"cccc"` for `"cdcd"`, `"aaa"` for `"aca"`, and `""` for `"bc"`.
-- **State definition:** `d1[i][c]`, `d2[i][c]`, and `d3[i][c]` represent the minimum cost to transform suffix `i..n-1` when the prior output character is `c` and its current run length is respectively 1, 2, or at least 3.
-- **Terminal condition:** At position `n`, only a completed run is legal: `d3[n][c] = 0`; `d1[n][c] = d2[n][c] = INF`.
-- **Transitions:** States 1 and 2 must continue using the same character, progressing to states 2 and 3. State 3 may continue using its character or switch to any different character, beginning a new length-1 run.
-- **Optimization:** For every position, switching is computed in O(26) by retaining the smallest and second-smallest values of `abs(source-c) + d1[i+1][c]`. This avoids an O(26²) transition.
-- **Lexicographic reconstruction:** Choose the smallest initial character attaining the optimum. Then reconstruct left-to-right; forced states 1 and 2 continue the current letter, while state 3 tests candidate target letters from `'a'` through `'z'` and takes the first preserving the optimal DP remainder.
-- **Complexity:** Time is O(26n), memory is O(26n). Three compact `array('i')` tables use roughly 16 MB at maximum input size.
-- **Edge cases:** Length below 3 is impossible. Costs are at most `25n`, safely below the integer sentinel.

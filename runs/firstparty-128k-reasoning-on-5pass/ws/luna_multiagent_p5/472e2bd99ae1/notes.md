@@ -1,7 +1,0 @@
-- **Monotonicity:** After sorting all three arrays in descending order, increasing any one index cannot increase the score because all values are positive.
-- **Traversal:** The implicit 3D grid is explored with a max-heap, starting at `(0, 0, 0)` and adding the three forward neighbors of each popped state.
-- **Correctness:** Every state becomes reachable from the origin through forward moves. The heap always contains the best currently discovered unprocessed state, so popping states yields values in non-increasing order.
-- **Duplicates:** Equal scores are allowed; states are tracked by coordinates encoded as a single integer, ensuring each index triple is inserted only once.
-- **Encoding:** State `i * N^2 + j * N + k` uniquely represents `(i, j, k)`, reducing memory compared with storing coordinate tuples in the visited set and heap.
-- **Complexity:** At most `K` states are popped and up to three neighbors are considered per state. Time is `O(K log K)` and memory is `O(K)`.
-- **Integer safety:** Python integers safely handle products and sums up to approximately `3 * 10^18`.

@@ -1,7 +1,0 @@
-- **State model:** The global reversal is a binary orientation parity. State `(v, layer)` means being at vertex `v` with layer 0 original and layer 1 reversed. Start is `(1,0)`; success is vertex `N` in either layer.
-- **Transitions:** From layer 0, follow original outgoing edges with cost 1. From layer 1, follow original incoming edges with cost 1, because those are the reversed directions. Flipping at the same vertex toggles layer with cost `X`.
-- **Dijkstra:** All transition costs are nonnegative, so Dijkstra on the 2N-state graph gives the minimum cost. The first popped state whose vertex is `N` can be returned immediately, because Dijkstra pops states in nondecreasing distance.
-- **Encoding:** Use 0-indexed vertices and state id `(v << 1) | layer`. This makes flipping `s ^ 1` and vertex extraction `s >> 1`.
-- **Complexity:** There are 2N states, 2M move transitions, and 2N flip transitions. Time is `O((N + M) log N)`, memory is `O(N + M)`.
-- **Edge cases:** Multiple edges and self-loops are harmless. The answer may require several reversals, and distances can exceed 32-bit range, so Python integers are used.
-- **Input handling:** Read all tokens, build outgoing and incoming adjacency lists, then delete the token list before Dijkstra to reduce peak memory.

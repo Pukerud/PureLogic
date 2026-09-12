@@ -1,4 +1,0 @@
-model=openai:gpt-5.6-luna cap=128000 (== luna's hard max, verified: 128001 -> 400)
-context=~1.05M so prompt does NOT compete with output, unlike muse
-parallel=32 (rate limits 30000 req/min, 180M tok/min -- not binding)
-max_iters=10 strict_format=off (luna follows the base prompt)

@@ -1,9 +1,0 @@
-- **State model:** Each operation costs the weighted sum of the current bit sequence after the flip. Flipping a 1 to 0 decreases the weighted sum by its cost; flipping a 0 to 1 increases it.
-- **Required flips:** Positions with `(A_i, B_i) = (1, 0)` must eventually be flipped off. Positions with `(A_i, B_i) = (0, 1)` must eventually be flipped on.
-- **Temporary flips:** Only positions with `A_i = B_i = 1` can help temporarily: flipping them off can reduce intermediate operation costs, and they can later be restored. Temporary flips of common-zero positions are never useful.
-- **Optimal ordering:** All off-flips can be performed before all on-flips. Off-flips are ordered by descending `C`; on-flips are ordered by ascending `C`.
-- **Temporary selection:** For any fixed number of temporary positions, an optimal choice consists of the largest costs among common-one positions. Therefore, evaluate prefixes of the common-one costs sorted in descending order.
-- **Off-flip formula:** If the starting weighted sum is `S`, an off-set of size `m` contributes `m*S - Q_off`. For costs sorted increasingly, processing them in descending order gives coefficient `i+1` to the element at index `i`, so `Q_off = sum(x * (i+1))`.
-- **On-flip formula:** Starting from weighted sum `T`, an on-set of size `k` contributes `k*T + Q_on`. For costs sorted increasingly, `Q_on = sum(x * (k-i))`.
-- **Incremental updates:** When a temporary cost `x` is added, update both weighted sums using binary searches and prefix sums. The implementation runs in `O(N log N)` time and uses `O(N)` memory.
-- **Edge cases:** If `A` already equals `B`, both required sets are empty and the initial answer is zero.

@@ -1,9 +1,0 @@
-- **Strong connectivity characterization:** The original edges form a forward directed path. The final graph is strongly connected exactly when every proper prefix has an added edge from the suffix back into the prefix. Such an edge corresponds to a black vertex in the prefix paired with a white vertex in the suffix.
-- **Immediate impossibility:** If the first character is `W`, the prefix containing vertex 1 has no black vertex, so no added backward edge can enter it. The answer is zero.
-- **Relevant cuts:** For a prefix containing exactly `i` black vertices, the hardest cut is immediately before black vertex `i+1`, where the prefix contains the maximum possible number `a_i` of white vertices.
-- **Permutation model:** Order black vertices and white vertices by position. A pairing is a permutation from black indices to white indices. The bad event for `i` is that all first `i` black vertices are matched to the first `a_i` white vertices.
-- **Event reduction:** Since `a_i` is nondecreasing, among events sharing the same value `a_i = x`, only the earliest one matters: every later one is a subset of that earlier event.
-- **Inclusion-exclusion recurrence:** For a retained event with black index `i` and coordinate `x = a_i`, its signed contribution is `d = -invfact[x-i] * (fact[x] + sum(previous d_j * fact[x-j]))`. The `fact[x]` term is the virtual empty event.
-- **Final formula:** The answer is `N! + sum(d_i * (N-i)!)`.
-- **Acceleration:** The recurrence contains convolutions with the factorial kernel. CDQ divide-and-conquer over coordinates computes all prior contributions. Small source-target rectangles are processed directly; larger ones use NTT convolution.
-- **Complexity:** Approximately `O(N log^2 N)` time with NTT and `O(N log N)` temporary total work, suitable for `N <= 2e5`.

@@ -1,4 +1,0 @@
-1.  **Coordinate Compression:** Since the values in `nums` can be large, map them to a smaller range $[0, m-1]$ to facilitate efficient data structure operations.
-2.  **Sliding Window Cost Calculation:** Use a Fenwick Tree (Binary Indexed Tree) to maintain the frequency and sum of values in the current window of size `x`. For each window, find the median and calculate the cost to make all elements equal to the median in $O(\log n)$ time.
-3.  **Dynamic Programming:** Define `dp[i][j]` as the minimum operations to form `j` non-overlapping subarrays using the prefix of length `i`. Iterate through the array, updating the DP table using the precomputed costs.
-4.  **Result Extraction:** The answer will be `dp[n][k]`, representing the minimum operations to form exactly `k` subarrays (which is optimal for "at least k" given non-negative costs).

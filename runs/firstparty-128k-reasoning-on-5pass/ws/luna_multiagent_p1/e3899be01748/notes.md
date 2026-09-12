@@ -1,8 +1,0 @@
-- **State:** For every modulus `m` from 1 through 9, maintain counts of remainders for all substrings ending at the previous character.
-- **Transition:** Appending digit `d` changes remainder `r` modulo `m` to `(10*r + d) % m`.
-- **Initialization:** Each position also starts a new one-character substring, whose remainder modulo `m` is `d % m`.
-- **Answer contribution:** If the current final digit is nonzero, add the number of current substrings with remainder zero modulo that digit.
-- **Leading zeros:** They require no special handling because substrings are processed as decimal values through the same remainder transition.
-- **Zero endings:** A substring ending in digit zero contributes nothing, since divisibility by zero is excluded.
-- **Complexity:** There are 9 moduli and at most 9 residues per modulus, giving `O(81n)` time and `O(45)` auxiliary space.
-- **Correctness:** Every substring ending at the current position is either a new one-character substring or a unique extension of a substring ending at the previous position, so the rolling state counts every substring exactly once.

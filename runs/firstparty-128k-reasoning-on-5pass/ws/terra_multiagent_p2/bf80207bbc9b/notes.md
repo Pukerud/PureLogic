@@ -1,6 +1,0 @@
-- **Approach:** Encode each input row as a W-bit mask. Fixing a column-flip mask `c`, a row `a` becomes `a XOR c`; then flipping that row if beneficial gives contribution `min(popcount(a XOR c), W - popcount(a XOR c))`.
-- **Convolution:** Let `freq[a]` be the number of rows equal to mask `a`, and let `cost[d] = min(popcount(d), W-popcount(d))`. For every column-flip mask `c`, the optimized total is `sum_a freq[a] * cost[a XOR c]`, an XOR convolution.
-- **Algorithm:** Compute the XOR convolution using Walsh-Hadamard transforms: transform `freq` and `cost`, multiply pointwise, transform again, then divide every result by `2^W`. The minimum resulting value is the answer.
-- **Complexity:** `O(W * 2^W + H * W)` time and `O(2^W)` memory. With `W <= 18`, arrays have at most 262144 entries.
-- **Correctness detail:** The Walsh-Hadamard transform is self-inverse up to multiplication by `N = 2^W`, so applying it a second time after pointwise multiplication yields `N` times the desired XOR convolution.
-- **Sample verification:** The implementation gives outputs `2`, `0`, and `13` for the three provided samples.

@@ -1,9 +1,0 @@
-- **Approach:** Split the pattern around its two stars into fixed strings `a`, `b`, and `c`. A match consists of ordered occurrences `a ... b ... c`, where each star absorbs the intervening text.
-- **Occurrence search:** KMP finds every occurrence start for each non-empty segment in linear time. An empty segment occurs at every boundary from `0` through `n`.
-- **Prefix preprocessing:** `latest_a[x]` stores the largest start position of an `a` occurrence whose ending boundary is at most `x`. This selects the latest possible compatible `a`, minimizing the eventual substring start-to-end length for a fixed `b`.
-- **Suffix preprocessing:** `earliest_c[x]` stores the smallest start position of a `c` occurrence whose start boundary is at least `x`. This selects the earliest compatible `c`.
-- **Main scan:** For every occurrence of `b` at `mid_start`, choose `latest_a[mid_start]` and `earliest_c[mid_start + len(b)]`. If both exist, the candidate interval length is `c_start + len(c) - a_start`.
-- **Empty pieces:** Empty `a` is valid at the `b` start boundary; empty `b` is considered at all boundaries; empty `c` is valid at the end boundary after `b`. Thus `"**"` returns `0`, including for any non-empty `s`.
-- **Boundary checks:** Occurrences may touch exactly: `a` can end at `b` start and `c` can start at `b` end. The preprocessing uses inclusive boundary semantics to allow this.
-- **Verified cases:** The implementation handles the four supplied examples, no-match inputs, literal pieces longer than `s`, patterns with leading/trailing stars such as `"*adlogi*"`, adjacent stars, and all-empty literal pieces.
-- **Complexity:** KMP plus prefix/suffix scans take `O(|s| + |p|)` time. Memory usage is `O(|s|)`.

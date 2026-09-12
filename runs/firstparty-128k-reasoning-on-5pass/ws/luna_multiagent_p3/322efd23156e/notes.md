@@ -1,5 +1,0 @@
-- **Grouping:** Foods are separated by vitamin. Selections from different groups are automatically disjoint, so the minimum calorie costs for the three vitamins can be added.
-- **Knapsack DP:** For each vitamin, `dp[c]` stores the maximum intake obtainable using at most `c` calories. Each food is processed with a descending calorie loop, ensuring 0/1 usage.
-- **Target feasibility:** For a target intake `T`, `bisect_left(dp, T)` gives the minimum calorie budget needed to obtain at least `T` units for that vitamin. The target is feasible exactly when all three requirements exist and their calorie costs sum to at most `X`.
-- **Monotonicity:** If target `T` is feasible, every smaller target is feasible, so binary search finds the maximum feasible target.
-- **Bounds and complexity:** The answer cannot exceed the total intake of any vitamin, giving upper bound `min(total_vitamin_amounts)`. DP costs `O(NX)` time and `O(X)` memory per vitamin; binary search checks use logarithmic time per vitamin.

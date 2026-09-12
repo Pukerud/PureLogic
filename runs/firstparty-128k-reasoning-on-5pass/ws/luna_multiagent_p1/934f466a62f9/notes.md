@@ -1,9 +1,0 @@
-- **Original failure:** The current code allocates only four parity states, but three coordinates require eight masks (`0` through `7`). On the first cake, choosing coordinate 3 computes `next_mask = 4`, causing `IndexError: list assignment index out of range` at `ndp[next_mask] = candidate`.
-- **Correction:** The DP now uses arrays of length eight, representing the parity of assignment counts for all three coordinates.
-- **Reduction:** Assign both cakes of each pair to a coordinate attaining the maximum coordinate sum. Every coordinate then receives an even number of cakes. Conversely, any assignment with even counts per coordinate can be paired within each coordinate.
-- **Relaxed DP:** For multiplier `lambda`, selecting a cake with coordinate value `v` contributes `v + lambda`, while skipping contributes zero. The eight-state DP tracks assignment-count parity.
-- **Cardinality tracking:** For each parity state, ties retain the largest selected count. This supports binary search for the smallest integer multiplier whose optimal relaxed solution can use at least `2K` cakes.
-- **Recovery:** At the breakpoint, the relaxed optimum is affine across the relevant feasible even cardinalities, so the exact-`2K` answer is `G(lambda) - lambda * (2K)`.
-- **Bounds:** `lambda = -10^9-1` makes every selection strictly harmful; `lambda = 0` admits an optimal solution using at least `2K` cakes. Binary search therefore uses this interval.
-- **Testing conclusion:** After correcting the state count, exhaustive small-instance comparisons against brute-force enumeration agree, including duplicate cakes, zero values, ties, odd `N`, and cases where different cardinalities tie in the relaxed DP.
-- **Complexity:** Each DP run is `O(N)` with a constant factor of 24 transitions per cake. Binary search performs at most 31 runs, giving `O(N log 10^9)` time and `O(1)` auxiliary memory aside from the cake list.

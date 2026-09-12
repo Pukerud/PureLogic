@@ -1,8 +1,0 @@
-- **Approach:** Enumerate digit-frequency vectors for every length from 1 through `len(r)`. For each vector, digit sum and digit product are fixed regardless of permutation.
-- **Beauty test:** A vector containing zero is automatically beautiful because its digit product is zero and its digit sum is positive. For vectors without zero, retain it only if `product % digit_sum == 0`.
-- **Permutation counting:** The total number of no-leading-zero permutations is computed as all multiset permutations minus permutations having a zero fixed in the first position.
-- **Bound counting:** Add totals for shorter lengths. For equal-length beautiful multisets, lexicographically rank all valid permutations against the bound by trying each available smaller digit at each position, then counting arrangements of the remaining multiset.
-- **Leading zero correctness:** The first rank position only considers candidate digits from 1 onward. Frequency-vector totals also explicitly remove zero-leading arrangements.
-- **Example verification:** For `[10, 20]`, only `10` and `20` qualify, producing `2`. For `[1, 15]`, digits `1` through `9` and `10` qualify, producing `10`.
-- **Brute-force validation:** The multiset-based count was checked conceptually against direct digit-product/digit-sum enumeration on small prefixes and small ranges. The ranking logic counts each concrete number once because every number has exactly one digit-frequency vector and one permutation order.
-- **Complexity:** There are at most `sum(C(n+9, 9), n=1..9) = 92377` frequency vectors. Bound ranking processes only beautiful vectors of the bound length, with at most 9 positions and 10 candidate digits each. Memory use is proportional to stored beautiful vectors.

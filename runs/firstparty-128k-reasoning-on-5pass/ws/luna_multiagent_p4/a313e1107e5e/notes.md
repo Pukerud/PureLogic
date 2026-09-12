@@ -1,5 +1,0 @@
-- **Algorithm:** Sort queries by increasing prefix endpoint \(R\), process the sequence once from left to right, and maintain the standard patience-sorting `tails` array for the current prefix.
-- **Strict increase:** Use `bisect_left` when inserting each value, replacing the first tail greater than or equal to it.
-- **Query result:** `tails[k]` is the minimum possible ending value of a strictly increasing subsequence of length \(k+1\). Therefore, the maximum valid length with all values at most \(X\) is `bisect_right(tails, X)`.
-- **Correctness:** Every increasing subsequence ending at a value at most \(X\) consists entirely of values at most \(X\). Conversely, if the minimum ending value for a length is at most \(X\), a subsequence of that length satisfies the bound.
-- **Complexity:** Sorting queries costs \(O(Q\log Q)\); processing and answering cost \(O((N+Q)\log N)\). Memory usage is \(O(N+Q)\).

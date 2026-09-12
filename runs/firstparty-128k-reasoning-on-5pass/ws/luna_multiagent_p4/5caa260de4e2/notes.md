@@ -1,8 +1,0 @@
-- **Prefix sums:** `P[r]` is the sum of `nums[0:r]`, and `Q[r]` is the sum of `cost[0:r]`. A segment ending at `r - 1` and starting at `j` costs `(P[r] + k*t) * (Q[r] - Q[j])`.
-- **Dynamic programming:** `previous[j]` stores the minimum cost for partitioning the first `j` elements into `t - 1` nonempty segments. The current layer computes states using exactly `t` segments.
-- **Transition:** For `x = P[r] + k*t`, the transition is `Q[r] * x + min_j((-Q[j]) * x + previous[j])`. Each valid previous cut contributes one line.
-- **Convex hull:** As `j` increases, `Q[j]` strictly increases, so line slopes `-Q[j]` strictly decrease. Query values `x` strictly increase because all `nums[i]` are positive. Therefore, a monotone hull with a moving pointer supports amortized constant-time insertion and querying.
-- **Validity:** For each right endpoint, the line for `j = right - 1` is inserted before querying. Unreachable states remain infinity, so only nonempty and valid partitions contribute.
-- **Answer:** The minimum over all segment counts is taken from `current[n]`. This handles every possible number of subarrays.
-- **Complexity:** The algorithm uses `O(n^2)` time and `O(n)` additional memory.
-- **Validation:** The recurrence gives `110` for the first example and `985` for the second. Exhaustive enumeration of all cut patterns on small random arrays matches the convex-hull DP.

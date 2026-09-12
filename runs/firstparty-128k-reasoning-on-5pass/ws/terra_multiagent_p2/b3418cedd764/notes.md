@@ -1,8 +1,0 @@
-- **Functional graph reduction:** Every connected component of the graph with edges `i -> A[i]` has exactly one directed cycle. Inequalities around a cycle force all cycle values to be equal, so each cycle can be contracted into one vertex.
-- **Cycle detection:** Repeatedly remove vertices of indegree zero. The vertices remaining after this process are exactly the cycle vertices, including self-loops.
-- **Contracted structure:** Union all cycle vertices connected by cycle edges. Each non-cycle vertex remains separate. After replacing each original vertex by its component ID, every distinct edge becomes a relation `child -> parent`, and the result is a rooted forest.
-- **DP definition:** For a contracted tree vertex `v`, `dp[v][k-1]` counts valid assignments in its subtree with value of `v` fixed to `k`.
-- **Transition:** If `v` is fixed to `k`, a child `u` can take any value in `1..k`. Its contribution is therefore `dp[u][1] + ... + dp[u][k]`, computed by a prefix sum. Multiply these contributions over all children.
-- **Roots:** A root may take any value in `1..M`, so its component count is `sum(dp[root])`. Different roots are independent, hence their counts are multiplied.
-- **Memory handling:** DP vectors are stored as `array('I')` to use four bytes per entry. A child vector is released immediately after its parent consumes it.
-- **Complexity:** Cycle detection, DSU contraction, and forest construction take `O(N α(N))`. DP takes `O(NM)` time. DP storage is `O(NM)` in the worst case, with compact integer arrays.

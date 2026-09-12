@@ -1,8 +1,0 @@
-- **Identity:** For a partition with cut points x_0=0, x_1, ..., x_m=n, the original total is sum_{s=1..m} (P[x_s] + k*s)*(C[x_s]-C[x_{s-1}]). Summation by parts gives P[n]*C[n] + sum_{s=1..m} (k*C[n] - C[x_{s-1}]*(P[x_s]-P[x_{s-1}]+k)). This removes the segment index s from the per-edge cost.
-- **DP:** Define dp[v] as the minimum transformed path cost from 0 to v. dp[0]=0 and dp[v]=min_{u<v} dp[u] + k*C[n] - C[u]*(P[v]-P[u]+k). The final answer is P[n]*C[n] + dp[n]. Every path 0=u_0<...<u_m=n corresponds to a valid partition, so minimizing over paths automatically minimizes over all numbers of subarrays.
-- **Prefix sums:** P[i] and C[i] are sums of nums[0:i] and cost[0:i]. A segment u+1..v has cost multiplier C[v]-C[u] and first factor uses P[v], not P[v]-P[u].
-- **Complexity:** O(n) prefix sums, O(n^2) DP, O(n) memory. For n<=1000 this is about 5e5 transitions, easily fast in Python.
-- **Numerics:** Values fit in Python int. dp can be negative because edge weights can be negative; use a large INF such as 10**30. The final answer is positive, but do not clamp dp.
-- **Verification:** The submitted program includes a brute force over all 2^(n-1) partitions for tiny random arrays and asserts the two provided examples (110 and 985). The self-test is guarded by __main__, so the Solution class remains importable.
-- **Pitfalls:** Do not forget the +k inside the parenthesis in the edge weight. Do not use C[v] in place of the global C[n] for the k term. Do not omit the final constant P[n]*C[n]. C[0]=P[0]=0, and the first edge from 0 has C[0]=0.
-- **Alternatives:** The earlier two-dimensional DP with convex hull or divide-and-conquer optimization is no longer needed. A Li Chao tree would be overkill. Greedy splitting is not justified and was not used.

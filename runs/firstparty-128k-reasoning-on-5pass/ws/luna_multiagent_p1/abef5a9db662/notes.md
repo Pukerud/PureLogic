@@ -1,6 +1,0 @@
-- **Invariant:** After processing some contests, the segment tree represents `F(x)`, the current rating obtained from every initial rating `x` in `1..500000`.
-- **Monotonicity:** Each contest transformation is nondecreasing, so `F(x)` is nondecreasing. Therefore, the initial ratings whose current values lie in `[L, R]` form one contiguous interval.
-- **Boundary search:** Find the first index with `F(x) >= L` and the first index with `F(x) >= R+1`. Increment the domain interval between these two boundaries.
-- **Segment tree:** Each node stores the maximum current value in its interval and a lazy range-add tag. Maximum values allow leftmost searches for threshold crossings.
-- **Point queries:** After all contests, descend to the requested leaf and add lazy tags from its ancestors to obtain the final rating.
-- **Complexity:** Each contest uses two searches and one range update, all in `O(log 500000)`. Each query is answered in `O(log 500000)`. Memory usage is `O(500000)`.

@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement and verify the complete Python solution without hardcoding samples: read N, X, A, B, P, Q; build invP and invQ; traverse invP/invQ from X to assign distances in the cycles containing X; if any A_i=1 or B_i=1 has no distance, print -1; compute M_R and M_B; build red sequence [invP^M_R(X), ..., invP(X)] and blue analogously (excluding X); compute LCS length by mapping blue sequence positions and running LIS on red; print M_R + M_B - LCS. Ensure O(N log N), handle empty sequences, self-loops, balls at X, and output code within the required delimiters.",
-    "status": "done",
-    "result": ""
-  }
-]

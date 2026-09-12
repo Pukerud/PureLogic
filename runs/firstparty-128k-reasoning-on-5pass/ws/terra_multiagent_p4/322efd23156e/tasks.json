@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement and verify the full independent per-vitamin 0/1 knapsack reduction, including correct initialization, descending updates, prefix maxima, threshold feasibility, binary-search bounds, and stdin/stdout output.",
-    "status": "done",
-    "result": ""
-  }
-]

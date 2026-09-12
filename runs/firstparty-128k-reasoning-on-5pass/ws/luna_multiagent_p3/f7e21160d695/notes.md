@@ -1,7 +1,0 @@
-- **Kruskal reconstruction tree:** Sort edges by weight and merge DSU components. Each successful merge creates an internal node labeled by that edge weight, with the two component roots as children.
-- **Bottleneck distance:** For original vertices \(x,y\), the minimum possible maximum edge weight on a path equals the weight of their lowest common ancestor in the reconstruction tree. Equal-weight edges may be processed in any order because all corresponding merge labels are identical.
-- **Terminal multiplicities:** Initialize each original vertex with the number of occurrences in sequence \(A\) minus the number of occurrences in sequence \(B\). Duplicate entries are handled naturally.
-- **Residual DP:** For every subtree, only its signed residual count must be passed upward. A positive residual represents unmatched \(A\)-items; a negative residual represents unmatched \(B\)-items.
-- **Merge cost:** At an internal node, opposite residuals from its two children can be paired at exactly the node’s weight. Add the number of such pairs multiplied by that weight, then propagate the sum of the two residuals.
-- **Complexity:** Sorting costs \(O(M\log M)\); DSU operations and the tree DP cost \(O(M\alpha(N))\) and \(O(N)\), respectively. Memory usage is \(O(N+M)\).
-- **Integer safety:** Python integers safely handle the maximum total cost.

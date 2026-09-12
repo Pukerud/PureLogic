@@ -1,6 +1,0 @@
-- **Algorithm:** For every divisor `d` from 1 through 9, maintain counts of residues modulo `d` for all substrings ending at the previous character.
-- **Transition:** Appending digit `x` changes residue `r` to `(10*r + x) % d`. The one-character substring `x` is added separately.
-- **Counting:** If the current digit is nonzero, all substrings ending there must be tested modulo that digit, so `states[digit][0]` is added to the answer.
-- **Correctness details:** Fresh arrays are used for every character, preventing updated states from being reused during the same transition. Leading zeros are naturally supported, while substrings ending in zero are excluded.
-- **Complexity:** There are `1 + 2 + ... + 9 = 45` residue states, giving `O(45n)` time and `O(45)` auxiliary space.
-- **Validation:** The method returns 11 for `"12936"`, 18 for `"5701283"`, and 25 for `"1010101010"`. It also handles strings containing only zeros, a single digit, and substrings with leading zeros.

@@ -1,6 +1,0 @@
-1. First, handle the edge case where the total number of words is less than k, returning an array of zeros.
-2. Precompute the frequency of each word using a hash map to quickly determine how many times each word appears.
-3. For each word, temporarily remove it (decrement its count) and then find the maximum LCP among any k words from the remaining set.
-4. To efficiently find the max LCP among k words, we can group words by their content. The best candidates for long common prefixes are identical words or words with very similar prefixes.
-5. Since the sum of lengths is limited, we can iterate through all unique words and compute LCP between pairs/groups. However, a more efficient approach is to realize that the longest common prefix among any k words will be determined by the k most frequent words that share a long prefix.
-6. We can sort unique words by frequency descending, then for each word, check if it can form a group of size >= k with itself (if freq >= k) or with other words. We need to find the maximum LCP length achievable by selecting k words.

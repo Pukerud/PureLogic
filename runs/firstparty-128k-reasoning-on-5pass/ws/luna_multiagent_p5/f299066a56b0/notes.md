@@ -1,6 +1,0 @@
-- **Feasibility:** For a fixed `k`, use the first `k` mochi as tops and the last `k` mochi as bottoms. These sets are disjoint because `k <= N // 2`.
-- **Greedy matching:** Process tops in ascending order and scan bottoms from left to right. For each top, skip bottoms that are too small, then use the earliest bottom satisfying `2 * top <= bottom`. This is optimal because using the earliest valid bottom leaves all larger bottoms available for later tops.
-- **Why the split is sufficient:** Any valid collection of `k` pairs can be transformed into one using smaller tops and larger bottoms. Therefore, checking the first `k` and last `k` items is sufficient.
-- **Binary search:** Feasibility is monotone: if `k` pairs can be formed, every smaller number can also be formed. Binary search the maximum feasible `k` over `[0, N // 2]`.
-- **Complexity:** Each feasibility check is `O(k)`, and binary search performs `O(log N)` checks, for total `O(N log N)` time and `O(1)` auxiliary space beyond the input.
-- **Condition:** Use `2 * top <= bottom`, including equality.

@@ -1,5 +1,0 @@
-Strong connectivity is equivalent to requiring every cut to have at least one added edge from the right side to the left side. Reindexing a pairing as a permutation of white indices assigned to black vertices turns this into a prefix-maximum condition, which can be converted into a renewal equation for first returns of the “open backward pairs” count. This yields a one-dimensional DP over black count: if \(R_b\) is the number of whites before black \(b+1\) (with \(R_N=N\)), then \(C_0=1\) iff \(R_0>0\), and for \(b\ge1\), \(C_b=0\) if \(R_b<b\), otherwise  
-\[
-C_b=\frac{\text{fact}[R_b]-\sum_{a<b} C_a\text{fact}[R_b-a]}{\text{fact}[R_b-b]}.
-\]
-The answer is \(C_N\). The remaining sum is an online convolution with the factorial kernel, so compute it with CDQ divide-and-conquer, using direct summation for small subproblems and NTT for larger ones. All arithmetic is modulo \(998244353\), giving an efficient solution for \(N\le2\times10^5\).

@@ -1,6 +1,0 @@
-- **Workload model:** A positive integer `x` requires exactly its base-4 digit length divisions by 4 before reaching zero. Every integer in `[4^(k-1), 4^k - 1]` has workload `k`.
-- **Minimum operations:** For per-element workloads `d1, d2, ...`, the answer is `max(ceil(sum(di) / 2), max(di))`. The first lower bound follows because one operation performs at most two needed divisions. The second follows because an individual element can be divided at most once per operation. Both bounds are achievable by pairing pending reductions; completed elements may serve as harmless zero partners when necessary.
-- **Range workload:** Compute `F(x)`, the sum of workloads from `1` through `x`, by grouping base-4 ranges. The workload over `[l, r]` is `F(r) - F(l - 1)`.
-- **Largest workload:** Workload is nondecreasing, so the largest workload in `[l, r]` is `depth(r)`.
-- **Validation:** Sample `[1,2]` costs `1`; `[2,4]` costs `2`, totaling `3`. Sample `[2,6]` has workloads `[1,1,2,2,2]`, total `8`, so costs `4`. Odd-work case `[1,3]` has total workload `3` and costs `2`. Boundary depths are `depth(1)=depth(3)=1`, `depth(4)=depth(15)=2`, and `depth(16)=3`.
-- **Complexity:** Each prefix computation scans at most 16 base-4 groups for values up to `10^9`. Total complexity is `O(len(queries) * log_4(max_r))` with `O(1)` extra space.

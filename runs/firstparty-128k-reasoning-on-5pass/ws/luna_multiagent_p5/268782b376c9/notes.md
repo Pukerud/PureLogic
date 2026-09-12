@@ -1,9 +1,0 @@
-- **Target reduction:** For a candidate minimum score `target`, index `i` must be visited at least `required[i] = ceil(target / points[i])` times.
-- **Initial entry:** Reaching index `0` costs one move and gives it one visit.
-- **Intermediate boundary:** Suppose the current index has already been visited `visits_current` times. To satisfy index `i`, let `extra = max(0, required[i] - visits_current)`. Each extra visit requires a round trip through index `i+1`, costing two moves, and then one final crossing is required to continue right. Thus the cost is `2 * extra + 1`, and index `i+1` receives `extra + 1` visits.
-- **Final boundary:** At the boundary between `n-2` and `n-1`, the walk may finish at either endpoint. After `t` round trips, index `n-2` gets `t` additional visits and index `n-1` gets `t` visits. Finishing at `n-1` adds one more visit there and one move. The minimum final cost is:
-  - `2 * max(extra, required[n-1])` when ending at `n-2`;
-  - `2 * max(extra, required[n-1] - 1) + 1` when ending at `n-1`.
-- **Greedy optimality:** Extra round trips at an earlier boundary cost two moves and provide one visit to the next index, exactly matching the two moves that would otherwise be needed to create that visit later. Therefore satisfying each index with the minimum required extra visits is sufficient.
-- **Examples:** For `[2,4], m=3`, target `4` requires visits `[2,1]`; entry costs `1`, the final boundary costs `2`, total `3`. For `[1,2,3], m=5`, target `2` requires `[2,1,1]`; total cost is `5`.
-- **Complexity:** The feasibility check is `O(n)`. Binary search performs `O(log(m * max(points)))` checks, for total `O(n log(m * max(points)))` time and `O(n)` auxiliary space.

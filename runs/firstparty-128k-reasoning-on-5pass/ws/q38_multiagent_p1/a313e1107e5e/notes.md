@@ -1,5 +1,0 @@
-- **Approach:** Offline sweep by R. Sort queries as (R, X, idx). Maintain patience-sorting tails for the current prefix. For each A_i, update tails with bisect_left; after processing index i, answer all queries with R=i by bisect_right(tails, X).
-- **Correctness of threshold:** tails[k] is the minimum possible last value of a strictly increasing subsequence of length k+1 in the current prefix. If tails[k] <= X, that subsequence is entirely <= X because it is strictly increasing. Conversely, any valid subsequence of length k+1 has last value <= X, so tails[k] <= X. Therefore the answer is the number of tails entries <= X.
-- **Strictness and duplicates:** Use bisect_left for updates so equal values replace the same position and do not create a longer subsequence. Use bisect_right for queries so X equal to a tail is counted.
-- **Complexity:** O(Q log Q + (N+Q) log N) time and O(N+Q) memory. The tails list length is at most N.
-- **Implementation notes:** Read all integers at once. Keep answers in original query order. The guarantee X >= min prefix is not needed for correctness; it only ensures a non-zero answer under valid input.

@@ -1,7 +1,0 @@
-- **Mapping consistency:** For every original letter `x` occurring in `S`, all positions containing `x` must require the same target letter in `T`. Otherwise, global replacement cannot split occurrences of `x`, so the answer is `-1`.
-- **Graph model:** Store a functional directed edge `x -> y` for each determined mapping. Self-mappings require no operation and are ignored for operation and cycle counts.
-- **Base operation count:** Every distinct non-self mapping edge requires one replacement operation in an acyclic component. Count these edges, not differing positions.
-- **Cycles:** A directed cycle of required mappings needs one extra operation using a temporary letter, because direct replacements would merge two letters before the cycle is completed. Therefore add one per directed cycle.
-- **Cycle detection:** The graph has at most 26 vertices and out-degree at most one. DFS with states unvisited/visiting/finished counts a cycle whenever an edge reaches a visiting vertex.
-- **Temporary-letter feasibility:** If every lowercase letter occurs in `T`, then any non-identity transformation is impossible. In that situation both `S` and `T` must effectively use all 26 final classes; a replacement can only merge currently present character classes and cannot restore a lost class. If no non-self mappings exist, the answer remains `0`.
-- **Complexity:** Mapping validation is `O(N)`. Graph processing is `O(26)`. Memory usage is `O(26)`.

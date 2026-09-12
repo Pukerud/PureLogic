@@ -1,5 +1,0 @@
-- **Observation:** Valid permutations must alternate parity. For any fixed parity pattern, odd values can be assigned to odd slots independently in `odd_remaining!` ways, and even values similarly in `even_remaining!` ways.
-- **Suffix counting:** Given remaining counts and the parity required at the next position, an alternating suffix is feasible only if the required starting parity occurs `ceil(length / 2)` times and the other parity occurs `floor(length / 2)` times. If feasible, its count is the product of the two factorials.
-- **Lexicographic unranking:** Scan unused values from smallest to largest at every position. A candidate is legal only if its parity differs from the previous selected value. Its suffix count forms one contiguous lexicographic block. Subtract blocks before the desired one from `k`.
-- **Overflow handling:** Factorials and products are saturated at `10^15`, which is sufficient because `k <= 10^15`. Values larger than this never need to be distinguished.
-- **Complexity:** The implementation scans at most `n` candidates for each of `n` positions, giving `O(n^2)` time and `O(n)` memory. With `n <= 100`, this is easily sufficient.

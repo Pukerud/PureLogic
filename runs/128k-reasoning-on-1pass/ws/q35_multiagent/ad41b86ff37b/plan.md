@@ -1,7 +1,0 @@
-To solve this problem, we need to find the maximum number of vertices that can form a "Snowflake Tree" as a subgraph of the given tree $T$. The minimum number of vertices to delete is then $N$ minus this maximum size.
-A Snowflake Tree is defined by a center vertex connected to $x$ hub vertices, where each hub is connected to $y$ leaf vertices. The structure is strictly hierarchical: Center $\to$ Hubs $\to$ Leaves.
-For a fixed center vertex $r$, the neighbors of $r$ in the Snowflake subgraph must be the hubs. A neighbor $c$ of $r$ can serve as a hub if it has at least one other neighbor in $T$ (to act as a leaf), which means $degree(c) \ge 2$.
-If we select $m$ hubs for center $r$, to maximize the size, we should choose the $m$ neighbors with the largest degrees. Let the degrees of these $m$ hubs be $D_1 \ge D_2 \ge \dots \ge D_m$. The number of leaves each hub can support is limited by its degree minus 1 (since one edge connects to the center). Thus, the maximum number of leaves per hub is $y = D_m - 1$.
-The total number of vertices in such a Snowflake Tree is $1 (\text{center}) + m (\text{hubs}) + m \cdot y (\text{leaves}) = 1 + m + m(D_m - 1) = 1 + m \cdot D_m$.
-We iterate over every vertex as a potential center, collect and sort the degrees of its valid neighbors, and compute the maximum possible size for all valid numbers of hubs $m$. The global maximum size gives the solution.
-The time complexity is dominated by sorting neighbor degrees, which is $O(N \log N)$ in the worst case, fitting well within the constraints.

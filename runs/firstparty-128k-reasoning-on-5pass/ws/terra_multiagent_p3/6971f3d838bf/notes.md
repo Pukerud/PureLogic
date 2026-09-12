@@ -1,8 +1,0 @@
-- **Test result:** The supplied examples pass: `[-3,2,-2,-1,3,-2,3]` returns `7`, and `[1,2,3,4]` returns `10`.
-- **Targeted edge tests:** The implementation handles `[5] -> 5`, `[-5] -> -5`, `[-2,-2] -> -2`, `[-1,-2,-3] -> -1`, `[1,-2,3] -> 4`, `[1,-2,-2,3] -> 4`, `[-5,10,-5,10] -> 20`, and `[0,-1,0] -> 0`.
-- **Segment-tree representation:** Each node stores `sum`, `pref`, `suff`, and `best`. Prefix, suffix, and best values must include at least one retained value.
-- **Deleted leaf:** A deleted position has `sum = 0` and `pref = suff = best = NEG`. This permits removed positions to bridge adjacent retained values while ensuring an all-deleted range is never a valid subarray.
-- **Merge formulas:** For children `L, R`, use `sum=L.sum+R.sum`, `pref=max(L.pref, L.sum+R.pref)`, `suff=max(R.suff, R.sum+L.suff)`, and `best=max(L.best, R.best, L.suff+R.pref)`.
-- **Candidate reduction:** Only negative values need be deleted. If deleting a nonnegative value produced a best subarray, restoring all deleted occurrences within its original span produces a contiguous original subarray with at least the same sum.
-- **Empty-result restriction:** When every element is deleted, root `best` is `NEG`, and that candidate is ignored.
-- **Complexity:** Each index is temporarily deleted and restored once for its value group. Time is `O(n log n)` and memory is `O(n)`.

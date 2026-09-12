@@ -1,7 +1,0 @@
-- **Traversal:** Use an iterative DFS with enter and exit events, avoiding recursion-depth issues on a chain-shaped tree.
-- **Active path state:** `prefix` stores root-to-current-node weighted distances. The current depth is `len(prefix) - 1`.
-- **Uniqueness boundary:** `last[value]` stores the latest depth of each value on the active root-to-current path. When visiting a node, the valid starting depth becomes `max(left, previous_depth + 1)`.
-- **Path selection:** For a fixed ending node, the shallowest valid start gives the longest distance because all edge lengths are positive. Its length is `prefix[depth] - prefix[left]`, and its node count is `depth - left + 1`.
-- **Rollback:** Each enter event saves the previous boundary and previous occurrence depth. The matching exit event restores both, ensuring sibling subtrees do not affect one another.
-- **Complexity:** Each node and edge is processed a constant number of times, giving O(n) time and O(n) auxiliary space.
-- **Edge cases:** Every node is evaluated, so single-node paths are included. Duplicate values between an ancestor and descendant correctly force the start below the earlier occurrence.

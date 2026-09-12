@@ -1,1 +1,0 @@
-Because \(\binom{N}{K}\le 10^6\), directly enumerate every \(K\)-element index combination and compute its XOR. Use `itertools.combinations` to generate distinct selections without storing them all, XOR the corresponding values, and track the maximum. The total work is \(O(K\binom{N}{K})\), which is acceptable under the guarantee, while memory usage remains \(O(N)\).

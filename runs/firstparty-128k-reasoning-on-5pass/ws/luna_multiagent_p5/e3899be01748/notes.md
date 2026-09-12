@@ -1,8 +1,0 @@
-- **State:** For each modulus from 1 through 9, `dp[m][r]` stores how many substrings ending at the previous position have remainder `r` modulo `m`.
-- **Transition:** Appending digit `d` transforms remainder `r` into `(10 * r + d) % m`. The one-character substring containing `d` is inserted separately.
-- **Counting:** When the current digit is nonzero `d`, all newly ending substrings divisible by their last digit are exactly those with remainder zero modulo `d`, so `dp[d][0]` is added.
-- **Leading zeros:** Substrings are tracked by occurrence and starting position through the dynamic programming counts, so leading zeros require no special handling.
-- **Zero endings:** Substrings ending in zero are not counted, but remain in the states because they may become valid substrings after appending a later nonzero digit.
-- **Complexity:** There are only 45 remainder states in total, giving `O(9n)` time and `O(9^2)` memory.
-- **Validation:** The implementation returns `11` for `"12936"`, `18` for `"5701283"`, and `25` for `"1010101010"`. For the third example, the digits `1` occur at indices `0, 2, 4, 6, 8`, contributing `1 + 3 + 5 + 7 + 9 = 25` substrings.
-- **Edge cases:** An all-zero string returns zero; each nonzero single digit contributes one; strings of length one are handled correctly.

@@ -1,6 +1,0 @@
-1. Build an adjacency list from the edges, storing both neighbor and edge weight. Since the tree is rooted at 0, perform a BFS or DFS to establish parent-child relationships and build a directed tree structure (or simply traverse from root).
-2. Use DFS starting from the root (node 0) to explore all downward paths. Maintain a set (or hash map) of values currently in the path to ensure uniqueness.
-3. During DFS, for each node, update the current path length and check if the node's value has been seen before in the current path. If it has, stop extending that branch.
-4. Track the maximum path length found so far. Also, track the minimum number of nodes for paths that achieve this maximum length.
-5. Since we need the minimum number of nodes among ALL longest special paths, we can update global variables: `max_len` and `min_nodes`. For each valid path ending at a node, if its length equals `max_len`, update `min_nodes = min(min_nodes, current_path_length_in_nodes)`. If it exceeds `max_len`, reset `max_len` and `min_nodes`.
-6. Return `[max_len, min_nodes]`.

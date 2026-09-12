@@ -1,7 +1,0 @@
-- **Contribution decomposition:** For a fixed value \(x\), if the set of elements after it is \(U\), then its decimal contribution is \(x \cdot 10^{\sum_{u\in U}\operatorname{digits}(u)}\). The remaining elements can be arranged in \((N-1-|U|)!|U|!\) ways.
-- **Digit-length grouping:** Elements with the same decimal length have identical positional weights. Let \(c_d\) be the count and \(s_d\) the sum of values of length \(d\).
-- **Subset polynomial:** \(G(z)=\prod_d(1+10^d z)^{c_d}\). Its coefficient of \(z^k\) is the weighted sum over \(k\)-element subsets according to the total digit lengths.
-- **Linear-time coefficient recurrence:** Let \(H(z)=\prod_{d:c_d>0}(1+10^d z)\), whose degree is at most 6, and let \(R(z)=\sum_d c_d10^dH(z)/(1+10^dz)\). Since \(H G'=RG\), coefficients of \(G\) are computed in \(O(ND)\), where \(D\le 6\).
-- **Excluding the fixed element:** For an element of length \(d\), divide \(G\) by \(1+10^dz\). The quotient coefficients satisfy \(q_0=g_0\) and \(q_k=g_k-10^d q_{k-1}\).
-- **Final weighting:** For each digit length \(d\), add \(s_d\sum_{k=0}^{N-1}q_k k!(N-1-k)!\).
-- **Complexity:** \(O(ND)\) time and \(O(N)\) memory, with \(D\le 6\). All arithmetic is modulo 998244353.

@@ -1,7 +1,0 @@
-- **Observation:** A divisor `d` is achievable for an element value `x` exactly when `d` divides `x` and at least `K` array occurrences are divisible by `d`. Duplicates count separately.
-- **Answer strategy:** Process candidate divisors in descending order. If at least `K` occurrences are divisible by `d`, assign `d` to every present multiple that does not already have an answer. The first assigned divisor is maximal because processing is descending.
-- **Issue in prior implementation:** `sum(freq[d::d])` creates a new `array` slice for every divisor. Although the total number of copied entries is harmonic, about `M log M`, this performs up to one million temporary allocations and adds avoidable allocation/copying overhead.
-- **Replacement counting method:** Count frequencies directly over multiples with a loop, stopping immediately when the count reaches `K`. This avoids all slice allocations and is especially beneficial when `K` is small.
-- **Complexity:** Let `M = max(A) <= 10^6`. The divisor-count loops perform at most `O(M log M)` multiple visits in the worst case; early stopping only reduces this. Assignment loops also total `O(M log M)` in the worst case. Memory is `O(M + N)` using compact `array('I')` arrays for values, frequencies, and answers.
-- **Memory details:** Frequency and answer arrays each use about `4(M+1)` bytes. Input values use about `4N` bytes. Output is emitted in chunks to avoid constructing one huge list of strings.
-- **Special case:** For `K = 1`, each element can be selected alone, so its answer equals itself.

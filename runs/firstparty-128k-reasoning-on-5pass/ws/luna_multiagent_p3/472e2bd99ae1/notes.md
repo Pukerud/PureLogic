@@ -1,6 +1,0 @@
-- **Ordering:** Sort all three sequences in descending order. Because every element is positive, increasing any one index cannot increase \(ab+bc+ca\), so the value is monotone over the three-dimensional index grid.
-- **Search:** Start from state \((0,0,0)\), which has maximum value, and use a max-heap implemented with negated scores.
-- **Expansion:** After removing a state, insert its valid neighbors obtained by increasing exactly one coordinate.
-- **Duplicates:** A state can be reached through multiple paths, so encode \((i,j,k)\) as `i*N*N + j*N + k` and store encoded states in `visited`.
-- **Correctness:** Every state is reachable from the origin by coordinate increments. Monotonicity guarantees that no uninserted state can have a larger value than the current heap maximum, so heap extraction enumerates all \(N^3\) states in non-increasing value order, including multiplicities from distinct index triples.
-- **Complexity:** Only the first \(K\) states are processed. Time complexity is \(O(K\log K)\), and memory complexity is \(O(K)\), besides the input arrays.

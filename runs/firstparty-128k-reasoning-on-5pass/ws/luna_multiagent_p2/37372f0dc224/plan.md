@@ -1,1 +1,0 @@
-Find the longest palindromic suffix of `S`; if its length is `L`, then append the reverse of `S[:len(S)-L]`. This produces a palindrome while preserving `S` as its prefix, and maximizing `L` minimizes the appended length. Compute `L` in linear time using the prefix function on `reverse(S) + separator + S`, then output the constructed string.

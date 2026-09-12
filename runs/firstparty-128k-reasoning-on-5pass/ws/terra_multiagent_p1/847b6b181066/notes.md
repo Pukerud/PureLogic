@@ -1,5 +1,0 @@
-- **Prefix displacement model:** Let \(P_t\) be cumulative wind displacement after step \(t\), with \(P_0=(0,0)\). Smoke generated at a time whose prefix displacement is \(P_k\) is at \(P_t-P_k\) after wind at step \(t\).
-- **Source representation:** A new smoke particle is generated at the origin exactly when the current prefix coordinate has not previously been a generation-prefix coordinate. Thus, generation-prefix coordinates are all distinct prefix coordinates visited so far, beginning with \((0,0)\).
-- **Target query:** At time \(t+0.5\), smoke is at \((R,C)\) iff \(P_t-(R,C)\) is in the set of previously seen prefix coordinates.
-- **Ordering:** Query can be performed before inserting current \(P_t\). Since \((R,C)\ne(0,0)\), inserting it first would not affect the target result, but querying first directly matches the requested approach.
-- **Complexity:** One pass with a hash set of coordinate tuples. Time \(O(N)\), memory \(O(N)\).

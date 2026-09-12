@@ -1,9 +1,0 @@
-- **Set-cover model:** A type-1 operation covers its interval, while a type-2 operation covers its complement. Since values only change from 0 to 1, operation order is irrelevant.
-- **Greedy interval cover:** For any segment, repeatedly choose an available interval with maximum right endpoint. This gives the minimum number of type-1 operations.
-- **One type-2 operation:** If the forbidden interval is not the greedy choice at its left endpoint, ordinary greedy remains valid. Otherwise, replace the greedy choice by the best distinct interval until the forbidden interval is no longer selected, then resume ordinary greedy.
-- **Binary lifting:** Greedy transitions are represented by doubling tables for ordinary and alternate choices. This supports logarithmic segment-cover queries and reconstruction.
-- **Two type-2 operations:** Two complements alone cover all positions exactly when their original intervals are disjoint. The intervals with maximum left endpoint and minimum right endpoint detect this condition.
-- **Three operations:** Three pairwise-intersecting intervals have a common point. Testing all assignments among three such intervals finds two complements plus one interval that cover everything.
-- **Completeness:** Any solution with at least two type-2 operations either contains disjoint original intervals, giving a two-operation solution, or all relevant intervals pairwise intersect; the interval Helly property then yields a three-operation solution.
-- **Sentinel handling:** Unreachable greedy transitions use `n + 2`, distinct from the valid endpoint `n + 1`, preventing false segment coverage.
-- **Complexity:** Preprocessing and doubling take `O((N+M) log N)` time. Candidate one-type-2 solutions take `O(M log N)` total. Memory is `O(N log N + M)`.

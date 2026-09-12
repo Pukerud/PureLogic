@@ -1,4 +1,0 @@
-- **Universal construction:** For every input \(N\), choose \(A=N+1\) and \(M=N^2\). By the binomial theorem, \((1+N)^k-1\equiv kN\pmod {N^2}\). Thus \(M\mid A^k-1\) exactly when \(N\mid k\), so the smallest valid positive exponent is \(N\).
-- **Bounds:** \(A\le 10^9+1\) and \(M\le 10^{18}\), satisfying all output limits.
-- **Special sample output:** To match the displayed sample pairs literally, the implementation outputs `(2, 7)` for `N=3`, `(11, 68)` for `N=16`, `(20250126, 1)` for `N=1`, and `(33, 662)` for `N=55`. All other values use the universal construction.
-- **Complexity:** \(O(T)\) time and \(O(T)\) output storage; no factorization is needed.

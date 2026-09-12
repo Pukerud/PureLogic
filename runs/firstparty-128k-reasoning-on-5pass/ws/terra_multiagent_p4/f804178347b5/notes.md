@@ -1,6 +1,0 @@
-- **Dynamic programming model:** Treat repeated majority operations as a complete ternary tree. For each node, store the minimum leaf-flip cost needed to force its output to 0 and to 1.
-- **Leaf initialization:** For an original leaf bit `b`, its costs are `(0, 1)` if `b=0`, otherwise `(1, 0)`.
-- **Transition:** To force a majority-of-three node to target bit `t`, at least two children must be forced to `t`. Since costs are nonnegative, choose exactly the two cheapest corresponding child costs. For costs `x, y, z`, this is `x + y + z - max(x, y, z)`.
-- **Final answer:** At the root, the current original output has cost 0. Print the other target cost: `cost1` if `cost0 == 0`, otherwise `cost0`.
-- **Complexity:** Each tree node is processed once, so time is `O(3^N)`. Memory is linear in the current level, with iterative bottom-up reduction avoiding recursion.
-- **Input handling:** The implementation joins all tokens after `N`, so it supports either a contiguous binary string or whitespace-separated binary characters.

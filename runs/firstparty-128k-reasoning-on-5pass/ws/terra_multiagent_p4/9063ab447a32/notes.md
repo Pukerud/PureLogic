@@ -1,7 +1,0 @@
-- **Marginal-cost transformation:** Buying the \(j\)-th unit of product with coefficient `p` has marginal cost `(2*j-1)*p`. Since these costs are increasing for each product, an optimal purchase consists of all globally available marginal units below a cutoff, plus possibly some units tied at the next marginal cost.
-- **Threshold count:** For threshold `x`, product `p` contributes the number of marginal costs at most `x`: `k = (x // p + 1) // 2`. This follows from `(2k-1)*p <= x`.
-- **Threshold cost:** Buying those `k` units costs exactly `k*k*p`, so total threshold cost is `sum(k*k*p)`.
-- **Binary search:** Search the largest integer `x` such that purchasing every marginal unit costing at most `x` costs at most `M`. Search range is `[0, M+1)`, because a marginal unit costing more than `M` cannot be bought.
-- **Final tied units:** Let `x` be the largest feasible threshold. All additional cheapest available units have marginal cost `x+1`; otherwise a higher feasible integer threshold would exist. After buying all units through `x`, add `(M-cost)//(x+1)` units. This is automatically no more than the available tied units, except when `x=M`, where it is zero.
-- **Complexity:** Each threshold evaluation is `O(N)`. Binary search takes `O(log M)` iterations, giving `O(N log M)` time and `O(N)` input storage. Python integers safely handle all intermediate values.
-- **Early exit:** During infeasible threshold evaluations, stop once cumulative cost exceeds `M`, avoiding unnecessary arithmetic in many cases.

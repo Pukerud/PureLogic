@@ -1,9 +1,0 @@
-- **Core reduction:** Let d = x - y > 0. Then N = d(3y^2 + 3dy + d^2). Since y is positive, N > d^3, so d^3 <= N - 1. For N <= 10^18, this bounds d by under 10^6, making a direct scan feasible.
-- **Divisor condition:** The factor 3y^2 + 3dy + d^2 is an integer, so d must divide N. The algorithm only performs the quadratic test when N % d == 0.
-- **Quadratic test:** For fixed d, set M = N / d. Let s = x + y. Then x = (s + d) / 2 and y = (s - d) / 2. Substitution gives x^3 - y^3 = d(3s^2 + d^2) / 4, so 4M - d^2 = 3s^2.
-- **Exact integer checks:** Compute T = 4M - d^2. It must be nonnegative and divisible by 3. Then S = T / 3 must be a perfect square s^2. Also s and d must have the same parity, and y = (s - d) / 2 must be positive.
-- **Safety verification:** Before printing, verify x^3 - y^3 == N. This is cheap because it runs only for rare candidates.
-- **Integer cube root:** Use binary search with integer arithmetic to compute floor(cuberoot(N - 1)), avoiding floating-point precision issues near 10^18.
-- **Complexity:** The loop scans at most about 10^6 values of d. The main cost is one modulo operation per d. math.isqrt is called only for divisors of N, so the total runtime is easily within limits in Python.
-- **Edge cases:** N = 1 gives limit 0 and prints -1. Perfect cubes such as 8 are rejected because y = 0 is not positive; the y > 0 check handles this. Negative T is guarded even though the bound normally makes T positive for valid divisors.
-- **Sample verdict:** Sample 1: d = 1 gives s = 23, y = 11, x = 12, so it prints 12 11. Sample 2: limit is 0, so it prints -1. Sample 3: the sample pair is valid, and the program prints a valid pair under the problem's any-solution rule. All three samples pass.

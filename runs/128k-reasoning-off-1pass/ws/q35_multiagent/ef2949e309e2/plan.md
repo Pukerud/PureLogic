@@ -1,6 +1,0 @@
-1. Since the subsequence size is fixed at 5 and we need the middle element (index 2) to be the unique mode, we can iterate over each element in `nums` considering it as the middle element of the subsequence.
-2. For a chosen middle element `m` at index `i`, we need to pick 2 elements from the left part (indices < i) and 2 elements from the right part (indices > i).
-3. The condition for `m` to be the unique mode is that its frequency in the subsequence (which is 1 + count_left(m) + count_right(m)) must be strictly greater than the frequency of any other element in the subsequence.
-4. We can precompute frequency counts for left and right parts using prefix and suffix frequency arrays or by iterating carefully.
-5. For each candidate middle element, we count valid pairs from left and right such that no other element appears as many or more times than `m`. This requires checking all possible combinations of left and right elements, which can be optimized by grouping elements by value.
-6. Given the constraint n <= 1000, an O(n^2) or O(n^2 * k) approach where k is the number of distinct values might be acceptable. We'll use a direct counting method with frequency maps.

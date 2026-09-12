@@ -1,5 +1,0 @@
-- **Reduction:** Fix the set of flipped columns as a bitmask `m`. A row represented by mask `r` becomes `r xor m`; independently flipping that row allows the cheaper of keeping it or complementing it, costing `min(popcount(r xor m), W - popcount(r xor m))`.
-- **Aggregation:** Count how many input rows have each mask in `freq`. Then the answer for column mask `m` is `sum_r freq[r] * kernel[m xor r]`, where `kernel[d] = min(popcount(d), W - popcount(d))`.
-- **Convolution:** This is XOR convolution. Apply the in-place Fast Walsh–Hadamard Transform to `freq` and `kernel`, multiply pointwise, and apply the transform once more. The unnormalized inverse result is divided by `2^W`.
-- **Complexity:** `O(W * 2^W + H)` time and `O(2^W)` memory, suitable for `W <= 18` and large `H`.
-- **Correctness details:** Every sequence of row and column operations is equivalent to choosing one global column mask and independently deciding whether to flip each row. FWHT values may be negative internally, but the final convolution values are nonnegative and exactly divisible by `2^W`.

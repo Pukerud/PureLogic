@@ -1,7 +1,0 @@
-- **Piece order:** Pieces preserve their left-to-right order. If initial piece positions are `x_1 <= ... <= x_M` and final positions are `y_1 <= ... <= y_M`, then pieces assigned to the same target occupied square may merge.
-- **Displacement monotonicity:** In one operation, pieces left of the chosen pivot move right, pieces right of it move left, and pieces at the pivot stay. Therefore the displacement sequence `d_k = y_k - x_k` is nonincreasing. This is also sufficient when the final positions are ordered.
-- **Gap condition:** For consecutive pieces, gaps never increase. If a target gap `g` is placed between two consecutive final target groups, the corresponding initial gap must be at least `g`. Thus target gaps must be matched, in order, to distinct initial gaps that are no smaller.
-- **Greedy matching:** Scan initial gaps from left to right and assign each target gap to the earliest initial gap large enough. This succeeds exactly when any valid assignment exists.
-- **Piece count:** Every target occupied square needs at least one initial piece, so `count(B) <= count(A)` is necessary. Combined with greedy gap matching, this gives reachability.
-- **Minimum operations:** The leftmost displacement is `target[0] - initial[0]`; the rightmost displacement is `target[-1] - initial[-1]`. Since displacements are nonincreasing, the minimum number of operations is `max(target[0] - initial[0], initial[-1] - target[-1])`.
-- **Complexity:** Each test case is processed in linear time and memory. The total complexity is `O(sum N)`.

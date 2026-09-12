@@ -1,7 +1,0 @@
-- **Graph representation:** Treat every constraint `A[x] XOR A[y] = z` as an undirected edge with XOR weight `z`.
-- **Traversal labels:** In each connected component, set an arbitrary root label `dist[root] = 0`. Propagate `dist[to] = dist[v] XOR weight`. If an already visited vertex would receive a different label, constraints are inconsistent and the answer is `-1`.
-- **Solution form:** For a consistent connected component, all valid assignments are `A[v] = dist[v] XOR t`, where `t` is one shared non-negative integer for that component.
-- **Minimization:** Each bit of `t` can be selected independently. At a bit where `dist` has `ones` set bits among `size` component vertices, leaving the offset bit zero produces `ones` result bits; setting it to one produces `size - ones`. Set the offset bit iff `ones > size - ones`.
-- **Bit range:** Since every `Z_i <= 10^9 < 2^30`, every propagated `dist` uses only bits `0..29`. Any higher offset bit would set that bit in every component value and strictly increase the sum, so it is never optimal.
-- **Edge cases:** Self-loops with nonzero weight are rejected automatically. Duplicate edges are checked consistently. Isolated vertices form one-vertex components and receive zero.
-- **Complexity:** Traversal is `O(N + M)`. Bit counting uses 30 passes over all vertices overall, so total time is `O(N + M + 30N)` and memory is `O(N + M)`.

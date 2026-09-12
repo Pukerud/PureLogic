@@ -1,6 +1,0 @@
-- **Digit DP:** Count beautiful numbers in `[1, x]`, then return `count(r) - count(l - 1)`.
-- **Fixed digit sum:** For each possible sum `S`, the DP tracks the accumulated sum and the product modulo `S`. At the end, a number is valid exactly when its sum is `S` and its product remainder is zero.
-- **Zero handling:** Leading zeroes are neutral and do not start a number. A zero after the number starts sets `has_zero`, making the digit product zero and therefore automatically divisible by the digit sum.
-- **State:** `(position, accumulated_sum, product_mod, started, has_zero, tight)`. The all-leading-zero path is rejected at the terminal state.
-- **Bounds:** Since `x < 10^9`, there are at most nine positions and digit sums from `1` through `81`. Pruning removes states whose current sum cannot reach the target.
-- **Complexity:** Across all target sums, the worst-case state count is approximately `O(n * 10 * sum(S^2))`, with `n <= 9`; memory is the largest memoized state set for one target sum.

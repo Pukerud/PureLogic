@@ -1,7 +1,0 @@
-- **Prefix sums:** Let \(S_0=0\) and \(S_r=A_1+\cdots+A_r\). Each subarray sum is \(S_r-S_{l-1}\), so the target is the sum of \((S_r-S_j)^K\) over all ordered pairs \(0\leq j<r\leq N\).
-- **Binomial expansion:** For current prefix sum \(x=S_r\), expand \((x-S_j)^K=\sum_{t=0}^{K}\binom{K}{t}(-1)^t x^{K-t}S_j^t\).
-- **Maintained statistics:** Maintain `moments[t] = sum(S_j^t)` over all earlier prefix sums. Then a right endpoint contribution is computed in \(O(K)\) from the expansion.
-- **Initialization:** Include prefix sum \(S_0=0\): `moments[0]=1` and all higher moments are zero. This correctly includes subarrays beginning at index 1.
-- **Update order:** For each new prefix sum, first compute its contribution using only previous moments, then add its powers to moments.
-- **Complexity:** \(O(NK)\) time and \(O(K)\) memory. With \(K\leq10\), this is easily within limits.
-- **Modulo details:** All prefix sums, powers, moments, coefficients, and answer are evaluated modulo 998244353. The exponent-zero power is represented as 1, including for prefix sum 0.

@@ -1,7 +1,0 @@
-We sort the pieces (they are already sorted). The operation on indices i..i+3 reflects the two middle pieces across the midpoint of the outer two. This is equivalent to swapping the two middle pieces' positions symmetrically: if outer positions are a and d, the inner pair (b,c) becomes (a+d-b, a+d-c). The sum of the four positions is unchanged (a + (a+d-b) + (a+d-c) + d = 2(a+d)). So total sum is invariant — but we can rearrange inner pieces to minimize the overall sum by pushing them as far left as possible.
-
-Key observation: the operation only swaps the relative order of the two middle pieces when a+d-b > a+d-c (i.e., when b < c, which is always). After reflection, the new inner positions are (a+d-b) and (a+d-c). Since b < c, we have a+d-b > a+d-c, so the two middle pieces swap order. Effectively, the operation lets us "swap" the two middle pieces while keeping them within the outer bounds.
-
-By repeatedly applying operations, we can bubble smaller values leftward. The optimal configuration is obtained by sorting the array (since we can swap any adjacent pair via a sequence of operations). Wait — we can only swap pairs (i,i+1) when they are the middle two of some 4-tuple. This is possible for all adjacent pairs except possibly the last one. Actually, we can swap any adjacent pair except the pair (N-1, N) because there is no i with i+3 = N. So the last piece's position is fixed.
-
-Thus the minimum sum is achieved by sorting the first N-1 pieces in ascending order, leaving X_N fixed at the right end. The answer is sum of sorted(X[0..N-2]) + X[N-1].

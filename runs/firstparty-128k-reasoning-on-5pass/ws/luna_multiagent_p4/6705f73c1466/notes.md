@@ -1,7 +1,0 @@
-- **Algorithm:** Let the positions of the 1s be \(p_0 < p_1 < \dots < p_{k-1}\), using zero-based indices. In any final contiguous block, the j-th 1 occupies position \(l+j\).
-- **Adjusted positions:** Define \(q_j = p_j-j\). The cost for a chosen block start \(l\) is \(\sum_j |q_j-l|\).
-- **Optimization:** The minimum sum of absolute deviations is attained at a median of the sorted \(q_j\) values. Since both \(p_j\) and \(j\) are nondecreasing, \(q_j\) is also nondecreasing, so the collected list is already sorted.
-- **Complexity:** The algorithm scans the string once and computes the distance sum once, requiring \(O(N)\) time and \(O(k)\) memory, where \(k\) is the number of 1s.
-- **Correctness:** Adjacent swaps preserve the order of the 1s. Moving each 1 from \(p_j\) to \(l+j\) requires exactly its positional displacement in swaps, and summing these displacements gives the total minimum for that block.
-- **Indexing:** Zero-based indexing is used consistently; the difference between one-based and zero-based positions cancels in the adjusted-position formulation.
-- **Validation:** The algorithm produces 3, 0, and 7 for the three provided samples.

@@ -1,9 +1,0 @@
-- **Window cost:** Making every value in a fixed window equal is minimized by choosing a median. The cost is the sum of absolute deviations from that median.
-- **Fenwick trees:** Coordinate-compressed values are maintained with one Fenwick tree for frequencies and another for value sums. This supports insertion, deletion, median lookup, and cost computation in `O(log n)`.
-- **Median:** The lower median, with rank `(x + 1) // 2`, is sufficient because every median minimizes the absolute-deviation sum.
-- **Sliding windows:** The initial window is inserted once. Each subsequent window removes its outgoing element and inserts its incoming element, producing all window costs in `O(n log n)`.
-- **Dynamic programming:** `prev[i]` stores the minimum cost for exactly one fewer selected windows inside the first `i` elements. For a window `[start, start + x)`, the transition is `prev[start] + costs[start]`; skipping an endpoint carries forward the previous result.
-- **Non-overlap:** Referencing `prev[start]` ensures all previously selected windows end no later than `start`, so the selected windows do not overlap.
-- **Correctness checks:** Duplicate values, negative values, all-equal windows, even and odd window lengths, `x = n`, and adjacent windows are handled correctly. The two examples produce `8` and `3`.
-- **Complexity:** Total time is `O(n log n + nk)` and memory is `O(n)`. The maximum possible answer is well below the chosen infinity bound.
-- **At least versus exactly:** Any solution using at least `k` windows contains a subset of exactly `k` windows with no greater cost, so minimizing exactly `k` is equivalent.

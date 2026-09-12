@@ -1,9 +1,0 @@
-- **Approach:** Implemented two-dimensional Mo processing over query points `(X_k, Y_k)`. The maintained state contains prefixes `A[0:X]` and `B[0:Y]`, plus their current all-pairs absolute-distance sum.
-- **Updates:** Adding/removing an `A` element changes the answer by its total distance to all currently active `B` elements. Symmetrically, adding/removing a `B` element uses the active `A` distribution.
-- **Fenwick trees:** Coordinate-compress all values from `A` and `B`. Each side has a Fenwick tree representing value frequencies and value sums, enabling `sum |v-u|` in `O(log N)`.
-- **Packing optimization:** Counts and value sums are packed into one Fenwick integer as `sum * 2^20 + count`; this safely works because all counts are at most `10^5`. It halves Fenwick traversals relative to separate count/sum trees.
-- **Formula:** For active multiset total count `C`, total sum `S`, and values strictly below `v` with count `Lc` and sum `Ls`, distance total is `S - 2*Ls + v*(2*Lc - C)`. Equal values may be treated on either side because their contribution is zero.
-- **Mo ordering:** Queries are sorted by blocks of `X`, with `Y` alternately ascending and descending. Block size is approximately `N / sqrt(K)`.
-- **Complexity:** Pointer movement is approximately `O(K*B + N^2/B)`, minimized near `B=N/sqrt(K)`, giving about `O(N*sqrt(K))` moves. Each move performs Fenwick work in `O(log N)`, so total is `O((N*sqrt(K)+K) log N)` plus sorting. Memory is `O(N+K)`.
-- **Python consideration:** At maximum constraints this can involve tens of millions of pointer moves, so it is substantially slower than a C++ implementation. Packed Fenwick data reduces constant factors, but this remains a performance-sensitive Python solution.
-- **Sample verdict:** Sample 1 produces `1, 4, 2, 6` and passes. Sample 2 produces `13331322, 2209746, 6366712, 207690, 20241215` and passes.

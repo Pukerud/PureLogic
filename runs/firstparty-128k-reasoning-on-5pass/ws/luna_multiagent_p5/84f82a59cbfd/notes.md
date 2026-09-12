@@ -1,6 +1,0 @@
-- **Characterization:** A valid number has every prime exponent even, so it is exactly \(x^2\). It has exactly two distinct prime factors precisely when \(x\) has exactly two distinct prime factors.
-- **Bound:** Since every query is at most \(10^{12}\), only roots \(x \le 10^6\) need to be considered.
-- **Sieve:** The smallest prime factor of every value up to \(10^6\) is computed with an SPF sieve.
-- **Classification:** For \(x\), let \(p\) be its smallest prime factor and \(y=x/p\). The number of distinct prime factors is the count for \(y\), plus one exactly when \(p\) does not already divide \(y\).
-- **Queries:** All valid squares are sorted naturally during increasing root iteration. `bisect_right` finds the largest square not exceeding each query.
-- **Complexity:** Sieve and generation take approximately \(O(L\log\log L)\) time for \(L=10^6\); each query takes \(O(\log M)\), where \(M\) is the number of generated candidates.

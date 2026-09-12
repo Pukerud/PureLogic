@@ -1,1 +1,0 @@
-x · 10^{ sum of L(y) over all y that appear after x } .

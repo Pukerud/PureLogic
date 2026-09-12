@@ -1,6 +1,0 @@
-- **Sweep invariant:** For a fixed second split position `j`, each active segment-tree leaf `i` for `1 <= i < j` stores `distinct(A[1..i]) + distinct(A[i+1..j])`.
-- **Middle distinct update:** When appending `A[j]`, with previous occurrence `p`, it becomes a new distinct value in the middle segment exactly when `i >= p`. Therefore add `1` to all candidate first splits `i` in `[max(1, p), j-1]`.
-- **Activation:** Candidate `i = j-1` is activated immediately before processing `A[j]`, with initial value `pref[i]`. Its middle segment is empty before appending position `j`, so no earlier middle updates should affect it.
-- **Suffix contribution:** After processing `j`, the third subarray is `A[j+1..N]`, contributing precomputed `suff[j+1]`. The segment-tree maximum plus this value is the best partition for that `j`.
-- **Bounds:** Iterate `j` from `2` through `N-1`, ensuring all three subarrays are non-empty. Active first split positions are exactly `1..j-1`.
-- **Complexity:** Prefix/suffix preprocessing is `O(N)`. Each sweep step performs one point activation and one range increment, each `O(log N)`, for total `O(N log N)` time and `O(N)` memory.

@@ -1,6 +1,0 @@
-- **State graph:** Global reversal only changes whether the current edge directions are original or reversed, so represent each position by `(vertex, orientation)` with two layers.
-- **Transitions:** From `(v, 0)`, move to every original outgoing neighbor of `v` at cost `1`. From `(v, 1)`, move to every original incoming neighbor of `v` at cost `1`. Toggle between `(v, 0)` and `(v, 1)` at cost `X`.
-- **Algorithm:** Run Dijkstra from vertex `1` in original orientation. The result is the minimum distance of vertex `N` across both orientations.
-- **Complexity:** The implicit graph has `2N` states and `2M + 2N` directed transitions. Dijkstra runs in `O((N + M) log N)` time and uses `O(N + M)` memory.
-- **Implementation:** Store both original outgoing and incoming adjacency lists. Python integers safely handle answers beyond 32-bit range.
-- **Validation:** The implementation follows the requested two-layer Dijkstra plan and produces the expected results for the provided sample scenarios.

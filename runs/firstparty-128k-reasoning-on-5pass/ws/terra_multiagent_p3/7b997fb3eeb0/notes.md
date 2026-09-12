@@ -1,6 +1,0 @@
-- **Structural characterization:** For an interval \([L,R]\), if \(K\) pairs are possible, it is sufficient and necessary to pair the \(K\) smallest selected mochi with the \(K\) largest selected mochi in sorted order. Thus feasibility is \(2A_{L+i} \le A_{R-K+1+i}\) for all \(0 \le i < K\).
-- **First compatible bottom:** Define \(F[p]\) as the first global index with \(A_{F[p]} \ge 2A_p\), using \(N\) as a sentinel when none exists. Since values are sorted, all \(F[p]\) are computed in \(O(N)\) using a monotone two-pointer sweep.
-- **RMQ reduction:** Let \(D[p]=F[p]-p\). Candidate \(K\) for a query interval of length \(S=R-L+1\) is feasible exactly when \(\max(D[L..L+K-1]) \le S-K\).
-- **Monotonicity:** Feasibility is monotone in \(K\), so binary search over \(0 \le K \le \lfloor S/2\rfloor\) is valid.
-- **Data structure:** A sparse table supports static range maximum queries in \(O(1)\). It is stored with `array('i')` to avoid excessive Python memory use from millions of integer objects.
-- **Complexity:** Preprocessing is \(O(N\log N)\) time and memory. Each query takes \(O(\log N)\) binary-search iterations, each with \(O(1)\) RMQ, for total \(O(Q\log N)\).

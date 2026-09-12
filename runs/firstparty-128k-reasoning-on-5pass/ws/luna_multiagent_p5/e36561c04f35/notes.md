@@ -1,6 +1,0 @@
-- **Objective:** A final arrangement can be viewed as a permutation followed by deleting each maximal equal run. Its cost is adjacent-swap count plus the number of runs.
-- **Adjacent exchange:** Swapping neighboring distinct values changes inversion count by either `+1` or `-1`. The run-count change depends only on the at most four adjacent edges touching the swapped pair.
-- **Greedy optimization:** Repeatedly perform an adjacent exchange whose total objective delta is negative, or zero in the canonical direction that increases original-position inversion count. Stop when no such exchange exists.
-- **Zero exchanges:** A zero exchange decreases the number of runs while increasing inversion count. Restricting zero exchanges to this orientation prevents immediately undoing them and avoids cycles.
-- **Linked list:** The current permutation is represented by `prev` and `nxt`. Heap entries contain an edge’s left endpoint, delta, and version. Lazy invalidation handles changed neighboring edges.
-- **Complexity:** Every accepted exchange either strictly decreases the objective or permanently reduces the number of runs. Thus only linear many exchanges occur. Heap maintenance gives `O(N log N)` time and `O(N)` memory per test case; total `N` is at most `2·10^5`.

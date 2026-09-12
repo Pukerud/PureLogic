@@ -1,7 +1,0 @@
-- **Orientation:** Each pair is stored as `(l, r)` with `l < r`; a subarray `[L, R]` contains the pair iff `L <= l` and `R >= r`.
-- **Sweep invariant:** After adding all pairs with right endpoint `r`, `max1` is the largest active `l`, `cnt1` its multiplicity, `max2` the largest active `l` strictly below `max1`, and `uid` the id of the unique max when `cnt1 == 1`.
-- **Base count:** For fixed right endpoint `r`, valid left endpoints are `L > max1`, contributing `r - max1`.
-- **Gain attribution:** Removing a pair changes the maximum only when it is the unique active maximum. At that endpoint the gain is `max1 - max2`, added to that pair's id. Ties or a larger active `l` give zero gain.
-- **Grouping by right endpoint:** All pairs with the same `r` must be inserted before evaluating endpoint `r`; otherwise a pair active at `r` could be missed or a tie could be ignored.
-- **Verified cases:** Example 1 returns 9, example 2 returns 12. Single pair on n=2 returns 3. Duplicate identical pairs give no gain because `cnt1` becomes 2. Tied `l` values stop gains for the earlier pair once the later one becomes active. Same-`r` arrivals are handled as a batch.
-- **Complexity:** Time `O(n + m)`, memory `O(n + m)`, where `m = len(conflictingPairs)`. Python ints handle the up-to ~5e9 answer.

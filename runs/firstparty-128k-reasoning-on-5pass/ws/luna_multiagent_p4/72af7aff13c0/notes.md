@@ -1,9 +1,0 @@
-- **Model:** The answer is the weighted source-to-sink path sum in the monotone grid DAG.
-- **Blocks:** Queries are processed in blocks. Every distinct destination cell updated inside one block is marked as touched.
-- **Background DP:** Forward and backward dynamic programs are computed while treating touched cells as unavailable. Their source-to-sink value is the baseline contribution of paths avoiding all touched cells.
-- **Touched decomposition:** `entry[v]` counts paths entering touched cell `v` from the source without touching another marked cell. `exit_weight[v]` counts weighted suffixes from `v` to the sink without touching another marked cell.
-- **Transitions:** `transition[u][v]` counts paths that start at touched cell `u`, then use only untouched cells, and first enter touched cell `v`. Touched cells are ordered by increasing row plus column, so the transition graph is acyclic.
-- **Per-query evaluation:** `through[v]` is the weighted contribution of paths whose latest touched cell is `v`. After each update, it is recomputed from `entry`, the transition matrix, and the current touched-cell values.
-- **Correctness:** Every path either avoids all touched cells or has a unique latest touched cell. Therefore the answer is `baseline + sum(through[v] * exit_weight[v])`. No division is used, so zero values are handled safely.
-- **Optimization:** Transition DP is restricted to the rectangle bounded by the source and the maximum row and column of touched cells, avoiding irrelevant cells for localized walks.
-- **Complexity:** The implementation uses block decomposition with dense touched-cell transitions. Its worst-case complexity is not fully optimal for the maximum stated limits.

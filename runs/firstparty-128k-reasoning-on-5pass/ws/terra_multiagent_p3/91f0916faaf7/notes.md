@@ -1,7 +1,0 @@
-- **Prime decomposition:** For a fixed prime \(p\), let \(e_i\) be its exponent in \(S_i\). If the exponent of \(p\) in \(A_i\) is \(d_i\), then the adjacent condition is exactly \(|e_i-e_{i+1}|=d_i\).
-- **GCD condition:** \(\gcd(S_1,\ldots,S_N)=1\) is equivalent to \(\min_i e_i=0\) for every prime. Primes not appearing in any \(A_i\) must have exponent zero everywhere and contribute 1.
-- **Score factorization:** The score contributes \(p^{\sum_i e_i}\) for prime \(p\). Prime choices are independent, so the final answer is the product of the weighted sums for all appearing primes.
-- **Bounded heights:** For one prime, after requiring that the walk touches zero, every exponent is at most \(T=\sum_i d_i\), because its height is at most the total path length from a zero position. Thus a finite DP over heights \(0,\ldots,T\) suffices.
-- **DP state:** Maintain weighted sums for each current height, split into walks that have not yet visited zero and walks that have visited zero. Initialization includes every possible first height: height 0 is already visited, and positive height \(h\) has initial weight \(p^h\).
-- **Transition:** From height \(h\), move to valid nonnegative heights \(h-d_i\) and \(h+d_i\), taking care that \(d_i=0\) has only one distinct destination. Multiply by \(p^{\text{new height}}\) because the new sequence element contributes that exponent to the score.
-- **Answer per prime:** Sum DP values in the visited-zero state after all edges. Complexity is \(O(N\sum_p T_p)\), with \(\sum_p T_p\le 9(N-1)\) since every \(A_i\le1000\).

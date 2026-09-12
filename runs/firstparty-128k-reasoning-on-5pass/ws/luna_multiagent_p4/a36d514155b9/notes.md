@@ -1,8 +1,0 @@
-- **Linearity:** Fix an unordered pair of cells. It occurs in exactly \(\binom{mn-2}{k-2}\) arrangements, because the remaining \(k-2\) pieces can be placed in any \(k-2\) of the other \(mn-2\) cells.
-- **Geometric sum:** Sum Manhattan distances over all unordered pairs by independently summing row-coordinate and column-coordinate differences.
-- **Row contribution:** For row difference \(d\), there are \(m-d\) row pairs and \(n^2\) column choices. Therefore the row contribution is \(n^2 \cdot m(m-1)(m+1)/6\).
-- **Column contribution:** Symmetrically, the column contribution is \(m^2 \cdot n(n-1)(n+1)/6\).
-- **Combination:** Compute \(\binom{mn-2}{k-2}\) modulo \(10^9+7\) using a multiplicative formula and Fermat’s modular inverse. Since \(mn \le 10^5 < 10^9+7\), every denominator is invertible.
-- **Verification:** For \(m=n=2,k=2\), the pair-distance sum is \(4+4=8\), and the combination factor is \(1\), giving \(8\). For \(m=1,n=4,k=3\), the pair-distance sum is \(10\), the factor is \(\binom{2}{1}=2\), giving \(20\).
-- **Edge cases:** For \(k=2\), the combination factor is \(1\). For \(k=mn\), it is also \(1\). If \(m=1\) or \(n=1\), the corresponding zero-dimensional contribution vanishes naturally.
-- **Complexity:** \(O(\min(k-2,mn-k))\) time and \(O(1)\) extra space.

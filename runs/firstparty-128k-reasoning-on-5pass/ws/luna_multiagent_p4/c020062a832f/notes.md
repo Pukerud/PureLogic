@@ -1,7 +1,0 @@
-- **Initial inversion count:** A Fenwick tree over values computes the number of previous elements greater than each current element in a left-to-right scan.
-- **Transition:** Increasing the shift causes every occurrence of value `x` to wrap from `M-1` to `0`, where `x = M-1-k`.
-- **Per-occurrence change:** Every unequal preceding element creates an inversion after wrapping, while every unequal following element loses an inversion.
-- **Delta formula:** If `seen` elements have been processed and `seen_count[x]` of them equal `x`, then `prior_non_equal = seen - seen_count[x]`. The number of unequal following elements is `(N - seen - 1) - (freq[x] - seen_count[x] - 1)`. Accumulate their difference into `delta[x]`.
-- **Output order:** Print the current inversion count, then apply deltas for `x = M-1, M-2, ..., 0`.
-- **Complexity:** `O(N log M + M)` time and `O(N + M)` memory.
-- **Integer safety:** Python integers handle the maximum inversion count of `N(N-1)/2`.

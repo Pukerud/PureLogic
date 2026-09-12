@@ -1,6 +1,0 @@
-- **Approach:** Foods for different vitamins are independent except for the shared calorie budget. Build one 0/1 knapsack DP per vitamin group, indexed by calories up to `X`.
-- **DP meaning:** After processing a vitamin group, `dp[c]` is the maximum vitamin intake obtainable using at most `c` calories. Descending calorie iteration ensures every food is selected at most once. A prefix maximum pass makes the array explicitly nondecreasing and preserves the “at most” interpretation.
-- **Feasibility:** For target intake `T`, use `bisect_left(dp, T)` on each group DP to find the minimum calories needed to obtain at least `T`. Target `T` is feasible exactly when the sum of the three minimum required calorie values is at most `X`.
-- **Binary search:** Feasibility is monotone, so binary search the answer from `0` through `min(total vitamin amount in each group)`.
-- **Complexity:** Knapsack transitions take `O(NX)` time overall and `O(X)` memory per DP, with three stored arrays requiring `O(X)` total-scale memory. Binary search uses `O(log S)` checks, each with three binary searches, where `S` is the answer upper bound.
-- **Edge cases:** If a vitamin has no foods, its DP remains zero and all positive targets fail, yielding answer `0`. Since all `A_i` are positive, the total amount per group is a valid binary-search upper bound.

@@ -1,7 +1,0 @@
-- **Window equalization:** For a fixed window, the minimum sum of increments/decrements needed to make all values equal is the sum of absolute differences from a median. The lower median is sufficient.
-- **Sliding median costs:** Coordinate-compress all values and maintain Fenwick trees for element counts and element sums. Each window shift removes one value and inserts one value, so all `n - x + 1` costs are computed in `O(n log n)`.
-- **Cost formula:** For median `m`, values at or below `m` contribute `m * count_left - sum_left`; values above `m` contribute `sum_right - m * count_right`.
-- **Dynamic programming:** `prev[p]` stores the minimum cost for choosing exactly the previous number of windows among starts `[0, p-1]`. A window starting at `p-1` can follow only starts below `p-x`, enforcing non-overlap. The DP runs in `O(nk)`.
-- **Exact cardinality:** Choosing exactly `k` windows is optimal because every window cost is nonnegative; any solution with more than `k` windows can discard some windows.
-- **Example validation:** Example 1 correctly costs `5` for `[-2, 1, 3]` equalized to `1`, and `3` for `[3, 6, 4]` equalized to `4`, totaling `8`. Thus the stated output `8` is correct; the alleged cost `6` is an arithmetic error. Example 2 chooses `[-2, -2]` at starts `1` and `3`, requiring `3` total operations.
-- **Complexity:** `O(n log n + nk)` time and `O(n)` auxiliary memory, with Python integers safely handling all costs.

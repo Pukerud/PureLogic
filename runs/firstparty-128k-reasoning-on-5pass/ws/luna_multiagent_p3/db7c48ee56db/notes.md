@@ -1,7 +1,0 @@
-- **Complement identity:** The XOR of all selected elements equals the total XOR of the entire sequence XOR the XOR of all omitted elements.
-- **Enumeration size:** Let `r = min(K, N-K)`. Enumerating subsets of size `r` is valid because `C(N, r) = C(N, K) <= 10^6`.
-- **Transformation:** If `K <= N-K`, enumerate the selected subset directly. Otherwise, enumerate the omitted subset and XOR each result with the total XOR.
-- **Edge case:** When `r = 0`, necessarily `K = N`, so the only answer is the XOR of all elements.
-- **Distinct elements:** `itertools.combinations` works with indices, so equal values at different positions are correctly treated as distinct elements.
-- **Complexity:** `O(r * C(N,r))` time and `O(r)` temporary combination storage, with at most about one million combinations under the constraint.
-- **Integer range:** Python integers safely handle values below `2^60`.

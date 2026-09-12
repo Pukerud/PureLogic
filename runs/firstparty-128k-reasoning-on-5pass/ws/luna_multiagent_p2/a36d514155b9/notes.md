@@ -1,7 +1,0 @@
-- **Linearity:** Sum the contribution of each unordered pair of cells independently across all arrangements.
-- **Multiplicity:** Once two cells are fixed as occupied, the remaining `k - 2` pieces can be chosen in `C(m*n - 2, k - 2)` ways.
-- **Row contribution:** For row separation `d`, there are `m-d` row pairs and `n²` choices of columns. Thus the sum is `n² * sum(d*(m-d)) = n² * m(m-1)(m+1)/6`.
-- **Column contribution:** Similarly, this is `m² * n(n-1)(n+1)/6`.
-- **Combinations:** Since `m*n <= 10^5`, factorials and inverse factorials compute the required binomial coefficient in linear time.
-- **Validation:** The formula gives `8` for `(2,2,2)` and `20` for `(1,4,3)`. Exhaustive enumeration on small grids agrees because every selected cell pair appears in exactly the same number of subsets.
-- **Complexity:** `O(m*n)` time and `O(m*n)` memory.

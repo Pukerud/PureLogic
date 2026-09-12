@@ -1,6 +1,0 @@
-- **Counting formula:** Select the `k` adjacent positions whose values are equal in `C(n - 1, k)` ways.
-- **Value choices:** Choose the first element in `m` ways. Every other position corresponding to a change has `m - 1` choices, giving `(m - 1)^(n - 1 - k)`.
-- **Result:** `m * C(n - 1, k) * (m - 1)^(n - 1 - k) mod (10^9 + 7)`.
-- **Complexity:** Factorial and inverse-factorial computation uses `O(n)` time and `O(n)` memory.
-- **Edge cases:** For `n = 1`, the transition count is zero and the result is `m`. For `m = 1`, zero-base exponentiation correctly handles the case where all transitions must be equal.
-- **Sample verification:** `(3, 2, 1)` returns `4`; `(4, 2, 2)` returns `6`; `(5, 2, 0)` returns `2`.

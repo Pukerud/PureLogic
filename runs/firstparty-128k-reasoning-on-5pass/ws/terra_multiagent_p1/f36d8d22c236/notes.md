@@ -1,6 +1,0 @@
-- **Mapping model:** For each source letter in `S`, all its occurrences must require the same target letter in `T`. If one source letter maps to multiple targets, output `-1`.
-- **Graph:** The valid requirements form a functional directed graph on 26 letters. Ignore identity mappings (`x -> x`) because they require no operation.
-- **Operation count:** Every non-identity edge needs one replacement operation. Every directed cycle needs one additional operation to temporarily move one character out of the cycle, so the answer is `non_identity_edges + cycle_count`.
-- **Cycle detection:** Traverse the functional graph with three states: unvisited, currently visiting, finished. Encountering a currently visiting vertex detects exactly one directed cycle in that traversal.
-- **No spare character case:** If `T` contains all 26 letters, there is no character absent from the final string to use as temporary storage. Therefore, if any nontrivial cycle exists, the transformation is impossible and the answer is `-1`.
-- **Complexity:** Validating mappings costs `O(N)`. Graph processing costs `O(26)`. Memory usage is `O(26)`.

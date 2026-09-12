@@ -1,4 +1,0 @@
-- **Task:** Compute 12 * 13 and output only the final integer.
-- **Computation:** 12 * 13 = 156.
-- **Verification:** 12 * 10 = 120; 12 * 3 = 36; 120 + 36 = 156.
-- **Output constraint:** Final integer is 156.

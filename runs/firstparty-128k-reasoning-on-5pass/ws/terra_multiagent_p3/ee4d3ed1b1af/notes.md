@@ -1,9 +1,0 @@
-- **Verification result:** The supplied implementation is correct for the stated constraints and requires no functional changes.
-- **Supplied examples:** It returns `8` for `("abaacbaecebce", "ba*c*ce")`, `-1` for `("baccbaadbc", "cc*baa*adb")`, `0` for `("a", "**")`, and `6` for `("madlogic", "*adlogi*")`.
-- **Pattern structure:** Splitting at the two stars produces three literal parts. Removing empty literal parts is valid because an empty component places no positional constraint; the remaining nonempty components must still occur in their original order without overlap.
-- **Empty cases:** `"**"` correctly returns `0`. Patterns with exactly one nonempty part, including `"a**"`, `"*a*"`, and `"**a"`, correctly return that literal's length if it occurs, otherwise `-1`.
-- **Boundary checks:** Adjacent literal pieces may touch because a star matches the empty sequence. For example, `s="abc", p="a*b*c"` returns `3`; `s="abc", p="ab**"` returns `2`; and `s="abc", p="**bc"` returns `2`.
-- **Overlap prevention:** The next component is selected only at positions at least `current_end`, so literals cannot overlap. This is required because pattern components are consumed sequentially.
-- **No-match checks:** If the first literal has no occurrence, return `-1`; if a later literal has no occurrence at or after the preceding component's end, that starting occurrence is discarded.
-- **Greedy correctness:** For each occurrence of the first nonempty literal, taking the earliest feasible occurrence of every following literal gives the smallest final endpoint for that fixed start. Any later occurrence can only preserve or increase the final substring length.
-- **Complexity:** KMP finds occurrences in linear time. At most three KMP runs and two successor-array constructions are used, giving `O(|s| + |p|)` time and `O(|s| + |p|)` space.

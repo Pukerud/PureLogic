@@ -1,7 +1,0 @@
-- **Trie representation:** Each trie node stores its children, depth, and the number of input words passing through it. Each word also stores the list of trie nodes on its path.
-- **Validity condition:** A node at depth `d` represents a prefix of length `d`. It contributes to the answer exactly when its word count is at least `k`.
-- **Effect of removal:** Removing one word changes only nodes on that word’s path. A node becomes invalid precisely when its original count is exactly `k`; nodes with larger counts remain valid after removing one word.
-- **Depth aggregation:** `active_at_depth[d]` stores how many currently valid trie nodes have depth `d`. The answer is the largest depth whose value is positive.
-- **Maximum-depth structure:** A max-heap stores candidate depths. Entries are removed lazily whenever their depth has no active nodes. Temporary deactivation and restoration only affect depths on the removed word’s path.
-- **Edge cases:** If removing one element leaves fewer than `k` words, every result is zero. The root is excluded, so only nonempty prefixes are considered. Duplicate words are naturally handled by trie counts.
-- **Complexity:** Building the trie and storing paths takes `O(S)` time and space, where `S` is the total input length. Each path node is processed a constant number of times, and heap operations add `O(S log S)` worst-case time.

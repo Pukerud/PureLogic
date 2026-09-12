@@ -1,7 +1,0 @@
-- **Approach:** The implementation combines two valid exchange mechanisms:
-  - Two internally vertex-disjoint S-T paths allow the tokens to travel through distinct routes, with total cost equal to the minimum total length of such paths.
-  - Tree-like side-branch parking allows an exchange along a shortest S-T route, using temporary detours.
-- **Disjoint-path computation:** Uses a two-unit min-cost flow formulation with vertex splitting. Internal vertices have capacity one, terminals have capacity two, and every undirected original edge has a capacity-one gadget with cost one. Two successive shortest augmenting paths produce the minimum sum of lengths of two internally vertex-disjoint S-T paths.
-- **Tree-like construction:** A BFS shortest path from S to T is used. A strict internal path vertex with an off-path neighbor gives candidate `2d+2`. Endpoint or off-path switching through a BFS side-branch structure gives candidate `2d+4r+4`.
-- **Complexity:** The flow graph has O(N+M) vertices and edges. Only two Dijkstra runs are required, so the total complexity is O((N+M) log(N+M)); memory is O(N+M).
-- **Caveat:** The side-branch candidate relies on a BFS forest and is intended to capture tree-like buffer structures. The min-cost-flow part exactly captures exchanges through two vertex-disjoint S-T routes.

@@ -1,9 +1,0 @@
-- **Potential reformulation:** For target distance `D`, assign integer labels `p(v)` in `[0,D]`, with `p(1)=0`, `p(N)=D`, and `p(v) <= p(u)+1` for every original edge `u->v`. Every edge with `p(v)>p(u)` must be selected. Conversely, selecting all such increasing edges makes every `1->N` path contain at least `D` selected edges, by telescoping label changes.
-- **Threshold variables:** Let `x[v][i] = [p(v) >= i]` for `1 <= i <= D`. Source-side cut nodes mean value 1. Monotonicity is enforced by infinite edges `(v,i+1)->(v,i)`.
-- **Edge feasibility constraint:** `p(v) <= p(u)+1` is exactly `x[v][i] => x[u][i-1]` for every `i=2..D`, implemented as infinite-capacity directed edges `(v,i)->(u,i-1)`.
-- **Cost charged once:** Add capacity-1 edge `(v,i)->(u,i)` for every original directed edge `u->v` and threshold `i`. It crosses the cut for each integer threshold strictly between `p(u)` and `p(v)`, totaling `max(p(v)-p(u),0)`. The feasibility constraint limits this quantity to at most 1, so an original edge is charged exactly once iff `p(v)>p(u)`.
-- **Terminals:** Force `p(1)=0` with infinite edges `(1,i)->T`; force `p(N)=D` with infinite edges `S->(N,i)`.
-- **Decision result:** The minimum cut equals the minimum count of forced selected edges for target `D`. Feasibility is whether this value is at most `K`.
-- **Exact K:** At-most-`K` feasibility suffices because changing additional unselected edges from 0 to 1 cannot reduce shortest-path distance.
-- **Bounds and search:** The answer is at most `N-1`, since a minimum-cost walk can be simplified into a simple path. Feasibility is monotone in `D`, so binary search over `[0,N-1]` is valid.
-- **Complexity:** Each flow graph has at most `N*(N-1)+2 <= 872` vertices and `O((N+M)D)` edges; only `O(log N)` max-flow runs are needed. Parallel original edges are inserted separately and correctly consume separate budget.

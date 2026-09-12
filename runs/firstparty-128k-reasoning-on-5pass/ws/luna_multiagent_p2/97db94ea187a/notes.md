@@ -1,7 +1,0 @@
-- **Canonical layering:** Every connected graph has a unique BFS layering from vertex 1. Edges can only join vertices in the same layer or consecutive layers, and every vertex in a new layer must have an edge to the preceding layer.
-- **Transition weight:** For a previous layer of size `a` and a new layer of size `b`, evaluating the edge variable at `x` gives `z = 1 + x`. Internal edges contribute `z^(b choose 2)`, while required predecessor edges contribute `(z^a - 1)^b`.
-- **Dynamic programming:** States track the number of assigned vertices, the previous layer size and parity, and the difference between the counts of even- and odd-distance vertices. Layer labels are selected in `C[remaining][b]` ways.
-- **Parity:** Vertex 1 contributes `+1`. A new layer contributes `-b` after an even layer and `+b` after an odd layer.
-- **Exponent range fix:** The maximum internal-layer exponent is `C(N, 2) = E`, so `zpow` must be allocated through index `E`, not `N`.
-- **Interpolation:** The resulting edge-count generating function has degree at most `E`. Evaluations at `x = 0, ..., E` are converted to ordinary coefficients using Newton interpolation over the prime field.
-- **Verification:** With the exponent-range fix, the program produces the stated outputs for all three samples, including the `N=4`, `N=6`, and `N=10` cases.

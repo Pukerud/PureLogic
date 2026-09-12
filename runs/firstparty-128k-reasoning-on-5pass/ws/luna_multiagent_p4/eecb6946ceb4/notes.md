@@ -1,8 +1,0 @@
-- **Representation:** The set is stored as a binary polynomial \(P(x)=\sum_{s\in S}x^s\).
-- **Convolution meaning:** The coefficient of \(x^{2B}\) in \(P(x)^2\) counts ordered pairs \((A,C)\) satisfying \(A+C=2B\).
-- **Correction:** For a present middle value \(B\), the pair \((B,B)\) contributes one unwanted count. Every valid pair with \(A\ne C\) appears in both orders, so its contribution is \((\text{coefficient}-1)//2\).
-- **NTT modulus:** Modulus \(998244353\) with primitive root 3 supports powers of two up to \(2^{23}\), including the required transform size at most \(2^{21}\).
-- **Transform size:** The array length is the smallest power of two at least \(2\cdot\max(S)+1\), covering every possible sum.
-- **Memory optimization:** Only one transform array is used. The forward transform is performed with decimation-in-frequency, producing bit-reversed output; squaring preserves that order, and the inverse decimation-in-time transform consumes it directly, avoiding separate bit-reversal passes.
-- **Exactness:** Every convolution coefficient is at most \(N\le 10^6\), well below the modulus, so the modular result equals the exact integer coefficient.
-- **Complexity:** The algorithm runs in \(O(L\log L+N)\) time and \(O(L+N)\) memory, where \(L\) is the transform length.

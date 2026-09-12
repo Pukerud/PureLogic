@@ -1,7 +1,0 @@
-- **State:** `dp[parity][sum]` stores the maximum product of a non-empty subsequence with the given alternating sum and selected-length parity.
-- **Transition:** Appending `x` contributes `+x` when the current length is even and `-x` when it is odd, then flips the parity.
-- **Product bound:** Products exceeding `limit` are discarded immediately because all numbers are nonnegative, so later multiplication cannot reduce them.
-- **Zero handling:** Product `0` is stored explicitly. This preserves valid subsequences containing zero even when no positive-product state exists for the same sum and parity.
-- **Dominance:** For a fixed sum and parity, retaining only the largest product is sufficient. Any continuation multiplies both products by the same nonnegative values, and the larger product is always at least as useful under the upper-bound constraint.
-- **Subsequence validity:** Each element is processed from snapshots of the previous DP layers, so an element cannot be selected more than once. Single-element subsequences are inserted separately.
-- **Complexity:** With sums bounded by `12 * n`, the practical state count is `O(n * n * max(nums))`; memory is `O(n * max(nums))`, using two parity maps.

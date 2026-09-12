@@ -1,6 +1,0 @@
-- **State representation:** Store an LCS DP row for prefixes of `S` by its adjacent increments. Bit `i` is 1 exactly when the row value for prefix length `i+1` exceeds that for prefix length `i`. Since every increment is 0 or 1, the final LCS value equals `mask.bit_count()`.
-- **Transition:** For an appended character, reconstruct the old row from the mask and compute the new row left-to-right. At position `i`, use `max(old[i-1] + 1, old[i], new[i-1])` on a character match and `max(old[i], new[i-1])` otherwise.
-- **DP:** Start from mask 0 with count 1. Repeat M times, trying all 26 appended letters and accumulating counts modulo 998244353.
-- **Complexity:** At most `2^N <= 1024` masks exist. The implementation takes `O(M * 26 * 2^N * N)` time and `O(2^N)` DP memory.
-- **Caching:** Each `(mask, letter)` transition is cached, avoiding repeated row reconstruction across DP iterations.
-- **Verification:** The approach yields the stated sample outputs, including `576 99 1` for `N=2, M=2, S=ab`.

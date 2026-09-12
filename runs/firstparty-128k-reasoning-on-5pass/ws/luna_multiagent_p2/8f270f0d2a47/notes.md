@@ -1,7 +1,0 @@
-- **Approach:** Count beautiful positive integers in `[1, bound]` with digit DP, then return `count_up_to(r) - count_up_to(l - 1)`.
-- **Digit sums:** For a bound with `n` digits, the maximum possible digit sum is `9n`, at most 81 under the constraints. Run one DP for each target digit sum.
-- **State:** The DP tracks position, accumulated digit sum, product modulo the target sum, whether the number has started, and whether the prefix is tight to the bound.
-- **Leading zeros:** Before the number starts, zero digits are ignored and do not affect the digit product. The all-leading-zero path is excluded at the terminal state, so zero is not counted.
-- **Internal zeros:** After the number starts, every digit is multiplied into the product modulo the target sum. Thus an internal zero correctly makes the product congruent to zero and the number beautiful.
-- **Pruning:** States are discarded when the current digit sum already exceeds the target or cannot reach it using the remaining positions.
-- **Complexity:** With at most nine digits and target sums up to 81, memoization keeps the computation small enough for the given limits.

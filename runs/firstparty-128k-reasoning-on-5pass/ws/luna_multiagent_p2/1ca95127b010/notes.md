@@ -1,5 +1,0 @@
-- **Invariant for ones:** Number the `1`s from left to right. An operation moves exactly `Y` consecutive ones by `X` positions, without changing their order. Therefore, the position modulo `X` of every numbered `1` is invariant.
-- **Invariant for zeros:** Similarly, every operation moves exactly `X` consecutive zeros by `Y` positions, preserving their order. Thus, the position modulo `Y` of every numbered `0` is invariant.
-- **Reachability criterion:** Two binary strings are equivalent under the operations if and only if they have the same sequence of residues for numbered ones modulo `X` and the same sequence of residues for numbered zeros modulo `Y`. This criterion also includes equality of the number of zeros and ones.
-- **Algorithm:** Record the residue sequences for `S`, then scan `T` while checking each occurrence against the corresponding residue. The implementation stores residues in compact integer arrays.
-- **Complexity:** `O(N)` time and `O(N)` memory.

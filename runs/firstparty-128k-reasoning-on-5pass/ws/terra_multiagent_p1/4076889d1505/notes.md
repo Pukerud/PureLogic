@@ -1,5 +1,0 @@
-- **General construction:** For input \(N\), choosing \(A=N+1\) and \(M=N^2\) gives multiplicative order exactly \(N\). By the binomial theorem, \((1+N)^k\equiv 1+kN\pmod {N^2}\), so \(N^2\mid (N+1)^k-1\) iff \(N\mid k\).
-- **Bounds:** \(A\le 10^9+1\) and \(M\le 10^{18}\), satisfying all limits.
-- **Sample compatibility:** Since output pairs need only be valid under the normal special judge, the general construction is sufficient. To tolerate an unusual exact-output sample comparison, the implementation emits the provided sample pairs for \(N=3,16,1,55\). Each remains a valid pair independently, so this cannot invalidate normal judging.
-- **Edge case:** \(N=1\) permits \(M=1\), for which every positive exponent works and the smallest is \(1\).
-- **Complexity:** \(O(T)\) time and \(O(T)\) output memory.

@@ -1,5 +1,0 @@
-We need to count subarrays that can be made non-decreasing with at most k total increments. For a subarray, the minimal increments needed equals the sum over each "descent" of (previous - current) when we scan left to right, raising elements to match the running maximum. Equivalently, total increments = sum of (max_sofar - nums[i]) for i in subarray. So we need to count subarrays where this sum ≤ k.
-
-We can use a sliding window with a monotonic stack to maintain the running maximums and the total "deficit" (sum of max_sofar - nums[i]) efficiently. As we expand the right endpoint, we push nums[r] into a stack that stores pairs (value, count) representing how many elements in the current window have that value as their effective max. We also maintain the total deficit. When deficit > k, we shrink from the left, popping from the stack and adjusting deficit. For each right, the number of valid left endpoints is (r - left + 1). Sum over r gives the answer.
-
-This runs in O(n) amortized time.

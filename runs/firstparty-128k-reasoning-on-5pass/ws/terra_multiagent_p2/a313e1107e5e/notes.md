@@ -1,6 +1,0 @@
-- **Algorithm:** Process array positions from left to right. For each `A[i]`, use `bisect_left` in the standard LIS tails array to compute `dp[i]`, the maximum length of a strictly increasing subsequence ending exactly at `A[i]`.
-- **Query reduction:** Any strictly increasing subsequence ending with value at most `X` consists entirely of values at most `X`. Therefore a query `(R, X)` equals the maximum `dp[i]` over all `i <= R` with `A[i] <= X`.
-- **Offline sweep:** Group queries by prefix endpoint `R`. Once position `i` is processed, insert `(A[i], dp[i])` into a Fenwick tree that supports point-wise maximum updates and prefix maximum queries.
-- **Compression:** Compress only array values. For a possibly absent threshold `X`, use `bisect_right(compressed_values, X)` to find how many compressed coordinates are at most `X`.
-- **Strictness:** `bisect_left` is required for strictly increasing subsequences; equal values replace the same LIS tail position instead of extending a subsequence.
-- **Complexity:** LIS computation, Fenwick updates, and query answering each take `O(log N)` per operation. Total time is `O((N + Q) log N)` and memory is `O(N + Q)`.

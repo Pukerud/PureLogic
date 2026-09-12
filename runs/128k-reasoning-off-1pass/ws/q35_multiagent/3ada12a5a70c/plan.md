@@ -1,5 +1,0 @@
-1. Since k is very small (up to 25), we can use binary search on the answer (the minimum Manhattan distance).
-2. For a given candidate distance `d`, we need to check if it's possible to select `k` points from the given points such that every pair has Manhattan distance >= `d`.
-3. This check can be modeled as finding an independent set of size `k` in a graph where edges connect points with Manhattan distance < `d`. However, since k is small, we can use backtracking with pruning: try to pick points one by one, ensuring each new point is at least distance `d` from all previously picked points.
-4. To optimize the backtracking, we can sort the points or use a greedy-like approach with recursion. Given the small k, a simple recursive backtracking that tries to include/exclude points might be too slow if not pruned well. Instead, we can iterate through points and maintain a list of selected points, trying to add the next valid point.
-5. The binary search range for the answer is from 0 to 4*side (max possible Manhattan distance on the boundary). We'll binary search for the maximum `d` for which the check function returns True.

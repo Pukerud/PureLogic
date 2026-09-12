@@ -1,8 +1,0 @@
-- **Algorithm:** Computes Levenshtein distance using dynamic programming restricted to cells with `abs(i - j) <= K`. Any alignment outside this band already requires more than `K` insertions/deletions.
-- **Initialization:** Row zero contains distances `0, 1, ..., K` where valid. Other cells are treated as infinity.
-- **Transitions:** Each band cell considers deletion, insertion, and replacement/matching from its three predecessor cells.
-- **Boundary handling:** The two cells immediately outside each active band are explicitly set to infinity. This prevents stale values in reused rolling arrays from affecting transitions.
-- **Memory:** Uses two arrays of length `|T| + 1`, requiring `O(|T|)` memory.
-- **Time:** The band contains at most `2K + 1` cells per row, so the running time is `O(K * min(|S|, |T|))` after swapping strings if useful.
-- **Early rejection:** If the string length difference exceeds `K`, the answer is immediately `No`.
-- **Correctness:** The final cell stores the ordinary edit distance because every path of cost at most `K` remains inside the band. The result accepts all distances from zero through `K`.

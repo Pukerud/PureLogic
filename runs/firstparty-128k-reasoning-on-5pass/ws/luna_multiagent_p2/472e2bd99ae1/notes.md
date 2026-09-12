@@ -1,7 +1,0 @@
-- **Ordering:** Sort all three arrays in nonincreasing order. Since every input value is positive, decreasing any one coordinate cannot increase \(ab+bc+ca\). Thus the value is monotone over the 3D index grid.
-- **Enumeration:** Use best-first search from state \((0,0,0)\). The heap stores states by decreasing expression value, represented as `(-value, encoded_state)`.
-- **Correctness:** Every state other than the origin has a predecessor obtained by decrementing one coordinate. That predecessor has value at least as large, so when a state becomes reachable, all potentially larger states are already prioritized by the heap. Consequently, heap extraction order is the global descending order of all \(N^3\) values.
-- **Visited states:** Encode \((i,j,j')\) as `i*N*N + j*N + k` and store generated states in a set. This prevents duplicate insertion because each state can be reached through multiple predecessor paths.
-- **Complexity:** Extracting the first \(K\) states takes \(O(K\log K)\) time and \(O(K)\) auxiliary memory in the worst case. This is suitable for \(K\le 5\times10^5\); Python integers and two-item heap tuples keep the representation relatively compact.
-- **Arithmetic:** Python integers safely handle values up to approximately \(3\times10^{18}\), exceeding the maximum possible expression.
-- **Validation:** For sample 1, extraction order begins \(44,38,36,34,31\), yielding `31`. Equal-valued states in samples 2 and elsewhere are handled correctly because coordinates, not values, are deduplicated.

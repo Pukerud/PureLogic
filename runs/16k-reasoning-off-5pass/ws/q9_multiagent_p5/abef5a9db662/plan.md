@@ -1,6 +1,0 @@
-The problem requires determining the final rating for multiple initial ratings $X$ after $N$ contests. The rating increases by 1 if it falls within $[L_i, R_i]$ at step $i$. Since the maximum rating is bounded by $500,000$ (as $R_i \le 500,000$), we can simulate the process for all possible initial ratings up to this limit.
-The key observation is that the array of current ratings for all starting values $1 \dots M$ remains sorted after each contest update (adding a constant to a subsegment preserves sorted order). We can use a Segment Tree with Lazy Propagation to maintain these ratings. The tree will support:
-1. Range Add: Increment ratings in $[k, p]$ by 1.
-2. Find First $\ge V$: Locate the smallest index $k$ where rating $\ge L_i$.
-3. Find Last $\le V$: Locate the largest index $p$ where rating $\le R_i$.
-For each contest, we find the range $[k, p]$ of starting ratings that satisfy the condition and update them. Finally, we answer the queries in $O(1)$ or $O(\log M)$ by querying the tree. The total complexity will be $O(N \log M + Q \log M)$, which fits within the time limits.

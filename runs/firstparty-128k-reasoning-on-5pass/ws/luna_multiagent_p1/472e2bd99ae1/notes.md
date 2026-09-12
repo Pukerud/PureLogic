@@ -1,6 +1,0 @@
-- **Monotonicity:** After sorting each sequence in descending order, increasing any one index cannot increase \(ab+bc+ca\), because all values are positive.
-- **Search structure:** The triples form an implicit 3D monotone grid. Starting from `(0, 0, 0)`, every unvisited state can be reached through neighbors that decrement one coordinate, so best-first heap expansion produces values in descending order.
-- **State encoding:** A triple `(i, j, k)` is encoded as `(i*N + j)*N + k`. This is stored as one integer in the heap and visited set, reducing memory compared with tuple states.
-- **Duplicate prevention:** A state is inserted into `visited` when pushed, ensuring that equal-valued states at different coordinates remain distinct while repeated paths to the same coordinate are avoided.
-- **Complexity:** At most `K` states are popped and at most three neighbors are considered per pop. Time complexity is \(O(N\log N + K\log K)\), with \(O(K)\) additional memory.
-- **Integer safety:** Python integers safely handle the maximum expression value, which can be as large as \(3\times 10^{18}\).

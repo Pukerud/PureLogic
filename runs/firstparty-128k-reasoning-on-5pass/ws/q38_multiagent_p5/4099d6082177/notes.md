@@ -1,9 +1,0 @@
-- **Problem:** Decide if a tree with M=NK vertices can be partitioned into N vertex-disjoint paths of K vertices.
-- **Cut characterization:** For an edge e splitting the tree into sides of sizes s and M-s, at most one K-vertex path can use e. If e is unused, s must be divisible by K. If e is used, the crossing path contributes t vertices to that side with 1 <= t <= K-1, so s mod K is nonzero. Hence e is used in every valid decomposition exactly when s mod K != 0.
-- **Rooted implementation:** Root at 1. For edge parent[v]-v, the side size is subtree_size[v]. Since M is divisible by K, checking subtree_size[v] % K is symmetric. Mark such edges as forced when the remainder is nonzero.
-- **Sufficiency:** The forced edges are a subset of the tree. If every forced-edge component has exactly K vertices and every vertex has forced degree at most 2, each component is a path, or a single vertex when K=1. These components directly give the required N paths. Non-forced edges may connect different components in the original tree, but they are unused, so this is harmless.
-- **Algorithm steps:** Read input, build adjacency, iterative DFS from 1 to get parent and order, compute subtree sizes bottom-up, initialize DSU and forced-degree, union and increment degrees for every v=2..M with subtree_size[v] % K != 0, then verify degrees <=2 and component size K for all vertices.
-- **K=1:** All remainders are zero, no edges are forced, every component has size 1, and the answer is Yes.
-- **Complexity:** O(M alpha(M)) time and O(M) memory, with M <= 2e5. Iterative DFS avoids recursion depth issues.
-- **Pitfalls:** Use 1-indexed arrays, skip the root when accumulating sizes, do not stop at degree checks because component sizes must also be K, and use buffered input for speed.
-- **Superseded idea:** The earlier bottom-up open/closed DP is unnecessary here; the modulo-cut forced-edge check is simpler and directly sufficient.

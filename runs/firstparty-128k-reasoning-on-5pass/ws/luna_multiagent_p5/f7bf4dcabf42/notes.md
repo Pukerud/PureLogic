@@ -1,7 +1,0 @@
-- **State representation:** After processing a generated prefix, store the LCS DP row against every prefix of the fixed string `S`. The state is a tuple `(dp[0], dp[1], ..., dp[N])`.
-- **Transition:** For an appended character `c`, compute the next row using `cur[j] = max(prev[j], cur[j-1], prev[j-1]+1 if c == S[j-1])`.
-- **Automaton construction:** Start from the all-zero row and discover reachable rows with BFS. For each state, the 26 character transitions are grouped by destination, since different letters can produce the same next row.
-- **Counting:** Run dynamic programming for exactly `M` generated characters. Transition multiplicities account for all letters leading to each destination state.
-- **Final aggregation:** The LCS of the complete generated string with `S` is the final row's last value, so counts are grouped by `state[-1]`.
-- **Complexity:** Every DP row is nondecreasing with adjacent differences at most one, so there are at most `2^N` possible row shapes. The construction costs `O(26 * N * states)`, and counting costs `O(M * transitions)`, well within the constraints for `N <= 10` and `M <= 100`.
-- **Arithmetic:** All counts are maintained modulo `998244353`.

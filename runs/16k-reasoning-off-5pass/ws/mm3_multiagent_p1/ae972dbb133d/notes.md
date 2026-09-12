@@ -1,8 +1,0 @@
-
-## ideation
-The problem involves placing tiles on a torus grid such that no edge midpoint is used by only one adjacent cell. Each cell has a tile type: A (adjacent edges) or B (opposite edges). I initially swapped the types, causing confusion. Correct types: A uses one horizontal and one vertical edge (adjacent), B uses either two horizontal or two vertical edges (opposite).
-
-Key modeling: For each row, define a sequence of L_used bits. Transitions: A flips, B stays. Similarly for columns with U_used. The cell constraint links L_ij and U_ij: for A, any pair is allowed; for B, must be (1,0) or (0,1) (i.e., L_ij ≠ U_ij). The periodicity conditions require that the number of A's in each row and column is even (since A flips). Then we get a system of equations x_i XOR y_j = r_ij for B-cells, where x_i is the initial L_used for row i, y_j for column j, and r_ij depends on parities of A's. The number of solutions is 2 if there is at least one B-cell and the system is consistent, or 2^{H+W} if no B-cells. Consistency requires that for any 2x2 subgrid of B-cells, the XOR of r values is 0.
-
-## worker: finalize
-After swapping the tile types correctly (A = adjacent, B = opposite), the transitions become: A flips the horizontal/vertical bit, B keeps it. Periodicity requires even number of A's in each row and column. For B-cells, we get equations `x_i XOR y_j = r_ij` where `r_ij = 1 XOR p_ij XOR q_ij` (p and q are parities of A's to the left and above). Consistency is checked via a parity-aware Union-Find. If consistent and there is at least one B-cell, there are exactly 2 solutions; if no B-cells, there are `2^{H+W}` solutions. The sample test cases now produce the correct output (2, 0, 2).

@@ -1,7 +1,0 @@
-We need to generate the k-th lexicographically smallest alternating permutation of {1..n}. The parity of the first element determines the required parity pattern for the whole permutation (even, odd, even, odd… or odd, even, odd, even…). The core idea is to place numbers one position at a time, using combinatorial counts of completions to skip blocks.
-
-For a given remaining set of numbers and a required parity for the next position, the number of valid completions is the number of ways to arrange the remaining numbers while preserving the alternating pattern. Since n ≤ 100 and k ≤ 10^15, we can precompute factorials up to 100 (up to 10^158, using Python’s big integers) and use inclusion/exclusion with binomial coefficients: the number of ways to interleave the evens and odds in a pattern of length `L` is `C(e, #even_positions_in_remaining) * C(o, #odd_positions_in_remaining)`, where e and o are the counts of unused evens and odds.
-
-We then iterate positions from 0 to n-1, at each step trying candidate numbers in increasing order. For each candidate, subtract the count of completions for all smaller candidates; when the remaining k falls within the block of the current candidate, we fix that candidate and proceed to the next position with the updated remaining set and toggled required parity. If k ever exceeds the total number of permutations, return [].
-
-This approach runs in O(n²) time per query, easily handling n up to 100 and k up to 10^15 (or larger, since Python ints are arbitrary precision).

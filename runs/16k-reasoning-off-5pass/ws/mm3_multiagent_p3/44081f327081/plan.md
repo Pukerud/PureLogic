@@ -1,7 +1,0 @@
-We need for each index i the maximum GCD obtainable by choosing K elements that must include A_i. Let `cnt[d]` be the count of A_j divisible by d. If we pick any d dividing A_i, then we can achieve GCD at least d by picking all chosen elements to be multiples of d; the GCD will be at least d, possibly larger (a common divisor of the chosen set). The maximum achievable GCD for i is the largest d such that there are at least K-1 other elements (excluding A_i) divisible by d. So answer[i] = max { d | d divides A_i and cnt[d] >= K } (counting A_i itself in cnt[d] gives at least K; we need K-1 other elements, but A_i is counted, so condition is cnt[d] >= K).
-
-Algorithm:
-- Compute frequency of values, then compute cnt[d] for d=1..1e6 by iterating over each distinct value v and adding its frequency to all its divisors (or use a multiples sieve: for d=1..maxA, cnt[d] = sum of freq[m] for m multiples of d). This is O(maxA log maxA) which is acceptable for 1e6.
-- For each i, iterate over divisors d of A_i and take the maximum d where cnt[d] >= K. Factor A_i efficiently by trial division up to sqrt(A_i) (worst case 1e3 divisions per number, fine for 1.2e6).
-
-Complexity: ~O(maxA log maxA + N * sqrt(maxA)) ≈ 1.4e7, fast in PyPy with optimization.

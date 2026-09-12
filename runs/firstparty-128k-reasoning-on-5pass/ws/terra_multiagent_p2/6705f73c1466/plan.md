@@ -1,1 +1,0 @@
-Model the positions of all `1`s and observe that their relative order never needs to change. If the `k` ones are moved into consecutive positions, subtracting each one’s rank converts the target into making adjusted positions equal. The minimum sum of absolute deviations is achieved at the median adjusted position. Compute this in linear time after collecting all indices.

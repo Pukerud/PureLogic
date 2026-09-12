@@ -1,9 +1,0 @@
-- **Graph structure:** Two vertices are adjacent exactly when their intervals are disjoint.
-- **Direct paths:** If the queried intervals are disjoint, the direct edge is always optimal because all weights are positive.
-- **Overlapping endpoints:** For overlapping queried intervals \(s,t\), any one-intermediate path must use an interval entirely left of both or entirely right of both. Its minimum cost is obtained by prefix minima over right endpoints and suffix minima over left endpoints.
-- **Three-edge paths:** In an optimal path \(s-u-v-t\), if \(u,v\) are ordered left-to-right, then all cases except \(u\) left of \(s\) and \(v\) right of \(t\) either yield a one-intermediate path or imply that \(s,t\) are already disjoint. The symmetric case is \(u\) right of \(s\), \(v\) left of \(t\). Thus the only additional candidates are:
-  - minimum-weight interval left of \(s\) plus minimum-weight interval right of \(t\);
-  - minimum-weight interval right of \(s\) plus minimum-weight interval left of \(t\).
-- **Preprocessing:** `best_end[x]` stores the minimum weight among intervals with \(R_i \le x\); `best_start[x]` stores the minimum weight among intervals with \(L_i \ge x\). Since coordinates are at most \(2N\), preprocessing is \(O(N)\).
-- **Complexity:** Each query is answered in \(O(1)\), with total complexity \(O(N+Q)\) and memory \(O(N)\).
-- **Path weights:** The queried endpoint weights are added once, while each intermediate vertex contributes its own weight.

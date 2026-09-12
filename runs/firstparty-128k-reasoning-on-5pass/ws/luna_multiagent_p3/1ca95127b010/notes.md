@@ -1,7 +1,0 @@
-- **Rewrite rule:** Operation B is the rewrite \(1^Y0^X \to 0^X1^Y\), while Operation A is its inverse.
-- **Canonical form:** Orienting every rewrite in the same direction yields a terminating and confluent system. Two strings are mutually reachable exactly when their canonical forms coincide.
-- **Run representation:** Each string is processed as alternating runs. Adjacent runs with the same bit are merged immediately.
-- **Batched reduction:** For a reducible boundary \(1^a0^b\), let \(k=\min(\lfloor a/Y\rfloor,\lfloor b/X\rfloor)\). Remove the two runs and enqueue, in order, \(1^{a-kY},0^{kX},1^{kY},0^{b-kX}\).
-- **Queue processing:** Newly generated runs are placed at the front of the queue, preserving their order. This ensures reductions created inside a replacement are processed before unrelated later input runs.
-- **Complexity:** The batched local reducer processes \(O(N)\) run material overall and uses \(O(N)\) memory.
-- **Edge cases:** The method handles \(X=Y\), \(X=1\), \(Y=1\), strings consisting of one run, and \(N<X+Y\). Counts of zeroes and ones are preserved automatically.

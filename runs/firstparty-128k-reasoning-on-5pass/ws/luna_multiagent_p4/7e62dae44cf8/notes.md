@@ -1,5 +1,0 @@
-- **Algorithm:** Maintain a min-heap of all slime cells bordering the already reachable region. Initially, insert the four neighbors of Takahashi’s cell.
-- **Greedy choice:** The weakest frontier slime is always the easiest to absorb. If it cannot be absorbed, every other frontier slime is at least as strong and also cannot be absorbed, so the process terminates.
-- **Condition:** Use `value * X < strength` to implement the required strict inequality without floating-point errors.
-- **Expansion:** After absorbing a slime, insert all of its grid neighbors into the heap. A `bytearray` marks cells when first inserted, preventing duplicate heap entries.
-- **Complexity:** Each cell is inserted and removed at most once, giving `O(HW log(HW))` time and `O(HW)` memory.

@@ -1,8 +1,0 @@
-- **DP meaning:** Each compressed position represents deleting one distinct value `x`. Its stored value is the best non-empty subarray sum ending at the processed position after removing every occurrence of `x`.
-- **Transition:** For the current element `a`, the state deleting `a` skips this occurrence. Every other state changes from `dp` to `max(dp + a, a)`.
-- **Bulk operations:** The transition is implemented as a range addition by `a`, followed by a range `chmax` with `a`.
-- **Critical correction:** Temporarily setting the skipped state to negative infinity is not enough if the bulk ranges include it, because `chmax(..., a)` would reactivate it. Both range operations are therefore split into `[0, pos)` and `(pos, m)`.
-- **Segment tree:** Segment-tree-beats data tracks the minimum, second minimum, count of minimums, maximum, and lazy range addition. This supports range addition, range `chmax`, point replacement, and global maximum queries in amortized `O(log n)` time.
-- **Validity:** A state that remains negative infinity corresponds to deleting the only value present, which would produce an empty array and is invalid. The original Kadane result is tracked separately for the no-operation option.
-- **Verification:** The corrected transition matches direct enumeration on both examples and exhaustive small-array brute force, including all-equal arrays, single-element arrays, repeated values, and mixtures of positive, zero, and negative values.
-- **Complexity:** `O(n log n)` time and `O(n)` memory.

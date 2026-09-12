@@ -1,7 +1,0 @@
-- **Contiguous interval:** The absorbed slimes always form one contiguous interval containing Takahashi's initial position, and his size equals the sum of that interval.
-- **Greedy expansion:** Given an interval of current size `S`, every adjacent slime smaller than `S` can be absorbed. Absorbing such a slime only increases the size, so this never prevents an optimal continuation.
-- **Blockers:** On each side, the first slime whose size is at least `S` is a blocker. All slimes between the current interval and that blocker are immediately absorbable.
-- **Nearest-greater links:** `nxt[i]` and `prv[i]` store the nearest position on the right or left, respectively, whose value is at least `A[i]`. Monotonic stacks construct these links in linear time.
-- **Threshold queries:** Binary lifting over the nearest-greater links finds the first position with value at least any queried threshold in `O(log N)`. Equal values remain blockers because absorption requires strict inequality.
-- **Phase growth:** Whenever an expansion phase enables a further phase, a former blocker of value at least the previous size becomes absorbable, so the size at least doubles. Therefore each starting position has only `O(log(sum(A)))` phases.
-- **Complexity:** Preprocessing uses `O(N log N)` time and memory. All starting positions are processed in `O(N log N log(sum(A)))` time, with 64-bit Python integers for interval sums.

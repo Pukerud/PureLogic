@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement the complete Python solution using the artificial-root forest model: parse S into a forest (one node per '(' plus root), precompute factorials and inverse factorials, assign canonical unordered-subtree IDs bottom-up, multiply the answer by deg! * prod invfact[freq] for every node including the artificial root, and print modulo 998244353; verified on the two samples.",
-    "status": "done",
-    "result": ""
-  }
-]

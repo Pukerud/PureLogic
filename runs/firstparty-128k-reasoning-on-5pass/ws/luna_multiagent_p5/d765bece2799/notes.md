@@ -1,7 +1,0 @@
-- **Contribution decomposition:** Compute the sum of subarray minimums and the sum of subarray maximums independently. Their sum is the required answer.
-- **Monotonic-stack boundaries:** For minimums, each index `i` uses the previous strictly smaller element and the next smaller-or-equal element as boundaries. This assigns subarrays containing equal minima to exactly one index. For maximums, reverse the comparisons: previous strictly greater and next greater-or-equal.
-- **Extension choices:** If the left boundary is `prev[i]` and the right boundary is `next[i]`, then there are `L = i - prev[i]` possible left endpoints and `R = next[i] - i` possible right endpoints. A choice contributes to `i` when its subarray length is at most `k`, so positive extension lengths `a, b` satisfy `a <= L`, `b <= R`, and `a + b <= k + 1`.
-- **Constant-time pair count:** Let `T(x) = max(x, 0) * (max(x, 0) - 1) / 2`, the number of positive pairs with sum at most `x`. Inclusion-exclusion gives:
-  `T(k+1) - T(k+1-L) - T(k+1-R) + T(k+1-L-R)`.
-- **Tie handling:** For minimums, the left stack pops values `>= current` and the right stack pops values `> current`. For maximums, use `<=` on the left and `<` on the right. This asymmetric treatment prevents duplicate counting.
-- **Complexity:** Each stack index is pushed and popped at most once per pass. The time complexity is `O(n)` and the auxiliary space is `O(n)`. Python integers safely handle the result range.

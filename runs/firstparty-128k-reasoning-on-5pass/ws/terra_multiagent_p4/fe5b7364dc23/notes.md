@@ -1,7 +1,0 @@
-- **Method:** Let \(S_0=0\) and \(S_r=A_1+\cdots+A_r\). Each subarray sum is \(S_r-S_j\) for \(0\le j<r\).
-- **Expansion:** Use \((S_r-S_j)^K=\sum_{t=0}^K {K\choose t}(-1)^t S_r^{K-t}S_j^t\).
-- **Maintained values:** For each \(t\in[0,K]\), maintain `prefix_power_sum[t] = sum(S_j^t)` over all prior prefixes \(j<r\).
-- **Initialization:** Before processing any array elements, the only prior prefix is \(S_0=0\). Therefore `prefix_power_sum[0] = 1` and all positive-power sums are zero.
-- **Order:** For each current prefix \(S_r\), first compute its contribution using only prior prefixes, then insert its powers into the maintained sums.
-- **Complexity:** \(O(NK)\) time and \(O(K)\) auxiliary space. This fits since \(N\le 2\cdot10^5\) and \(K\le10\).
-- **Modular arithmetic:** All prefix sums, powers, coefficients, aggregates, and answer are evaluated modulo 998244353. Signed binomial terms are converted modulo the modulus.

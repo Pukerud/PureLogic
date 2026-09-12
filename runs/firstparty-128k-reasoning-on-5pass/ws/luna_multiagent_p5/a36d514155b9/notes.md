@@ -1,7 +1,0 @@
-- **Pair contribution:** Every unordered pair of cells appears in exactly \(\binom{mn-2}{k-2}\) valid arrangements, because the remaining \(k-2\) pieces can occupy any other cells.
-- **Manhattan decomposition:** The distance between two cells is the sum of their row-coordinate difference and column-coordinate difference, so the total can be computed independently for rows and columns.
-- **Row contribution:** Each row coordinate occurs in \(n\) cells. The sum of absolute differences between row indices is \(m(m-1)(m+1)/6\), giving `n² * m(m-1)(m+1)/6`.
-- **Column contribution:** Each column coordinate occurs in \(m\) cells. The corresponding contribution is `m² * n(n-1)(n+1)/6`.
-- **Combination computation:** Since \(mn \le 10^5 < 10^9+7\), factorials and inverse factorials modulo \(10^9+7\) compute \(\binom{mn-2}{k-2}\) efficiently.
-- **Complexity:** \(O(mn)\) time and \(O(mn)\) memory.
-- **Checks:** For `(2, 2, 2)`, the base pair-distance sum is 8 and the multiplier is 1, yielding 8. For `(1, 4, 3)`, the base sum is 10 and the multiplier is 2, yielding 20.

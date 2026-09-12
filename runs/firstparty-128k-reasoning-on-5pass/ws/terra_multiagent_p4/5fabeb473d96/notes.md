@@ -1,7 +1,0 @@
-- **Formula:** Treat each parent choice as independent and uniform. The required sum equals \((N-1)!\) times the expected distance in a random recursive tree.
-- **Edge contribution:** Edge \(i\), with weight \(A_i\), is on the path between \(u<v\) iff exactly one endpoint lies in the subtree rooted at \(i\).
-- **Ancestor probabilities:** For \(i<x\), \(\Pr(i\text{ is ancestor of }x)=1/i\). For \(i<u<v\), \(\Pr(i\text{ is ancestor of both }u,v)=2/(i(i+1))\).
-- **Expected coefficient ranges:** For \(i<u\), coefficient is \(2/i-4/(i(i+1))=2(i-1)/(i(i+1))\). For \(i=u\ge2\), it is \(1-1/u\). For \(u<i<v\), it is \(1/i\). For \(i=v\), it is \(1\). No index greater than \(v\) contributes.
-- **Query expression:** \(\sum_{i=2}^{u-1} A_i\frac{2(i-1)}{i(i+1)} + [u\ge2]A_u(1-1/u) + \sum_{i=u+1}^{v-1} A_i/i + A_v\), then multiply by \((N-1)!\).
-- **Preprocessing:** Two modular weighted prefix sums make every query \(O(1)\). Modular inverses are valid since \(N<998244353\).
-- **Implementation concern:** The current code calculates the coefficient at \(i=n\) with a separate modular exponentiation because its inverse array stops at \(n\). This is correct but can be simplified by computing inverses through \(n+1\).

@@ -1,8 +1,0 @@
-- **State representation:** Alternating sums are encoded as bits with offset `12 * n`; separate masks track even- and odd-length subsequences.
-- **Zero products:** Zero-containing subsequences are tracked independently, allowing a valid product of `0` to be distinguished from unreachable states.
-- **Positive products:** For every exact product up to `limit`, two bitmasks store reachable alternating sums by subsequence-length parity.
-- **Correctness:** Each iteration uses copied DP arrays and only extends products active before the current element, ensuring every input element is used at most once.
-- **Complexity:** With `L = limit` and at most `P <= L` active products, the positive-product DP performs `O(nP)` transitions and uses `O(L + n)` integer-mask storage, with mask operations over at most `O(12n)` bits.
-- **Worst-case practicality:** For `n = 150` and `limit = 5000`, at most about 750,000 product transitions are examined. The implementation avoids rebuilding a set on every element and uses integer bitmasks for fast sum-state operations.
-- **Edge cases:** Handles all-zero arrays, singleton subsequences, values larger than `limit`, exact-limit products, duplicate values, impossible targets, and valid zero-product answers.
-- **Expected examples:** Returns `6`, `-1`, and `9` for the three supplied examples.

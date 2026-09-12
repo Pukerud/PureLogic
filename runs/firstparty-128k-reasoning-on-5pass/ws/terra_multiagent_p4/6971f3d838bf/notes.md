@@ -1,7 +1,0 @@
-- **Verification:** The implementation produces the expected sample outputs: `[-3,2,-2,-1,3,-2,3] -> 7` and `[1,2,3,4] -> 10`.
-- **Edge cases checked:** `[5] -> 5`; `[-5] -> -5`; `[-2,-2,-2] -> -2`; `[-1,-2,-1] -> -1`; `[0,0,0] -> 0`; `[0,-2,0,-2,0] -> 0`; `[1,-2,3,-2,4] -> 8` after deleting `-2`; `[-3,2,-2,-1,3,-2,3] -> 7`.
-- **Legality:** When every array entry equals one negative value, its position list has length `n`, so deletion is skipped. This prevents an illegal empty resulting array. The no-operation result remains available.
-- **Key observation:** Deleting a nonnegative value cannot improve the maximum subarray sum. Restoring deleted nonnegative occurrences to any resulting subarray cannot decrease its sum, so only negative values need testing.
-- **Segment representation:** Each tree node stores the count of surviving values, their total sum, and non-empty maximum prefix, suffix, and subarray sums. A node with count zero represents an empty surviving sequence.
-- **Merge rule:** Empty children act as identities, modeling concatenation after deletion. If both children are nonempty, ordinary maximum-subarray merge formulas apply.
-- **Complexity:** Tree construction is `O(n)`. Each removed/restored occurrence costs `O(log n)`, for total `O(n log n)` time and `O(n)` memory.

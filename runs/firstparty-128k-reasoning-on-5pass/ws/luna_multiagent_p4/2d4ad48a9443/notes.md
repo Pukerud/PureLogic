@@ -1,8 +1,0 @@
-- **Cost characterization:** The minimum final value at each position is the maximum of all preceding values in the chosen subarray. The required operations equal the sum of these prefix maxima minus the original sum.
-- **Next-greater chain:** `nxt[i]` points to the first later element strictly greater than `nums[i]`. Prefix maxima remain equal to `nums[i]` until that index, then continue from `nxt[i]`.
-- **Binary lifting:** The `up` and `weight` tables combine consecutive constant prefix-max blocks, allowing the cost of any subarray to be computed in `O(log n)`.
-- **Sliding window:** For a fixed right endpoint, removing elements from the left cannot increase the required cost. Thus, after advancing `left` until the window is affordable, every start from `left` through `right` is valid.
-- **Example validation:** Both provided examples pass: the implementation returns `17` for `[6, 3, 1, 2, 4, 4]` with `k = 7`, and `12` for `[6, 3, 1, 3, 6]` with `k = 4`.
-- **Exhaustive validation:** Exhaustive brute-force comparison over all arrays of lengths 1 through 6 with values in `{1, 2, 3}`, across multiple operation budgets, produced no mismatches.
-- **Additional validation:** Random small-array comparisons and edge cases including equal arrays, already non-decreasing arrays, strictly decreasing arrays, `k = 0`, and single-element arrays all passed.
-- **Complexity:** `O(n log n)` time and `O(n log n)` memory. Python integers safely handle the maximum answer and operation totals.

@@ -1,9 +1,0 @@
-- **Verification:** The provided implementation's main formula is correct: each unordered cell pair occurs in exactly `C(m*n-2, k-2)` placements, so multiply that count by the sum of Manhattan distances over all unordered cell pairs.
-- **Sample 1:** `(m,n,k) = (2,2,2)` has geometric sum `8`; `C(2,0) = 1`; result is `8`.
-- **Sample 2:** `(m,n,k) = (1,4,3)` has geometric sum `10`; `C(2,1) = 2`; result is `20`.
-- **Edge case k=2:** `C(m*n-2, 0) = 1`, so the result is exactly the total pairwise Manhattan-distance sum of the board.
-- **Edge case k=m*n:** `C(m*n-2, m*n-2) = 1`, so the result is again exactly the board's total pairwise Manhattan-distance sum.
-- **One-dimensional boards:** For `m=1`, row contribution is zero; for `n=1`, column contribution is zero. For example, `(1,2,2)` returns `1`, and `(1,3,3)` returns `4`.
-- **Geometry formula:** Row contribution is `n^2 * sum(d*(m-d), d=1..m-1)` and column contribution is `m^2 * sum(d*(n-d), d=1..n-1)`. The closed form `sum(d*(x-d)) = x*(x-1)*(x+1)/6` is equivalent to the prior loops.
-- **Combination computation:** The factorial and inverse-factorial expression is correct: `fact[N-2] * inv_fact[k-2] * inv_fact[N-k] mod MOD`, where `N=m*n`.
-- **Complexity:** The revised closed-form geometry avoids gap loops. Factorial preprocessing remains `O(m*n)` time and memory, valid because `m*n <= 100000`.

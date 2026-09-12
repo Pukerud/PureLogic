@@ -1,7 +1,0 @@
-We can flip any subset of rows and any subset of columns (order doesn't matter). For each row we decide whether to flip it (bitmask `r` of length H) and for each column a bitmask `c` of length W. The final value at cell (i,j) is `A[i][j] XOR r[i] XOR c[j]`. We want to minimize the total number of 1s.
-
-Since W ≤ 18, we can iterate over all 2^W possible column-flip masks. For each fixed `c`, the contribution of row i becomes: for each column j, `A[i][j] XOR c[j]`. The row's total after column flips is a known integer `row_sum[i][c]`. Then we may optionally flip the row (cost = H*W - row_sum[i][c]) or keep it (cost = row_sum[i][c]). We pick the cheaper per row and sum.
-
-We precompute `row_sum[i][c]` for all rows and all 2^W masks. Complexity: O(H * W * 2^W) ≤ 2e5 * 18 * 2^18 ≈ 9.4e8 in worst case, but we can optimize: for each row, compute its base bitmask `a` (W bits). Then `row_sum[i][c] = popcount(a XOR c)`. We can compute this efficiently using DP over masks: for each row, `dp[mask] = popcount(mask XOR a)`. Standard trick: split masks into two halves (W1 = W/2, W2 = W-W1). Precompute popcounts for all 2^W1 and 2^W2 masks, then for each full mask combine. This reduces per-row cost to O(2^W) with small constant.
-
-Overall complexity O(H * 2^W) with small constant, feasible for H up to 2e5 and W=18.

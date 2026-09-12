@@ -1,9 +1,0 @@
-- **Approach:** Process labels in reverse order. After the i-th forward operation, the array contains exactly labels 1..i. In the final array, deleting labels greater than i leaves exactly that intermediate array, so label i must be the P_i-th empty position when all larger labels are already fixed.
-- **Fenwick tree:** Store 1 for empty final positions and 0 for occupied positions. The initial all-empty tree of length N can be built directly as bit[i] = i & -i for i = 1..N.
-- **k-th empty position:** Use Fenwick binary lifting. Precompute powers of two down to 1. Maintain idx such that the prefix sum up to idx is less than k. If idx + step is within N and bit[idx + step] < k, move idx there and subtract that partial sum. The answer position is idx + 1.
-- **Update:** After placing label i at position pos, perform a standard Fenwick update adding -1 at pos.
-- **Complexity:** O(N log N) time and O(N) memory. For N = 5e5, this is roughly 15 million simple loop iterations, which is practical in Python with fast I/O.
-- **I/O:** Read all integers at once using sys.stdin.buffer.read().split(). Output with a single join to avoid many writes.
-- **Indexing:** All Fenwick tree and answer positions are 1-indexed. data[0] is N, and data[i] is P_i for i = 1..N.
-- **Verified cases:** Sample 1 produces 4 2 3 1. Sample 2 produces 1 2 3 4 5. N=1 produces 1. All P_i=1 produces N N-1 ... 1. All P_i=i produces 1 2 ... N.
-- **Pitfalls:** Direct list insertion is quadratic and too slow. P_i is always valid in reverse because exactly i empty positions remain when processing label i. No recursion or external libraries are needed.

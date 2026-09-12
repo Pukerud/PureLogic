@@ -1,6 +1,0 @@
-- **Gap transformation:** Let consecutive sorted-coordinate gaps be \(D_j=X_{j+1}-X_j\). An operation on four consecutive pieces with three gaps \((a,b,c)\) changes them into \((c,b,a)\).
-- **Reachability:** Therefore, each operation swaps gap positions differing by two. Odd-indexed gaps can be arbitrarily permuted among odd positions, and even-indexed gaps can be arbitrarily permuted among even positions.
-- **Objective:** The sum of all coordinates is \(N X_1+\sum_{j=1}^{N-1}(N-j)D_j\). The first coordinate is invariant.
-- **Optimization:** Within either parity class, coefficients decrease from left to right. By rearrangement, gaps should be sorted in nondecreasing order within each parity class.
-- **Complexity:** Sorting all gaps costs \(O(N\log N)\), and weighted summation costs \(O(N)\).
-- **Integer safety:** Python integers safely handle the potentially large answer.

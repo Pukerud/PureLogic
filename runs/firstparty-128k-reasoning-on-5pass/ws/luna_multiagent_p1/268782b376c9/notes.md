@@ -1,7 +1,0 @@
-- **Threshold conversion:** For target score `x`, position `i` requires `ceil(x / points[i])` visits.
-- **Initial state:** Reaching index `0` costs one move and gives it one visit. Thus feasibility starts with `moves = 1` and `incoming = 1`.
-- **Intermediate positions:** If the current position already has `incoming` visits, let `extra = max(0, required - incoming)`. Each extra visit is produced by a rightward round trip costing two moves. One final move to the right is then needed to continue, so the cost is `2 * extra + 1`; the next position receives `extra + 1` visits.
-- **Final-position special case:** After processing the penultimate position, its rightward round trips already give the last position `extra` visits. If that is enough, the walk may stop at the penultimate position. Otherwise, entering the last position costs one move, and every further visit costs two additional moves, for `2 * (required_last - extra) - 1`.
-- **Correctness of rightward excursions:** Using rightward rather than leftward excursions costs the same and also contributes visits to later positions, so it is always at least as good for the greedy left-to-right check.
-- **Complexity:** Each feasibility check is `O(n)`, and binary search uses `O(log(max(points) * m))` checks. Total complexity is `O(n log(max(points) * m))`, with `O(1)` auxiliary space.
-- **Bounds:** Any single index can be visited at most `(m + 1) // 2` times, so `max(points) * ((m + 1) // 2)` is a safe binary-search upper bound.

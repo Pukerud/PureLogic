@@ -1,9 +1,0 @@
-- **Implementation verdict:** Pass.
-- **Sample 1:** `countSubstrings("12936")` returns `11`, matching the expected result.
-- **Sample 2:** `countSubstrings("5701283")` returns `18`, matching the expected result.
-- **Sample 3:** `countSubstrings("1010101010")` returns `25`, matching the expected result.
-- **Oracle comparison:** The transition maintains, for every modulus 1 through 9, counts of all non-empty substrings ending at the preceding position by remainder. Appending the current digit updates every remainder exactly as decimal arithmetic requires, and adds the length-one substring.
-- **Correctness:** When current digit is non-zero `d`, `states[d][0]` is exactly the number of substrings ending at that index divisible by their last digit. Each valid substring is counted once, at its endpoint. Digits ending in zero are correctly excluded.
-- **Randomized brute-force verdict:** Pass. A quadratic oracle that enumerates every substring, parses its decimal value incrementally, and tests divisibility when the final digit is non-zero agrees with this implementation on randomized short digit strings.
-- **Edge cases:** All-zero strings return zero; a single non-zero digit returns one; leading-zero substrings are retained and evaluated normally; modulus transitions correctly handle non-coprime cases such as divisors 2, 4, 5, 6, and 8.
-- **Complexity:** There are `1 + 2 + ... + 9 = 45` remainder buckets. Time is `O(45n)` and memory is `O(45)`.

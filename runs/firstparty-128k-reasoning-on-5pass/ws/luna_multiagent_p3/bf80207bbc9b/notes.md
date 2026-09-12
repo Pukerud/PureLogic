@@ -1,6 +1,0 @@
-- **Representation:** Encode each row as a `W`-bit integer mask. A fixed set of column flips is another mask `c`.
-- **Row optimization:** For row mask `r`, after column flips the Hamming distance is `popcount(r XOR c)`. The row can either remain unchanged or be flipped, so its minimum contribution is `min(d, W-d)`.
-- **Frequency aggregation:** Count how many rows have each mask in an array `frequency`. The total for column mask `c` becomes `sum_r frequency[r] * kernel[r XOR c]`, where `kernel[z] = min(popcount(z), W-popcount(z))`.
-- **XOR convolution:** This sum is the XOR convolution of `frequency` and `kernel`. Compute it with the Fast Walsh–Hadamard Transform, multiply transformed values pointwise, then apply the transform again and divide every result by `2^W`.
-- **Complexity:** With `N = 2^W`, the time complexity is `O(H + N log N)` and the memory complexity is `O(N)`. This is feasible because `W <= 18`.
-- **Correctness detail:** The inverse XOR transform is the same transform followed by division by `N`; all resulting convolution values are exact integers.

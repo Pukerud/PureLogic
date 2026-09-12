@@ -1,6 +1,0 @@
-- **Characterization:** Each row must be a black prefix followed by white cells. The black cells therefore form a coordinatewise downward-closed set: if `(x, y)` is black, every cell `(x' <= x, y' <= y)` must also be black.
-- **Conflict condition:** A prescribed white cell `(x_w, y_w)` conflicts with a prescribed black cell `(x_b, y_b)` exactly when `x_b >= x_w` and `y_b >= y_w`, because the black cell forces the white cell to be black.
-- **Sweep order:** Sort prescribed cells by row descending, so cells in lower rows are processed before cells in upper rows. For equal rows, process black cells before white cells to detect same-row conflicts.
-- **Detection:** Maintain the maximum column among processed black cells. When processing a white cell, if its column is at most this maximum, some processed black cell dominates it and the answer is `No`.
-- **Sufficiency:** If no white cell is dominated by a prescribed black cell, define each row's prefix length as the maximum column of any prescribed black cell in that row or below. These lengths are nonincreasing from top to bottom, yielding valid row and column prefixes while avoiding all prescribed white cells.
-- **Complexity:** Sorting costs `O(M log M)` time, the sweep costs `O(M)`, and memory usage is `O(M)`.

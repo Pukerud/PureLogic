@@ -1,7 +1,0 @@
-- **Fixed total formulation:** For a target common pair sum `H`, final upper lengths `u_i` must satisfy `max(0, H-D_i) <= u_i <= min(U_i, H)`. The lower tooth is then `H-u_i`, is nonnegative, and does not exceed `D_i`.
-- **Chain feasibility criterion:** Given intervals `[L_i, R_i]` and constraints `|u_i-u_{i+1}| <= X`, feasibility is equivalent to `L_i <= R_j + X*|i-j|` for every ordered pair `(i, j)`. Necessity follows by repeatedly applying the adjacent difference bound. Sufficiency follows from standard interval propagation along the path, or equivalently from the absence of contradictory difference constraints.
-- **Simplification for this problem:** With `L_i=max(0,H-D_i)` and `R_j=min(U_j,H)`, the all-pairs condition is equivalent to `H <= D_i + U_j + X*|i-j|` for all ordered pairs. If `H-D_i <= 0`, the inequality is automatic; otherwise interval feasibility implies `H-D_i <= U_j+X|i-j|`. Conversely, the displayed inequality bounds `H-D_i` by both `U_j+distance` and `H+distance`, hence by `min(U_j,H)+distance`; nonnegativity is automatic.
-- **Maximum feasible total:** Thus the largest feasible `H` is `min_{i,j}(D_i + U_j + X*|i-j|)`.
-- **Distance transform:** Compute `M_i=min_j(U_j+X*|i-j|)` in linear time. Left sweep: `M_i=min(U_i, M_{i-1}+X)`. Right sweep: `M_i=min(M_i, M_{i+1}+X)`. Then `H=max feasible=min_i(D_i+M_i)`.
-- **Cost:** Final total tooth length is `N*H`; every removed unit costs one. Answer is `sum_i(U_i+D_i)-N*H`.
-- **Complexity:** `O(N)` time and `O(N)` memory. Python integers safely handle all bounds.

@@ -1,6 +1,0 @@
-1. Use the factorization $x^3 - y^3 = (x-y)(x^2 + xy + y^2) = N$. Let $d = x-y$ and $s = x^2 + xy + y^2$, so $d \cdot s = N$.
-2. Since $x, y \geq 1$, we have $x > y$, so $d \geq 1$. Also $s = x^2 + xy + y^2 > 0$.
-3. For a fixed divisor $d$ of $N$, we can express $x = y + d$. Substituting into $s$: $s = (y+d)^2 + (y+d)y + y^2 = 3y^2 + 3dy + d^2$.
-4. This gives a quadratic equation in $y$: $3y^2 + 3dy + (d^2 - s) = 0$, where $s = N/d$.
-5. We iterate over all divisors $d$ of $N$ such that $d \leq N^{1/3}$ (since $d < s$ typically for small $d$, but we need to check all divisors; however, note that $d$ can be up to $N$, but $x^2+xy+y^2 \geq 3y^2$ and $d=x-y$, so $d$ cannot be too large relative to $N$. Actually, since $s = N/d$ and $s \geq 3y^2+3dy+d^2 \geq d^2$, we have $N/d \geq d^2 \implies d^3 \leq N \implies d \leq N^{1/3}$). So we only need to check divisors $d$ up to $N^{1/3}$.
-6. For each such $d$, compute discriminant $D = (3d)^2 - 4 \cdot 3 \cdot (d^2 - N/d) = 9d^2 - 12d^2 + 12N/d = 12N/d - 3d^2$. If $D \geq 0$ and is a perfect square, solve for $y$. Check if $y$ is a positive integer.

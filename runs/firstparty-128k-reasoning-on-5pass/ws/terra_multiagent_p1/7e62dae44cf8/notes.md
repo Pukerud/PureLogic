@@ -1,7 +1,0 @@
-- **Algorithm:** Model Takahashi's absorbed cells as a connected expanding region. Maintain every unvisited cell adjacent to this region in a min-heap keyed by slime strength.
-- **Greedy choice:** If the smallest frontier slime cannot be absorbed, no other frontier slime can be absorbed because all others are at least as strong. If it can be absorbed, doing so only increases strength and reveals more cells, so it cannot hurt the maximum possible result.
-- **Condition:** The absorption rule is strict: absorb a slime with value `v` only when `v * X < current_strength`. Do not use `<=` or floating-point division.
-- **Visited handling:** Mark a cell visited when it is inserted into the heap, not when popped. This prevents duplicate heap entries when it borders multiple absorbed cells.
-- **Complexity:** Each grid cell is inserted and removed from the heap at most once. Time complexity is `O(HW log(HW))`; memory complexity is `O(HW)`.
-- **Integer safety:** Total strength can reach roughly `2.5e17`; Python integers safely handle this.
-- **Validation:** The implementation follows the specified heap-frontier traversal and strict comparison, and is expected to produce the provided sample outputs.

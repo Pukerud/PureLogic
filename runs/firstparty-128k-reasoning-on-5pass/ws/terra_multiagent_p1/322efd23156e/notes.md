@@ -1,6 +1,0 @@
-- **Approach:** Foods are separated by vitamin type, so compute three independent 0/1 knapsack DPs indexed by calorie budget. `dp[v][c]` stores the maximum amount of vitamin `v` attainable within calorie budget `c`.
-- **Knapsack transition:** For food `(v, a, c)`, update the corresponding DP in descending calorie order: `dp[cal] = max(dp[cal], dp[cal-c] + a)`. Descending order ensures each food is chosen at most once.
-- **Prefix maxima:** Prefix-maximize every DP after processing foods so each entry reliably represents the best amount obtainable with at most that many calories.
-- **Combination:** Enumerate a calorie-budget split `c1` for vitamin 1 and `c2` for vitamin 2. Vitamin 3 receives `X-c1-c2`. Maximize `min(dp1[c1], dp2[c2], dp3[X-c1-c2])`.
-- **Complexity:** Knapsack processing is `O(NX)`. Combining all budget splits is `O(X^2)`. Memory usage is `O(X)`.
-- **Edge cases:** If a vitamin type has no foods, its DP stays zero and the answer is correctly zero. Large vitamin values are stored as DP values and do not affect the DP dimension.

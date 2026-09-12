@@ -1,8 +1,0 @@
-- **Approach:** Treat Takahashi's occupied cells as a connected expanding region. Maintain every currently exposed unabsorbed neighboring cell in a min-heap ordered by slime strength.
-- **Greedy correctness:** If an adjacent slime is absorbable, absorbing it cannot hurt: Takahashi's strength increases and the occupied region expands, so no currently or subsequently available action becomes invalid. Thus repeatedly absorbing the minimum frontier cell whenever it is eligible reaches the maximum possible result.
-- **Stopping condition:** If the minimum-strength frontier slime is not eligible, then no frontier slime is eligible. Since no action can be taken, no new cells can be exposed, so the process must stop.
-- **Eligibility:** The condition is strict: for candidate strength `v`, it is absorbable exactly when `v * X < current_strength`. Equality must not be accepted.
-- **Visited handling:** Mark a cell visited when it is pushed into the heap. This prevents duplicate heap entries when a cell borders multiple absorbed cells; being pushed means it is already exposed and remains available until absorbed.
-- **Complexity:** Each grid cell is pushed at most once and popped at most once. Time is `O(HW log(HW))`; memory is `O(HW)`.
-- **Integer safety:** Python integers handle all sums and products safely. The final total can exceed ordinary 64-bit limits in general.
-- **Implementation details:** Use `bytearray(H*W)` for compact visited storage and store `(value, row, col)` in the heap.

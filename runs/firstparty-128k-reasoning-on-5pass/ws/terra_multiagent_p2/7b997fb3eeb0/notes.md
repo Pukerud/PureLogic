@@ -1,5 +1,0 @@
-- **Reduction:** For a query interval `[L, R]` and candidate `K`, it is optimal to use the `K` smallest mochi as tops and the `K` largest as bottoms, paired in ascending order. Feasibility is `2*A[L+t] <= A[R-K+1+t]` for all `0 <= t < K`.
-- **Transition array:** Let `F[j]` be the first global index with `A[F[j]] >= 2*A[j]`, found by lower bound. Define `D[j] = F[j] - j`. Candidate `K` is feasible exactly when `max(D[L..L+K-1]) <= R-L-K+1` using 1-based indices; the same formula is unchanged with zero-based index differences.
-- **Query algorithm:** Feasibility is monotone in `K`, so binary search from `0` to half of the interval length. Each feasibility check uses a sparse-table range maximum query on `D`.
-- **Complexity:** Construction is `O(N log N)` time and memory. Each query takes `O(log N)` due to binary search, with `O(1)` RMQ per step. Total is `O((N+Q) log N)`.
-- **Edge cases:** `F[j]` may equal `N` in zero-based indexing when no value is at least twice as large; this is valid. `K=0` is handled directly by binary search and never performs an empty RMQ.

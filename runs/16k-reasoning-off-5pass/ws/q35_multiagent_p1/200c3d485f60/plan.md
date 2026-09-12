@@ -1,6 +1,0 @@
-1. We need to count arrays of length `n` with values in `[1, m]` such that exactly `k` adjacent pairs are equal.
-2. This is equivalent to choosing which `k` of the `n-1` adjacent positions are "equal" (same value) and the remaining `n-1-k` positions are "different" (different values).
-3. The number of ways to choose which positions are equal is C(n-1, k).
-4. For the structure: think of the array as being composed of `n-k` "blocks" where each block is a maximal sequence of identical values. The number of blocks is `n - k` because each equality reduces the number of independent choices by 1.
-5. The first element can be chosen in `m` ways. Each subsequent block must start with a value different from the previous block's value, so there are `m-1` choices for each of the remaining `n-k-1` blocks.
-6. Therefore, the total count is: C(n-1, k) * m * (m-1)^(n-k-1) modulo 10^9+7. Handle edge cases where `m=1` and `k != n-1` (impossible, return 0) or `k = n-1` (only 1 way if m>=1, but actually m ways since all elements same).

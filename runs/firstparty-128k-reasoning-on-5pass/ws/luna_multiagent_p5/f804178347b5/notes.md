@@ -1,6 +1,0 @@
-- **State:** For every ternary-tree subtree, maintain two values: the minimum number of leaf changes needed for the subtree to evaluate to `0` and to `1`.
-- **Initialization:** A leaf containing `0` has costs `(0, 1)`, while a leaf containing `1` has costs `(1, 0)`.
-- **Transition:** For three child subtrees, enumerate the four assignments with at least two child results equal to `0` to compute the parent’s cost for `0`. Similarly, enumerate the four assignments with at least two child results equal to `1` for the parent’s cost for `1`.
-- **Answer:** The root state with cost zero is the original final value. The required answer is the cost of the opposite root state.
-- **Complexity:** There are `3^N` leaves and constant work per tree node, so time complexity is `O(3^N)` and auxiliary memory is `O(3^N)`.
-- **Input handling:** Joining all tokens after `N` supports both a contiguous binary string and input where characters are separated by whitespace.

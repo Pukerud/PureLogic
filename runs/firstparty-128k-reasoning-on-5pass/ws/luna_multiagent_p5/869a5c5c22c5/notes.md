@@ -1,8 +1,0 @@
-- **Necessary condition:** Every red move changes the parity of `r+c`, while every blue move preserves it. Hence `R` must be even.
-- **Pure red:** Every even `R` is realizable by a rectangular perimeter.
-- **Pure blue:** The diagonal graph is bipartite, so `B` must be even. Every even `B` is realizable by a rectangle in transformed coordinates.
-- **Mixed parity gadgets:** Start with red square `A=(0,1)` and blue square `F=(0,0)`.
-- **Odd `B`:** Use a blue path of length `B-1` from `F` to `E=(2,2)`, then a diagonal edge to red `D=(1,3)`. The blue path is built in transformed coordinates from `(0,0)` to `(2,0)`. The red path from `D` to `A` has the required odd length.
-- **Even `B`:** Use a blue path of length `B-1` from `F` to `E=(1,1)`, then a diagonal edge to red `D=(0,2)`. The red path proceeds through negative rows, avoiding all blue vertices.
-- **Coordinates:** All constructions use only `O(R+B)`-sized local coordinates, then translate by `R+B+20`, so every coordinate lies safely within the board.
-- **Complexity:** `O(R+B)` time and memory per test case; total complexity is linear in the total number of pieces.

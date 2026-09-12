@@ -1,6 +1,0 @@
-sha=1ba16bb0e5615e84cc39f44b26c3d118e36232cf
-dirty:  M escalation/multiagent.py
-dirty:  M escalation/orchestrator.py
-dirty: ?? escalation/run_bench_script/run_fable5_5pass_single.sh
-model=anthropic:claude-fable-5 cap=128000 parallel=50 release=release_v6 ids=escalation/lcb100_hardest_v6.json
-engine=single passes=5 thinking=adaptive(always on) effort=high(pinned) fallbacks=none

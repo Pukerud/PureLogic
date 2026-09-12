@@ -1,6 +1,0 @@
-- **Verification:** The provided dynamic programming implementation was checked against both samples. It returns `110` for `nums=[3,1,4], cost=[4,6,6], k=1`, and `985` for the second sample.
-- **Algebraic decomposition:** Let `P[i] = sum(nums[0:i])` and `C[i] = sum(cost[0:i])`. A segment ending at position `i` contributes `P[i]` times its segment cost sum.
-- **Order penalty:** Every element cost receives a fixed initial `k`, producing fixed value `k*C[n]`. A cut after the first `j` elements increases the segment number for all later elements, adding `k*(C[n]-C[j])`.
-- **DP recurrence:** For a final segment from `j` through `i-1`, with `j >= 1`, use `dp[j] + P[i]*(C[i]-C[j]) + k*(C[n]-C[j])`. The no-cut case is `P[i]*C[i]`.
-- **Answer:** Return `dp[n] + k*C[n]`.
-- **Complexity:** `O(n^2)` time and `O(n)` memory, which is safe for `n <= 1000`.

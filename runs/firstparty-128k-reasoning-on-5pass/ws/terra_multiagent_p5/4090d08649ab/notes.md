@@ -1,6 +1,0 @@
-- **Observation:** For a subarray, only the set of distinct values matters. Its minimum operation count equals the number of connected components of this set on the integer line.
-- **Formula:** If \(S\) is the distinct-value set, its component count is \(\sum_x [x\in S]-\sum_x[x\in S\text{ and }x+1\in S]\). Thus the required answer is the sum, over values, of subarrays containing that value, minus the sum, over adjacent value pairs, of subarrays containing both.
-- **Single-value counting:** For each value, subarrays not containing it lie entirely in gaps between consecutive occurrences, including prefix and suffix gaps. If a gap has length \(g\), it contributes \(g(g+1)/2\) avoiding subarrays. Subtract from \(N(N+1)/2\).
-- **Adjacent-pair counting:** For each pair \((x,x+1)\), merge their occurrence lists. Between two consecutive merged occurrences, the latest occurrences of both values remain fixed. For each right endpoint in that interval, the number of valid left endpoints is \(\min(\text{last}_x,\text{last}_{x+1})\), provided both have appeared.
-- **Complexity:** Every occurrence participates in at most two adjacent-pair merges. Total time is \(O(N)\), memory is \(O(N)\).
-- **Validation:** The implementation follows the offline gap-counting formula and should produce the stated sample outputs 16, 23, and 129.

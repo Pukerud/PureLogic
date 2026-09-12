@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement the solution: Read N, X, Y, S, T. Check if total counts of '0' and '1' match. If not, print No. If yes, check if the sequence of run lengths modulo X (for '0' runs) and modulo Y (for '1' runs) is identical for S and T. If identical, print Yes, else No. Handle edge cases where X+Y > N or no operations are possible (though the modulo check covers most, strict equality is needed if no swaps can occur).",
-    "status": "done",
-    "result": ""
-  }
-]

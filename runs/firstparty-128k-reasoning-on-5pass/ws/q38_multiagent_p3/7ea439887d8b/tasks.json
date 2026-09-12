@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Write the final Python program that reads stdin, builds outgoing and incoming adjacency lists, and solves by Dijkstra on the 2-layer state graph: state `(v, 0)` is original orientation and `(v, 1)` is reversed orientation; start at `(1, 0)`; move edges cost 1 using `out[v]` in layer 0 and `in[v]` in layer 1; toggle edges cost `X` between layers at the same vertex; skip stale heap entries; stop when a popped state has vertex `N`; print its distance.",
-    "status": "done",
-    "result": ""
-  }
-]

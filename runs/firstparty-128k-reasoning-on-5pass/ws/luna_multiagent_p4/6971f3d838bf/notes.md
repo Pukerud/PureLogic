@@ -1,7 +1,0 @@
-- **State:** For each possible deleted value `x`, maintain the best nonempty subarray sum in the processed prefix after removing every occurrence of `x`.
-- **Transition:** Processing `y`, candidates with `x != y` use `dp[x] = max(dp[x] + y, y)`, implemented as a range addition by `y` followed by a range `chmax` with `y`. The candidate `x == y` skips the element.
-- **Data structure:** A segment-tree-beats structure supports range addition, range `chmax`, and global maximum queries in amortized `O(log n)`. Each node stores minimum, second minimum, minimum count, maximum, and lazy tags.
-- **Validity:** The first array value is initially inactive because deleting it would make the processed array empty. It is activated when a different value appears. Other values are valid deletion candidates from the start, including values not yet encountered.
-- **No deletion:** Ordinary Kadane DP is maintained separately, which correctly handles choosing no operation and all-negative arrays.
-- **Complexity:** Coordinate compression is `O(n)`. Total time is amortized `O(n log n)` and memory is `O(n)`.
-- **Validation:** The supplied examples pass: `[-3,2,-2,-1,3,-2,3]` returns `7`, and `[1,2,3,4]` returns `10`. Exhaustive brute-force comparison on short arrays over small integer domains also passes, including single-element arrays, all-equal arrays, all-negative arrays, repeated deleted values, and cases where deleting the only distinct value is forbidden because it would produce an empty array.

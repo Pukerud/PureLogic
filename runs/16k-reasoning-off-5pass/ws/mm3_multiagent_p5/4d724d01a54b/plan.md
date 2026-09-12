@@ -1,3 +1,0 @@
-We have a permutation and we can swap adjacent positions at cost equal to the left index `i`. Goal: sort in ascending order with minimum total cost.
-
-This is a known problem. The answer can be computed greedily from right to left: process values from N down to 1. For each value `v`, its target index is `v` (0-indexed: `v-1`). The current position is at some index `pos`. Moving this element to its correct place by repeatedly swapping left across positions `pos-1, pos-2, ..., v-1` costs sum of those indices, i.e., sum of integers from `v` to `pos` (1-indexed) = `(v + pos) * (pos - v + 1) / 2`. As we process values, elements not yet placed can be shifted right; we maintain a BIT/Fenwick tree of occupied positions to find the current rank of a value. This gives O(N log N).

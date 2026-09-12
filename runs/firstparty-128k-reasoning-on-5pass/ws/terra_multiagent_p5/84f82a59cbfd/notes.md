@@ -1,6 +1,0 @@
-- **Observation:** A valid number has the form \(N=p^{2a}q^{2b}=(p^a q^b)^2\), where \(p,q\) are distinct primes and \(a,b\ge1\).
-- **Reduction:** Let \(x=\sqrt N\). Then \(N\) is a 400 number exactly when \(x\) has exactly two distinct prime factors, i.e. \(\omega(x)=2\).
-- **Preprocessing:** Since every query satisfies \(A\le10^{12}\), only roots up to \(\lfloor\sqrt{10^{12}}\rfloor=10^6\) matter. Compute \(\omega(x)\) for every root using a sieve: when a prime is found, increment every multiple once.
-- **Prefix answers:** Build `best_root[i]`, the greatest value at most `i` whose omega count is two. For a query \(A\), use `isqrt(A)` and return `best_root[isqrt(A)] ** 2`.
-- **Complexity:** The sieve is \(O(M\log\log M)\)-like harmonic multiple iteration work for \(M\le10^6\); prefix construction is \(O(M)\), and each query is \(O(1)\). Memory is \(O(M)\).
-- **Exactness:** `math.isqrt` avoids floating-point rounding errors near large square boundaries.

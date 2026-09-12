@@ -1,5 +1,0 @@
-- **Current implementation:** Uses exact dynamic programming and recomputes the southeast rectangle affected by every changed cell. It is correct, handles zero weights safely, and uses a flat array for lower overhead.
-- **Complexity:** A change at `(r,c)` costs `O((H-r)(W-c))`; this is worst-case `O(QHW)` and does not meet the full stated constraints.
-- **Dependency fact:** The standard forward DP is `dp[h,w] = A[h,w] * (dp[h-1,w] + dp[h,w-1])`. Changing a cell can only affect its southeast rectangle.
-- **Division-free update identity:** If current prefix and suffix path sums excluding a vertex are available, replacing `x` by `y` changes the total by `(y-x) * prefix * suffix`. This remains valid for zero values, but dynamically maintaining those quantities efficiently is the unresolved part.
-- **Likely required direction:** A full solution needs an advanced offline/block dynamic planar-network compression for the connected set of cells visited during each update block, or another dynamic planar-DAG partition-function method. The straightforward DP approach is insufficient at maximum constraints.

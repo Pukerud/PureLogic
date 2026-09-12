@@ -1,6 +1,0 @@
-- **Walk expansion:** Each entry of \(B^p\) is a sum over directed walks of length \(p\). For a zero matrix entry replaced by \(x\in\{1,\dots,p-1\}\), summing \(x^e\) modulo \(p\) gives \(-1\) when \(p-1\mid e\), and \(0\) otherwise.
-- **Unused variables:** Every zero entry not used by a walk contributes \(p-1\equiv -1\), so every surviving walk has the common factor \((-1)^K\).
-- **Primes \(p>3\):** A surviving walk can use no zero entries, or one zero variable exactly \(p-1\) times and one fixed edge once. The latter is possible only for a zero diagonal entry: the loop is repeated \(p-1\) times, while the remaining fixed edge is immediately before or after the loop block. Thus for every zero diagonal \(A_{u,u}\), add the fixed entries in column \(u\) and row \(u\), excluding the diagonal.
-- **Prime \(p=3\):** In addition to the diagonal-loop pattern, a non-loop zero edge \((u,v)\) can occur twice in the pattern \((u,v),(v,u),(u,v)\). This contributes the fixed reverse entry \(A_{v,u}\) to output position \((u,v)\).
-- **Prime \(p=2\):** Every zero replacement is forced to be \(1\), so directly construct \(B\) and compute \(B^2\).
-- **Complexity:** Matrix exponentiation costs \(O(N^3\log p)\) time and \(O(N^2)\) memory.

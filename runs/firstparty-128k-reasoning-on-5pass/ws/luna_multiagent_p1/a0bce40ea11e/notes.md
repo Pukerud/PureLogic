@@ -1,7 +1,0 @@
-- **Power-sum filtering:** For a zero entry replaced by \(x\in\mathbb F_p^\ast\), \(\sum_x x^t\) is zero unless \(p-1\mid t\), in which case it is \(-1\) modulo \(p\).
-- **Surviving walks for \(p>2\):** A length-\(p\) walk contributes only if it uses no variable zero edge, or exactly one zero edge \(p-1\) times and one fixed nonzero edge once. Every surviving contribution has the common factor \((-1)^K\), where \(K\) is the number of zeros in \(A\).
-- **Main term:** Walks containing no zero edges are exactly the entries of \(A^p\).
-- **For \(p>3\):** The repeated zero edge must be a diagonal edge. The single fixed edge can occur at either end of the walk, giving \(AD+DA\), where \(D_{ii}=1\) iff \(A_{ii}=0\).
-- **Additional \(p=3\) term:** The pattern zero-edge, fixed-edge, zero-edge permits an off-diagonal zero edge followed by its reverse fixed edge. This contributes \(Q_{ij}=A_{ji}\) when \(i\ne j\) and \(A_{ij}=0\).
-- **Case \(p=2\):** Every replacement value is necessarily \(1\), so there is only one matrix \(B\). Construct it directly and output \(B^2\).
-- **Complexity:** Matrix exponentiation costs \(O(N^3\log p)\) time and \(O(N^2)\) memory.

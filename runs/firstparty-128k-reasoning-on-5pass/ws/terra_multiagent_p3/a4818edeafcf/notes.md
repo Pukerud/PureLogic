@@ -1,8 +1,0 @@
-- **Sweep invariant:** For each currently active first cut `i` with `1 <= i < j`, the segment-tree value at `i` equals `pref[i] + distinct(A[i+1..j])`, where `j` is the current second cut. Inactive positions `i >= j` hold negative infinity and cannot affect the root maximum.
-- **Prefix indexing:** `pref[i]` is the number of distinct values in `A[1..i]`, with `pref[0] = 0`.
-- **Suffix indexing:** `suf[k]` is the number of distinct values in `A[k..N]`, with `suf[N+1] = 0`. Once the second cut is `j`, the third segment contribution is `suf[j+1]`.
-- **Activation:** Before processing endpoint `j`, activate first cut `i = j-1` with base value `pref[j-1]`. It has no prior middle elements, so its middle distinct contribution starts at zero.
-- **Range update:** Let `p` be the previous 1-based occurrence position of `A[j]`, or zero if absent. For a first cut `i`, `A[j]` is newly distinct in `A[i+1..j]` exactly when the previous occurrence is outside that interval, namely `p <= i`. Thus add one to all active cuts in `[max(1, p), j-1]`.
-- **Initialization:** The sweep starts at `j = 2`, because all three parts must be non-empty. Set `last[A[1]] = 1` before the loop, so an occurrence at position two correctly recognizes position one as previous.
-- **Answer extraction:** After the update for endpoint `j`, the segment-tree root is `max_{1 <= i < j}(pref[i] + distinct(A[i+1..j]))`. Add `suf[j+1]` and maximize over `j = 2..N-1`.
-- **Complexity:** Prefix/suffix construction is `O(N)`. Each activation and range increment is `O(log N)`, yielding `O(N log N)` time and `O(N)` memory.

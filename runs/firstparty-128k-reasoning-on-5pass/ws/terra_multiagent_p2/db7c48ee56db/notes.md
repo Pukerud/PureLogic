@@ -1,7 +1,0 @@
-- **Approach:** Enumerate subsets of size `r = min(K, N-K)`, since `C(N, K) = C(N, N-K) <= 10^6`.
-- **Complement XOR:** Let `total_xor` be the XOR of every array element. If enumerating omitted elements (`K > N-K`), the XOR of the selected `K` elements is `total_xor ^ omitted_xor`.
-- **Enumeration:** Use DFS/backtracking with parameters `(start, need, current_xor)`. Each recursive level chooses the next index in increasing order, so every subset is generated exactly once.
-- **Pruning:** The loop ends at `n - need + 1`, ensuring enough elements remain to finish the subset.
-- **Edge case:** If `r == 0` (necessarily `K == N`), the only possible answer is the XOR of all elements.
-- **Complexity:** There are at most `C(N, r) <= 10^6` leaves. DFS performs one XOR per chosen element along traversal; recursion depth is `r`, which remains small except when `r = 1`.
-- **Integer safety:** Python integers support the required values below `2^60` without overflow.

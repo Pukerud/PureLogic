@@ -1,6 +1,0 @@
-- **Approach:** Process the string left to right. For every divisor `d` from 1 through 9, maintain counts of remainders among all substrings ending at the previous position.
-- **Transition:** If a previous substring has remainder `r` modulo `d`, appending digit `x` produces remainder `(r * 10 + x) % d`. Also add the new one-digit substring, with remainder `x % d`.
-- **Counting:** At a position whose digit is `x != 0`, valid substrings ending there are exactly the remainder-zero entries in the state for divisor `x`. Digits `0` contribute nothing because the required last digit must be non-zero.
-- **Leading zeros:** States are retained for zero-valued substrings, so later substrings such as `"01"` are handled correctly.
-- **Complexity:** There are `1 + 2 + ... + 9 = 45` remainder buckets. Runtime is `O(45n) = O(n)` and auxiliary space is `O(45)`.
-- **Verification:** The provided implementation produces `11` for `"12936"`, `18` for `"5701283"`, and `25` for `"1010101010"`.

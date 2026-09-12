@@ -1,6 +1,0 @@
-- **Feasibility:** A divisor `d` can be the GCD of a selected set containing `A_i` exactly when `d` divides `A_i` and at least `K` input elements are divisible by `d`.
-- **Counting multiples:** Build frequencies for values up to `M = max(A)`, then use a harmonic multiples sieve to compute how many array elements are divisible by every `d`.
-- **Answer propagation:** Process feasible divisors in descending order. For each multiple `x` that occurs, assign `d` the first time it is encountered; this is its largest feasible divisor.
-- **Memory:** The frequency array uses 32-bit integers, feasibility uses a bytearray, and answers use another 32-bit integer array. Frequencies are safely discarded during descending propagation after all feasibility counts have been computed.
-- **Complexity:** The two multiples traversals take `O(M log M)` time. Input/output and frequency construction take `O(N)`. Memory usage is `O(M + N)`.
-- **Correctness edge cases:** `d=1` is always feasible because `N >= K`, so every present value receives an answer. Duplicate values are handled through frequencies, and `K=1` correctly produces each value itself.

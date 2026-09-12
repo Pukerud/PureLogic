@@ -1,7 +1,0 @@
-- **Bottleneck structure:** For any threshold \(w\), vertices connected using only edges of weight at most \(w\) can be paired with bottleneck cost at most \(w\). The first edge weight at which two components join is the bottleneck cost between those components.
-- **Component balance:** Store, for every DSU component, `(# unmatched A occurrences) - (# unmatched B occurrences)`. Positive balance means unmatched A occurrences; negative balance means unmatched B occurrences.
-- **Matching at unions:** When two components merge at edge weight \(w\), opposite residual balances can be matched immediately. Each such pair has minimum bottleneck cost exactly \(w\), so add `w * min(opposite counts)` to the answer and retain the signed sum as the new component balance.
-- **Optimality:** Any A/B pair that becomes available inside a component has cost no greater than pairing one of those occurrences outside the component. Therefore an optimal solution matches all possible opposite residuals as soon as their components become connected.
-- **Equal edge weights:** Edges of the same weight may be processed in any order. Every match created during that batch is charged the same weight, so sequential DSU processing gives the same result as processing the whole equal-weight batch simultaneously.
-- **Repeated occurrences:** A and B are counted as multisets through the balance array, so repeated vertices are handled naturally.
-- **Complexity:** Sorting costs \(O(M \log M)\); DSU operations cost \(O(M \alpha(N))\). Memory usage is \(O(N+M)\).

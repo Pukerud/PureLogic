@@ -1,9 +1,0 @@
-- **Prime decomposition:** For each prime \(p\), writing \(e_i=v_p(S_i)\) and \(a_i=v_p(A_i)\), the condition \(f(S_i/S_{i+1})=A_i\) becomes \(|e_i-e_{i+1}|=a_i\).
-- **Gcd condition:** The global condition \(\gcd(S_1,\ldots,S_N)=1\) is equivalent to requiring \(\min_i e_i=0\) independently for every relevant prime.
-- **Independence:** The score is \(\prod_p p^{\sum_i e_i}\), so the required answer is the product of independent prime-wise weighted sums.
-- **Height bound:** For a fixed prime, let \(H=\sum_i a_i\). Every valid exponent sequence has all heights in \([0,H]\), because it reaches zero and every height differs from that zero position by at most the total movement \(H\).
-- **DP state:** `all_dp[h]` is the weighted sum of paths currently at nonnegative height `h`; `nozero_dp[h]` is the corresponding sum for paths that have never visited height zero. Initial weights are \(p^h\), accounting for \(e_1=h\).
-- **Transition weight:** On reaching next height \(k\), multiply by \(p^k\), incorporating the score contribution of the next sequence element.
-- **Zero step:** If \(a_i=0\), the next height is uniquely equal to the current height; it must not be counted as two directions.
-- **Valid sum:** The desired contribution for a prime is `sum(all_dp) - sum(nozero_dp)`, retaining exactly paths that visit zero at least once.
-- **Complexity:** For one prime this is \(O(NH)\). Since the total number of prime exponents across all \(A_i\) is at most about \(9000\), total work is \(O(N \sum_p H_p)\), acceptable for \(N\le 1000\).

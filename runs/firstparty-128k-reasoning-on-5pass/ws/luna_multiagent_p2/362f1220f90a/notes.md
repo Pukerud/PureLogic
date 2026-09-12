@@ -1,7 +1,0 @@
-- **Required occurrences:** Propagate every `T` occurrence into a fixed-character array. Any conflicting assignments make the answer impossible.
-- **Forbidden occurrences:** An `F` window with a fixed mismatch is already valid. If every character is fixed and the window equals `str2`, return `""`.
-- **Greedy construction:** For each remaining `F` window, register its rightmost unfixed position. When processing that position, forbid the matching character only if the previously assigned prefix still matches `str2`.
-- **Correctness:** If an `F` window has a later unfixed position, it can still be made different later, so earlier choices need no restriction. At its rightmost free position, all other characters are fixed or already chosen, making the local check sufficient.
-- **Complexity:** Fixed propagation and forbidden-window processing take `O(nm)`. Greedy selection takes `O(26(n+m))`. Memory usage is `O(n+m)`.
-- **Example tests:** `TFTF, ab -> ababa` PASS; `TFTF, abc -> ""` PASS; `F, d -> a` PASS.
-- **Targeted tests:** Compatible overlap `TT, aa -> aaa` PASS; conflicting overlap `TT, aba -> ""` PASS; fully fixed forbidden window `TFT, aa -> ""` PASS; all-F case `FF, aa -> aba` PASS; conflicting required assignments `TT, ab -> ""` PASS.

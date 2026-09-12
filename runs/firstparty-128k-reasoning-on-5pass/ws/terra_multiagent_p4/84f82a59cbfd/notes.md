@@ -1,7 +1,0 @@
-- **Observation:** A 400 number has only even prime exponents, so it can be written as \(N=x^2\). The distinct prime factors of \(N\) and \(x\) are identical.
-- **Reduction:** Therefore, \(N\) is a 400 number exactly when \(N=x^2\) and \(x\) has exactly two distinct prime factors.
-- **Precomputation bound:** Since every query satisfies \(A\le 10^{12}\), it is enough to consider roots \(x\le 10^6\).
-- **Sieve:** Maintain a byte array of distinct-prime-factor counts. For every prime `p`, increment the count of each multiple of `p`. A value `x` is a valid root when its count equals two.
-- **Queries:** Store all squares of valid roots in increasing order. For each query `A`, use `bisect_right` to find the greatest precomputed square not exceeding `A`.
-- **Complexity:** The sieve takes \(O(M\log\log M)\)-like harmonic-prime work for \(M=10^6\), preprocessing storage is \(O(M)\), and each query costs \(O(\log M)\).
-- **Existence:** The smallest valid root is \(6=2\cdot3\), whose square is \(36\), matching the guaranteed query lower bound.

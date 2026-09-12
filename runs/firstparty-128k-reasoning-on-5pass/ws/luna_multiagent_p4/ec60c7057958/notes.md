@@ -1,9 +1,0 @@
-- **Counting:** `count(odd, even, previous)` returns the number of labeled alternating completions from the current state.
-- **Transition:** If the next parity is odd, there are `odd` choices leading to `count(odd - 1, even, 1)` completions. The even transition is analogous.
-- **Memoization:** The state is determined solely by the remaining odd/even counts and the previous parity, so at most `O(n^2)` states are used.
-- **Capping:** Counts are capped at `10^15`, the maximum possible query rank. This preserves every comparison with `k` while avoiding unnecessarily large integers.
-- **Unranking:** At each position, candidate values are tested in increasing numerical order. Candidates with the same parity have equal completion counts, but actual values must still be scanned numerically to preserve lexicographic order.
-- **Feasibility:** Candidates whose parity matches the previous element or whose parity count is exhausted are skipped.
-- **Invalid rank:** If the initial completion count is smaller than `k`, the method returns `[]`.
-- **Complexity:** The memoized counting uses `O(n^2)` states, and candidate selection scans at most `n` values at each of `n` positions, for `O(n^2)` time and `O(n^2)` auxiliary memoization space.
-- **Edge cases:** The implementation handles `n = 1`, parity imbalance, exhausted parity classes, and ranks equal to or larger than the total number of valid permutations.

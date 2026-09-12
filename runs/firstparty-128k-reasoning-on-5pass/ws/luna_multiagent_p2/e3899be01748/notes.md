@@ -1,7 +1,0 @@
-- **State:** For every modulus `m` from 1 through 9, maintain counts of remainders of all substrings ending at the previous position.
-- **Transition:** Appending digit `d` to a substring with remainder `r` modulo `m` produces remainder `(10*r + d) % m`.
-- **New substrings:** The one-character substring consisting only of `d` is added separately with remainder `d % m`. This also correctly handles leading zeros.
-- **Counting:** After constructing the distributions for the current position, if its final digit is non-zero, the number of valid substrings ending there is the count of remainder zero modulo that digit.
-- **Why prefix matching is avoided:** A substring value is not generally the difference of two prefixes modulo `m`, because the earlier prefix is multiplied by a power of 10. The ending-substring DP directly models this multiplication and works for every digit, including 2, 4, 5, 6, and 8.
-- **Zero endings:** A substring ending in `0` contributes nothing because divisibility by zero is undefined, but such substrings remain in every DP table so they can be extended by later digits.
-- **Complexity:** Each position processes moduli 1 through 9 and at most 9 remainders per modulus, giving `O(9n)` time and `O(1)` auxiliary space.

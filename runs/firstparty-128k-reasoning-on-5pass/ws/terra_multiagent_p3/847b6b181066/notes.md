@@ -1,6 +1,0 @@
-- **Prefix displacement representation:** Let `P_t` be the cumulative wind displacement after step `t`, with `P_0 = (0,0)`. A smoke cloud generated when cumulative displacement was `P_k` is at `P_t - P_k` after the wind at time `t`.
-- **Generation condition:** After wind step `t`, smoke is at the origin iff some existing cloud has `P_t - P_k = (0,0)`, equivalently `P_t = P_k`. Thus new smoke is generated exactly when `P_t` has not occurred as a generation displacement before.
-- **Set simplification:** Generation displacement values are precisely all distinct cumulative prefix displacements seen so far, starting with `(0,0)`. Therefore maintain a set of visited prefix coordinates.
-- **Target test:** Smoke exists at target `(R,C)` after time `t` iff there is a generated displacement `P_k` such that `P_t - P_k = (R,C)`, i.e. iff `P_t - (R,C)` belongs to the set.
-- **Update order:** Insert current `P_t` into the set, then test membership. This matches generation before the queried half-time. Since `(R,C) != (0,0)`, insertion cannot falsely create a target cloud at the current prefix.
-- **Complexity:** `O(N)` expected time and `O(N)` memory using Python tuple keys in a set.

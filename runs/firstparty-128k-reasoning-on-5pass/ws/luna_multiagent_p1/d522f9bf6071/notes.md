@@ -1,8 +1,0 @@
-- **Sorting:** Intervals are sorted by right endpoint, which enables weighted interval scheduling.
-- **Compatibility:** `bisect_left(ends, left)` counts intervals whose right endpoint is strictly less than the current left endpoint, so intervals sharing a boundary are correctly treated as overlapping.
-- **Dynamic programming:** `dp[i][k]` stores the maximum score using exactly `k` intervals from the first `i` sorted intervals, together with the lexicographically smallest original-index tuple for that score.
-- **Transitions:** Each interval is either skipped or selected after the best compatible prefix state with one fewer interval.
-- **Tie-breaking:** Original indices are inserted into sorted tuples. Python tuple comparison gives the required lexicographic ordering, including the rule that a shorter equal-prefix tuple is smaller.
-- **Final choice:** Results for all counts from zero through four are compared by score first and tuple second, allowing fewer than four intervals when optimal.
-- **Complexity:** Sorting and predecessor lookup take `O(n log n)`. Since tuples contain at most four indices, the dynamic programming work and memory are `O(n)`.
-- **Verification:** The provided examples produce `[2, 3]` and `[1, 3, 5, 6]`. Boundary tests reject intervals with `right == left`, equal-score tests choose the smallest index tuple, and a dominant high-weight interval correctly causes fewer than four intervals to be returned.

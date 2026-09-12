@@ -1,6 +1,0 @@
-- **Reverse processing:** Remove values from \(N\) down to \(1\). At the step for value \(i\), its position is the \(P_i\)-th currently available position from the left.
-- **Fenwick tree:** Store 1 for each available final position and 0 for each position already assigned. Fenwick updates and prefix-sum order-statistic queries both take \(O(\log N)\).
-- **K-th slot search:** Fenwick binary lifting locates the smallest index whose prefix sum is at least \(P_i\), giving the required available position.
-- **Initialization:** Since every position initially has value 1, the Fenwick tree can be initialized directly with `bit[i] = i & -i`.
-- **Complexity:** The algorithm runs in \(O(N\log N)\) time and uses \(O(N)\) memory.
-- **Indexing:** Positions and Fenwick indices are one-based; the result array uses the physical final positions.

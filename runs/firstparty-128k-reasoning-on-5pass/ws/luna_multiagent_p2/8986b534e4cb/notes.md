@@ -1,8 +1,0 @@
-- **Potential formulation:** Set road strengths as differences of town potentials. Each traveler requires equal endpoint potentials and strict inequalities at all interior towns.
-- **Compatibility criterion:** After normalizing an interval to `[l,r]`, travelers are incompatible only when they use the same endpoints in opposite directions, or when their intervals properly cross and have equal travel directions.
-- **Crossing detection:** For a current interval `[l,r]`, earlier equal-direction crossings are:
-  - `a < l < b < r`, queried with starts `[1,l)` and ends `[l+1,r)`.
-  - `l < a < r < b`, queried with starts `[l+1,r)` and ends `[r+1,n+1)`.
-- **Half-open bounds:** The correct calls are `tree.query(1, l, l + 1, r)` and `tree.query(l + 1, r, r + 1, n + 1)`. This includes starts `l-1` and excludes starts `l` or `r`, as required.
-- **Query condition:** `bad[i]` stores the largest earlier incompatible person index. A selected range `[L,R]` is feasible exactly when every `bad[i]` for `i in [L,R]` is less than `L`.
-- **Complexity:** Two-dimensional preprocessing takes `O(M log^2 N)` time and `O(M log N)` memory; each query is answered in `O(log M)` time.

@@ -1,6 +1,0 @@
-- **Approach:** Process insertions in reverse order. When handling value `i`, the still-free positions in the final array correspond exactly to the array state before values `i+1..N` were inserted. Therefore, place `i` into the `P_i`-th free position.
-- **Data structure:** Use a Fenwick tree over final positions, where `1` means free and `0` means occupied. It supports removing a position in `O(log N)` and locating the k-th free position with binary lifting in `O(log N)`.
-- **Initialization:** Since every position is initially free, Fenwick values can be initialized directly as `bit[i] = i & -i`, representing an all-ones underlying array.
-- **Order-statistic search:** Starting from index zero, test Fenwick binary-lifting jumps from the largest power of two at most `N`. If the cumulative count represented by a candidate tree node is less than `k`, advance there and subtract that count. The resulting position plus one is the smallest index with prefix free-count at least the original `k`.
-- **Correctness checks:** `P_i` is guaranteed between `1` and `i`; while processing value `i` backward, exactly `i` positions are free, so the requested k-th free position always exists. All indexing is one-based for Fenwick operations and position values.
-- **Complexity:** `O(N log N)` time and `O(N)` memory, suitable for `N <= 5 * 10^5`.

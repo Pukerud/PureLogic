@@ -1,5 +1,0 @@
-1. Since k is small (up to 15), we can use dynamic programming where the state tracks the number of subarrays formed so far and the ending index.
-2. For each possible ending position of a subarray of size x, calculate the minimum cost to make all elements in that subarray equal. The optimal target value for a subarray is its median, and the cost is the sum of absolute differences from the median.
-3. Precompute the cost for every possible subarray of size x using a sliding window approach with two heaps or a sorted list to efficiently find the median and update costs.
-4. Use DP: `dp[i][j]` represents the minimum operations to form `j` non-overlapping subarrays using the first `i` elements. Transition by either skipping `nums[i-1]` or forming a subarray ending at `i-1` if `i >= x`.
-5. The answer is `dp[n][k]`.

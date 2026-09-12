@@ -1,7 +1,0 @@
-- **Validation:** The implementation gives the expected sample results: `6`, `-1`, and `9`.
-- **Positive-product DP:** `dp[product] = [even_bitset, odd_bitset]` stores alternating sums for non-empty positive-only subsequences. Bit positions use offset `sum(nums)`, allowing signed alternating sums.
-- **Parity transitions:** Appending `x` to an even-length subsequence adds `x` and creates odd length; appending to odd length subtracts `x` and creates even length.
-- **Product update safety:** For `x >= 2`, descending source-product order prevents reuse of the current array element. For `x == 1`, source bitsets are snapshotted because the product remains unchanged.
-- **Zero handling:** Positive states exceeding `limit` may be discarded, but arbitrary subsequences cannot be discarded because a later zero makes their final product zero. Separate `all_*` and `zero_*` bitsets preserve reachability for zero-product subsequences.
-- **Targeted edge cases checked:** `[0]` with `k=0` returns `0`; `[1,1]` with `k=0` returns `1`; positive values exceeding `limit` cannot make valid positive products but can still combine with zero and correctly yield `0`; empty subsequence is never introduced, including when `k=0`.
-- **Complexity:** Bitset width is at most `3601`. At most `limit <= 5000` product states exist. Big-integer bit shifts and OR operations keep the implementation practical.

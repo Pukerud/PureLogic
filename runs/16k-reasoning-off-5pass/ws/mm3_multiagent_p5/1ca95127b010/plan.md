@@ -1,7 +1,0 @@
-The problem allows swapping adjacent blocks of `X` zeros with `Y` ones (Operation A) and `Y` ones with `X` zeros (Operation B).  
-Treating each `0` as a particle of type A and each `1` as type B, these operations essentially act like a bubble-sort where runs of length `X` and `Y` can be swapped.  
-Because the operations are reversible and any adjacent run of the correct sizes can be swapped, the system behaves like a sorting network limited by the run sizes.  
-The key observation: after removing any length-`X` block of consecutive `0`s and any length-`Y` block of consecutive `1`s from both strings, the remaining characters must already match.  
-Equivalently, we can greedily match characters while skipping over a run of `X` zeros or `Y` ones in `S` that can be aligned with the current character of `T`.  
-We simulate this with two pointers `i` on `S` and `j` on `T`. At each step, if `S[i] == T[j]`, advance both. Otherwise, if `S[i] == '0'` and the next `X` characters are all `'0'`, we skip this block of `X` zeros in `S` (i += X). Otherwise, if `S[i] == '1'` and the next `Y` characters are all `'1'`, we skip this block of `Y` ones in `S` (i += Y). If none of the above, the transformation is impossible.  
-Finally, after processing, `j` must have reached the end of `T`. (Any extra characters in `S` are acceptable because they can be swapped away.) The algorithm runs in O(N).

@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement the solution using the formula: $Ans = \\sum_{x} \\lceil cnt[x]/2 \\rceil$.",
-    "status": "pending",
-    "result": ""
-  }
-]

@@ -1,3 +1,0 @@
-The given graph is bipartite (no odd cycles). Any added edge must also keep the graph bipartite, so we are adding edges within the same bipartite side (since cross-edges are already present if components are connected). The game reduces to two independent impartial games on each connected component: a Nim-heap where the heap size equals the number of "free" edges inside the two sides of that component. The total Grundy number is XOR of component heap sizes. Aoki (first) wins iff the XOR is non-zero.
-
-For each component with side sizes `a` and `b`, the maximum non-cross edges is `C(a,2) + C(b,2)`, and exactly the existing intra-side edges are already present, so the heap size is `C(a,2) + C(b,2) - existing_intra_edges`.

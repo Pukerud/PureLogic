@@ -1,6 +1,0 @@
-- **Approach:** Foods are partitioned by vitamin because each food affects exactly one vitamin. For each of the three groups, compute a 0/1 knapsack DP where `dp[c]` is the maximum vitamin intake obtainable using at most `c` calories.
-- **Knapsack:** Initialize all DP entries to zero. For every food `(amount, calories)`, iterate calorie capacity downward from `X` to `calories` so that each food is selected at most once.
-- **Prefix maximum:** Apply a prefix maximum pass after each group DP. This explicitly ensures `dp[c]` is nondecreasing and represents the best result under a calorie budget of at most `c`.
-- **Feasibility check:** For a target intake `m`, use `bisect_left(dp, m)` for each vitamin DP to find its minimum required calories. The target is feasible iff the sum of the three minimum costs is at most `X`.
-- **Binary search:** Feasibility is monotone. Search from `0` through `min(total_amount_per_vitamin)`, with an exclusive infeasible upper bound.
-- **Complexity:** Knapsack work is `O(NX)` total across the three groups, at most 25 million inner-loop iterations. Prefix passes cost `O(X)`. Binary search performs `O(log S)` iterations, each using three `O(log X)` lower-bound searches, where `S <= 10^9` in the broadest aggregate bound. Memory is `O(X)` per DP, or `O(3X)` overall.

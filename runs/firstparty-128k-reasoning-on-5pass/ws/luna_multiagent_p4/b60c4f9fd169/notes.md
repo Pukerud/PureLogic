@@ -1,7 +1,0 @@
-- **Algorithm:** Computes Levenshtein distance with dynamic programming restricted to cells satisfying `|i-j| <= K`.
-- **Correctness basis:** Any alignment using at most `K` edits can never have more than `K` unmatched length difference between consumed prefixes, so an optimal path of cost at most `K` remains inside this band.
-- **Initialization:** The first row represents inserting characters into an empty prefix, with distance `j`.
-- **Transitions:** Each cell considers deletion, insertion, and match/replacement. Values are capped at `K+1`, since larger distances can never become relevant to a final answer of at most `K`.
-- **Boundary handling:** The active column interval is clipped to `[0, m]`; absent neighboring cells are treated as unreachable.
-- **Early rejection:** If `abs(len(S)-len(T)) > K`, at least that many insertions or deletions are necessary.
-- **Complexity:** The algorithm visits `O((len(S)+len(T))K)` cells and uses `O(K)` additional memory.

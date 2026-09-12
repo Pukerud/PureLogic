@@ -1,7 +1,0 @@
-- **Layer characterization:** A counted graph is uniquely represented by its BFS layers from vertex 1. Every layer after the root is nonempty; each vertex in a new layer must have at least one neighbor in the preceding layer. Edges can occur within a layer or between consecutive layers only.
-- **Balance condition:** Since N is even, valid layerings have exactly N/2 vertices in even-indexed layers, including the root, and N/2 in odd-indexed layers.
-- **Transition weight:** If a layer of size b follows one of size a, its edge generating factor is \((1+x)^{\binom b2}((1+x)^a-1)^b\). The EGF transition additionally divides by \(b!\).
-- **Label accounting:** The DP treats all non-root vertices as EGF-labeled. Multiplying the final DP value by \((N-1)!\) assigns labels 2 through N.
-- **Evaluation/interpolation:** Evaluate the edge polynomial at x=0 through \(\binom N2\), using \(z=1+x\). Recover ordinary coefficients through forward differences and conversion from \(\binom{x}{k}\) basis.
-- **Critical ordering fix:** DP transitions must be stored and processed with `total processed vertices` as the outer loop. The previous parity-first generation was not topological: it could process a state before it was reached from the other parity, omitting layer sequences with three or more appended layers, including layer-size patterns such as 1,1,1,1.
-- **Complexity:** There are O(N^2) evaluations. Each uses the precomputed topologically ordered state transitions and O(N^3) DP memory; this is suitable for N <= 30.

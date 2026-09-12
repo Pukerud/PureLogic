@@ -1,6 +1,0 @@
-1. Split the pattern `p` into three parts: `prefix`, `middle`, and `suffix` based on the two `*` characters.
-2. The problem reduces to finding the shortest substring in `s` that starts with `prefix`, ends with `suffix`, and contains `middle` as a substring somewhere in between.
-3. First, find all occurrences of `prefix` in `s` and all occurrences of `suffix` in `s`.
-4. For each valid pair of indices (i, j) where `i` is the start of `prefix` and `j` is the end of `suffix` (with `i + len(prefix) <= j - len(suffix) + 1`), check if `middle` exists in `s[i + len(prefix) : j + len(suffix)]`.
-5. To efficiently check for `middle`, we can precompute all starting positions of `middle` in `s`. Then for a given range `[L, R]` (where `L = i + len(prefix)`, `R = j + len(suffix) - 1`), we need to check if any occurrence of `middle` starts at index `k` such that `L <= k` and `k + len(middle) - 1 <= R`.
-6. We can iterate over possible start positions of `prefix` and for each, find the earliest end position of `suffix` such that `middle` fits in between. Use binary search or two pointers to optimize.

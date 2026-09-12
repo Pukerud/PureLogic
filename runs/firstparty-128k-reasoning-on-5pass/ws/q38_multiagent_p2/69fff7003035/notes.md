@@ -1,9 +1,0 @@
-- **Linearity:** f(P) is a sum over elements x of x * 10^{total digits after x}; summing over permutations can be rearranged by fixing x.
-- **Suffix-set count:** If S is the set of elements after x and |S|=k, exactly k!(N-1-k)! permutations have that suffix set, and x's multiplier is 10^{sum_{y in S} len(y)}.
-- **Length grouping:** For x of length a, the available multiset of lengths is all counts c_l except one in class a. Hence all x of the same length share one factor H_a; multiply H_a by the sum of values of that length.
-- **Generating function:** F(z)=prod_l (1+10^l z)^{c_l}. For length a, F_a(z)=F(z)/(1+10^a z); if q_k=[z^k]F_a, then H_a=sum_{k=0}^{N-1} q_k k!(N-1-k)!.
-- **Log-derivative recurrence:** With b_k=[z^k]F, (k+1)b_{k+1}=sum_l c_l 10^l R_l(k), where R_l(k)=sum_{j=0}^k b_{k-j}(-10^l)^j and R_l(k)=b_k-10^l R_l(k-1), R_l(-1)=0. This gives b_k sequentially using modular inverses of k+1.
-- **One-pass observation:** q_k for F_a satisfies q_k=b_k-10^a q_{k-1}, q_{-1}=0, the same recurrence as R_a(k); therefore R_a(k)=q_k. The code accumulates H_a while computing b_k, so no b array or second pass is needed.
-- **Precomputations:** factorials up to N, modular inverses up to N (N<MOD), and pair_fact[k]=k!(N-1-k)!. Digit-length counts and value sums are arithmetic progressions; D<=6 for N<=2e5.
-- **Edge cases and checks:** N=1 returns 1. Length classes with zero count are skipped. Small cases N=1,2,3,4 and the all-single-digit formula (N-1)! * sum(1..N) * 111...1 match; sample 1 gives 1332.
-- **Complexity:** O(DN) time and O(N) memory, with D at most 6.

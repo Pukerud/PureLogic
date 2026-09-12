@@ -1,8 +1,0 @@
-- **Traversal:** The tree is rooted at node 0 and processed with explicit enter/exit events, so deep trees do not exceed Python’s recursion limit.
-- **Active path:** `path_dist[d]` stores the root-to-node distance at active depth `d`; `last[value]` stores the latest active-path depth containing that value.
-- **Validity boundary:** A repeated value at depth `p` forces every valid path ending at the current node to begin at depth at least `p + 1`. The global active boundary is updated with `max(boundary, p + 1)`.
-- **Endpoint selection:** Because all edge lengths are positive, the longest valid path ending at the current node starts at the earliest valid depth, `boundary`. Its length is `distance - path_dist[boundary]`, and its node count is `depth - boundary + 1`.
-- **Rollback:** Exit events restore the previous occurrence depth and boundary and remove the node’s distance, isolating sibling subtrees.
-- **Result comparison:** Paths are prioritized by greater length, then by fewer nodes. The initial single-node path gives `[0, 1]`.
-- **Complexity:** Every node and edge is processed a constant number of times. Time is `O(n)` and auxiliary space is `O(n)`.
-- **Validation:** The implementation handles both examples, all-equal values, all-unique chains, branching trees, reversed edge orientations, and a 50,000-node deep chain.

@@ -1,9 +1,0 @@
-- **Dynamic programming model:** Represent repeated majority operations as a complete ternary tree. For every subtree, store the minimum number of leaf flips needed to force its evaluated value to `0` and to `1`.
-- **Leaf initialization:** For an original bit `0`, costs are `(0, 1)`; for bit `1`, they are `(1, 0)`.
-- **Transition:** To force a majority-of-three node to bit `b`, at least two children must be forced to `b`. Given child costs `x, y, z`, the required cost is the sum of the two smallest values: `x + y + z - max(x, y, z)`.
-- **Final answer:** At the root, one cost is zero for the unmodified input. Print the cost for the opposite root value.
-- **Memory:** Rolling `array('I')` DP arrays keep memory compact for up to `3^13 = 1,594,323` leaves.
-- **Allocation fix:** `next0.extend([0]) * size` is invalid because `extend` returns `None`. Preallocate correctly with `array('I', [0]) * size`.
-- **Input parsing:** All tokens after `N` are joined, supporting either one contiguous binary string or whitespace-separated bit characters.
-- **Complexity:** Time is `O(3^N)` and rolling-array memory is `O(3^N)`.
-- **Validation:** The corrected program produces `1` for sample 1 and `2` for sample 2.

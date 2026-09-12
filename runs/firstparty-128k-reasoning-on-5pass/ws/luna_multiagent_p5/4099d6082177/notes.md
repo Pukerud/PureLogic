@@ -1,9 +1,0 @@
-- **State:** For each rooted subtree, `residual[v]` is zero if the subtree can be completely partitioned into paths of `K` vertices. Otherwise it is the length of one unfinished path whose endpoint must connect to the parent. `valid[v]` indicates whether such a decomposition exists.
-- **Why one residual is enough:** A subtree has only one edge to its parent, so at most one unfinished path can leave it. Any child with a nonzero residual must connect through the current vertex; it cannot simply be ignored.
-- **Residual uniqueness:** Completed paths contribute multiples of `K` vertices. Therefore, if a subtree has a residual, its length is fixed by the subtree size modulo `K`, and there is no need for a length-indexed DP.
-- **Transition with zero open children:** The current vertex forms a one-vertex residual when `K > 1`; for `K = 1` it immediately forms a complete path.
-- **Transition with one open child:** Attach the current vertex to that residual. If the resulting length is `K`, the path is complete and the state becomes closed. If it is smaller than `K`, it remains the unique residual. A length larger than `K` is impossible.
-- **Transition with two open children:** Both residuals must connect through the current vertex. The current vertex then has degree two in that path, so the resulting path cannot continue to the parent. It is valid only when `first + second + 1 == K`.
-- **Three or more open children:** Impossible because one path cannot use more than two incident edges at a vertex.
-- **Root condition:** The root has no parent edge, so its residual must be zero.
-- **Complexity:** Each tree edge is inspected a constant number of times. Time complexity is `O(NK)` and memory complexity is `O(NK)`.

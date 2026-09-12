@@ -1,5 +1,0 @@
-- **State:** For every ternary-tree node, store the minimum number of leaf changes needed to make its output `0` and `1`.
-- **Leaves:** A leaf containing `0` has costs `(0, 1)`, while a leaf containing `1` has costs `(1, 0)`.
-- **Combination:** For each group of three child states, enumerate all eight assignments of child output values. The parent output is `1` if at least two assigned child values are `1`; otherwise it is `0`. Add the corresponding child costs and minimize separately for both parent outputs.
-- **Answer:** Exactly one of the root costs is zero, identifying the original root value. The required answer is the cost for the opposite value.
-- **Complexity:** Each tree node is processed a constant number of times, giving `O(3^N)` time and `O(3^N)` memory.

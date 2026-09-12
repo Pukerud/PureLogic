@@ -1,6 +1,0 @@
-- **Observation:** A 400 number has the form \(p^{2a}q^{2b}\), where \(p,q\) are distinct primes and \(a,b\ge1\). Equivalently, it is the square of an integer having exactly two distinct prime divisors.
-- **Precomputation:** Since \(A\le10^{12}\), its square root is at most \(10^6\). Sieve smallest prime factors for every integer up to \(10^6\), then inspect each possible square root.
-- **Detection:** Factor each root using the smallest-prime-factor table and count distinct prime divisors. If the count is exactly two, append its square to the answer list.
-- **Queries:** The retained squares are naturally sorted because roots are scanned in increasing order. Use `bisect_right` to find the largest retained value at most each query value.
-- **Complexity:** SPF sieve is approximately \(O(10^6\log\log10^6)\); root factor inspection is efficient using SPF; each query costs \(O(\log M)\), where \(M\) is the number of valid values.
-- **Sample result:** The implementation produces `400, 36, 36, 1000000000000, 123454321` for the provided sample.

@@ -1,8 +1,0 @@
-- **Fixed frequency:** For each positive frequency `k`, every letter is either absent or appears exactly `k` times.
-- **Base costs:** If a letter has count `c`, making it absent costs `c`, while retaining it costs `abs(c - k)` using deletions or insertions.
-- **Adjacent changes:** Changing a character from letter `i` to `i+1` replaces one deletion and one insertion with one operation, saving one operation. Such a change is useful only when `i` has surplus and `i+1` has deficit.
-- **Surplus calculation:** If the previous letter is absent, all its original occurrences can move forward. If it is retained, only `max(count[i-1] - k, 0)` occurrences are surplus.
-- **Why longer changes are unnecessary:** Moving a character across two or more alphabet steps costs at least as much as deleting it and inserting the destination character, so it cannot improve an optimum. Therefore only adjacent transfers need to be considered.
-- **DP states:** The two states after each letter represent whether that letter is absent or retained with frequency `k`. Transitions include the base cost and, when applicable, the adjacent-transfer saving.
-- **Validation:** Exhaustive brute-force comparisons on small strings/count vectors cover omitted letters, adjacent transfers, repeated identical letters, and terminal `z` cases; the fixed-`k` DP agrees with the brute-force optimum. The three samples produce `1`, `0`, and `2`.
-- **Complexity:** There are at most `n` values of `k`, and each scans 26 letters, giving `O(26n)` time and `O(1)` extra space.

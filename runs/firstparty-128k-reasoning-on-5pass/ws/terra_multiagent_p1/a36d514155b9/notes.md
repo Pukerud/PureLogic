@@ -1,6 +1,0 @@
-- **Sample verification:** `distanceSum(2, 2, 2)` computes row contribution `4`, column contribution `4`, and inclusion factor `C(2, 0)=1`, returning `8`.
-- **Sample verification:** `distanceSum(1, 4, 3)` computes row contribution `0`, column contribution `10`, and inclusion factor `C(2, 1)=2`, returning `20`.
-- **Core approach:** Every unordered pair of distinct cells appears in exactly `C(mn-2, k-2)` arrangements. Multiply this by the sum of Manhattan distances over all unordered grid-cell pairs.
-- **Row contribution:** `n² * m(m²-1)/6`.
-- **Column contribution:** `m² * n(n²-1)/6`.
-- **Complexity:** Factorial preprocessing takes `O(mn)` time and space, with `mn <= 100000`.

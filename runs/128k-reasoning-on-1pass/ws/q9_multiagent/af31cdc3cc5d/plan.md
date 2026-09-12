@@ -1,5 +1,0 @@
-The problem asks for the maximum total score obtained by repeatedly removing adjacent pairs. This is equivalent to partitioning the sequence into pairs (and possibly one leftover element if $N$ is odd) such that the sum of absolute differences is maximized.
-Key observations:
-1. If $N$ is even, we remove all elements in $N/2$ pairs. We can pair any even-indexed element with any odd-indexed element (using 1-based indexing). This allows us to assign signs $+1$ and $-1$ to elements such that we have $N/2$ of each. To maximize the sum $\sum s_i A_i$, we should assign $+1$ to the largest $N/2$ elements and $-1$ to the smallest $N/2$ elements.
-2. If $N$ is odd, we remove $(N-1)/2$ pairs and leave one element. We must leave out an element from the majority parity set (odd indices in 1-based indexing). The remaining $N-1$ elements are paired. We need to choose which element to leave out to maximize the resulting score.
-3. We can solve this by sorting the array and calculating a base score assuming a specific sign assignment, then adjusting for the removed element.

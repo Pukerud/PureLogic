@@ -1,7 +1,0 @@
-- **Graph model:** Each constraint is an undirected edge requiring `A_x XOR A_y = Z`.
-- **Potential assignment:** During BFS, assign each vertex a relative value `d[v]` such that `d[x] XOR d[y] = Z` on every traversed edge. If an already assigned vertex gets a different value, the component is inconsistent and the answer is `-1`.
-- **Component freedom:** In a consistent connected component, every valid assignment is `A[v] = t XOR d[v]` for one common non-negative integer `t`.
-- **Minimization:** Each binary bit of `t` can be selected independently. If `ones` relative values have that bit set, choosing offset bit `0` contributes `ones` ones to the sum, while choosing offset bit `1` contributes `component_size - ones`; choose the smaller option.
-- **Bit range:** Every constraint value is below `2^30`, so all relative values and an optimal offset use only bits `0` through `29`. Higher bits would increase the sum and are never useful.
-- **Edge cases:** Isolated vertices form singleton components and receive zero. Self-loops, duplicate edges, and zero XOR constraints are handled naturally by the consistency check.
-- **Complexity:** BFS and adjacency construction take `O(N + M)`. Bitwise minimization takes `O(30N)`, so the total is `O(N + M)` with a small constant factor and `O(N + M)` memory.

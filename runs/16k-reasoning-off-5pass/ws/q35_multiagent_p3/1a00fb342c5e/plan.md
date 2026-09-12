@@ -1,6 +1,0 @@
-1. Model the problem as a system of XOR equations over a graph with N nodes and M edges. Each constraint $A_{X_i} \oplus A_{Y_i} = Z_i$ represents an edge between $X_i$ and $Y_i$ with weight $Z_i$.
-2. Decompose the graph into connected components. For each component, pick an arbitrary root node and assign it a value $v$. Then, all other nodes in the component have values determined relative to the root (e.g., $A_u = A_{root} \oplus \text{dist}(root, u)$).
-3. Check for consistency within each component. If a cycle exists, the XOR sum of weights along the cycle must be 0. If not, output -1.
-4. For each component, the values are of the form $A_u = C_u \oplus K$, where $C_u$ is a fixed offset derived from the root's assignment (with $C_{root}=0$) and $K$ is the unknown root value. We need to choose $K$ to minimize $\sum_{u \in \text{component}} (C_u \oplus K)$.
-5. Since the sum is separable by bit position, we can determine each bit of $K$ independently. For each bit position $b$ (0 to 29), count how many $C_u$ have the $b$-th bit set. If the count is greater than half the component size, set the $b$-th bit of $K$ to 0; otherwise, set it to 1. This minimizes the number of set bits in the resulting $A_u$ values for that bit position.
-6. Construct the final sequence using the optimal $K$ for each component and print it.

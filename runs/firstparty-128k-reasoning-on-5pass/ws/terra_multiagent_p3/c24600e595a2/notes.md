@@ -1,9 +1,0 @@
-- **Normalization:** Necessary `1->0` positions are turned off once, necessary `0->1` positions are turned on once, and `0->0` positions are untouched. A `1->1` position is either untouched or is temporarily turned off once and turned on once. Extra alternating cycles cannot improve the cost because all weights and all operation costs are nonnegative.
-- **Order:** All off operations precede all on operations. Among off operations, descending weights are optimal; among on operations, ascending weights are optimal. These follow by swapping adjacent operations.
-- **Sets:** Let `D` be mandatory-off weights, `U` mandatory-on weights, `T` selected temporarily-off optional (`1->1`) weights, and `R` the sum of unselected optional weights. Let `m=|D|`, `q=|U|`, `t=|T|`.
-- **Correct objective:** With `OffRankSum = sum(rank * weight)` for descending `D union T`, and `OnRankSum` analogously for ascending `U union T`, total cost is:
-  `OffRankSum - sum(D) - sum(T) + (q+t+1)(sum(U)+sum(T)) - OnRankSum + (m+q+2t)R`.
-  The previously omitted `-sum(T)` comes from the off-phase: each selected optional bit is initially on and its own off operation is charged after it has been removed.
-- **Prefix selection:** For fixed `t`, an optimum chooses the `t` largest optional weights for `T`. Thus sort optional weights decreasingly and evaluate all prefixes.
-- **Fenwick updates:** On insertion of weight `x` into descending rank sum, delta is `x*(count_ge+1)+sum_less`. For ascending rank sum, delta is `x*(count_le+1)+sum_greater`. Coordinate compression handles weights up to `10^6`; equal weights may be inserted after existing equals without changing the rank sum.
-- **Complexity:** Sorting and each Fenwick insertion/query give `O(N log N)` time and `O(N)` memory. Python integers safely cover the maximum answer.

@@ -1,8 +1,0 @@
-- **Snowflake shape:** A valid kept tree has a center c, x kept neighbors of c as branches, and exactly y kept neighbors of each branch other than c. Its size is 1 + x * (y + 1).
-- **Fixed center and y:** A neighbor b of c can be a branch iff deg_T(b) - 1 >= y. Keeping all such branches is optimal: each adds y + 1 vertices, and the other-neighbor sets of different branches of c are disjoint in a tree, so there are no conflicts.
-- **Per-center maximum:** With a_b = deg(b) - 1 for neighbors b with a_b > 0, maximize (y + 1) * count(a_b >= y) over y >= 1. The maximum is attained at y = a_b for some neighbor, equivalently at d = deg(b): max_d d * count(neighbors of c with degree >= d).
-- **Branch-centric sweep:** Sort vertices with degree >= 2 by degree descending. cnt[c] is the number of already processed neighbors of c. When processing v with d = deg[v], increment cnt[c] for each neighbor c; the new cnt[c] * d is the candidate for center c with y = d - 1. Take the maximum as best.
-- **Ties and partial counts:** For equal degrees, the update after the last degree-d neighbor adjacent to a given c has cnt[c] equal to the full count of neighbors with degree >= d, so the correct threshold value is reached. Earlier updates only give smaller valid counts.
-- **Answer:** best is the maximum x * (y + 1), so maximum kept vertices is best + 1 and the answer is N - best - 1. N >= 3 guarantees a path of length 2, so best >= 2.
-- **Complexity:** O(N log N) time from sorting, O(N) memory. The sweep visits each edge at most twice, from endpoints of degree at least 2.
-- **Samples:** The method yields 1, 0, and 3 for the three samples.

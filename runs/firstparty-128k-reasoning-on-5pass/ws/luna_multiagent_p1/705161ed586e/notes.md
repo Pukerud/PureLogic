@@ -1,8 +1,0 @@
-- **Model:** The final caption is partitioned into constant-character runs, each of length at least 3. Changing a source character to target letter `c` costs the alphabetic distance between them.
-- **DP state:** `layers[i][c * 3 + r]` is the minimum cost for suffix `i..n-1`, assuming the preceding run uses letter `c` and has length class `r`: 0 for length 1, 1 for length 2, and 2 for length at least 3.
-- **Transitions:** Classes 0 and 1 must extend with the same letter. Class 2 may extend or switch to a different letter. A switch starts a new run, so its next state is class 0.
-- **Terminal:** At position `n`, only class 2 states are valid. This ensures the final run has length at least 3.
-- **Switch optimization:** For each position, compute the smallest and second-smallest costs over all new letters, allowing the best letter different from the current one to be selected in constant time.
-- **Reconstruction:** Starting from the first character, test candidate letters in alphabetic order and select the first transition matching the optimal DP cost. This yields the lexicographically smallest optimal caption.
-- **Impossibility:** Lengths below 3 are impossible. For every length at least 3, converting the entire caption to one letter is valid.
-- **Complexity:** Time is `O(26n)` and memory is `O(26n)`.

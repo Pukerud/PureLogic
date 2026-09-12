@@ -1,8 +1,0 @@
-- **Normalization:** Each conflicting pair is converted to `(left, right)` with `left < right`, then grouped by its larger endpoint.
-- **Sweep invariant:** At subarray right endpoint `r`, all pairs with `right <= r` are active. If the largest active left endpoint is `L`, exactly `r - L` subarrays ending at `r` are valid.
-- **Top boundaries:** The sweep maintains the largest left endpoint, its multiplicity, the second-largest distinct left endpoint, and the pair ID responsible for the largest value. Each pair is inserted once.
-- **Removal gain:** Removing a pair can help only when it is the unique pair attaining the current largest boundary. Its gain at that endpoint is `largest - second_largest`. Tied maximum boundaries contribute zero because removing one tied pair leaves another active constraint unchanged.
-- **Aggregation:** The baseline is the number of valid subarrays with every pair present. Gains are accumulated per removable pair, and the maximum accumulated gain is added to the baseline.
-- **Validation:** The implementation returns `9` for `n = 4, [[2, 3], [1, 4]]`, `12` for `n = 5, [[1, 2], [2, 5], [3, 5]]`, and handles duplicate pairs, tied boundaries, and pairs with no effective contribution.
-- **Edge cases:** With `n = 2` and `[[1, 2]]`, removing the only pair yields all `3` non-empty subarrays. Pairs that have not yet reached their right endpoint do not affect the current sweep state.
-- **Complexity:** `O(n + m)` time and `O(n + m)` memory, where `m` is the number of conflicting pairs.

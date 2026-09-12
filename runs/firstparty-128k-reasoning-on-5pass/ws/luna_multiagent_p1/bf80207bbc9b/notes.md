@@ -1,8 +1,0 @@
-- **Representation:** Each row is encoded as a `W`-bit mask. Choosing a set of column flips is also represented by a mask `m`.
-- **Optimal row handling:** After applying column flips `m`, a row mask `r` becomes `r XOR m`. The row may either remain unchanged or be flipped entirely, so its minimum contribution is `min(popcount(r XOR m), W - popcount(r XOR m))`.
-- **Frequency compression:** Count how many rows have each mask. This processes all `H` rows in `O(H)`.
-- **XOR convolution:** For every column mask `m`, the total cost is `sum_r freq[r] * cost[r XOR m]`, which is an XOR convolution of the frequency and cost arrays.
-- **Walsh–Hadamard transform:** XOR convolution is computed by transforming both arrays, multiplying pointwise, and applying the transform again. The inverse transform is the same transform followed by division by `2^W`.
-- **Complexity:** `O(H + W * 2^W)` time and `O(2^W)` memory, feasible because `W <= 18`.
-- **Correctness details:** Repeating any row or column flip is redundant because two flips cancel. All arithmetic remains integral; after the final transform every value is divisible by `2^W`.
-- **Verification:** The implementation produces the expected outputs `2`, `0`, and `13` for the three provided samples.

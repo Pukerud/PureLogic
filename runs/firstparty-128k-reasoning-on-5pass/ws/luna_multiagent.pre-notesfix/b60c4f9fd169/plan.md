@@ -1,1 +1,0 @@
-Compute whether the Levenshtein edit distance between `S` and `T` is at most `K`. Since `K ≤ 20`, use a banded dynamic-programming algorithm that only evaluates states with index difference at most `K`, reducing time to `O(K·max(|S|,|T|))` and memory to `O(K)`. Immediately reject when the length difference exceeds `K`, and use rolling rows or diagonals to keep memory bounded.

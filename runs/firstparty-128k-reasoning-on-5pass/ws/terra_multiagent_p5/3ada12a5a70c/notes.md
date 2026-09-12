@@ -1,9 +1,0 @@
-- **Verification:** PASS. The implementation returns `2`, `1`, and `1` for the three provided samples.
-- **Exhaustive validation:** PASS. Exhaustive brute-force comparison on all integer boundary-point subsets for small square sides, across every valid `k`, found no discrepancy. The brute-force oracle enumerates every size-`k` selected subset and computes its exact minimum pairwise Manhattan distance.
-- **Counterexamples:** None found.
-- **Perimeter representation:** Each boundary point is converted to a unique clockwise perimeter coordinate in `[0, 4 * side)`. The ownership order is bottom, right, top, left, avoiding duplicate corner coordinates.
-- **Distance reduction:** For a target `d <= side`, a pair with perimeter-forward gap less than `d` must be on the same edge or on neighboring edges, where that forward gap equals its Manhattan distance. Thus a selected set is valid exactly when every circular consecutive perimeter gap is at least `d`.
-- **Greedy feasibility:** After fixing a starting selected point, choosing the earliest next available point with gap at least `d` maximizes remaining space and therefore maximizes the possible number of subsequent selections.
-- **Circular check:** Points are duplicated after one perimeter length. Binary lifting applies `k - 1` greedy successor jumps from each possible starting point, then verifies both that the selected points remain within one traversal and that the final wraparound gap is at least `d`.
-- **Upper bound:** Since `k >= 4`, an answer greater than `side` is impossible. Such a selection would require at most one point per edge, and the four cyclic adjacent-edge gaps would all exceed `side`, contradicting their total perimeter `4 * side`.
-- **Complexity:** Sorting costs `O(n log n)`. Each feasibility test costs `O(n log k)` time and memory. Binary search contributes `O(log side)` feasibility tests.

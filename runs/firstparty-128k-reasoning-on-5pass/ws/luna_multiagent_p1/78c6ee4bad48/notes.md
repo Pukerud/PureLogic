@@ -1,6 +1,0 @@
-- **Gap transformation:** For four consecutive coordinates \(a<b<c<d\), reflecting the two inner points across \((a+d)/2\) gives new sorted coordinates \(a,a+d-c,a+d-b,d\). Therefore the three gaps \((p,q,r)=(b-a,c-b,d-c)\) become \((r,q,p)\).
-- **Reachability:** An operation swaps gap positions \(i\) and \(i+2\), so it swaps adjacent elements within one parity subsequence of the gap array. Repeated operations allow arbitrary permutations among odd-indexed gaps and independently among even-indexed gaps.
-- **Objective:** If \(g_j\) is the gap between the \(j\)-th and \((j+1)\)-th pieces, the coordinate sum is \(N X_1+\sum_{j=1}^{N-1}(N-j)g_j\). The outermost coordinates remain fixed.
-- **Optimal arrangement:** Within each parity class, coefficients \(N-j\) decrease as \(j\) increases. By the rearrangement inequality, gaps must be placed in nondecreasing order along increasing gap indices. Thus sort odd-indexed gaps and even-indexed gaps independently.
-- **Complexity:** Sorting dominates, giving \(O(N\log N)\) time and \(O(N)\) memory.
-- **Validation:** For sample 1, the gaps \(4,2,3\) become \(2,2,3\), yielding \(21\). For sample 2, sorting parity classes gives a total of \(41\). Exhaustive small-state exploration is consistent with exactly the parity-preserving gap permutations.

@@ -1,1 +1,0 @@
-Use the identity \(x^3-y^3=(x-y)(x^2+xy+y^2)\) and enumerate the positive difference \(d=x-y\). Since \(d^3 \le N\), there are at most \(10^6\) candidates. For each divisor \(d\) of \(N\), substitute \(x=y+d\), yielding a quadratic equation in \(y\), and test whether its discriminant is a perfect square. Use integer square roots to avoid floating-point precision issues.

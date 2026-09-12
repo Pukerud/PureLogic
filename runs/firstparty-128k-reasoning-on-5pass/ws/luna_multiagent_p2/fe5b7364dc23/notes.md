@@ -1,6 +1,0 @@
-- **Prefix representation:** For prefix sums \(P_i\), every subarray sum is \(P_r-P_{l-1}\).
-- **Moment aggregation:** Before processing \(P_r\), `moments[j]` stores \(\sum_{t=0}^{r-1} P_t^j\), including the empty prefix \(P_0=0\).
-- **Expansion:** The contribution of all subarrays ending at \(r\) is computed with \((x-y)^K=\sum_{j=0}^{K}(-1)^j\binom Kj x^{K-j}y^j\).
-- **Ordering:** The current prefix is used to calculate the contribution before being inserted into `moments`, ensuring only nonempty subarrays are counted.
-- **Modular arithmetic:** Prefix sums, powers, moments, and the final result are reduced modulo \(998244353\).
-- **Complexity:** \(O(NK)\) time and \(O(K)\) auxiliary memory.

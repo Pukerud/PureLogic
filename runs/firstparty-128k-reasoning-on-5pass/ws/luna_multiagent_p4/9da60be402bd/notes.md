@@ -1,8 +1,0 @@
-- **State:** A state `(u, v)` represents a palindrome path from vertex `u` to vertex `v`.
-- **Centers:** Every `(i, i)` has distance `0`, representing the empty palindrome. Every existing direct edge has distance `1`, representing a one-character palindrome.
-- **Transition:** If `(x, y)` is reachable by a palindrome of length `d`, then matching edges `u -> x` and `y -> v` with the same label create a palindrome from `u` to `v` of length `d + 2`.
-- **Search:** Initial states have costs `0` or `1`, while transitions cost `2`, so a min-heap Dijkstra-style search is used.
-- **Grouping:** Incoming and outgoing neighbors are grouped by character. For a state `(x, y)`, only matching character groups are combined.
-- **Optimization:** `unknown_rows[u]` stores vertices `v` whose states `(u, v)` are not assigned yet. Set intersections avoid iterating through already-finalized Cartesian-product states, which is important for dense graphs.
-- **Correctness:** States are processed in nondecreasing distance order. Therefore the first time an unassigned endpoint pair is generated, its palindrome length is minimal.
-- **Complexity:** The product graph has `N^2` states. The implementation uses grouped adjacency and set intersections to reduce redundant work; memory usage is `O(N^2)`.

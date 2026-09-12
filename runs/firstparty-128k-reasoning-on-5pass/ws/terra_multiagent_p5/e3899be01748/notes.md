@@ -1,9 +1,0 @@
-- **Verification:** The implementation was checked against the provided samples:
-  - `countSubstrings("12936")` returns `11`.
-  - `countSubstrings("5701283")` returns `18`.
-  - `countSubstrings("1010101010")` returns `25`.
-- **Universal remainder DP:** For every modulus `d` from 1 through 9, `rem[d][r]` counts substrings ending at the prior character with value congruent to `r mod d`.
-- **Transition:** Appending digit `x` maps each prior remainder `r` to `(10*r+x) % d`. A fresh one-character substring is added with remainder `x % d`.
-- **Counting:** If the current last digit is nonzero `d`, exactly `rem[d][0]` current-ending substrings are divisible by their last digit. Digits ending in zero must not be counted.
-- **Leading zeros:** The DP extends all prior substrings and begins a new substring at every position, so leading-zero substrings are handled correctly.
-- **Complexity:** There are `1+2+...+9=45` remainder states. Time is `O(45n)` and memory is `O(45)`.

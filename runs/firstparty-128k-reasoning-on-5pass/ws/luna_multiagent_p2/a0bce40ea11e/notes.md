@@ -1,9 +1,0 @@
-- **Power-sum identity:** For a zero entry replaced by \(x\in\{1,\ldots,p-1\}\), \(\sum x^t\equiv 0\pmod p\) unless \(p-1\mid t\), in which case the sum is \(-1\). Every variable with exponent zero also contributes \(p-1\equiv -1\).
-- **Common factor:** For \(p>2\), a length-\(p\) walk can survive only if it uses no zero entries, or uses exactly \(p-1\) copies of one zero entry. In both cases, every zero variable contributes \(-1\), so the total answer is \((-1)^K\) times the corresponding walk sum, where \(K\) is the number of zeros.
-- **No-zero walks:** These are exactly the entries of \(A^p\), computed modulo \(p\) by binary exponentiation.
-- **Case \(p=3\):** A surviving exceptional walk has two copies of one zero matrix unit \(E_{u,v}\) and one ordinary \(A\)-edge. The three possible orders give \(E^2A\), \(AEA\), and \(AE^2\).
-  - If \(u=v\), then \(E^2=E\), and \(AEA=A_{u,u}E=0\), because \(A_{u,u}=0\). The contribution is \(EA+AE\), implemented by adding row \(u\) and column \(u\).
-  - If \(u\ne v\), then \(E^2=0\), while \(AEA=A_{v,u}E\). Thus the only contribution is \(A_{v,u}\) at output position \((u,v)\).
-- **Case \(p\ge5\):** A walk using \(p-1\ge4\) copies of one edge and one other edge must contain at least two consecutive copies of that edge. Therefore the selected zero edge must be diagonal. The only possible walks place the other edge at the beginning or end, giving \(EA+AE\). Since diagonal zero entries correspond to \(E_{u,u}\), this adds column \(u\) and row \(u\).
-- **Case \(p=2\):** Every zero has the unique replacement \(1\), so there is exactly one matrix \(B\); directly compute \(B^2\).
-- **Complexity:** Matrix exponentiation costs \(O(N^3\log p)\); exceptional corrections cost \(O(N^2)\). Memory usage is \(O(N^2)\).

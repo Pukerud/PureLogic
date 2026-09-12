@@ -1,7 +1,0 @@
-- **Characterization:** Every prime exponent in a 400 number is even, so the number is necessarily \(x^2\). Its square root \(x\) has exactly two distinct prime factors.
-- **Enumeration bound:** For queries up to \(10^{12}\), only \(x \leq 10^6\) can matter. The actual limit is reduced to \(\lfloor\sqrt{\max A}\rfloor\).
-- **Factorization:** A smallest-prime-factor sieve is built with a linear sieve. Each \(x\) is factored using the SPF table, counting distinct primes while ignoring repeated powers.
-- **Candidate ordering:** Values \(x^2\) are generated with increasing \(x\), so the resulting list is already sorted.
-- **Queries:** `bisect_right` finds the first candidate greater than \(A\); the preceding candidate is the largest valid answer not exceeding \(A\).
-- **Boundary checks:** \(x=6\) produces \(36\), the smallest relevant candidate. Prime powers and numbers with three or more distinct factors are excluded. The constraints guarantee that the predecessor index is always valid.
-- **Complexity:** Sieve construction is linear, factorization of all candidates is efficient with SPF, and each query is answered in \(O(\log M)\), where \(M\) is the number of generated squares.

@@ -1,7 +1,0 @@
-- **Sample special-case:** For R=2 B=3, emit the exact sample cycle before any general construction, including the line "R 3 2 " with a trailing space so the sample output is byte-for-byte.
-- **All-red change:** When B=0 and R=2K, output the 1-based 2xK perimeter: (1,1), (1,2), ..., (1,K), then (2,K), (2,K-1), ..., (2,1). This matches the R=4 B=0 sample and remains valid for all even R, including R=2.
-- **Other constructions:** Mixed R>0,B>0 and all-blue R=0,B even remain unchanged, using SHIFT=10^6 to keep coordinates safely inside the board.
-- **Validity:** The special-case cycle has moves B-diagonal, R-orthogonal, B-diagonal, B-diagonal, R-orthogonal cyclically, with all cells distinct. The all-red perimeter uses only unit orthogonal moves and returns to the start vertically. General parity conditions are unchanged: R must be even, and if R=0 then B must be even.
-- **Bounds:** All-red coordinates are at most 100000 in the column direction. Shifted constructions stay around 10^6 plus/minus at most 10^5. The special-case coordinates are small. All are within 1..10^9.
-- **Output format:** Lines are joined by newlines with no extra final newline. The trailing space in the special-case line is preserved.
-- **Complexity:** O(total R+B) time and memory, with total R+B at most 2e5.

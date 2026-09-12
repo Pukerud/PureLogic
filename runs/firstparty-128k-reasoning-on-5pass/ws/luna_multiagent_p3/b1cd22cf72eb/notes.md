@@ -1,6 +1,0 @@
-- **Reduction:** For a fixed common pair sum \(H\), let \(A_i\) be the final upper-tooth length. The lower length is \(H-A_i\), so grinding-only constraints give \(\max(0,H-D_i) \le A_i \le \min(U_i,H)\).
-- **Adjacent constraint:** The final upper lengths must satisfy \(|A_i-A_{i+1}| \le X\).
-- **Interval propagation:** The reachable values of each \(A_i\) form an interval. From a previous interval \([L,R]\), values reachable at the next position lie in \([L-X,R+X]\), which is intersected with the current tooth’s allowed interval.
-- **Binary search:** Feasibility is monotone in \(H\). If a configuration works for \(H\), decreasing all pair sums by any amount can be done while preserving nonnegative lengths, upper bounds, and adjacent differences. Thus binary search finds the maximum feasible \(H\).
-- **Answer:** The initial total length is \(\sum_i(U_i+D_i)\), while the final total is \(NH\). Therefore the minimum grinding cost is the initial total minus \(N\) times the largest feasible \(H\).
-- **Complexity:** Each feasibility check is \(O(N)\), and binary search performs \(O(\log 10^9)\) checks, for total \(O(N\log 10^9)\) time and \(O(N)\) memory.

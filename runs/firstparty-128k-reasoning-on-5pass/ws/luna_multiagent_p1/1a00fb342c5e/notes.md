@@ -1,6 +1,0 @@
-- **Graph modeling:** Each constraint \(A_x \oplus A_y = Z\) is stored in both directions. During traversal, if a vertex has potential \(D_v\), its neighbor must have potential \(D_v \oplus Z\).
-- **Consistency checking:** Every connected component is traversed iteratively. A previously assigned vertex must receive the same potential implied by every incident edge; otherwise no valid sequence exists. This also correctly handles self-loops and duplicate edges.
-- **General solution:** In a component, every valid assignment has the form \(A_v = D_v \oplus T\), where \(T\) is one common component offset.
-- **Minimization:** For each bit independently, if \(c\) component potentials have that bit set, choosing offset bit 0 contributes \(c\) ones, while choosing offset bit 1 contributes \(\text{size}-c\) ones. Choose the smaller option.
-- **Bit range:** All given \(Z_i\), and therefore all propagated potentials, are below \(2^{30}\). Offset bits above bit 29 would only increase the sum, so bits 0 through 29 are sufficient.
-- **Complexity:** The graph traversal is \(O(N+M)\). Bitwise minimization costs \(O(30N)\), and memory usage is \(O(N+M)\).

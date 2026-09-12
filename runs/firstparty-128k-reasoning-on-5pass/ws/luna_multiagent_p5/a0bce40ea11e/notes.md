@@ -1,7 +1,0 @@
-- **Walk expansion:** Each entry of \(B^p\) is a sum over directed walks of length \(p\). A zero entry of \(A\) is an independent variable ranging over \(\mathbb F_p^\*\).
-- **Character sum:** If a zero variable is used \(c\) times, summing over its possible values gives \(-1\) when \(p-1\mid c\), and \(0\) otherwise. Every surviving walk has the common factor \((-1)^K\), where \(K\) is the total number of zero entries.
-- **Odd primes \(p\ge 5\):** A surviving walk containing a zero edge must use that edge \(p-1\) times. The repeated edge must be a self-loop, with one remaining fixed edge. These walks contribute \(DA+AD\), where \(D\) marks zero diagonal entries.
-- **Prime \(p=3\):** In addition to the zero-loop contributions, a non-loop zero edge \(i\to j\) may be used twice in the pattern \(i\to j\to i\to j\). This contributes \(A_{j,i}\) to answer entry \((i,j)\) whenever \(A_{i,j}=0\) and \(i\ne j\).
-- **Prime \(p=2\):** Every zero is deterministically replaced by \(1\), so the answer is the square of the resulting matrix.
-- **Complexity:** Matrix exponentiation takes \(O(N^3\log p)\) time and \(O(N^2)\) memory.
-- **Verification:** The corrected factor uses `k % 2` directly. The p=3 non-loop correction is included, and the implementation produces the three stated sample outputs.

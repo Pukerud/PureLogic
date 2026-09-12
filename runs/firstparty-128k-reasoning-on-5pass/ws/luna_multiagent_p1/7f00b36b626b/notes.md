@@ -1,6 +1,0 @@
-- **DSU:** Initially, every input value is its own component. A successful union decreases the component count.
-- **Values above the threshold:** If `nums[i] > threshold`, its LCM with any distinct positive value is at least `nums[i]`, so it cannot have an edge and remains isolated.
-- **Multiples:** For each present value `d <= threshold`, inspect every multiple `m <= threshold`. All input values dividing the same `m` have pairwise LCM at most `m`, so they belong to one connected group.
-- **Representatives:** `representative[m]` stores one input index whose value divides `m`. Every later present divisor of `m` is unioned with that representative. This captures all relevant edges without checking pairs explicitly.
-- **Correctness:** If two values have LCM at most the threshold, their LCM is one of the processed multiples and both values are unioned through that multiple. Conversely, values dividing one common multiple have LCM no greater than that multiple.
-- **Complexity:** The multiple sweeps take `O(threshold log threshold)` in the worst case, with `O(n + threshold)` memory. DSU operations are near-constant amortized time.

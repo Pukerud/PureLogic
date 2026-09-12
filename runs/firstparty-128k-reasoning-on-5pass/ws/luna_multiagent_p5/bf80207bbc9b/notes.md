@@ -1,7 +1,0 @@
-- **Representation:** Encode each row as a `W`-bit integer mask. Count equal rows in a frequency array of size `2^W`.
-- **Fixed column flips:** Let `c` be the mask of columns flipped an odd number of times. For a row mask `r`, its resulting pattern before optionally flipping the whole row is `r XOR c`.
-- **Independent row choice:** Since each row may be flipped independently, its minimum possible number of ones is `min(popcount(r XOR c), W - popcount(r XOR c))`.
-- **Convolution:** The total cost for every column mask `c` is the XOR convolution of the row-frequency array with `f[d] = min(popcount(d), W - popcount(d))`.
-- **Walsh–Hadamard transform:** XOR convolution is computed by transforming both arrays, multiplying pointwise, and applying the transform again. The unnormalized transform satisfies `FWHT(FWHT(a)) = N*a`, where `N = 2^W`, so every final value is divided by `N`.
-- **Complexity:** The algorithm uses `O(W*2^W + H)` time and `O(2^W)` memory, which fits `W <= 18` and `H <= 2*10^5`.
-- **Correctness details:** Repeated row or column operations only matter by parity. The orientation of bits in each row is irrelevant because all masks use the same XOR metric.

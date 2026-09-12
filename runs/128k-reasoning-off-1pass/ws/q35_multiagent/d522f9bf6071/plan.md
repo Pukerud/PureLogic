@@ -1,6 +1,0 @@
-1. Sort intervals by their end times to facilitate dynamic programming or greedy selection with a sweep-line approach, but since we need lexicographically smallest indices, we must be careful.
-2. Use dynamic programming where `dp[k][i]` represents the maximum weight achievable using `k` non-overlapping intervals from the first `i` intervals (sorted appropriately). However, sorting by end time loses original indices.
-3. Instead, sort intervals by end time, but keep track of original indices. Use a DP approach: `dp[k][i]` = max weight using `k` intervals from the first `i` intervals in the sorted list. To handle lexicographical order, we will reconstruct the solution by iterating through the original indices in increasing order and checking if including the current interval leads to an optimal solution.
-4. Precompute for each interval, the next non-overlapping interval's index in the sorted list using binary search.
-5. Compute DP table: `dp[k][i]` = max weight using `k` intervals from the first `i` intervals (sorted by end time). `dp[k][i] = max(dp[k][i-1], dp[k-1][prev] + weight[i])` where `prev` is the largest index < i such that interval `prev` does not overlap with `i`.
-6. Reconstruct the lexicographically smallest set of indices by iterating through original indices in sorted order and checking if including the interval is part of an optimal solution.

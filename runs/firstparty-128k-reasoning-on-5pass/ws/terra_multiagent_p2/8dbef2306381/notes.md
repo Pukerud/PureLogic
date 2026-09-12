@@ -1,7 +1,0 @@
-- **State DP:** Let `dp[x]` mean whether square `x` is reachable. For a safe square, `dp[x] = OR(dp[x-B], ..., dp[x-A])`; for a bad square, it is zero.
-- **Compressed state:** Store the latest `B` DP values in a `B`-bit vector. Bit `k` represents reachability of `current_position-k`. This is sufficient because all jumps have length at most `B`.
-- **Safe transition:** Advancing by one safe square is a Boolean linear transformation. Its new bit 0 is the OR of old bits `A-1` through `B-1`; each other bit shifts the preceding bit down one state index.
-- **Fast-forwarding:** Precompute Boolean-matrix powers of the safe transition by repeated squaring. A matrix is stored as `B` row bitmasks. Applying one selected power to a state costs `O(B)`, so each safe gap costs `O(B log N)`.
-- **Bad intervals:** Appending one bad square makes the newest DP bit zero and shifts all existing bits toward older positions. For an interval of length `d`, this is simply `(state << d) & ((1<<B)-1)`; if `d >= B`, the state becomes zero.
-- **Complexity:** Matrix-power construction costs `O(B^3 log N)` with small `B <= 20`. Processing all gaps costs `O(M * B * log N)`, suitable for `M <= 20000` and `N <= 10^12`.
-- **Edge cases:** Square 1 is initialized reachable. Intervals do not include squares 1 or N by constraints. Exact-length jumps (`A=B`) work without special handling because the transformation preserves the necessary periodic/remainder information.

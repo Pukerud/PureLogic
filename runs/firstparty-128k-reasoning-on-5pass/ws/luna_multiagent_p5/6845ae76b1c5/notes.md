@@ -1,6 +1,0 @@
-- **Block decomposition:** Partition `A` into blocks of size 700. Precompute `table[q][y]`, the sum against `B_1..B_y` for the first `q` complete blocks of `A`.
-- **Precomputation:** For each A-block, sort its values and use binary search plus prefix sums to compute its contribution to every prefix of `B`. The table stores cumulative sums across A-blocks, so all complete blocks contribute in O(1) per query.
-- **Partial block:** At most 699 A-elements remain after the complete blocks. For each such element, evaluate its contribution against `B_1..B_y` using a persistent segment tree.
-- **Persistent structure:** Each prefix of `B` has a root containing counts and sums by compressed value. A logarithmic traversal obtains the count and sum of values less than a given `A_i`, allowing the absolute-difference sum to be computed from the two sides.
-- **Complexity:** Precomputation uses approximately `O((N^2/S) log S)` time and `O(N^2/S)` 64-bit table memory. Each query costs `O(S log N)` worst case and O(1) for complete blocks. Answers use Python integers, while the precomputed table uses signed 64-bit storage.
-- **Bounds:** The maximum answer is at most about `2 * 10^18`, within signed 64-bit range.

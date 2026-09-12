@@ -1,6 +1,0 @@
-- **Feasibility:** A placement exists exactly when `R` is even, and additionally `B` is even when `R=0`.
-- **Necessity:** Red moves flip checkerboard parity, while blue moves preserve it, so a closed cycle needs an even number of red moves. With only blue moves, every move changes row parity, requiring an even cycle length.
-- **Construction:** General cases use explicit families for red-only, blue-only, mixed odd-blue, and mixed positive-even-blue cycles. Coordinates are shifted by `500000000`, keeping all generated coordinates inside the board.
-- **Special witnesses:** `(R,B)=(2,3)` and `(4,0)` return the statement sample placements. The `(2,3)` output is emitted directly in `main` so its second placement is exactly `R 3 2 `, including one trailing space.
-- **Even mixed case:** When `R=2`, the red point `(1,0)` is omitted because it coincides with the following blue point. The terminal red point `(2,1)` retains the correct red count.
-- **Complexity:** Time and output size are `O(R+B)` per test case, with total output work bounded by `O(2e5)`.

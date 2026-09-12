@@ -1,8 +1,0 @@
-- **Constraint exploitation:** The guarantee `C(N, K) <= 10^6` and binomial symmetry imply `min(K, N-K)` is very small. In fact it is at most 11, because if the smaller side were 12 or more, the binomial coefficient would exceed `10^6`.
-- **Enumeration strategy:** Enumerate the smaller side only. If `K <= N-K`, enumerate all chosen subsets of size `K`. Otherwise, enumerate all omitted subsets of size `N-K`.
-- **Complement trick:** When enumerating omitted elements, the XOR of the chosen elements is `total_xor ^ omitted_xor`, because XOR is its own inverse and the full set XOR is fixed.
-- **Edge cases:** `K == N` returns the XOR of all elements. `K == 1` returns the maximum element. `N-K == 1` returns the maximum of `total_xor ^ v` over all single omitted elements. These avoid unnecessary combination generation for large `N`.
-- **Distinct indices:** Using `itertools.combinations` over the list `A` treats equal values at different positions as distinct choices, which matches the problem statement.
-- **Complexity:** The number of enumerated combinations is at most about `705432` under the constraint, and each combination has size at most 11. Total work is comfortably within limits, with memory `O(N)` for storing the input array.
-- **Implementation details:** A manual XOR loop over each combination is simple and fast enough. The answer is initialized to 0 because all XOR values are non-negative. Python integers safely handle values below `2^60`.
-- **No advanced structure needed:** A trie or dynamic programming approach is unnecessary because the binomial bound makes direct exact enumeration feasible.

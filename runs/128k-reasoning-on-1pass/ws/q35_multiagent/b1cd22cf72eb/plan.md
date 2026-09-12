@@ -1,5 +1,0 @@
-The problem requires minimizing the cost to modify tooth lengths $U_i$ and $D_i$ such that $U_i + D_i = H$ for all $i$, and $|U_i - U_{i+1}| \le X$. The cost is $\sum (U_i + D_i) - N \times H$. To minimize cost, we must maximize $H$.
-The constraints imply $H \le U_i + D_i$ for all $i$, so $H \le \min_i (U_i + D_i)$.
-For a fixed $H$, we need to check if there exists a sequence $U'_i$ such that $H - D_i \le U'_i \le U_i$ and $|U'_i - U'_{i+1}| \le X$. This can be verified by maintaining the feasible range $[cur\_min, cur\_max]$ for $U'_i$ as we iterate through the teeth.
-The feasibility condition is monotonic: if $H$ is feasible, any $H' < H$ is also feasible. Thus, we can binary search for the maximum valid $H$ in the range $[0, \min_i (U_i + D_i)]$.
-Once the maximum $H$ is found, the minimum cost is computed directly.

@@ -1,5 +1,0 @@
-- **Graph traversal:** Since the graph is guaranteed bipartite, each connected component is two-colored using iterative DFS.
-- **Component statistic:** Count components whose total size is even and whose two color classes are both odd. Since the total is even, checking that one class is odd is sufficient.
-- **Winner condition:** If `N` is odd, Aoki wins exactly when `M` is odd. If `N` is even, Aoki wins exactly when `(M % 2) XOR (special_count % 2)` equals `1`.
-- **Complexity:** The algorithm runs in `O(N + M)` time and uses `O(N + M)` memory.
-- **Edge cases:** Isolated vertices form components of size one and are not counted. Empty graphs and already complete bipartite components are handled directly.

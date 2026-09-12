@@ -1,6 +1,0 @@
-- **Mapping consistency:** Every character appearing in `S` must map to exactly one corresponding character in `T`. A conflicting mapping makes the transformation impossible.
-- **Base operation count:** Each non-identity mapping `x -> y` requires one operation.
-- **Cycle handling:** A directed cycle of length at least two needs one additional temporary-character operation. Cycles are counted with DFS over the 26-character mapping graph.
-- **Impossible case:** If all 26 letters appear in `S`, the mapping is a permutation of all 26 letters, and at least one nontrivial cycle exists, there is no spare character available for breaking the cycle, so the answer is `-1`.
-- **Spare character:** If some letter is absent from `S`, or if the mapping is not a permutation due to a collision, a temporary character can be made available and each cycle contributes exactly one extra operation.
-- **Complexity:** The strings are scanned once, and all graph processing uses only 26 vertices. Total complexity is `O(N)` time and `O(1)` extra space.

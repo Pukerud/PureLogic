@@ -1,7 +1,0 @@
-- **Core model:** choose the final common sum S. Since A can be rearranged freely, only the multisets of fixed A values, fixed B values, and blank counts matter.
-- **Feasibility threshold:** let fa and fb be the numbers of fixed entries. If x fixed-fixed pairs are used, the remaining fixed entries must fit into blanks, giving x >= fa + fb - n. If this need is <= 0, the answer is always Yes.
-- **Need one shortcut:** if need == 1, pairing the largest fixed A value with the largest fixed B value always gives a valid S, so the answer is Yes.
-- **Fixed S capacity:** for a fixed S, the maximum number of fixed-fixed pairs is sum over values v of min(cntA[v], cntB[S-v]). Feasibility requires some S >= maximum fixed value with capacity at least need.
-- **Candidate sums:** when need > 0, any feasible S must be a+b for some fixed a and fixed b. Special cases handle one or both sequences fully fixed by testing sums forced by the maximum value of the non-full sequence.
-- **General enumeration:** enumerate unique value pairs from the smaller frequency map, keep only pairs whose sum is at least m, pack each contribution as (sum << 12) + min(counts) capped at need, sort, and aggregate by sum. Shift 12 is safe because need <= 2000 < 4096.
-- **Edge cases:** all blanks, one sequence all blanks, zero values, and fully fixed sequences are covered. Non-negativity is enforced by requiring S >= m.

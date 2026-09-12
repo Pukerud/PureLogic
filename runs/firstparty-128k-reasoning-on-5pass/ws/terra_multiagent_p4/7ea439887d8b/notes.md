@@ -1,7 +1,0 @@
-- **Model:** Only the parity of the number of global reversals matters. With even parity, movement uses original directed edges; with odd parity, movement uses the reverse of every original edge.
-- **State graph:** Represent a state as `(vertex, parity)`, producing `2N` states. For each state, a reversal toggles parity at cost `X`. A movement costs `1`.
-- **Adjacency:** Store both original outgoing adjacency lists and incoming adjacency lists. At parity `0`, move through outgoing neighbors. At parity `1`, move through incoming neighbors, which exactly corresponds to traversing reversed edges.
-- **Shortest path:** Run Dijkstra from `(vertex 1, parity 0)`. All edge weights are positive. The first popped state whose vertex is `N` gives the answer, regardless of parity, because heap pop order is globally nondecreasing by cost.
-- **Complexity:** There are `2N` states and at most `2M + 2N` effective transitions. Time is `O((N + M) log N)` and memory is `O(N + M)`.
-- **Integer safety:** Python integers safely handle answers beyond 32-bit and 64-bit limits. The initialized infinity value is safely larger than the maximum possible relevant cost under constraints.
-- **Validation:** The implementation follows the sample behavior: it can choose no reversal for sample 1, one reversal for sample 2, handles large `X` in sample 3, and supports disconnected-looking directed structures as in sample 4 as long as orientation changes make the destination reachable.

@@ -1,8 +1,0 @@
-- **Window cost:** Making all values in a fixed window equal is optimally done by changing every value to a median. The minimum cost is the sum of absolute deviations from that median.
-- **Sliding median:** Coordinate-compress all array values, then maintain two Fenwick trees over compressed ranks: one for frequencies and one for value sums. The frequency tree finds the median by order statistic; prefix sums calculate deviations on both sides in logarithmic time.
-- **Cost formula:** For median `v`, values at most `v` contribute `v * count_left - sum_left`, while values greater than `v` contribute `sum_right - v * count_right`. Duplicates and negative values are handled naturally.
-- **Window updates:** Each length-`x` window is initialized once, then one outgoing and one incoming value are applied for each slide, giving `O(n log n)` total cost computation.
-- **Dynamic programming:** `prev[i]` stores the minimum cost of selecting exactly the previous number of windows from `nums[:i]`. For a window starting at `s` and ending at `s+x`, transition from `prev[s] + cost[s]`; otherwise skip the current endpoint.
-- **Non-overlap:** Referencing the prefix ending at the window start guarantees all previously selected windows end before the new one starts.
-- **Exactly versus at least:** Since every window cost is nonnegative, any solution using more than `k` windows can discard extra windows without increasing cost. Therefore the minimum for at least `k` equals the minimum for exactly `k`.
-- **Complexity:** Median costs take `O(n log n)` time and `O(n)` auxiliary space. The DP takes `O(nk)` time and `O(n)` space.

@@ -1,7 +1,0 @@
-- **Offline segment union:** Record every movement as an inclusive horizontal segment `(y, min_x, max_x)` or vertical segment `(x, min_y, max_y)`. The final Santa position is maintained while reading movements.
-- **Merging:** Sort segments by fixed coordinate and interval start, then merge overlapping or adjacent intervals. Adjacent merging is valid for integer-coordinate house queries and simplifies representation.
-- **Query structure:** Store merged intervals in flattened `starts` and `ends` arrays. Map each fixed coordinate to an `(offset, count)` range in those arrays. A house is tested by binary searching the interval starts for its row or column.
-- **Distinct houses:** Each input house is unique. Count it once if its horizontal row interval contains it; otherwise check its vertical column interval. This computes membership in the union of all traveled segments without requiring online deletion.
-- **Complexity:** Sorting takes `O(M log M)`. Merging is `O(M)`. Each of `N` house checks costs `O(log M)`, for total `O(M log M + N log M)`. Memory is `O(N + M)`.
-- **Coordinate safety:** Python integers safely handle accumulated displacements beyond 32-bit range, such as sample 2.
-- **Sample validation:** Sample 1 produces final `(2, 3)` and finds houses `(2,2)` and `(2,1)`, count `2`. Sample 2 produces `(3000000000, 0, 0)`.

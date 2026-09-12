@@ -1,5 +1,0 @@
-We need to generate the k-th alternating permutation of [1..n] in lex order, with n ≤ 100 but k up to 1e15, so we cannot enumerate.  
-Alternating permutations are exactly those where odd/even parity alternates, so the sequence starts with an odd (O) or even (E) number and flips each step.  
-There are O = ceil(n/2) odd numbers and E = floor(n/2) even numbers. Total valid permutations = O! * E! (all arrangements of odds in odd positions × evens in even positions, times a factor of 2 if both O and E ≥ 1).  
-We construct the answer position by position: at each step we iterate unused numbers in sorted order, test if placing it keeps the alternating property alive (i.e., the remaining counts of opposite parity are at least the number of remaining slots needing that parity). We compute the number of completions for each candidate using combinatorial formulas with care for parity of last placed number and remaining slots.  
-We subtract counts from k until we find the prefix; if k exceeds total count, return [].

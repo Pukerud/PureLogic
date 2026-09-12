@@ -1,8 +1,0 @@
-- **Necessary parity:** A red move changes the parity of `r+c`, while a blue move preserves it. Therefore every valid cycle has an even number of red pieces.
-- **Pure red cycles:** An even number of red pieces is placed around the perimeter of a rectangle. The special case of two pieces uses two adjacent squares.
-- **Pure blue cycles:** Blue moves become axis-aligned unit moves after transforming to `u=r+c` and `v=r-c`. A rectangle in `(u,v)` coordinates yields a blue cycle. Thus a pure-blue cycle exists exactly for an even positive number of blue pieces.
-- **Mixed feasibility:** If both colors are present, a solution exists whenever `R` is even and positive. Since the total number of pieces is at least two, the only excluded positive-red mixed cases are those with odd `R` or `R=1`.
-- **Mixed base cycles:** For odd `B`, use the 3-cycle with colors `R,R,B`. For even `B`, use the 4-cycle with colors `R,B,R,B`. Both use distinct nearby coordinates.
-- **Cycle expansion:** Any edge can be replaced by a three-edge detour, inserting two pieces of the same color. For a red edge, translate the edge perpendicularly; for a blue edge, translate it in the other diagonal direction. Each replacement preserves move legality and adds exactly two pieces of one color.
-- **Collision handling:** Candidate translations in both directions are tested, and a candidate is accepted only if both new squares are unused and within the board. All generated coordinates remain near `BASE=500000000`.
-- **Complexity:** Each inserted piece is processed a constant number of times. Construction, validation, and memory use are `O(R+B)` per test case, with the required total bound.

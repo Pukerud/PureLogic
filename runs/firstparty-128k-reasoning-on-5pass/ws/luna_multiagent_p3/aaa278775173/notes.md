@@ -1,7 +1,0 @@
-- **Algorithm:** Dynamic programming computes straight continuations and continuations with one clockwise turn available for all four diagonal directions.
-- **Sequence:** Starting cells contain `1`; subsequent values must alternate `2, 0, 2, 0, ...`.
-- **Directions:** Directions are ordered clockwise as NE, SE, SW, NW, so the clockwise turn from direction `d` is `(d + 1) % 4`.
-- **Correctness:** A flexible continuation either proceeds straight while retaining the turn, or turns immediately and then follows a straight-only continuation.
-- **Complexity:** Time complexity is `O(nm)` and memory complexity is `O(nm)`.
-- **Testing:** The implementation passes the four supplied examples, no-`1` grids, a single-cell `1`, straight-only diagonal paths, immediate clockwise-turn paths, and paths reaching matrix boundaries.
-- **Edge behavior:** If no `1` exists, the result is `0`; if at least one `1` exists, a lone starting cell gives result `1`.

@@ -1,7 +1,0 @@
-- **Graph structure:** Interpret each constraint as an edge \(i \to A_i\), requiring \(x_i \le x_{A_i}\). Every weakly connected component of a functional graph contains exactly one directed cycle.
-- **Cycle values:** Along a directed cycle, inequalities hold in both directions around the cycle, so every cycle vertex must receive the same value.
-- **Tree DP:** For a non-cycle vertex \(v\), let `dp[v][t]` count assignments of its entire reverse-tree subtree when \(x_v=t+1\). For every child \(u\), its contribution is the prefix sum \(\sum_{s\le t} dp[u][s]\), because \(x_u\le x_v\). Contributions from different children are multiplied.
-- **Cycle processing:** For a cycle vertex, only its non-cycle reverse-tree children are processed. The resulting vectors for all cycle vertices are multiplied pointwise, then summed over the common cycle value.
-- **Cycle detection:** Repeatedly remove indegree-zero vertices. The remaining vertices are exactly those on directed cycles. Each cycle is then traversed once.
-- **Memory optimization:** Tree DP vectors are created only as needed. A child vector is transformed in place into its prefix sums and reused as the current result when possible, keeping memory practical.
-- **Complexity:** Each tree edge and each cycle vertex performs \(O(M)\) work, for total \(O(NM)\) time. The recursion depth is at most \(N\).

@@ -1,9 +1,0 @@
-- **Formula:** For a positive pair sum \(s\), if \(v=v_2(s)\), then \(f(s)=s/2^v=s-\sum_{k=1}^{v}s/2^k\). Therefore, start with the sum of all pair sums and subtract, for every modulus \(m=2^k\), the total of \(s/m\) over pairs whose sum \(s\) is divisible by \(m\).
-- **All-pairs base sum:** \(\sum_{i\le j}(A_i+A_j)=(N+1)\sum_i A_i\). This includes diagonal pairs correctly.
-- **Fixed-modulus grouping:** For modulus \(m\), a pair is valid exactly when its residues satisfy \(r+q\equiv0\pmod m\), so \(q=(-r)\bmod m\). Store both count and sum of original values for every residue.
-- **Different complementary residues:** If \(r\ne q\), all elements in the two classes form valid unordered index pairs exactly once. Their pair-sum total is \(\text{sum}[r]\text{count}[q]+\text{sum}[q]\text{count}[r]\).
-- **Self-complementary residues:** When \(r=q\), namely residue 0 and residue \(m/2\), all pairs inside the class including diagonals are valid. For a class with count \(c\) and value sum \(S\), the total over \(i\le j\) is \((c+1)S\). Each value occurs once in its diagonal contribution and once with each of the other \(c-1\) elements, yielding coefficient \(c+1\).
-- **Double counting:** Process a residue only when \(r\le(-r\bmod m)\). This processes each distinct complementary class pair once and retains self-complementary classes.
-- **Bounds:** It is enough to process powers \(m\le2\max A_i\), because no positive pair sum exceeds that value. There are at most 24 such powers under the constraints.
-- **Complexity:** Each modulus performs one pass over the array and one pass over occupied residue classes. Time is \(O(N\log\max A)\), memory is \(O(N)\).
-- **Validation:** The implementation handles \(N=1\), including odd values and powers of two. For example, \(A=[1]\) gives \(f(2)=1\), and \(A=[3]\) gives \(f(6)=3\). The stated samples follow directly from the formula.

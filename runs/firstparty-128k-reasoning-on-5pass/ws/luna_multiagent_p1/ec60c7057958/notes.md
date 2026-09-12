@@ -1,7 +1,0 @@
-- **Counting completions:** A state is determined by the remaining counts of odd and even values and the parity required for the next position. If the required parity has no remaining values, the count is zero; if no values remain, the count is one.
-- **Multiplicity:** Once a parity is selected, any remaining value of that parity can occupy the position, so the completion count is multiplied by the number of remaining values of that parity.
-- **Initial position:** There is no parity restriction initially. The total count is the sum of the blocks beginning with an odd value and an even value.
-- **Lexicographic unranking:** At each position, unused values are tried in increasing numerical order. Invalid same-parity candidates are skipped. Each valid candidate defines a contiguous lexicographic block whose size is obtained from the completion-count function; whole blocks are skipped while `k` is larger than the block.
-- **Capping:** Completion counts are capped at `10**15`, the maximum possible input rank. Larger values are equivalent for all comparisons involving `k` and prevent unnecessarily large integer arithmetic.
-- **Validity:** If the total number of alternating permutations is smaller than `k`, the method returns an empty list.
-- **Complexity:** There are only `O(n^2)` dynamic-programming states, and candidate selection takes `O(n^2)` time overall. Memory usage is `O(n^2)` for memoization.

@@ -1,4 +1,0 @@
-- **Parameterization:** Set `d = x - y > 0`. Then `N = d(3y^2 + 3dy + d^2)`. Since `y > 0`, `N > d^3`, so it is sufficient to enumerate `d` through `floor(cuberoot(N))`, at most `10^6`.
-- **Quadratic reconstruction:** For a divisor `d` of `N`, let `q = N / d`. The equation is `3y^2 + 3dy + d^2 - q = 0`. Its discriminant is `D = 12q - 3d^2`. A solution requires `D` to be a nonnegative perfect square `s^2`, with `y = (s - 3d) / 6` a positive integer.
-- **Exact arithmetic:** Use `math.isqrt` and verify `s*s == D`; avoid floating-point roots. The program additionally verifies the final cube difference exactly.
-- **Complexity:** At most about one million candidate differences, each using constant-time integer operations. Memory usage is `O(1)`.

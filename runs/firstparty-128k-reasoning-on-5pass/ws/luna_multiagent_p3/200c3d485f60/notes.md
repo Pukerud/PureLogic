@@ -1,6 +1,0 @@
-- **Counting model:** Select the `k` adjacent positions that are equal from the `n - 1` adjacent pairs, giving `C(n - 1, k)` choices.
-- **Value assignments:** The first element has `m` choices. At each of the remaining `n - 1 - k` change positions, the next value has `m - 1` choices because it must differ from the preceding value.
-- **Formula:** The answer is `m * C(n - 1, k) * (m - 1)^(n - 1 - k)` modulo `10^9 + 7`.
-- **Complexity:** Factorials and inverse factorials are computed in `O(n)` time and `O(n)` memory.
-- **Boundary handling:** For `n = 1`, the arrays have size one and the formula gives `m`. When `m = 1`, any required change contributes a factor of zero; if all adjacent pairs must be equal, the result is one.
-- **Verified outputs:** `(3, 2, 1)` gives `4`; `(4, 2, 2)` gives `6`; `(5, 2, 0)` gives `2`. Also, `n = 1` gives `m`, `k = 0` gives `m * (m - 1)^(n - 1)`, and `k = n - 1` gives `m`.

@@ -1,9 +1,0 @@
-- **Provided examples:** The implementation returns `1` for `"acab"`, `0` for `"wddw"`, and `2` for `"aaabc"`.
-- **All identical test:** For `"aaa"`, choosing `k = 3` and retaining only `a` gives `0`.
-- **Sparse-letter test:** For `"az"`, choosing `k = 1` and retaining `a` and `z` gives `0`. No invalid wraparound conversion from `z` is possible or needed.
-- **Adjacent-saving test:** For `"aa"`, choosing final counts `a = 1`, `b = 1` has baseline cost `2`, but incrementing one `a` to `b` saves one operation, yielding `1`.
-- **Another adjacent test:** For `"aabbc"`, choosing `k = 2` for `a`, `b`, `c` costs `1`: increment one `b` to `c`. The DP obtains this from the edge saving between `b` and `c`.
-- **Recurrence verification:** No recurrence flaw was found. For a fixed target frequency, an adjacent conversion only helps when the left letter has a surplus and the right letter has a deficit. Such a letter cannot simultaneously require incoming characters and provide an original surplus, so savings on adjacent edges do not conflict.
-- **Long conversions:** Moving a character forward by two or more positions costs at least `2`, matching deletion plus insertion. Therefore excluding multi-edge conversions cannot worsen the optimum.
-- **Empty-target state:** The DP permits all target frequencies to be zero, with cost `len(s)`. This does not affect the minimum for valid nonempty input because retaining at least one existing letter is never worse.
-- **Complexity:** The implementation checks at most `max(count) <= len(s)` target frequencies and uses `O(26)` work per frequency, for `O(26n)` time and `O(1)` auxiliary space.

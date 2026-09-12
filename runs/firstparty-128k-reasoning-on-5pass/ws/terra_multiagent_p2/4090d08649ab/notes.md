@@ -1,8 +1,0 @@
-- **Characterization:** For any subarray, only its set of distinct values matters. The minimum operation count equals the number of maximal consecutive-integer runs in that set: a full run can be erased in one operation, and no operation can cross a missing integer.
-- **Run counting formula:** The number of runs in a present-value set equals the number of present values `x` such that `x-1` is absent.
-- **Fixed right endpoint invariant:** After processing positions through `R`, let `last[x]` be the latest occurrence position of value `x`. For a left endpoint `L`, value `x` is present iff `last[x] >= L`. Thus `x` begins a run iff `last[x] >= L > last[x-1]`.
-- **Summed contribution:** The number of left endpoints for which `x` starts a run is `max(0, last[x] - last[x-1])`. Therefore `S_R = sum_{L=1..R} f(L,R) = sum_{x=1..N} max(0, last[x] - last[x-1])`.
-- **O(1) update:** When appending value `p=A_R`, only `last[p]` changes, so only summands for `x=p` and `x=p+1` can change. Remove these old contributions, set `last[p]=R`, then add the new contributions.
-- **Answer:** Add `S_R` after every right endpoint. Python integers safely handle the result.
-- **Complexity:** `O(N)` time and `O(N)` memory.
-- **Verification:** The implementation yields the stated outputs `16`, `23`, and `129` for the three provided samples.

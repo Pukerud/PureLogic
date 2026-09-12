@@ -1,6 +1,0 @@
-- **Approach:** Process insertion operations in reverse order. When placing value `i`, all values greater than `i` already occupy their final positions. Therefore, `i` goes into the `P_i`-th currently empty final slot from the left.
-- **Data structure:** Use a Fenwick tree storing `1` for available positions and `0` for occupied positions. It supports removing a slot in `O(log N)` and finding the k-th available slot through binary lifting in `O(log N)`.
-- **Initialization:** A Fenwick tree representing an all-ones array can be initialized directly with `bit[i] = i & -i`, avoiding `N` individual update operations.
-- **Order statistic search:** Binary lifting finds the largest index whose prefix sum is strictly less than `k`; the required position is one greater.
-- **Complexity:** Time complexity is `O(N log N)` and memory complexity is `O(N)`.
-- **Validation:** For sample 1, reverse placement produces `4 2 3 1`. For sample 2, it produces `1 2 3 4 5`.

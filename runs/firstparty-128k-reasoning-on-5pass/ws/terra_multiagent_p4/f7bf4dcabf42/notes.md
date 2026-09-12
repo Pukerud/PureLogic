@@ -1,6 +1,0 @@
-- **Approach:** Track the full LCS DP row `d[j] = LCS(T, S[:j])` after constructing each prefix `T` of a candidate string. This row fully determines all future transitions.
-- **State transition:** For appended character `c`, compute a new row with `new[0]=0`; for each `j>=1`, if `S[j-1]==c`, then `new[j]=old[j-1]+1`, otherwise `new[j]=max(old[j], new[j-1])`.
-- **State count:** Adjacent LCS-row values differ by at most one, so at most `2^N` relevant row patterns exist. With `N<=10`, this is small.
-- **DP:** Start from the all-zero row with count one. Repeat `M` times, applying every lowercase letter transition. Equal resulting states from multiple letters are grouped with a multiplicity.
-- **Result:** After exactly `M` transitions, accumulate each state count according to its final component `state[N]`, which is the LCS length with the entire fixed string.
-- **Complexity:** At most roughly `O(M * 2^N * 26 * N)`, easily within limits.

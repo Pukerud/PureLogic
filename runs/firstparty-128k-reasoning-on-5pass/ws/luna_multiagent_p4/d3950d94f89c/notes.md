@@ -1,9 +1,0 @@
-- **Traversal:** The tree is rooted at node 0 and processed with iterative enter/exit events, so chains of up to 50,000 nodes do not risk Python recursion limits.
-- **Active path:** `path_dist` stores root-to-node distances for positions on the current root-to-current path.
-- **Duplicate handling:** For each value, `latest[value]` is its most recent active position and `conflict[value]` is its previous occurrence. A path ending at position `pos` is unique when it starts after the maximum active conflict position.
-- **Heap:** A lazy max-heap stores conflict positions. Each entry includes a per-value version; entries are ignored unless both the version and conflict position still match the active state.
-- **Restoration:** Every enter event saves the value’s previous state. Its matching exit event restores that state before processing sibling subtrees.
-- **Evaluation:** If the maximum conflict position is `boundary`, the valid path starts at `boundary + 1`, contains `pos - boundary` nodes, and has length `distance - path_dist[boundary + 1]`.
-- **Tie-breaking:** The result maximizes length and, among equal lengths, minimizes node count. It starts as `[0, 1]`, correctly covering singleton paths.
-- **Validation:** The logic matches both supplied examples and exhaustive/brute-force comparisons on targeted small random trees, including repeated values, arbitrary edge orientations, equal-length ties, and singleton optima. A 50,000-node chain uses iterative traversal successfully without recursion or asymptotic issues.
-- **Complexity:** Each node causes only constant-many heap insertions, and each stale entry is removed once. Total complexity is `O(n log n)` time and `O(n)` memory.

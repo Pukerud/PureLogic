@@ -1,8 +1,0 @@
-- **Reduction:** For a target D, dist(1,N) >= D with at most K unit edges iff there is an integer potential h with h(1)=0, h(N)=D, h(v) <= h(u)+1 for every edge u->v, and at most K edges where h(v)=h(u)+1. Setting exactly those upward edges to 1 certifies D; conversely, cap the weighted shortest distances at D to obtain such h.
-- **Exact K:** If at most K edges suffice, extra chosen edges can be set to 1 arbitrarily; distances only increase, so exactly K is equivalent.
-- **Upper bound:** A shortest path can be chosen simple, so it has at most N-1 edges and at most K edges of weight 1; answer <= min(N-1, K).
-- **Cut variables:** y_{v,i}=1 means h(v) >= i. In a finite s-t cut, source side is true. Force N true with S->(N,i) INF and 1 false with (1,i)->T INF. Monotonicity y_{v,i} => y_{v,i-1} is an INF arc (v,i)->(v,i-1).
-- **Edge constraints:** For original edge u->v, Lipschitz h(v) <= h(u)+1 is y_{v,i} => y_{u,i-1} for i>=2, added as INF arc (v,i)->(u,i-1). The unit cost arc (v,i)->(u,i) is cut exactly when y_{v,i}=1 and y_{u,i}=0; for a valid h this happens once iff h(v)=h(u)+1.
-- **Feasibility test:** Build the network for D, run maxflow from S to T with early limit K+1. If flow <= K, mincut <= K and D is feasible; otherwise not. D=0 is always feasible.
-- **Search:** Feasibility is monotone in D, so binary search on [0, min(N-1, K)].
-- **Implementation notes:** Nodes are v*D+(i-1) for 0-indexed v and i=1..D; S=N*D, T=S+1; INF=10**9. Multi-edges are independent cost arcs. Dinic with recursion limit raised; the K+1 limit keeps flow computation small.

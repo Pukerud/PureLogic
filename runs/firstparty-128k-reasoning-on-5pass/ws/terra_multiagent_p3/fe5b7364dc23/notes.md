@@ -1,6 +1,0 @@
-- **Prefix transformation:** Let \(S_0=0\) and \(S_r=\sum_{i=1}^{r}A_i\). Every subarray sum is \(S_r-S_{l-1}\), so the required answer is \(\sum_{0\le j<r\le N}(S_r-S_j)^K\).
-- **Binomial expansion:** For a fixed current prefix sum \(x=S_r\), expand \((x-y)^K=\sum_{t=0}^{K}\binom{K}{t}(-1)^t x^{K-t}y^t\). If `moments[t]` stores \(\sum_{j<r}S_j^t\), the contribution for this endpoint is \(\sum_t \binom{K}{t}(-1)^t x^{K-t}\text{moments}[t]\).
-- **Streaming order:** Initialize `moments[0] = 1` for \(S_0=0\). For each new prefix sum, first calculate its contribution against previously inserted prefix sums, then add its powers to all moments. This enforces \(j<r\).
-- **Complexity:** Generate powers \(S_r^0,\ldots,S_r^K\) in \(O(K)\), calculate the contribution in \(O(K)\), and update moments in \(O(K)\). Total complexity is \(O(NK)\), with \(O(K)\) memory.
-- **Modulo handling:** Prefix sums, powers, moments, and answer are reduced modulo 998244353. The binomial coefficients use alternating signs represented modulo the modulus.
-- **Validation:** The implementation follows the stated formula and handles zero elements, including the \(N=1,K=10,A_1=0\) case.

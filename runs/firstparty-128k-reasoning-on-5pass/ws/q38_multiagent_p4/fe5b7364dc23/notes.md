@@ -1,9 +1,0 @@
-- **Prefix reduction:** Let S_0=0 and S_r=sum_{i=1}^r A_i modulo MOD. Every subarray sum is S_r - S_l for 0 <= l < r <= N, so the answer is sum_{r=1}^N sum_{l=0}^{r-1} (S_r - S_l)^K.
-- **Binomial expansion:** For fixed r, (S_r - S_l)^K = sum_{j=0}^K C(K,j)(-1)^j S_r^{K-j} S_l^j. Summing over l only needs the moments B_j = sum_{l<r} S_l^j.
-- **Scan state:** Maintain B[0..K]. Initially only S_0=0 is available, so B[0]=1 and B[j]=0 for j>0. For each new prefix S_r, first query the answer using the old B, then add S_r^j to B[j]. This order enforces l<r.
-- **Powers:** p[0]=1 always; p[t]=S^t modulo MOD for t=1..K. Reusing one p list avoids allocation. For S=0, p[t]=0 for t>=1 while p[0]=1, which correctly handles zero prefixes and the 0^0 count term.
-- **Coefficients:** Precompute coeff[j]=C(K,j)*(-1)^j modulo MOD. Odd j use (-C) modulo MOD. K<=10, so coefficients are tiny and can be built iteratively without factorials.
-- **Modulo details:** All additions and multiplications are reduced modulo 998244353. Prefix S is reduced by one subtraction because A_i<MOD. B updates use one subtraction since B[j]+p[j]<2*MOD. ans also uses one subtraction after adding a reduced total.
-- **Complexity:** Each of N prefixes does O(K) work for powers, query, and update, so O(NK) time and O(K) extra memory. With N=2e5 and K<=10 this is about 2e6 inner iterations.
-- **Samples:** The method gives 75 for sample 1, 0 for sample 2, and the expected 428633385 for sample 3. The submitted code contains no hardcoded sample checks.
-- **Edge cases:** N=1, all zeros, K=1, and K=10 are covered. If K=0 were ever given, the same loop would count all subarrays, but constraints have K>=1.

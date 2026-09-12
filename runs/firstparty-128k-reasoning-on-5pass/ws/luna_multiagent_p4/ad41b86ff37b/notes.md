@@ -1,6 +1,0 @@
-- **Characterization:** Choose the initial vertex as the snowflake center. Every retained neighbor of it is a second-layer vertex, and each such vertex needs exactly \(y\) retained leaf neighbors besides the center.
-- **Capacity:** For a center \(u\) and neighboring vertex \(v\), the number of possible leaves is \(\deg(v)-1\), since one incident edge is used to connect \(v\) to \(u\).
-- **Fixed threshold:** For a positive \(y\), every neighbor with capacity at least \(y\) can be selected. If there are \(i\) such neighbors, the resulting snowflake has \(1+i(y+1)\) vertices.
-- **Threshold optimization:** Sort capacities in descending order. For the \(i\)-th capacity \(c_i>0\), choosing \(y=c_i\) allows the first \(i\) neighbors and yields \(1+i(c_i+1)\). The optimum occurs at one of these capacity values.
-- **Complexity:** Sorting each adjacency list costs \(O(\sum_v \deg(v)\log\deg(v))=O(N\log N)\) overall. Memory usage is \(O(N)\).
-- **Edge cases:** Capacities equal to zero cannot support the required positive \(y\), so they are ignored. At least one positive capacity is guaranteed for any valid transformation; the path on three vertices is handled by choosing an endpoint as the center.

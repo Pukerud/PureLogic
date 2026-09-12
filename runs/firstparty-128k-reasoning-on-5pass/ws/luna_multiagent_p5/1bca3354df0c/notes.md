@@ -1,7 +1,0 @@
-- **Bipartition:** Every connected component is bipartite. Let its color-class sizes be `(a, b)`.
-- **Terminal states:** Once no move remains, every connected component must be a complete bipartite graph; because any two different components can always be joined, the final graph is one connected complete bipartite graph with partition sizes `(A, N-A)`.
-- **Total move parity:** The total number of moves from the initial state to a terminal graph is `A(N-A) - M` modulo 2.
-- **Odd `N`:** For every `A`, one of `A` and `N-A` is even, so `A(N-A)` is always even. Therefore the outcome depends only on `M`: Aoki wins exactly when `M` is odd.
-- **Even `N`, all component sizes even:** Swapping the two sides of an even-sized component does not change the parity of its side size. Hence the parity of the final `A` is fixed and equals the parity of the sum of one selected color-class size from every initial component. Therefore the terminal move parity is fixed as `(M + sum_a) mod 2`.
-- **Even `N`, at least one odd-sized component:** There are at least two odd-sized components. Their relative bipartition orientation can be selected by a move between them, allowing the player to force the parity of the eventual complete bipartite edge count. The first player consequently has a winning strategy regardless of `M`.
-- **Complexity:** BFS coloring takes `O(N + M)` time and `O(N + M)` memory.

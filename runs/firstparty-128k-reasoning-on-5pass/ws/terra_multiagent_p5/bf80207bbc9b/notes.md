@@ -1,7 +1,0 @@
-- **Model:** Let each row and column be flipped zero or one times, since repeated flips cancel modulo two. With column flip mask `c`, row mask `r` becomes `r XOR c` before deciding whether to flip that row.
-- **Per-row optimum:** If `d = r XOR c` has `k` one bits, leaving the row costs `k` ones and flipping it costs `W-k`. Thus its optimal contribution is `cost[d] = min(popcount(d), W-popcount(d))`.
-- **Objective:** For every column mask `c`, the minimum total is `ans[c] = sum_r freq[r] * cost[r XOR c]`, where `freq[r]` counts input rows equal to mask `r`.
-- **XOR convolution:** This objective is exactly XOR convolution of `freq` and `cost`. Apply FWHT to both arrays, multiply pointwise, apply FWHT again, then divide every result by `2^W`.
-- **Complexity:** Arrays have size `N = 2^W <= 262144`. Three FWHT passes take `O(W * 2^W)` time and `O(2^W)` memory. Reading and counting rows takes `O(HW)` due to parsing binary strings.
-- **Edge cases:** For `W=1`, every row can always be independently made zero, and `cost` is all zero, producing answer zero. FWHT values can be negative during transforms but the final inverse values are nonnegative multiples of `N`.
-- **Mask parsing:** Python `int(binary_bytes, 2)` directly converts each input row to its bitmask. No explicit bitwise complement is needed, avoiding width-masking pitfalls.

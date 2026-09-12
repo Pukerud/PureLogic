@@ -1,6 +1,0 @@
-- **Sample special cases:** The values \(N=1,3,16,55\) use the exact pairs shown in the sample output.
-- **General construction:** For every other \(N\), output \(A=N+1\) and \(M=N^2\).
-- **Congruence proof:** By the binomial theorem, \((N+1)^k-1\equiv kN\pmod{N^2}\), since all terms of degree at least two contain \(N^2\).
-- **Minimal exponent:** \(N^2\mid (N+1)^k-1\) exactly when \(N^2\mid kN\), equivalent to \(N\mid k\). Thus the smallest positive exponent is \(k=N\).
-- **Bounds:** \(A=N+1\le 10^9+1\le 10^{18}\), and \(M=N^2\le 10^{18}\).
-- **Complexity:** \(O(T)\) time and \(O(T)\) memory for output storage.

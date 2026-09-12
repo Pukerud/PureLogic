@@ -1,7 +1,0 @@
-- **Path interpretation:** Every path is determined by its start block, end block, and a monotone sequence of positive-x or positive-y moves. Zero-move paths are included.
-- **Full-grid count:** The number of paths ending at `(i,j)` from all starts is `C(i+j+2, i+1)-1`. Summing over all endpoints gives `prefix(W,H) - (W+1)(H+1)`.
-- **Prefix identity:** `prefix(a,b) = sum C(i+j+2,i+1) = C(a+b+4,a+2)-a-b-4` for nonnegative `a,b`; it is zero if either argument is negative.
-- **Forbidden starts:** Summing `paths_from(x,y) = C((W-x)+(H-y)+2,W-x+1)-1` over the forbidden rectangle counts paths whose first block is forbidden.
-- **Boundary entries:** Any path whose first forbidden block is reached by a move must enter through the rectangle’s left or bottom boundary. The left contribution uses predecessor `(L-1,y)`, and the bottom contribution uses predecessor `(x,D-1)`.
-- **Corner handling:** The corner `(L,D)` can be entered from either side, and these are distinct paths. Therefore the bottom-boundary loop includes `x=L`; if `L>0`, the left-boundary correction also includes the same corner.
-- **Complexity:** Factorial precomputation uses `O(W+H)` time and memory. Boundary corrections use `O((U-D+1)+(R-L+1))` time.

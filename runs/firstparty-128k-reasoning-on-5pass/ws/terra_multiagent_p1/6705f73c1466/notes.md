@@ -1,4 +1,0 @@
-- **Approach:** Record zero-based positions of all `1`s as `pos[i]`. If the final contiguous block starts at `x`, the `i`-th one in preserved order moves to `x+i`, so its movement contribution is `abs(pos[i] - (x+i)) = abs((pos[i]-i)-x)`.
-- **Median reduction:** Define `adjusted[i] = pos[i] - i`. The required swap count for a block start `x` is `sum(abs(adjusted[i]-x))`, minimized by any median of `adjusted`.
-- **Correctness:** Adjacent swaps only need to move ones across zeros; crossing count equals the total movement distance under order-preserving matching. The adjusted positions are nondecreasing, so their median is directly available without sorting.
-- **Complexity:** Collecting positions and summing distances take `O(N)` time and `O(N)` memory. Python integers safely hold the answer.

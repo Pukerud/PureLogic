@@ -1,9 +1,0 @@
-- **Model:** The global orientation is a binary mode, so the shortest path is on 2N states: vertex v in original mode (layer 0) or reversed mode (layer 1). The current vertex and mode fully determine all future legal moves and costs.
-- **Move edges:** In layer 0, a move follows original outgoing adjacency `out[v]` with cost 1. In layer 1, an original edge `u -> v` has been reversed to `v -> u`, so a move from v follows original incoming adjacency `inc[v]` with cost 1.
-- **Toggle edges:** Reversing all edges keeps the vertex unchanged and flips the layer, with cost X. This is represented by edges `(v,0) <-> (v,1)`.
-- **Start and goal:** Start is vertex 1 in layer 0. The goal is vertex N in either layer. Dijkstra from the start and early exit when a popped state has vertex N gives the minimum because heap pops are nondecreasing distance.
-- **Implementation:** Use 0-indexed vertices and encode state as `s = 2*v + layer`, so the two goal states are `2*(N-1)` and `2*(N-1)+1`. A single distance array of length `2*N` and a heap of `(distance, state)` are used. Stale entries are skipped by checking `d != dist[s]`.
-- **Complexity:** The expanded graph has `2M` move edges and `2N` toggle edges, so Dijkstra runs in `O((N+M) log(N+M))` time and `O(N+M)` memory, which fits the constraints.
-- **Numerics:** Python integers are arbitrary precision; a large finite sentinel such as `10**30` is safe because the answer is bounded by roughly `2N * max(1, X)`.
-- **Edge cases:** Self-loops and parallel edges are harmless; they only create extra adjacency entries. The target may be reached in either layer, so both goal states matter. The fallback print of the minimum of the two goal distances is safe, though reachability is guaranteed.
-- **Pitfalls:** Do not use outgoing adjacency in reversed mode; it must be incoming. Do not stop when a goal state is first discovered; stop only when it is popped after the stale check.

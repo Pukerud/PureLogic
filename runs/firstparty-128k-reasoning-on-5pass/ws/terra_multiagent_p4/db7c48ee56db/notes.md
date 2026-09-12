@@ -1,7 +1,0 @@
-- **Enumeration strategy:** The condition \(\binom{N}{K} \le 10^6\) permits enumerating all valid subsets.
-- **Complement reduction:** Let `total_xor` be the XOR of every array element. If `K > N-K`, enumerate the excluded subset of size `N-K` instead. XOR of selected elements is then `total_xor ^ excluded_xor`.
-- **Reduced subset size:** Set `r = min(K, N-K)`. If choosing directly, each complete subset XOR is the candidate. If excluding, XOR it with `total_xor`.
-- **DFS:** Generate index combinations in increasing order. `dfs(start, remaining, current_xor)` chooses the next index from `[start, N-remaining]`, ensuring enough elements remain.
-- **Complexity:** Leaves are exactly \(\binom{N}{r}\), at most \(10^6\). DFS internal nodes are also manageable under this guarantee. Memory is \(O(r)\) recursion depth besides input storage.
-- **Edge cases:** `K=N` directly outputs XOR of all elements. Python integers safely support the required 60-bit values.
-- **Validation:** Sample 1 enumerates pairs and returns `7`. Sample 2 returns `2024`.

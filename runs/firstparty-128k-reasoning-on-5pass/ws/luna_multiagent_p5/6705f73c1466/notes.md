@@ -1,5 +1,0 @@
-- **Core idea:** Adjacent swaps preserve the relative order of the `1`s, so the `i`-th original `1` must be matched with the `i`-th position in the final contiguous block.
-- **Target block:** If the block starts at zero-based position `x`, its positions are `x, x+1, ..., x+K-1`, where `K` is the number of `1`s.
-- **Transformation:** For original `1` positions `p_i`, the swap cost is `sum(abs(p_i - (x+i))) = sum(abs((p_i-i)-x))`. Define `q_i = p_i-i`.
-- **Optimization:** The sum of absolute deviations is minimized by choosing `x` as a median of the `q_i` values.
-- **Complexity:** Collecting positions and computing the answer both take `O(N)` time and `O(K)` memory. The transformed values are nondecreasing, so no sorting is required.

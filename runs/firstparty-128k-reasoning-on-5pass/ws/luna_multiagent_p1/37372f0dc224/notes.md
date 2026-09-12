@@ -1,4 +1,0 @@
-- **Core idea:** Let `L` be the longest palindromic suffix of `S`. The shortest palindrome starting with `S` is `S + reverse(S[:n-L])`.
-- **Finding `L`:** In `reverse(S) + '#' + S`, the final KMP prefix-function value is the longest prefix of `reverse(S)` matching a suffix of `S`. Such a match is exactly a palindromic suffix of `S`.
-- **Complexity:** The KMP computation takes `O(n)` time. The `array('I')` prefix table uses compact linear memory, and the output construction is also `O(n)`.
-- **Separator:** `#` is not an uppercase English letter, so KMP matches cannot cross the boundary between the reversed string and `S`.

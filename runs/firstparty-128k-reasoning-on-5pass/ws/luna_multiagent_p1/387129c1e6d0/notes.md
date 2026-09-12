@@ -1,6 +1,0 @@
-- **Algorithm:** Record every horizontal movement as an inclusive x-interval grouped by its y-coordinate, and every vertical movement as an inclusive y-interval grouped by its x-coordinate.
-- **Interval merging:** Sort intervals independently on each row or column and merge overlapping or adjacent intervals. Adjacency can also be merged safely because all coordinates are integers and only point coverage matters.
-- **House detection:** A house is visited if its coordinate lies in a merged horizontal interval on its row or a merged vertical interval on its column. Each house is checked once, so duplicate visits are counted only once.
-- **Complexity:** Recording takes O(M). Sorting all interval groups takes O(M log M) in total worst-case. House queries take O(N log M), with O(N + M) memory.
-- **Coordinates:** Python integers support the potentially large final coordinates without overflow.
-- **Endpoints:** Every movement interval is inclusive, correctly counting houses at both the departure and arrival endpoints of each action.

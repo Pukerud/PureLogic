@@ -1,6 +1,0 @@
-- **Reverse reconstruction:** Process values from \(N\) down to \(1\). At step \(i\), the \(P_i\)-th currently unused final position is exactly the final position of \(i\).
-- **Fenwick tree:** Store \(1\) for each unused position and \(0\) for each occupied position. It supports deleting a position and finding the position of the \(k\)-th unused slot in \(O(\log N)\).
-- **Initialization:** Since every position starts available, the Fenwick tree entry at index \(i\) is initialized as \(i \mathbin{\&} (-i)\), the sum of an all-ones range represented by that node.
-- **Order statistic:** Fenwick binary lifting locates the smallest index whose prefix sum is at least \(k\).
-- **Complexity:** The total time is \(O(N \log N)\), and memory usage is \(O(N)\).
-- **Indexing:** Arrays and Fenwick positions are one-indexed; the answer is printed from position \(1\) through \(N\).

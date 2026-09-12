@@ -1,8 +1,0 @@
-- **Approach:** Count beautiful numbers in `[1, x]`, then subtract `count_up_to(l - 1)` from `count_up_to(r)`.
-- **Digit DP:** For each possible digit sum `s`, the DP tracks position, current digit sum, product modulo `s`, whether a non-leading digit has appeared, and whether the prefix is tight to `x`.
-- **Leading zeros:** Zeros before the first nonzero digit are ignored. Once the number has started, multiplying by zero correctly makes the product remainder zero.
-- **Acceptance:** A terminal state contributes when the number has started, its digit sum equals the selected target sum, and its product modulo that sum is zero.
-- **Uniqueness:** Every positive number is counted for exactly one target sum: its actual digit sum.
-- **Bounds and pruning:** With at most nine digits, target sums range from `1` to `81`. States are discarded when the current sum exceeds the target or the remaining digits cannot reach it.
-- **Edge cases verified conceptually:** Single-digit numbers are all beautiful; internal-zero numbers such as `101` are accepted because their product is zero; powers-of-ten boundaries such as `9` to `10` and `99` to `100` are handled by leading-zero state management.
-- **Examples:** `[10, 20]` yields `2` (`10`, `20`), and `[1, 15]` yields `10` (`1` through `10`).

@@ -1,9 +1,0 @@
-- **Model:** The absorbed cells always form one connected region containing the starting cell. The only cells that can be absorbed next are unabsorbed cells adjacent to this region, i.e. the frontier.
-- **Monotonicity:** All strengths are positive, so the current total strength never decreases. Expanding the region only adds new frontier cells and never removes existing ones.
-- **Greedy rule:** Keep the frontier in a min-heap keyed by strength. If the weakest frontier cell has strength `s` and `X * s >= total`, then every other frontier cell has strength at least `s`, so no frontier cell can be absorbed and the process must stop.
-- **Safety of absorbing the weakest:** If `X * s < total`, absorbing that cell is always safe and dominant: it increases `total` and can only make more cells reachable or absorbable later.
-- **State handling:** Use a `bytearray` with values `0` unseen, `1` already in the frontier, and `2` absorbed. Marking a cell as `1` when first pushed prevents duplicate heap entries.
-- **Strict inequality:** The condition is `X * s < total`, not `<=`. Python integers safely handle values up to about `10^21` for `X * s`.
-- **Complexity:** Each cell is pushed at most once and popped at most once, giving `O(HW log(HW))` time and `O(HW)` memory.
-- **Edge cases:** Single cell, one-row or one-column grids, `X = 1`, equal strengths, and large values are handled by the same boundary checks and integer comparison.
-- **Verification:** Sample 1 absorbs strengths `4`, `6`, and `9`, reaching `28`, then stops because the next weakest frontier cell `14` gives `2 * 14 == 28`. Sample 2 stops immediately because the weakest frontier cell is `10` and `1 * 10 >= 5`. Sample 3 follows the same greedy closure and matches the expected output `1343`.

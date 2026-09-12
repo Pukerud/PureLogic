@@ -1,9 +1,0 @@
-- **Verification:** The implementation returns `4` for `nums = [2, 4, 8, 3, 9], threshold = 5`. Values `8` and `9` are isolated because they exceed the threshold; `2` and `4` union through multiple `4`; `3` remains separate.
-- **Verification:** The implementation returns `2` for `nums = [2, 4, 8, 3, 9, 12], threshold = 10`. Valid values form one component: `2, 4, 8` connect through multiples of `4` or `8`, `2` and `3` connect through `6`, and `3` and `9` connect through `9`. Value `12` is isolated.
-- **Boundary case:** For `nums = [1], threshold = 1`, the result is `1`. The sole valid value is its own DSU root.
-- **Boundary case:** For values all greater than the threshold, such as `nums = [2, 3, 100], threshold = 1`, the result is the number of input values, since every node is isolated.
-- **Boundary case:** If `1` is present and is at most the threshold, it connects to every other valid value because `lcm(1, x) = x <= threshold`; the multiple scan unions all valid values with `1`.
-- **Observation:** Any value greater than `threshold` is isolated because `lcm(x, y) >= x > threshold` for every positive `y`.
-- **Connectivity condition:** Two valid values share an edge exactly when they divide a common multiple at most `threshold`. If both divide `m`, then their LCM divides `m`, so it is at most `threshold`.
-- **Correctness:** Every direct edge `(a, b)` is processed at `m = lcm(a, b)`, where both values appear in the divisor scan and are unioned. Every performed union corresponds to two values with LCM at most the shared multiple, hence to a graph edge.
-- **Complexity:** The total multiple iteration count is at most `O(threshold log threshold)`, DSU operations are amortized near-constant time, and memory usage is `O(threshold)`.

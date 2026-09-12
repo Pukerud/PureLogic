@@ -1,1 +1,0 @@
-For each query (X, Y), extract the prefixes A[:X] and B[:Y], sort them. Compute the sum of |A_i - B_j| using the formula: Y * sum(A) + X * sum(B) - 2 * sum(min(A_i, B_j)). The min-sum is computed in O(X+Y) with two pointers on the sorted arrays. This yields O((X+Y) log(X+Y)) per query, which is efficient for the given constraints.

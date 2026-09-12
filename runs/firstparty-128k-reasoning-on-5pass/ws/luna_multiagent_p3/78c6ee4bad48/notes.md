@@ -1,6 +1,0 @@
-- **Gap transformation:** For four consecutive coordinates with gaps \(p,q,r\), the operation changes them to \(r,q,p\). Therefore, it swaps gap positions whose indices differ by two.
-- **Reachability:** Repeated swaps at distance two generate arbitrary permutations among odd-indexed gaps and independently among even-indexed gaps. No gap can move between the two parity classes.
-- **Objective:** The coordinate sum is \(N X_1+\sum_{j=1}^{N-1}(N-j)g_j\), where \(g_j=X_{j+1}-X_j\).
-- **Optimal assignment:** Within each parity class, the coefficients \(N-j\) strictly decrease as \(j\) increases. By the rearrangement inequality, assign the gaps in ascending order to positions of that parity in ascending index order.
-- **Arithmetic:** The implementation uses only integer gap differences and weighted sums; midpoint values do not need to be computed.
-- **Complexity:** Sorting the two parity classes costs \(O(N\log N)\) time and the scan uses \(O(N)\) additional time and memory.

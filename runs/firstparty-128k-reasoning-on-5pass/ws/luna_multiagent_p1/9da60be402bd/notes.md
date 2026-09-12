@@ -1,8 +1,0 @@
-- **State meaning:** A state `(x, y)` represents the shortest palindromic path from vertex `x` to vertex `y`.
-- **Base cases:** Every empty path `(i, i)` has length `0`. Every existing single edge has a palindrome of length `1`.
-- **Expansion rule:** If `(x, y)` is an inner palindrome, it can be surrounded by edges `u -> x` and `y -> v` having the same label, producing `(u, v)` with length increased by `2`.
-- **Direction correctness:** Expansion uses incoming edges to `x` and outgoing edges from `y`; reversing this relation would describe a different path relation.
-- **Layered shortest paths:** All transitions add exactly `2`, so states are processed in increasing distance layers. Since every state is assigned only once, the first discovered distance is optimal.
-- **Efficiency:** Current-layer states are aggregated by `(label, outer start vertex)` using integer bitmasks of possible inner ending vertices. This avoids explicitly enumerating every pair of matching outer edges for every state.
-- **Storage:** The distance table has `N²` entries. Edge-label adjacency structures use at most `N²` directed edges.
-- **Edge cases:** Diagonal answers are always zero, self-loops never improve them, missing paths remain `-1`, and paths may repeat vertices or edges naturally through the state expansion.

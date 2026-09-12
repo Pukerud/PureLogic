@@ -1,8 +1,0 @@
-- **Problem model:** Each constraint is an undirected edge with XOR weight. A good sequence exists exactly when every connected component has consistent XOR potentials.
-- **Consistency check:** For each component, set the root potential to 0 and traverse iteratively. For edge u-v with weight z, require pot[v] = pot[u] xor z. If an already assigned vertex violates this, output -1.
-- **Solution space:** In a consistent component, every valid assignment has the form A_v = C xor pot[v], where C is one free integer shared by the whole component.
-- **Bitwise minimization:** The total sum is additive over bits. For bit b, choosing C_b=0 gives cnt[b] ones, while choosing C_b=1 gives size-cnt[b] ones. Set C_b=1 only when cnt[b]*2 > size; ties choose 0. Bits are independent, so this minimizes the whole sum.
-- **Implementation details:** Read all integers, build an adjacency list, and use -1 as the unvisited sentinel. Isolated vertices are set to 0 directly. Otherwise, iterative DFS collects component vertices and counts bit frequencies of potentials. Use B = max(1, max_z.bit_length()) because XOR potentials cannot use higher bits than the maximum input Z. Compute C, assign ans[v] = C xor pot[v], and output with a trailing newline.
-- **Complexity:** O(N + M + N*B) time with B <= 30 under the constraints, and O(N + M) memory.
-- **Edge cases:** M=0 gives all zeros; isolated vertices are zero; a self-loop is valid only with Z=0; parallel edges and cycles are checked by the same potential equality; inconsistent cycles print -1.
-- **Verification:** The three samples match expected outputs. Mental edge-case checks include zero/nonzero self-loops, M=0, isolated vertices, parallel inconsistent edges, and inconsistent cycles.

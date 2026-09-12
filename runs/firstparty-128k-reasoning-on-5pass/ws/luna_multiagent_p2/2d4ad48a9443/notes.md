@@ -1,7 +1,0 @@
-- **Cost formula:** For a fixed subarray `[left, right]`, the minimum repaired value at each position is its prefix maximum. The required operations equal the sum of these prefix maxima minus the original sum.
-- **Next-greater chains:** For each index `i`, compute the first position to its right with a strictly larger value. Prefix maxima over a range follow this chain; each chain node contributes its value across the interval until the next greater element.
-- **Binary lifting:** Store jump destinations and weighted contributions for powers of two along each next-greater chain. A range cost query takes `O(log n)`.
-- **Sliding window:** For each right endpoint, advance the left endpoint while the current cost exceeds `k`. The minimum valid left endpoint never moves backward because extending a subarray cannot reduce its repair cost.
-- **Complexity:** `O(n log n)` time and `O(n log n)` memory. Python integers safely handle all required sums and the answer.
-- **Equal values:** Next-greater links are strictly greater, so equal values are merged into the same prefix-maximum block correctly.
-- **Examples:** The method returns `17` for `[6,3,1,2,4,4], k=7` and `12` for `[6,3,1,3,6], k=4`.

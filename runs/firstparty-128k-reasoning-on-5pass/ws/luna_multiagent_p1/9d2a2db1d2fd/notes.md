@@ -1,7 +1,0 @@
-- **Bottleneck reduction:** For a fixed spatial route, let \(M\) be the minimum floor count among all buildings on that route. Walkways can then be used at any floor up to \(M\). The minimum stair cost is \(|Y-Z|\) when \(M \ge \min(Y,Z)\), otherwise it is \(Y+Z-2M\).
-- **Graph weights:** Each adjacent-block edge has weight \(\min(F_u,F_v)\). The best possible \(M\) is the maximum bottleneck value over all paths between the queried blocks.
-- **Kruskal reconstruction tree:** Process edges in descending order of weight. Each successful DSU merge creates an internal node labeled by that edge weight, with the two component roots as children. The LCA label of two leaves equals their maximum bottleneck value.
-- **Encoding:** Horizontal edge IDs use `u - r`, written as `w * edge_count + (u - r)`; vertical edge IDs begin after all horizontal edges. Since edge IDs are below `edge_count`, encoded values sort primarily by weight.
-- **Complexity:** Sorting takes \(O(HW\log(HW))\). Reconstruction is near-linear, and each query is answered in \(O(\log(HW))\). Ancestor tables use \(O(HW\log(HW))\) memory.
-- **Edge cases:** If both positions are in the same building, the answer is simply \(|Y-Z|\). A one-cell grid is handled naturally.
-- **Validation:** The corrected implementation produces the sample outputs `10` and `2`. A one-row two-building case with heights `5 2` correctly uses bottleneck `2`; same-building queries return the direct floor difference.

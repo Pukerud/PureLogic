@@ -1,4 +1,0 @@
-We need to select up to 4 non-overlapping intervals maximizing total weight, and among optimal selections, return the lexicographically smallest index list.  
-Standard DP: sort intervals by start (tie by end) and preprocess `nextIdx[i]` = the first interval after interval `i` (i.e., with start > r_i).  
-DP[k][i] = best (weight_sum, indices_tuple) using at most k intervals considering intervals from i onward. Recurrence: choose not take i → DP[k][i+1]; or take i → weight_i + DP[k-1][nextIdx[i]]. We maintain the best as a tuple `(weight, indices)` where indices are kept sorted ascending for lexicographic comparison; we then trim to top 4 lexicographically smallest at the end.  
-Use recursion+memoization for clarity; n ≤ 5e4 and k ≤ 4, so time O(k·n log n) (binary search for nextIdx). Return `list(indices)` sorted ascending.

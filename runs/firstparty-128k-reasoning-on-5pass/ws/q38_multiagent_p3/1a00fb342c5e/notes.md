@@ -1,8 +1,0 @@
-- **Model:** Treat each constraint as an undirected edge labeled by Z. A good sequence exists iff every connected component admits a consistent XOR potential assignment.
-- **Consistency check:** For each unvisited vertex, run iterative stack DFS. Set the root potential to 0 and propagate `pot[v] = pot[u] ^ z`. If an already visited neighbor violates `pot[u] ^ pot[v] == z`, no solution exists. Self-loops and parallel edges are handled naturally; a self-loop with nonzero Z fails.
-- **Solution family:** In a consistent component, every valid assignment has the form `A[v] = pot[v] ^ c`, where `c` is one component-wide XOR mask. Isolated vertices are components with potential 0 and optimal value 0.
-- **Minimization:** The sum decomposes independently by bits. For a component of size n and bit b, if cnt1 vertices have bit b set in their potentials, choosing `c_b = 0` gives cnt1 ones, while choosing `c_b = 1` gives n - cnt1 ones. Set `c_b = 1` exactly when cnt1 > n // 2. Ties may choose 0.
-- **Bit range:** Let `or_z` be the bitwise OR of all Z. No potential can have a bit outside `or_z`, so it is enough to consider bits `0 .. or_z.bit_length() - 1`. Use at least one bit when all Z are zero.
-- **Implementation details:** Use 0-indexing, iterative DFS to avoid recursion, store each component’s vertices to count bits and apply the mask. Skip bit counting for size-1 components. Use fast stdin parsing and join for output.
-- **Complexity:** O((N + M) + N * B) time, where B <= 30 under the constraints, and O(N + M) memory.
-- **Edge cases:** M = 0 outputs all zeros; self-loops; parallel edges; isolated vertices; ties in bit counts; inconsistent cycles; components with all-zero potentials.

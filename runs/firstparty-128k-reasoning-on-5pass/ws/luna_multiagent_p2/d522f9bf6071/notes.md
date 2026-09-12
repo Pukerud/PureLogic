@@ -1,8 +1,0 @@
-- **Sorting:** Intervals are processed in nondecreasing order of their left endpoint, while each result stores original interval indices.
-- **Compatibility:** `bisect_right(starts, end)` finds the first interval whose left endpoint is strictly greater than `end`, correctly treating shared boundaries as overlapping.
-- **Dynamic programming:** `scores[k][i]` is the maximum weight obtainable using exactly `k` intervals from sorted position `i` onward. `sequences[k][i]` stores the lexicographically smallest original-index tuple among solutions achieving that score.
-- **Transitions:** For each interval, either skip it or take it and continue from its first compatible successor. At most four intervals are considered.
-- **Tie-breaking:** Selected original indices are maintained in sorted order. Equal-score tuples are compared directly using Python tuple lexicographic ordering, which also handles different lengths correctly.
-- **Final choice:** Results for cardinalities 0 through 4 are compared by total score first and lexicographic order second.
-- **Complexity:** Sorting and successor computation take `O(n log n)`. The dynamic program takes `O(n)` states with constant-size tuple operations because the cardinality limit is four, and uses `O(n)` memory.
-- **Validation:** The implementation yields `[2, 3]` for the first example and `[1, 3, 5, 6]` for the second. It also handles endpoint-sharing exclusions, equal-score lexicographic ties, and cases where fewer than four intervals are optimal.

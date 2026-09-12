@@ -1,7 +1,0 @@
-- **Approach:** Compute the inversion count for k = 0 once, then sweep k from 0 to M-1. Adding 1 modulo M preserves relative order except for elements whose current value is M-1, which wrap to 0.
-- **Wrapping residue:** When moving from k to k+1, the original residue that wraps is r = (M-1-k) mod M. In the sweep, after printing k=0, add S[M-1], then S[M-2], ..., S[1].
-- **Delta formula:** For a wrapping position i using 0-indexing, it gains inversions with all non-wrapping positions before it and loses inversions with all non-wrapping positions after it. Its net change is i - (N-1-i) = 2*i - N + 1.
-- **Multiple wraps:** If several positions with the same residue wrap at the same step, pairs where both positions wrap cancel out. Therefore the total delta is simply the sum of 2*i - N + 1 over all positions i with A_i = r.
-- **Base inversion count:** Use a Fenwick tree over values 0..M-1. For each A_i, the number of previous values greater than A_i is i - count_previous_<=A_i. Add this to the inversion count, then update the tree.
-- **Edge cases:** M = 1 produces one line with answer 0. Duplicate values are handled correctly because the Fenwick tree counts previous values less than or equal to A_i, and wrapper-wrapper pairs cancel in the delta.
-- **Complexity:** Time is O((N + M) log M) due to the Fenwick tree and O(N + M) memory. Python integers safely handle inversion counts up to about 2e10.

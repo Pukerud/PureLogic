@@ -1,7 +1,0 @@
-- **Approach:** Use an indicator array for the set and convolve it with itself. For each middle value B, the number of ordered pairs (A, C) with A + C = 2B is conv[2B]. Removing the self-pair (B, B) and dividing by 2 gives the number of valid triplets centered at B.
-- **Numpy FFT:** Zero-pad the indicator to the next power of two at least 2*max(S)+1, apply rfft, square the spectrum, apply irfft, and round to int64. Coefficients are at most N <= 1e6, so double-precision FFT rounding is safe.
-- **Indexing:** Only conv[2B] for B in S is needed. Use int64 advanced indexing, clamp each count to at least 1 to protect the self-pair from tiny negative FFT noise, then sum integer values.
-- **Direct fallback:** For N <= 2000, sort the values and for each B check all smaller A with set membership for C = 2B - A. This is exact and avoids FFT overhead on small inputs.
-- **No-numpy large fallback:** If numpy is unavailable and N is large, use an exact packed-integer convolution: store the indicator in a bytearray with 3 bytes per value (base 2^24), convert to a Python int, square it, and read 3-byte chunks at offsets 6*B. Coefficients are below 2^24, so no carries cross chunk boundaries.
-- **Samples:** The three provided samples are handled by the direct path and produce 3, 5, and 10.
-- **Edge cases:** N < 3 prints 0. Distinct positive inputs mean the only diagonal pair for sum 2B is (B, B). The answer fits comfortably in 64-bit integer range for the given limits.

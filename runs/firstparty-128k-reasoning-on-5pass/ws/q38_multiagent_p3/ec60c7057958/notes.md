@@ -1,7 +1,0 @@
-- **Verification harness:** The program keeps the solution and adds a direct-execution check. It verifies the three examples, then brute-force compares every k for n=1..8, and then uses an independent exact rank function for n=1..12 with boundary and random k values.
-- **Brute force coverage:** For each small n, all alternating permutations are generated, filtered, and sorted lexicographically. The loop tests k=1..total+1, so k=1, k=total, k=total+1, and every parity-block boundary are included.
-- **Edge cases:** n=1 and n=2 are covered by the brute-force loop; odd and even n are both covered. Out-of-range k returns an empty list.
-- **Counting invariant:** After a prefix, the future parity pattern is forced. A candidate is feasible exactly when the remaining odd/even counts equal the required future slot counts; its block size is fact[remaining_odd] * fact[remaining_even].
-- **Capping safety:** Factorials and products are capped at 10^18, above the maximum k=10^15. Capped values are min(true, cap), so any capped block is still larger than any possible k, and out-of-range detection remains exact for values below the cap.
-- **Rank sanity:** The independent rank function sums the sizes of feasible smaller candidates at each position using exact factorials. It validates larger n without enumerating permutations.
-- **Result:** No discrepancies were found; the greedy unranking implementation is retained unchanged.

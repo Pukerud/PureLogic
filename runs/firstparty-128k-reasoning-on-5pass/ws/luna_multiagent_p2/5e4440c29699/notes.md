@@ -1,8 +1,0 @@
-- **Path count to a fixed endpoint:** `F(x,y) = sum_{a=0..x} sum_{b=0..y} C(a+b,a) = C(x+y+2,x+1)-1`.
-- **Total unrestricted paths:** Endpoints vary over the whole town, so the total is `G(W,H)`, not `F(W,H)`.
-- **Two-dimensional prefix sum:** `G(x,y) = sum_{a<=x,b<=y} F(a,b) = C(x+y+4,x+2)-x-y-4-(x+1)(y+1)` for nonnegative `x,y`.
-- **Forbidden starting blocks:** For a forbidden start `(x,y)`, the number of continuations is `F(W-x,H-y)`. Transforming coordinates gives the rectangle sum over `x in [W-R,W-L]` and `y in [H-U,H-D]`, computed using inclusion-exclusion on `G`.
-- **First forbidden cell:** Every path that starts outside and enters the forbidden rectangle has a unique first forbidden cell. It enters either through the left side or the bottom side.
-- **Left-side entry:** For entry at `(L,y)`, the prefix count is `F(L-1,y)` and the suffix count is `F(W-L,H-y)`, for `D <= y <= U`. This case exists only when `L > 0`.
-- **Bottom-side entry:** For entry at `(x,D)`, the prefix count is `F(x,D-1)` and the suffix count is `F(W-x,H-D)`, for `L <= x <= R`. This case exists only when `D > 0`.
-- **Complexity:** Factorial preprocessing takes `O(W+H)` time and memory. The boundary sums take `O((U-D+1)+(R-L+1))` time.

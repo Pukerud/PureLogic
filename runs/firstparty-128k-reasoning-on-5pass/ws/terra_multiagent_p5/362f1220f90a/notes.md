@@ -1,8 +1,0 @@
-- **Validation:** The implementation was checked against all supplied examples: `("TFTF", "ab") -> "ababa"`, `("TFTF", "abc") -> ""`, and `("F", "d") -> "a"`.
-- **Brute-force comparison:** Small exhaustive cases should enumerate all candidate words over a reduced alphabet, test every `T`/`F` window directly, and compare the solver result with the smallest valid candidate. The DP/KMP logic covers the relevant cases: overlapping `T` windows, impossible forced conflicts, multiple forbidden windows, and lexicographic ties.
-- **KMP states:** States represent matched proper-prefix lengths `0..m-1`. Reading the final pattern character from state `m-1` denotes a full occurrence and transitions to `pi[m-1]`.
-- **F window rejection:** A window starting at `i` completes precisely when output position `i+m-1` is written. The code rejects a full KMP match only if `str1[pos-m+1] == 'F'`.
-- **m=1 behavior:** The sole KMP state is state zero. Reading `str2[0]` is correctly treated as a full match and returns to state zero. Thus `F` forces the smallest letter distinct from `str2[0]`, while `T` forces `str2[0]`.
-- **Forced T placements:** Each `T` position writes the entire pattern into `forced`; incompatible overlapping writes return `""` immediately.
-- **Lexicographic minimality:** Suffix DP determines whether a continuation exists from every position and KMP state. Reconstruction tries letters in ascending order and takes the first one leading to a feasible suffix.
-- **Complexity:** Forced placement costs `O(nm)`. The suffix DP costs `O((n+m)m)`, uses `O((n+m)m)` bytes for DP rows, and reconstruction costs `O((n+m)*26)`.

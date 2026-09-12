@@ -1,8 +1,0 @@
-- **Representation:** For each ending index, maintain compressed groups of subarray starts. Every group stores an extremum value and how many consecutive starts currently share it.
-- **Maximum stack:** Groups are nonincreasing from oldest start to newest start. When adding `x`, pop all trailing groups with value `<= x`; their starts now have maximum `x`, so merge their counts with the new singleton start.
-- **Minimum stack:** Use the symmetric rule, popping trailing groups with value `>= x`.
-- **Length limit:** After adding the new start, if there are more than `k` starts, remove exactly one oldest start from the leftmost group. This keeps only subarrays of lengths at most `k`.
-- **Accumulation:** Maintain the sum of all current group values multiplied by their counts. This is the sum of maxima (or minima) for every valid subarray ending at the current index.
-- **Duplicates:** Popping equal values (`<=` for maxima and `>=` for minima) consistently merges ownership into the newer value while each start remains represented exactly once.
-- **Complexity:** Every group is pushed and popped only amortized once, giving `O(n)` time and `O(k)` auxiliary space. Python integers safely handle the required result range.
-- **Edge cases:** `k = 1` leaves only singleton subarrays; `k = n` retains all starts; negative and duplicate values are handled naturally.

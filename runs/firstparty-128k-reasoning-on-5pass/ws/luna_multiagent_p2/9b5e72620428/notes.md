@@ -1,7 +1,0 @@
-- **Fixed values:** Let `x` be the number of fixed entries in A and `y` the number of fixed entries in B. All `-1` entries can be assigned arbitrary non-negative values.
-- **Target sum:** For a chosen common sum `S`, a fixed B-value `b` requires its paired A-value to be exactly `S-b`; similarly, a fixed A-value `a` can be placed at a fixed B-position only when paired with `S-a`.
-- **Capacity condition:** Fixed A-values that do not match fixed B-values must be placed in B-hole positions, while fixed B-values without matching fixed A-values must receive A-hole values. Both requirements reduce to needing at least `k = x + y - N` exact fixed-A/fixed-B pairs. If `k <= 0`, the holes provide enough flexibility for any sufficiently large `S`, so the answer is immediately `Yes`.
-- **Matching count for one sum:** For each value `a`, the number of usable pairs with target sum `S` is `min(countA[a], countB[S-a])`. Summing this over all `a` gives the maximum number of disjoint exact pairs.
-- **Candidate sums:** When `k > 0`, any feasible target must contain at least one fixed-fixed pair, so `S` is the sum of some fixed A-value and fixed B-value. Iterate over all distinct value pairs. For each sum, accumulate `min(countA[a], countB[b])`.
-- **Non-negativity:** `S` must be at least every fixed A- and B-value. Sums below `max(fixed values)` are discarded.
-- **Complexity:** There are at most `N` distinct fixed values in each sequence, so the nested loops take `O(N^2)` time and the dictionary uses `O(N^2)` worst-case space.

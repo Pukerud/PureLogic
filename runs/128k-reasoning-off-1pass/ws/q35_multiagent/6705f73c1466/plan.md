@@ -1,6 +1,0 @@
-1. Identify the positions of all '1's in the string. Let these positions be $p_1, p_2, \ldots, p_k$ (0-indexed).
-2. The goal is to move all these 1s to a contiguous block of length $k$. If the block starts at index $s$, the 1s will occupy indices $s, s+1, \ldots, s+k-1$.
-3. The cost to move the 1s to a target contiguous block starting at $s$ is the sum of absolute differences between each $p_i$ and its target position $s+i-1$. That is, $\sum_{i=1}^{k} |p_i - (s+i-1)| = \sum_{i=1}^{k} |(p_i - (i-1)) - s|$.
-4. Let $q_i = p_i - (i-1)$. The problem reduces to finding an integer $s$ that minimizes $\sum_{i=1}^{k} |q_i - s|$. This is a classic problem: the optimal $s$ is the median of the values $q_i$.
-5. However, we must ensure that the resulting block is within bounds: $0 \leq s$ and $s+k-1 < N$, i.e., $0 \leq s \leq N-k$. The median of $q_i$ might fall outside this range. Since the cost function is convex, the optimal $s$ within the valid range is the projection of the median onto $[0, N-k]$.
-6. Calculate the minimum cost using the optimal $s$.

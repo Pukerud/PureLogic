@@ -1,1 +1,0 @@
-The number of ways to choose K elements is ≤ 10⁶, which is small. This allows us to enumerate all K-element subsets. Since N can be up to 2·10⁵ but C(N,K) ≤ 10⁶, we can store all A[i] values and use `itertools.combinations` to iterate over subsets efficiently. For each combination of K indices, compute the XOR of the corresponding values and track the maximum.

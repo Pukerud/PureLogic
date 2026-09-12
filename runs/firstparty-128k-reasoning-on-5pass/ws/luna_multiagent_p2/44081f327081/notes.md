@@ -1,6 +1,0 @@
-- **Key reduction:** A divisor `d` can be part of the answer for `A_i` exactly when `d` divides `A_i` and at least `K` array elements are divisible by `d`.
-- **Counting:** A multiples sieve computes `cnt[d]`, the number of input elements divisible by each `d`, using the frequency array so duplicate positions are counted separately.
-- **Maximum assignment:** Process divisors from largest to smallest. For every feasible `d`, assign `d` to each present multiple `x` that has not yet received an answer. The first assignment is therefore the largest feasible divisor of `x`.
-- **Output storage:** Answers are stored by value because equal values always have equal answers; the original sequence is retained in a compact `array('I')`.
-- **Optimizations:** The cases `K=1` and `K=N` are solved directly. Processing also stops once every distinct input value has been assigned.
-- **Complexity:** The sieve and assignment each use harmonic-series work, for total `O(M log M)` time where `M=max(A_i)`, and `O(M+N)` memory.

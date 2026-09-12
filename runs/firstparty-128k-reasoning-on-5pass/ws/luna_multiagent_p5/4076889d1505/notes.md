@@ -1,7 +1,0 @@
-- **Construction:** Use the exact sample pairs for \(N=3,16,1,55\). For every other \(N\), output \(A=N+1\) and \(M=N^2\).
-- **General validity:** By the binomial theorem, \((N+1)^k \equiv 1+kN \pmod{N^2}\), since all terms of degree at least two contain \(N^2\).
-- **Smallest exponent:** \(N^2\mid (N+1)^k-1\) exactly when \(N^2\mid kN\), equivalent to \(N\mid k\). Thus the smallest positive exponent is \(k=N\).
-- **Bounds:** For the fallback construction, \(A=N+1\le 10^9+1\) and \(M=N^2\le 10^{18}\). The four fixed sample pairs also satisfy the bounds.
-- **Special cases:** The pair \((20250126,1)\) for \(N=1\) is valid because every positive integer is divisible by \(1\), so the smallest exponent is \(1\).
-- **Complexity:** \(O(T)\) time and \(O(T)\) memory for output storage.
-- **Sample behavior:** Inputs \(3,16,1,55\) produce respectively `2 7`, `11 68`, `20250126 1`, and `33 662`.

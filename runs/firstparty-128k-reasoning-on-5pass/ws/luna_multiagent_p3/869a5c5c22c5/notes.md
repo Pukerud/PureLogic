@@ -1,9 +1,0 @@
-- **Necessary condition:** Every red move changes the parity of `r+c`, while every blue diagonal move preserves it. Hence the number of red pieces in a cycle must be even.
-- **All-blue case:** The diagonal-move graph is bipartite, so a blue-only cycle exists exactly when `B` is even.
-- **Pure red case:** For positive even `R`, use the perimeter of a `2 x (R/2)` rectangle. The special case `R=2` uses two adjacent squares to avoid duplicating a corner.
-- **Pure blue case:** Under `(x,y) -> (BASE+x+y, BASE+x-y)`, diagonal moves become unit orthogonal moves. A `2 x (B/2)` rectangle gives a blue cycle. The special case `B=2` is handled explicitly because the generic perimeter representation would duplicate a vertex.
-- **Mixed case:** Begin with red square `A=(BASE+1,BASE)`, then a blue path starting at `(BASE,BASE)`, followed by a red orthogonal path ending at `A`.
-- **Blue paths:** The transformed paths are simple orthogonal paths. For even `B`, the final transformed coordinate is `(1,0)`; for odd `B>=3`, it is `(1,1)`. These endpoints are diagonally adjacent to the first red vertex chosen by `make_red_path`.
-- **Single blue piece:** For `B=1`, the blue endpoint is `(BASE,BASE)`, so a separate red-path construction starts at `(BASE+1,BASE+1)` and makes an arbitrarily long odd-length simple path back to `A`.
-- **Bounds:** `BASE=300000` is much larger than every possible displacement, so all generated coordinates remain within the board.
-- **Complexity:** Each piece is generated once. The total time and output size are `O(R+B)` per test case, with linear total complexity over all test cases.

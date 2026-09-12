@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement the max-only lazy segment tree solution described in NEXT (iterative range add, first_ge/first_gt, final push, fast I/O) and verify on samples/edge cases.",
-    "status": "done",
-    "result": ""
-  }
-]

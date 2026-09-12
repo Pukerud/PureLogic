@@ -1,7 +1,0 @@
-- **Mathematical reduction:** A fine triplet is a 3-term arithmetic progression. For a present midpoint `B`, endpoints satisfy `A + C = 2B`.
-- **Convolution interpretation:** Let `P[x]` be 1 iff `x` belongs to the input set. In `P * P`, coefficient `conv[2B]` counts ordered endpoint pairs. It includes `(B, B)` once and each valid distinct pair `(A, C)` twice, so the number centered at a present `B` is `(conv[2B] - 1) // 2`.
-- **NTT modulus:** `998244353 = 119 * 2^23 + 1` supports transform sizes through `2^23`; the maximum needed here is the next power of two above `2 * 10^6`, namely `2^21`.
-- **Exactness:** Every convolution coefficient is at most `N <= 10^6`, much smaller than the modulus, so a single NTT modulus gives exact integer coefficients after inverse transformation.
-- **Input handling:** The code parses bytes manually rather than using `read().split()`, avoiding the memory overhead of one million token objects.
-- **Memory:** The presence array is a `bytearray`; the NTT polynomial has at most `2^21` entries. The transform is performed in place and the polynomial is squared in place after one forward transform.
-- **Complexity:** Time is `O(M log M)`, where `M` is the selected NTT length and at most `2^21`; memory is `O(M)`.

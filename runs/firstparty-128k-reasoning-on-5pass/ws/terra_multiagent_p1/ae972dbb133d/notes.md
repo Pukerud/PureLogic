@@ -1,8 +1,0 @@
-- **Model:** Assign one binary variable to every torus grid edge. `x[i][j]` is the horizontal edge between cells `(i,j)` and `(i,(j+1)%W)`, while `y[i][j]` is the vertical edge between `(i,j)` and `((i+1)%H,j)`. A value of 1 means a segment endpoint exists at that edge midpoint.
-- **Cell incidences:** For cell `(i,j)`, its left/right/top/bottom variables are `x[i][j-1]`, `x[i][j]`, `y[i-1][j]`, and `y[i][j]`, with row and column indices taken modulo `H,W`.
-- **Type A constraints:** An A tile uses one horizontal and one vertical edge, so `left XOR right = 1` and `top XOR bottom = 1`. These exactly characterize its four adjacent-edge orientations.
-- **Type B constraints:** A B tile uses either both horizontal or both vertical edges, so `left XOR right = 0`, `top XOR bottom = 0`, and `right XOR bottom = 1`. These exactly characterize its two opposite-edge orientations.
-- **Counting:** Every tile pattern is uniquely determined once all edge variables are fixed, so no extra orientation multiplier is needed. A consistent XOR-equation system has `2^(number of DSU components)` assignments.
-- **DSU:** Use parity DSU where each relation is `value[u] XOR value[v] = c`. A contradiction makes the answer zero. There are `2HW` variables and at most `3HW` relations, giving near-linear time.
-- **Implementation details:** The submitted code uses compact `array('i')` parents and `bytearray` parity/ranks to handle up to `2*10^6` edge variables comfortably. Periodic indexing is explicit through `(i-1)%H` and `(j-1)%W`.
-- **Validation:** The equations include all local valid patterns and enforce shared edge endpoints by using one variable per torus edge. The implementation is expected to produce the stated sample outputs `2, 0, 2`.

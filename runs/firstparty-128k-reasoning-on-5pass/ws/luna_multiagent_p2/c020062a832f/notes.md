@@ -1,5 +1,0 @@
-- **Initial inversion count:** Process the sequence from left to right with a Fenwick tree indexed by values. For each `A[i]`, the number of previous elements greater than it is `i - count(values <= A[i])`.
-- **Shift transition:** Moving from shift `k` to `k+1` only changes elements currently equal to `M-1`; these are exactly original values `M-1-k`.
-- **Aggregated delta:** For every position `i` containing value `x`, add `2*(i+1)-N-1` to `delta[x]`. The sum over all positions of a wrapping value gives the total inversion-count change when that value wraps.
-- **Complexity:** Fenwick processing takes `O(N log M)`, while delta construction and output take `O(N+M)`. Memory usage is `O(N+M)`.
-- **Integer safety:** Python integers safely handle the maximum inversion count, which is `N(N-1)/2`.

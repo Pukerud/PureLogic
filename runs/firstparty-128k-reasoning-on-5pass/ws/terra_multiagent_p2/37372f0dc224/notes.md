@@ -1,7 +1,0 @@
-- **Observation:** A shortest palindrome whose prefix is `S` is obtained by preserving `S` and appending characters only to its end.
-- **Construction:** Let the longest palindromic suffix of `S` have length `L`. Then append the reverse of `S[:n-L]`. The result is `S + reverse(S[:n-L])`.
-- **Optimality:** Characters before the longest palindromic suffix need corresponding mirrored characters after `S`; choosing a longer palindromic suffix minimizes the number of appended characters.
-- **KMP reduction:** Build `T = reverse(S) + '#' + S`, where `#` is absent from uppercase input. The final prefix-function value is the longest prefix of `reverse(S)` matching a suffix of `S`.
-- **Palindrome property:** A prefix of `reverse(S)` of length `L` equals the reverse of the length-`L` suffix of `S`. Therefore, matching it to that suffix means the suffix is a palindrome.
-- **Complexity:** The prefix function is computed in `O(n)` time and uses `O(n)` memory, suitable for `n <= 500000`.
-- **Edge cases:** If `S` is already a palindrome, `L = n` and no characters are appended. A one-character string is handled identically.

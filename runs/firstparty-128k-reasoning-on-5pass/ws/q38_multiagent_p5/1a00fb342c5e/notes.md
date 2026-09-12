@@ -1,8 +1,0 @@
-- **Model:** Build an undirected graph where each edge (x, y, z) imposes A_x xor A_y = z. Traverse each connected component with iterative DFS, setting pot[root] = 0 and pot[to] = pot[v] xor z for unvisited neighbors.
-- **Consistency check:** For every edge to an already visited vertex, require pot[v] xor pot[to] == z. A violation means a cycle has nonzero XOR label, so no solution exists. If all edges pass, pot itself is a valid assignment for that component.
-- **Solution space:** In a consistent component, every valid assignment has the form A_v = pot[v] xor C for one component-wide constant C. Isolated vertices are size-1 components with pot = 0 and optimal C = 0.
-- **Bitwise minimization:** The sum separates by binary bits. For bit k, if cnt vertices in the component have bit k set in pot, choosing C_k = 0 gives cnt ones, while C_k = 1 gives size - cnt ones. Set C_k = 1 exactly when cnt * 2 > size; ties choose 0.
-- **Bit range:** Since Z_i <= 10^9 < 2^30, potentials only need bits 0..29. The code uses 31 bits (0..30) for safety; higher C bits would only increase the sum.
-- **Implementation details:** Use fast stdin parsing, adjacency lists of (to, z) tuples, and an explicit stack to avoid recursion. Self-loops are stored once and checked as pot[v] xor pot[v] == z. Parallel edges are checked individually. Input tokens are deleted after building the graph to reduce memory.
-- **Complexity:** O(N + M + N * 31) time and O(N + M) memory, comfortably within the constraints.
-- **Edge cases:** M = 0 outputs all zeros; a self-loop with nonzero z prints -1; conflicting parallel edges print -1; bit-majority ties are arbitrary and the code chooses C_k = 0.

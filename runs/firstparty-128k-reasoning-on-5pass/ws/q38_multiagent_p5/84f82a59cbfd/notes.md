@@ -1,9 +1,0 @@
-- **Core equivalence:** A 400 number has exactly two distinct prime factors and every exponent is even, so it is a perfect square. If N is a 400 number, then N = m^2 and m has exactly two distinct prime factors.
-- **Search bound:** Since A <= 10^12, the square root m is at most 10^6. It is enough to precompute up to R = isqrt(max query).
-- **Sieve method:** Use a bytearray cnt of length R + 1. Scan i from 2 to R. If cnt[i] == 0, i is prime, so increment cnt[j] for every multiple j of i. This counts distinct prime factors, not total prime exponents.
-- **Bytearray safety:** For numbers up to 10^6, the maximum number of distinct prime factors is small, at most 7, so a bytearray is sufficient.
-- **Precomputed answers:** Build values = [i * i for i in range(2, R + 1) if cnt[i] == 2]. Since i increases, values is naturally sorted. The smallest valid value is 6^2 = 36.
-- **Query answering:** For each query A, use bisect_right(values, A) - 1 to find the largest precomputed 400 number not exceeding A. The constraints guarantee A >= 36, so the index is always valid.
-- **Complexity:** The sieve performs about sum_{p <= R} R/p increments, roughly R log log R, around 2.9 million for R = 10^6. Precomputation scans R once. Each query costs O(log V), where V is the number of valid values, easily handling 2e5 queries.
-- **Edge cases:** Use math.isqrt for exact integer square roots. 10^12 is valid because 10^6 = 2^6 * 5^6 has exactly two distinct prime factors. Non-square A values are handled correctly by binary search on squared values.
-- **Implementation details:** Read all whitespace-separated tokens at once. The first token is Q, and the remaining tokens are queries. Output all answers joined by newlines.

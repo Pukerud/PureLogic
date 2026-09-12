@@ -1,7 +1,0 @@
-- **Offline processing:** Group queries by their prefix endpoint \(R\), then scan the array from left to right. When processing position \(r\), all data structures represent exactly the prefix \(A_1,\dots,A_r\).
-- **LIS endpoint DP:** For an element \(A_r\), its longest increasing subsequence ending there has length `1 + best value among earlier endpoints strictly smaller than A_r`.
-- **Strictness:** Coordinate-compress array values and query the Fenwick tree through rank `pos - 1`, excluding equal values.
-- **Fenwick tree:** Store maximum DP value under each index. It supports point updates with maximum and prefix-maximum queries in \(O(\log N)\).
-- **Query interpretation:** The answer for bound \(X\) is the maximum DP value among endpoints with value at most \(X\). Every earlier element in a strictly increasing subsequence ending at such an endpoint is smaller, so it is also at most \(X\).
-- **Arbitrary query bounds:** Use `bisect_right` on sorted distinct array values to find how many compressed values are at most \(X\), correctly handling bounds not present in the array.
-- **Complexity:** Coordinate compression takes \(O(N\log N)\). Processing all positions and queries takes \(O((N+Q)\log N)\) time and \(O(N+Q)\) memory.

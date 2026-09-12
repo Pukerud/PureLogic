@@ -1,6 +1,0 @@
-- **State representation:** A state is the LCS DP row between the fixed string `S` and the currently processed prefix of the unknown length-`M` string.
-- **Transition:** When appending character `c`, compute the next row using the standard LCS recurrence. The first row entry remains zero, and each later entry depends on the previous row and the already computed entry to its left.
-- **Aggregation:** Different prefixes producing the same DP row are merged in a hashmap, with their counts accumulated modulo `998244353`.
-- **Caching:** The transition from a row for each of the 26 letters is cached, avoiding repeated row computations across layers.
-- **Final result:** The last entry of a terminal row equals the LCS length with all of `S`; terminal state counts are grouped by this value for every `k = 0..N`.
-- **Complexity:** If `R` is the number of reachable rows, the work is `O(M * R * 26 * N)` and memory usage is `O(R * 26 * N)` for cached transitions.

@@ -1,9 +1,0 @@
-- **Feasibility reduction:** For a target distance \(D\), minimize the number of selected edges such that every path from vertex 1 to vertex \(N\) has at least \(D\) selected edges. This is feasible iff the minimum is at most \(K\), because selecting additional edges never decreases shortest-path distances.
-- **Label characterization:** Use labels \(a_v\in[0,D]\), with \(a_1=0\), \(a_N=D\), and \(a_v\le a_u+1\) for each edge \(u\to v\). Select every edge with \(a_v=a_u+1\). The number selected is the labeling cost.
-- **Correctness:** From a valid selected set, truncated shortest-distance labels give a feasible labeling whose cost is no greater than the selected-set size. Conversely, selected label-increasing edges ensure every path has weight at least \(a_N-a_1=D\).
-- **Min-cut variables:** Define \(X_{v,i}=[a_v\ge i]\), for \(i=1,\dots,D\). Source-side means true. Add infinite arcs \(X_{v,i+1}\to X_{v,i}\) for monotonicity and \(X_{v,i}\to X_{u,i-1}\) for every original edge and \(i\ge2\).
-- **Cost arcs:** For every original edge \(u\to v\) and threshold \(i\), add a unit arc \((v,i)\to(u,i)\). Its cut contribution counts exactly the case \(a_v=a_u+1\). Parallel edges are represented separately.
-- **Terminals:** Force \(a_1=0\) using infinite arcs \((1,i)\to T\), and force \(a_N=D\) using infinite arcs \(S\to(N,i)\).
-- **Search bounds:** The answer is between 0 and \(K\), so binary search over \(D\). A finite cut of capacity at most \(K\) is determined with flow limited to \(K+1\).
-- **Complexity:** A feasibility graph has at most \(ND+2\le3002\) nodes and \(O((N+M)D)\) arcs. Dinic is adequate for the constraints.
-- **Recursion safety:** Dinic DFS may traverse a layered path containing up to roughly all variable nodes, exceeding Python’s default recursion limit of about 1000. The program sets `sys.setrecursionlimit(1_000_000)`, safely covering the maximum graph depth.

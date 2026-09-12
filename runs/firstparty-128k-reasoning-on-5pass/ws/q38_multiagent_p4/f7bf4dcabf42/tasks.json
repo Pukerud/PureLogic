@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement and verify the one-row LCS DP mask automaton solution against the provided samples.",
-    "status": "done",
-    "result": ""
-  }
-]

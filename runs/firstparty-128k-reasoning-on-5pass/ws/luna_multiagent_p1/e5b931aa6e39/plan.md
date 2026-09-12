@@ -1,1 +1,0 @@
-Let \(d=x-y>0\), so \(x=y+d\) and \(N=d(3y^2+3dy+d^2)\). Since \(d^3\le N\), enumerate only \(d\) from 1 through \(\lfloor\sqrt[3]{N}\rfloor\). For each \(d\), require \(d\mid N\), then solve the resulting quadratic in \(y\) using its discriminant and exact integer-square checks. If a positive integer \(y\) is found, output \((y+d,y)\); otherwise output `-1`.

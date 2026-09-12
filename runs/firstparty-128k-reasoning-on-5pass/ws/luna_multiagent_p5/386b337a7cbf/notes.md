@@ -1,7 +1,0 @@
-- **State representation:** `dp[parity][product]` stores a bitset of all reachable alternating sums for subsequences with the given length parity and exact product. Bit position `offset + sum` represents that sum.
-- **Transitions:** Appending `x` to an even-length subsequence adds `x` and changes parity to odd. Appending `x` to an odd-length subsequence subtracts `x` and changes parity to even.
-- **Products:** Only products at most `limit` are stored. Since all numbers are nonnegative, extending a product cannot decrease it, so products already above `limit` can never become valid later.
-- **Zero handling:** Product `0` has its own explicit product index and is never confused with an unreachable state. Appending zero correctly preserves product zero while toggling parity.
-- **No element reuse:** Each iteration uses a snapshot of the previous DP before adding transitions for the current number. A singleton subsequence is also inserted for every number.
-- **Answer:** Scan products from `limit` down to zero and return the first product whose sum bitset contains `k`. If neither parity contains it, return `-1`.
-- **Complexity:** There are `O(limit)` product states per parity, and each sum set is represented by a Python integer with `O(total sum)` bits. The DP uses `O(n * limit)` bitset operations and `O(limit * total sum)` memory for the current layer.

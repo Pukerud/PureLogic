@@ -1,7 +1,0 @@
-- **State:** `dp[mask]` is the minimum number of increments after processing some prefix of `nums`, where each target index represented by a set bit already has a multiple.
-- **Grouping targets:** A single number can satisfy any subset of targets by being incremented to a multiple of that subset’s LCM.
-- **Subset costs:** For value `x` and subset LCM `L`, the required increments are `0` if `x % L == 0`; otherwise `L - (x % L)`.
-- **Transitions:** Each number may be skipped or assigned to a nonempty subset of currently uncovered targets. Assigning already-covered targets is unnecessary because removing them cannot increase the LCM or cost.
-- **LCM computation:** All subset LCMs are precomputed using `lcm(a, b) = a // gcd(a, b) * b`. Duplicate targets and divisibility relationships are handled naturally.
-- **Complexity:** There are at most `2^4 = 16` masks. Enumerating uncovered submasks over all masks costs `O(3^m)` per number, giving `O(n * 3^m)` time and `O(2^m)` memory.
-- **Correctness:** Every target must eventually belong to the full mask, and every processed number is either unused or contributes one subset exactly once, so all valid assignments are represented.

@@ -1,6 +1,0 @@
-- **Algorithm:** Collect zero-based positions `p[i]` of all `1`s. If the final contiguous block starts at `L`, the `i`-th one in order targets `L+i`. Its movement contribution is `|p[i]-(L+i)| = |(p[i]-i)-L|`.
-- **Median minimization:** Let `a[i] = p[i]-i`. The total required adjacent swaps is minimized as `sum(|a[i]-L|)`, which is minimized by choosing `L` as any median of `a`. Since positions are increasing, `a` is nondecreasing, so the middle element is directly usable.
-- **Correctness:** Relative order of identical `1`s can be retained. Moving the ordered ones to their ordered final target positions requires exactly the sum of their distances through swaps with `0`s; no swap between two `1`s is beneficial.
-- **Complexity:** `O(N)` time and `O(N)` memory for the collected positions/adjusted values.
-- **Edge cases:** A single `1` yields zero. Already contiguous ones yield equal adjusted values and zero. Python integers safely handle all possible answers.
-- **Sample checks:** `0101001` gives `3`; `100` gives `0`; `0101001001` gives `7`.

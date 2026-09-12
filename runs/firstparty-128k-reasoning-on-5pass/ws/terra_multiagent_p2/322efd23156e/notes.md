@@ -1,7 +1,0 @@
-- **Approach:** Foods contribute to exactly one vitamin, so solve three independent 0/1 knapsacks indexed by calories. For each vitamin type, `dp[c]` stores the maximum vitamin amount obtainable using at most `c` calories.
-- **Knapsack transition:** For a food with amount `A` and calories `C`, update its vitamin's DP in descending calorie order: `dp[c] = max(dp[c], dp[c-C] + A)`. Descending order guarantees each food is selected at most once.
-- **Profile conversion:** A prefix-maximum pass ensures each DP is nondecreasing by calorie budget, so binary search can find the minimum calorie cost that obtains a target amount.
-- **Feasibility:** For target `T`, find independently for each vitamin the least calorie budget whose DP value is at least `T`. The target is feasible iff the sum of these three minimum costs is at most `X`.
-- **Binary search:** Feasibility is monotone. Search from `0` through `min(total amount of each vitamin)`, using an exclusive upper bound.
-- **Complexity:** Knapsack processing is `O(NX)` in the worst case. Profile conversion is `O(X)`. Each feasibility check uses three binary searches, and the outer binary search takes `O(log(sum A))`.
-- **Edge cases:** If any vitamin is absent, its total is zero and the answer becomes zero. The zero target is always feasible.

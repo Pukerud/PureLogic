@@ -1,5 +1,0 @@
-Model the sort as a sequence of adjacent crossings: in an optimal solution only inverted pairs are ever swapped, and the cost of a swap equals 1 + (number of elements currently to the left of the crossing pair). Peeling off the current minimum value repeatedly gives the recursion Cost(P) = p(p−1)/2 + Cost(P′) + inv(P) − (p−1) − inv(prefix), where p is the position of the minimum in the current array and P′ is the array with the minimum deleted; unrolling it yields the closed form
-
-  **Answer = Σ_i [ L_i·(L_i+1)/2 − L_i + L_i·P_i − L_i·R_i ]**,
-
-with L_i = #{a < i : P_a > P_i} (inversions where i is the right element) and R_i = #{b > i : P_b < P_i} (inversions where i is the left element). Both L and R are computable with a Fenwick tree in O(N log N), and all arithmetic fits comfortably in Python ints (max ≈ 10^16). We verify the formula by brute force (Dijkstra over all permutations, cost i per swap at position i) for all N ≤ 7, and check known samples (3 2 1 → 4; 2 4 1 3 5 → 6; 1 2 → 0). Finally we harden IO/performance for N = 2·10^5.

@@ -1,7 +1,0 @@
-- **Trie construction:** Each trie node stores its child links, depth, and the number of words passing through it. Each word stores its complete trie path, preserving separate input indices even for duplicate strings.
-- **Prefix characterization:** A trie node at depth `d` corresponds to a prefix of length `d`. It can be shared by at least `k` selected strings exactly when its subtree count is at least `k`.
-- **Removal effect:** Removing one word changes only nodes on that word’s path. A path node becomes invalid precisely when its original count is exactly `k`; nodes with larger counts remain valid.
-- **Depth aggregation:** `valid[d]` counts valid trie nodes at depth `d`. During each removal, only affected depths whose path node count equals `k` are temporarily decremented.
-- **Maximum lookup:** A segment tree stores the greatest depth with at least one valid node, allowing each answer to be queried efficiently and all temporary changes to be restored.
-- **Edge cases checked:** Duplicate words, `k = 1`, `k = n`, shared prefixes, words with different lengths, and cases where `n - 1 < k` all behave correctly.
-- **Complexity:** With total word length `S` and maximum word length `M`, construction uses `O(S)` time and memory. Processing all removals takes `O(S log M)` time.

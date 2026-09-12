@@ -1,7 +1,0 @@
-- **Identity:** For x with v2(x)=k, f(x)=x/2^k = x - sum_{m=1..k} x/2^m, so the answer is total pair-sum minus, for each m, the sum of pair-sums divisible by 2^m divided by 2^m.
-- **Total pair-sum:** Over i<=j each A_t appears N+1 times, giving initial ans=(N+1)*sum(A).
-- **Residue aggregation:** For M=2^m, group by r=A_i mod M and store packed (sum<<19)+count; 19 bits are enough for count because N<=2e5. For s=(-r)&(M-1), if r<s add cnt_r*sum_s+cnt_s*sum_r, if r==s add (cnt_r+1)*sum_r. This is the sum of A_i+A_j over unordered pairs with sum 0 mod M.
-- **Exponent range:** m=1..floor(log2(2*maxA)); larger moduli cannot divide any pair sum.
-- **Storage:** Reusable dense list for M<=2^20 with touched-residue reset; dictionaries for M>2^20 to avoid 16M-length arrays.
-- **Complexity:** O(N log maxA) time (24 passes for constraints), memory O(N + 2^20) worst case.
-- **Samples:** sample 1 gives 5, sample 2 gives 384, sample 3 gives 20241214; all pass (sample 3 checked by direct pair enumeration in analysis).

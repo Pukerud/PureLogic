@@ -1,5 +1,0 @@
-1. Sort intervals by their right endpoints to facilitate dynamic programming where we process intervals in order of completion.
-2. Use dynamic programming with states dp[k][i] representing the maximum weight achievable by choosing k non-overlapping intervals from the first i intervals (sorted by right endpoint).
-3. For each interval i, if we include it, we need to find the largest j < i such that interval j's right endpoint is strictly less than interval i's left endpoint (using binary search).
-4. To handle lexicographical smallest index selection, we will first compute the maximum possible score for choosing up to 4 intervals. Then, we reconstruct the solution by greedily selecting the smallest index that allows achieving the optimal score, checking feasibility for remaining choices.
-5. Since n is up to 5*10^4 and k is only 4, we can use DP with O(n*k) states and O(n*k*log n) time due to binary searches, which is acceptable.

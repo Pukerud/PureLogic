@@ -1,8 +1,0 @@
-- **Verification:** The implementation returns the stated results: `"cdcd" -> "cccc"`, `"aca" -> "aaa"`, and `"bc" -> ""`.
-- **Length edge cases:** For every length below 3, return `""`, since no nonempty string can have all maximal runs of length at least 3. For length 3, all output positions are necessarily one identical letter; the DP and reconstruction force this correctly.
-- **Forced runs:** States `d1` and `d2` only allow continuing the previous character, so a switched run is always extended to length three before any further switch. This prevents invalid runs of length one or two.
-- **Terminal validity:** Only `d3[n][c]` is zero. `d1[n][c]` and `d2[n][c]` remain infinite, which forbids ending on a short run.
-- **Lexicographic ties:** The first output letter is scanned from `'a'` through `'z'`, retaining the first minimum. During reconstruction, all possible next letters are also scanned increasingly and the first one matching the optimal DP value is selected. This gives the lexicographically smallest minimum-cost caption.
-- **Switch minimum:** For `d3`, a switch requires a letter different from the prior run letter. Tracking the smallest and second-smallest candidate costs correctly handles exclusion, including equal-cost ties.
-- **Complexity:** There are 26 states per position and constant alphabet size, so time is `O(26n)` and memory is `O(26n)`. Packed integer arrays avoid large Python integer-list memory overhead for `n = 5 * 10^4`.
-- **Targeted behavior:** Inputs already containing valid runs preserve zero cost when optimal. Inputs where a short middle run must merge into a neighboring run are handled by continuing a completed run or paying switch costs. Equal-cost alternatives select the earlier differing letter lexicographically.

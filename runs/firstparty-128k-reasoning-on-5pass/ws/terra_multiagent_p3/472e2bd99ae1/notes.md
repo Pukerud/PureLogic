@@ -1,8 +1,0 @@
-- **Algorithm:** Sort all three arrays in descending order. Since every element is positive, the expression `A[i]*B[j] + B[j]*C[k] + C[k]*A[i]` never increases when any of `i`, `j`, or `k` is incremented.
-- **Traversal:** Treat index triples as nodes in a monotone 3D grid. Start from `(0, 0, 0)` and use a max-heap. After extracting a triple, add valid neighbors obtained by incrementing exactly one index.
-- **Correctness:** Every triple is reachable from the origin through index increments. For any unextracted triple, a predecessor on a path from the origin must have been extracted or be in the heap; monotonicity ensures heap extraction order is non-increasing. Therefore the K-th extracted value is the K-th largest value with multiplicity.
-- **Deduplication:** A triple can be reached from multiple predecessors, so maintain a visited set. Do not deduplicate equal expression values, since distinct triples count separately.
-- **Memory optimization:** Encode `(i, j, k)` as one integer `i*N*N + j*N + k`, rather than storing index tuples in the heap and visited set.
-- **Complexity:** Sorting costs `O(N log N)`. At most `3K + 1` states are inserted, with `O(K log K)` heap work and `O(K)` additional memory.
-- **Integer safety:** Python integers safely handle values up to roughly `3 * 10^18`.
-- **Sample results:** The implementation yields `31`, `30000`, and `689589940713840351` for the three provided samples.

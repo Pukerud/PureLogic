@@ -1,9 +1,0 @@
-- **Reduction:** Distinct indegree vectors obtainable by orienting an undirected graph are the lattice points of a translate of its graphical zonotope. The number of lattice points of a graphical zonotope is \(T_G(2,1)\), equal to the number of acyclic edge subsets, i.e. all forests of \(G\). Thus the required answer is the number of forests in the given graph.
-- **Cycle handling:** Remove the closing rim edge \(\{N-1,0\}\), producing a path on rim vertices plus hub spokes. Every forest of this path graph is valid without the closing edge. The closing edge can be added iff vertices \(0\) and \(N-1\) are disconnected. Therefore answer = total path-graph forests + path-graph forests where endpoints are disconnected.
-- **DP state:** While processing rim vertices left to right, retain hub \(H\), vertex \(A=0\), and current rim vertex \(C\). A forest is characterized for future cycle checks only by their connectivity partition:
-  0 = `H|A|C`, 1 = `HA|C`, 2 = `HC|A`, 3 = `AC|H`, 4 = `HAC`.
-- **Initialization:** Build the graph on \(H,0,1\) by enumerating the optional path edge \(0-1\), optional spoke \(H-0\), and optional spoke \(H-1\). Reject choices creating a cycle. Aggregate resulting connectivity states.
-- **Transition without a new spoke:** For DP vector `(d0,d1,d2,d3,d4)`, after adding the next rim vertex with its optional path edge, the new vector is `(2d0+d2+d3, 2d1+d4, d2, d3, d4)`.
-- **Transition with a new spoke:** The new vector is `(2d0+d2+d3, 2d1+d4, 2d0+2d2+d3, d3, 2d1+d3+2d4)`. Terms corresponding to selecting an edge that closes a cycle are omitted.
-- **Final extraction:** States 0, 1, and 2 have \(0\) and \(N-1\) disconnected. Hence `answer = sum(dp) + dp[0] + dp[1] + dp[2]`.
-- **Validation:** For sample 1 (`010`), the path graph has 8 forests and 6 with endpoints disconnected, yielding 14. For an all-zero string, the hub is isolated and the formula gives \(2^{N-1}+(2^{N-1}-1)=2^N-1\), exactly the number of forests of a cycle.

@@ -1,5 +1,0 @@
-- **Pair structure:** For a fixed number \(K\), use the \(K\) smallest mochi as the tops and the \(K\) largest mochi as the bottoms.
-- **Feasibility test:** Pair `a[i]` with `a[N-K+i]` for each `0 <= i < K`. The candidate is feasible exactly when `2 * a[i] <= a[N-K+i]` for every index.
-- **Why this is sufficient:** In any arrangement of \(K\) valid pairs, replacing each selected top with a smaller mochi and each selected bottom with a larger mochi cannot break validity. Therefore, checking the first \(K\) and last \(K\) mochi captures feasibility.
-- **Monotonicity:** If \(K\) pairs can be formed, then any smaller number can also be formed, so feasibility is monotonic and binary search applies.
-- **Complexity:** Each feasibility check takes \(O(K)\), and binary search performs \(O(\log N)\) checks. Total time is \(O(N \log N)\), with \(O(1)\) extra space besides the input array.

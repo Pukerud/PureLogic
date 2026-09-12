@@ -1,8 +1,0 @@
-- **Trie representation:** Each trie node stores its children, depth, and the number of words passing through it. A node at depth `d` represents a prefix of length `d`.
-- **Validity condition:** A prefix can be shared by some `k` remaining strings exactly when its trie node has at least `k` remaining words in its subtree.
-- **Effect of deletion:** Only nodes on the deleted word’s path change count. Nodes with original count greater than `k` remain valid; nodes with original count exactly `k` become invalid.
-- **Depth aggregation:** `active_by_depth[d]` stores how many valid trie nodes exist at depth `d`. A depth is usable if this value is positive.
-- **Segment tree:** The segment tree stores the maximum active-node count over depth ranges. Its rightmost positive leaf gives the longest valid prefix length.
-- **Per-index processing:** Temporarily decrement the active count for every path node whose original count is exactly `k`, query the deepest active depth, then restore all changes.
-- **Edge cases:** If removing one word leaves fewer than `k` words, every answer is zero. The same logic also handles `k = 1` and duplicate words at distinct indices.
-- **Complexity:** Trie construction takes `O(S)`, where `S` is the total input length. Across all removals, path processing is `O(S)` node visits, each segment-tree update costs `O(log S)`, so total complexity is `O(S log S)` with `O(S)` memory.

@@ -1,8 +1,0 @@
-- **Reduction:** Every prime exponent in a 400 number is positive and even, so the number is a perfect square \(N=x^2\).
-- **Prime factors of the root:** Squaring preserves the set of distinct prime factors. Therefore, \(N\) is a 400 number exactly when \(x\) has exactly two distinct prime factors.
-- **Bound:** Since every query satisfies \(A\le 10^{12}\), the root only needs to be considered up to \(\lfloor\sqrt{\max A}\rfloor\le 10^6\).
-- **Sieve:** A bytearray sieve identifies all primes up to the maximum required root.
-- **Factor counting:** For each prime \(p\), iterate through its multiples and increment their distinct-prime-factor count once. A number is selected when its count equals two.
-- **Queries:** Store the squares of all selected roots in sorted order. `bisect_right` finds the largest candidate not exceeding each query.
-- **Existence:** The constraint \(A\ge36\) guarantees an answer because \(36=6^2\), and 6 has exactly two distinct prime factors.
-- **Complexity:** Sieve construction and factor counting take approximately \(O(M\log\log M)\) work for \(M\le10^6\); sorting and query processing take \(O(K\log K+Q\log K)\), where \(K\) is the number of candidates.

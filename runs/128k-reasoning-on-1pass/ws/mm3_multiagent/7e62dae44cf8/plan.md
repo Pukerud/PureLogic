@@ -1,5 +1,0 @@
-We model the process as expanding a connected region of absorbed slimes. At any moment the frontier consists of all cells adjacent to this region. Takahashi may absorb a frontier cell \(v\) with strength \(S_v\) only if  
-\[
-S_v \times X < T,
-\]
-where \(T\) is his current total strength. Because \(T\) never decreases, the condition is monotone: once a cell becomes affordable it stays affordable. Consequently, if the frontier cell with the smallest strength is not affordable then no frontier cell is affordable and the process stops. We maintain the frontier in a min‑heap keyed by strength, repeatedly extracting the smallest cell, checking the inequality, and when allowed we absorb it: add its strength to \(T\), mark it visited, and push its four neighbours onto the heap. The algorithm ends when the heap is empty or its top fails the inequality, and the final \(T\) is the answer.

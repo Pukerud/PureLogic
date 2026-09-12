@@ -1,9 +1,0 @@
-- **Validation:** The implementation gives the required sample results: `"cdcd" -> "cccc"`, `"aca" -> "aaa"`, and `"bc" -> ""`.
-- **Brute-force check:** For small lengths, compare against an independent exhaustive enumerator: enumerate candidate output strings, reject strings containing any run of length below three, compute total alphabet-distance cost, then select minimum cost and lexicographically smallest candidate. This validates both DP cost and reconstruction behavior.
-- **DP state:** `dp[i][r][c]` is the minimum cost to assign suffix `i..n-1` when the output prefix immediately before `i` ends with character `c`, with run category `r`: 0 for length 1, 1 for length 2, and 2 for length at least 3.
-- **Base case:** At suffix end, only category 2 is valid with cost zero. Categories 0 and 1 are invalid.
-- **Transitions:** Continuing the same character advances run categories `0 -> 1 -> 2 -> 2`. Switching character is allowed only from category 2 and creates a category-0 run.
-- **Switch optimization:** At each position, calculate the smallest and second-smallest values of `abs(source-target) + dp[i+1][0][target]`. This supports the required minimum over targets different from the existing run character in O(1) per character.
-- **Lexicographic reconstruction:** Choose the smallest optimal first character. At every later position, inspect targets from `'a'` upward and take the first legal transition that equals the DP state value. This yields the lexicographically smallest string among globally minimum-cost captions.
-- **Complexity:** Time is O(26n), and memory is O(78n). The flattened unsigned integer array uses about 15.6 MB at `n = 50000`.
-- **Edge cases:** Length below 3 is impossible. For every length at least 3, a constant output string is valid, so reconstruction always finds a solution.

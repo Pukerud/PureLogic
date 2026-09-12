@@ -1,7 +1,0 @@
-- **Criterion:** For a divisor \(d\), let \(C(d)\) be the number of input elements divisible by \(d\). A value \(A_i\) can be included in a valid selection of \(K\) elements all divisible by \(d\) exactly when \(d\mid A_i\) and \(C(d)\ge K\).
-- **Optimality:** The maximum feasible divisor of \(A_i\) equals the maximum possible GCD. Any selection whose elements are all divisible by \(d\) has a GCD divisible by \(d\).
-- **Counting:** A multiples sieve computes \(C(d)\) for every \(d\le M\), where \(M=\max A_i\), in \(O(M\log M)\) time.
-- **Assignment:** Process qualifying divisors in descending order. For each divisor, visit its multiples and assign it to each present value not yet assigned. The first assignment is the largest valid divisor.
-- **Complexity:** Counting and assignment each take \(O(M\log M)\), so total time is \(O(M\log M+N)\). Memory usage is \(O(M+N)\), with value-indexed arrays stored using `array('I')`.
-- **Special cases:** For \(K=1\), every answer is the corresponding element itself. For \(K=N\), every answer is the GCD of the entire sequence. Both cases avoid sieve construction and correctly output one result per input position.
-- **Output handling:** Direct and constant-output helpers avoid incorrectly indexing an answer array by input values in the special cases.

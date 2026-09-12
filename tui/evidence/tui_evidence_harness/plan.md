@@ -1,1 +1,0 @@
-Implement a small Python function that computes the 0-indexed Fibonacci number. Use base cases for 0 and 1, then iterate to avoid recursion depth and extra complexity. Include a short doctest demonstrating a few expected values. Keep the total implementation under 15 lines. Ensure the function is simple, readable, and directly testable.

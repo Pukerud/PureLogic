@@ -1,9 +1,0 @@
-- **Harness:** Self-contained test/benchmark script. It first tries to load the current solution from `solution.py`, `current_solution.py`, `current.py`, or `prog.py`; if none is found, it uses embedded fallback copies of `big_count` and `direct_count`.
-- **Correctness tests:** Uses an independent O(N^2) endpoint-average brute force, plus a true O(N^3) check for N <= 20. Also checks `direct_count` for N <= 500.
-- **Test coverage:** Edge sizes N=1..5; 60 random sets with N up to 500 and values up to 2000; dense intervals starting at 1, 2, 3, 100, 1500 with lengths 3, 4, 5, 10, 50, 100, 500; full 1..2000; odd/even AP-like sets; and 10 random dense sets of size 500 from 1..1000.
-- **Benchmarks:** Measures `big_count` on the full 1..1,000,000 set and on a random 500k subset of 1..1,000,000. A permuted 1e6 benchmark is available via `HARNESS_EXTRA_1M=1`; heavy benchmarks can be skipped via `HARNESS_SKIP_HEAVY=1`.
-- **Expected full-set answer:** For consecutive 1..M, the answer is D*M - D*(D+1), where D=(M-1)//2. For M=1,000,000 this is 249,999,500,000.
-- **Algorithm invariant:** After shifting by min(S), split shifted values into even E and odd O. For middle shifted x, ordered endpoint-pair count q is coefficient of E^2 at x plus coefficient of O^2 at x-1 when x>=1. Add (q-1)//2 for each x in S.
-- **Packing safety:** Base is 2^K with K=n.bit_length(), so base > N. Every convolution coefficient is at most N, so no carries occur. Four-byte extraction is safe under the constraints because K <= 20.
-- **Findings:** No known mismatches in the current algorithm. The harness prints per-case timings and benchmark timings; actual wall-clock times are machine-dependent.
-- **Performance notes:** Small correctness tests perform roughly 10 million pair checks total. The heavy benchmark is dominated by squaring two integers of about 10 million bits for N=1e6; memory usage is modest, typically tens of MB.

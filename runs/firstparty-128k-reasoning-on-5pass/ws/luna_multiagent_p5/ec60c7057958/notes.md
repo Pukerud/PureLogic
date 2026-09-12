@@ -1,6 +1,0 @@
-- **Counting:** After fixing a value, the parity of every subsequent position is forced. A completion exists only when the remaining odd and even counts match that forced pattern. When feasible, the remaining values can be permuted in `odd_count! * even_count!` ways.
-- **Lexicographic unranking:** At each position, unused values are considered in increasing order. Every feasible candidate contributes one contiguous lexicographic block. Subtract whole blocks until the block containing rank `k` is reached.
-- **Initial count:** The first value may have either parity, so the total number of valid permutations is the sum of the counts for odd-first and even-first patterns.
-- **Capping:** Factorials and arrangement counts are capped at the original `k`. Any count at least this value is sufficient because the current rank never exceeds the original rank.
-- **Validation:** The implementation handles the supplied examples: `(4, 6)` returns `[3, 4, 1, 2]`, `(3, 2)` returns `[3, 2, 1]`, and `(2, 3)` returns `[]`. It also handles `n = 1`, unequal parity totals, impossible parity patterns, and ranks beyond the total count.
-- **Complexity:** The greedy construction performs `O(n^2)` candidate checks and uses `O(n)` auxiliary memory.

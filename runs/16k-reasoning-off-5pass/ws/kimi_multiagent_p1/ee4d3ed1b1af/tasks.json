@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement complete solution: parse p into A, B, C; KMP search for occurrences; binary search per B occurrence to find optimal A and C; compute minimum length handling empty parts; return -1 if none; verify all four examples including \"**\" \u2192 0.",
-    "status": "done",
-    "result": ""
-  }
-]

@@ -1,9 +1,0 @@
-- **Center decomposition:** Treat every index as the middle element, then choose two indices on each side.
-- **Frequency characterization:** The middle value is valid if it appears at least three times, or appears exactly twice while the other three selected values are pairwise distinct.
-- **At-least-three case:** Enumerate the number of additional center values selected from each side. Any total of at least two contributes valid subsequences.
-- **Exactly-two case:** If the extra center occurrence is on the left, count one non-center from the left and two distinct non-centers from the right. Inclusion-exclusion uses `sum(L[v] * R[v]^2)` as the overlap term. The right-side case is symmetric.
-- **Aggregates:** Maintain `sum(L[v]^2)`, `sum(R[v]^2)`, `sum(L[v]R[v])`, `sum(L[v]R[v]^2)`, and `sum(R[v]L[v]^2)`.
-- **Updates:** Moving an element between sides updates all aggregates in constant time. Frequency dictionaries provide the count of the current middle value and side frequencies.
-- **Complexity:** O(n) time and O(n) auxiliary space.
-- **Validation:** The implementation gives 6 for six equal values, 4 for `[1,2,2,3,3,4]`, and 0 for an all-distinct array. Exhaustive brute-force checks on small arrays agree with direct subsequence enumeration.
-- **Arithmetic:** Intermediate values remain exact Python integers; the answer is reduced modulo `10^9 + 7`.

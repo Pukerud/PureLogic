@@ -1,7 +1,0 @@
-- **Pattern decomposition:** Splitting at the two stars gives fixed fragments `A`, `B`, and `C`. A matching substring is represented by consecutive occurrences of these fragments, with the gaps consumed by the stars.
-- **Occurrence detection:** KMP finds every occurrence of each nonempty fragment in `s` in linear time. For an empty fragment, every boundary from `0` through `n` is a valid occurrence.
-- **Ordering constraints:** If `A` starts at `x`, then `B` must start at or after `x + len(A)`. Likewise, `C` must start at or after the end of `B`. These conditions permit adjacent fragments and correctly handle empty fragments.
-- **Greedy chaining:** For each occurrence of `A`, choose the earliest compatible occurrence of `B`, then the earliest compatible occurrence of `C`. Choosing an earlier compatible occurrence cannot produce a worse result because all later choices only impose larger or equal start boundaries.
-- **Search:** Occurrence lists are sorted by KMP traversal. `bisect_left` finds each earliest compatible occurrence.
-- **Complexity:** KMP preprocessing and matching take `O(len(s) + len(p))`. The chaining phase takes `O(k log n)`, where `k` is the number of occurrences of `A`, giving `O(len(s) log len(s) + len(p))` worst-case time and `O(len(s) + len(p))` memory.
-- **Edge cases:** When all fragments are empty (`p == "**"`), the algorithm considers boundary `0` and returns `0`. Empty leading, middle, or trailing fragments are handled through their occurrence lists containing every boundary.

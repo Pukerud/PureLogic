@@ -1,6 +1,0 @@
-- **Contribution of one element:** If \(x\) has a set of \(k\) elements after it, its place-value multiplier is the product of \(10^{\mathrm{digits}(y)}\) over that set. The set can be ordered in \(k!\) ways, and the remaining elements in \((N-k-1)!\) ways.
-- **Elementary symmetric coefficients:** Let \(w_y=10^{\mathrm{digits}(y)}\) and \(E(t)=\prod_y(1+w_y t)\). The coefficient \(E_k\) sums products over all \(k\)-element subsets.
-- **Digit classes:** There are at most six distinct digit lengths. Elements in one class have the same weight, so their omitted-element polynomial is identical; only the sum of their values is additionally required.
-- **Efficient computation of \(E\):** With distinct class weights \(w_i\) and counts \(c_i\), define \(P(t)=\prod_i(1+w_i t)^{c_i}\), \(Q(t)=\prod_i(1+w_i t)\), and \(R(t)=\sum_i c_iw_i\prod_{j\ne i}(1+w_jt)\). Then \(Q P'=R P\), yielding every coefficient in \(O(D)\) time and total \(O(DN)\).
-- **Omitting one element:** For a class weight \(w\), if \(G(t)=P(t)/(1+wt)\), then \(G_0=1\) and \(G_k=E_k-wG_{k-1}\).
-- **Complexity:** \(O(DN+N)\) time and \(O(N)\) memory, where \(D\le 6\).

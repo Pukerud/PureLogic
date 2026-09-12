@@ -1,6 +1,0 @@
-- **Validation:** The implementation returns `[2, 3]` for example 1 and `[1, 3, 5, 6]` for example 2.
-- **Touching endpoints:** Compatibility uses `bisect_left(ends, start)`, selecting only intervals with `end < start`. Thus `[1, 3]` and `[3, 5]` are correctly treated as overlapping.
-- **Tie-breaking:** Each chosen set is maintained as a sorted tuple of original indices. Equal-score candidates are compared using tuple lexicographic order, which also correctly prefers a shorter tuple when it is a prefix of another.
-- **DP:** Intervals are sorted by end coordinate. Four weighted-interval-scheduling layers compute best selections using at most 1 through 4 intervals.
-- **Complexity:** `O(n log n)` time for sorting and predecessor lookup, plus `O(4n)` DP time. Tuple operations are constant-bounded because choices contain at most four indices.
-- **Correctness detail:** A predecessor prefix computed from all sorted ends is safe: any interval with `end < current_start` must occur before the current interval in end-sorted order.

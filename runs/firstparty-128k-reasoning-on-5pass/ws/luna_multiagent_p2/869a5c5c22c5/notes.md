@@ -1,8 +1,0 @@
-- **Feasibility:** A red move changes checkerboard parity, while a blue move preserves it. Therefore the number of red pieces in any cycle must be even.
-- **Pure blue cases:** A blue diagonal move changes row parity, so an all-blue cycle requires an even number of blue pieces. A diamond-shaped cycle realizes every even `B >= 2`.
-- **Pure red cases:** Every even `R >= 2` is realized by the perimeter of a rectangle; `R = 2` is the two-square back-and-forth cycle.
-- **Mixed cases:** For positive even `R`, the first `R-1` red moves make a detour from `(0,0)` to `(0,1)`. The blue moves form a diagonal path. If `B` is even, the final red move is horizontal; if `B` is odd, it is vertical, closing the cycle.
-- **Small cases:** The constructions work for `R=2` with `B=1`, `B=2`, and all larger valid mixed cases.
-- **Distinctness:** The red detour occupies nonpositive rows in columns `0` and `1`; blue intermediate points lie in positive rows, while their endpoints are separate from the red vertices. Thus all placement squares are distinct.
-- **Coordinates:** All generated points are translated so their minimum row and column become `1`. Their maximum coordinates are `O(R+B)`, hence safely within the `10^9` board.
-- **Complexity:** Each test case takes `O(R+B)` time and memory. The total complexity is linear in the total number of pieces.

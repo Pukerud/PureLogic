@@ -1,5 +1,0 @@
-We need to count connected labeled graphs on N vertices (N ≤ 30) such that in the BFS layer partition from vertex 1, the even layer and odd layer have equal size. Since N is even, equal size means each has N/2 vertices.
-
-A classic approach uses exponential generating functions (EGF) for rooted connected graphs, where the root corresponds to vertex 1. The condition that the root lies in a specific BFS layer of size k is encoded by a sign: we sum over graphs with a designated BFS layer of size k, with weight (-1)^k. The resulting signed count is the difference between graphs where root is in even layer and odd layer. The target count is the number of graphs with exactly N/2 vertices in even layer. This can be extracted via discrete Fourier transform (DFT) on N+1 points using a primitive (N+1)-th root of unity.
-
-We compute EGFs for connected graphs `C(x)`, unconnected graphs `D(x) = exp(C(x))`, and for each depth `t` the EGF of graphs where the root's BFS distance has parity `t mod (N+1)`. The DFT converts these signed sums into the exact count for each k. Finally, we extract coefficients for each edge count M.

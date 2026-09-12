@@ -1,8 +1,0 @@
-- **Direction order:** Southeast, southwest, northwest, northeast. In this order, `(d + 1) % 4` is the required clockwise diagonal direction.
-- **Straight runs:** `straight[d][cell]` stores the longest alternating `2, 0, 2, 0, ...` run beginning at the cell and moving in direction `d`.
-- **Turnable states:** `turnable[d][parity][cell]` stores the longest continuation beginning at a cell that must contain `2` when `parity=0` or `0` when `parity=1`, with at most one clockwise turn available.
-- **Correct turn location:** A turn is made at the current cell after it has been consumed. Therefore, the turn transition moves directly from the current cell to its clockwise-direction neighbor, rather than first moving straight and turning at the following cell.
-- **Transitions:** A state either continues to the next cell in the same direction while preserving turn availability, or turns immediately and follows the precomputed straight run in the clockwise direction. The current cell is counted once, and the turned neighbor is counted by `straight`.
-- **Starting cells:** Every `1` is tested as a segment of length one and as the start of each diagonal direction. The first following cell must be `2`.
-- **Validation:** The corrected turn transition produces lengths 5, 4, 5, and 1 for the four provided examples. It also handles single-cell grids, grids without any `1`, boundary starts, and turns whose destination immediately leaves the grid.
-- **Complexity:** Time is `O(nm)` and memory is `O(nm)`. Python `array("H")` is sufficient because every diagonal segment has length at most 500.

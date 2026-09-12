@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement the solution in Python: read S, compute the prefix function on reverse(S) + '#' + S, get L = pi[-1], output S + S[:len(S)-L][::-1]. Verify on samples and edge cases.",
-    "status": "done",
-    "result": ""
-  }
-]

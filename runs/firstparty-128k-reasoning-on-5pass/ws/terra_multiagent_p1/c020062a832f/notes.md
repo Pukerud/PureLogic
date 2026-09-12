@@ -1,8 +1,0 @@
-- **Initial inversion count:** Compute the inversion count for `k=0` using a Fenwick tree over residues. While processing index `i` from left to right, earlier values greater than `A[i]` equal `i - prefix_count(A[i])`.
-- **Wrap transition:** Advancing from `k` to `k+1`, entries with current residue `M-1` wrap to `0`. These are precisely entries whose original value is `M-1-k`.
-- **Per-occurrence delta:** For a wrapping entry at 1-indexed position `p`, it was larger than every different residue and becomes smaller than every different residue. Thus inversions with earlier distinct entries are gained, while inversions with later distinct entries are lost.
-- **Duplicate handling:** Same-residue pairs never contribute inversions, before or after wrapping. Summing across all occurrences of one residue cancels duplicate-rank terms.
-- **Aggregate delta:** If residue `x` appears `f` times and its occurrence positions sum to `S`, its total inversion change on wrapping is `2*S - f*(N+1)`.
-- **Output order:** Print the current inversion count for each `k`, then apply the delta for original value `M-1-k`.
-- **Complexity:** `O(N log M + N + M)` time and `O(M)` memory.
-- **Validation:** The corrected sign yields sample outputs: sample 1 `3,1,1`; sample 2 `7,3,3,1,1,5`; sample 3 `0,6,10,12,12,10,6`.

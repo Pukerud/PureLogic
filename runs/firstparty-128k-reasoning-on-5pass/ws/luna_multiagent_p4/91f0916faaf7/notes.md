@@ -1,7 +1,0 @@
-- **Prime-wise characterization:** For a prime \(p\), let \(e_i=v_p(A_i)\) and \(h_i=v_p(S_i)\). The condition \(f(S_i/S_{i+1})=A_i\) implies \(|h_i-h_{i+1}|=e_i\). If \(e_i>0\), there are two possible signed differences; if \(e_i=0\), there is only one.
-- **GCD normalization:** A choice of signed differences determines the valuation sequence up to adding a common constant. The gcd-one condition requires subtracting the minimum valuation, so the normalized heights have minimum zero.
-- **DP state:** After processing positions \(1,\dots,i\), `dp[y]` stores the sum of \(p^{h_1+\cdots+h_i}\) over all normalized walks whose current normalized height is \(y\).
-- **Transition without a new minimum:** From current height \(y\), a resulting height \(z\ge 0\) contributes a factor \(p^z\) for the newly appended position.
-- **Transition reaching a new minimum:** If a negative step gives \(z=y-e_i<0\), all previous \(i\) normalized heights are shifted upward by \(-z=e_i-y\), while the new height becomes zero. Thus the accumulated weight is multiplied by \(p^{i(e_i-y)}\).
-- **Independent primes:** Normalized valuations for different primes can be selected independently. Both the sequence score and the sum over all combinations factor into the product of the prime-wise DP results.
-- **Complexity:** For a prime, the height range is at most \(E_p=\sum_i e_i\), giving \(O(N E_p)\) time and \(O(E_p)\) active DP memory. Across all primes, \(\sum_p E_p=\sum_i\Omega(A_i)\le 9(N-1)\).

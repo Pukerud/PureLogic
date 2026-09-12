@@ -1,7 +1,0 @@
-- **Sweep invariant:** For a fixed second cut `j`, each active segment-tree position `i` with `1 <= i < j` stores `distinct(A[1..i]) + distinct(A[i+1..j])`. The global maximum plus `suffix_distinct[j+1]` is the best total for this `j`.
-- **Initialization:** At `j = 2`, the only possible first cut is `i = 1`, with stored value `prefix_distinct[1] + 1`. Last occurrences are initialized through positions 1 and 2.
-- **Transition:** To advance from second cut `j` to `j+1`, let `x = A[j+1]` and let `p` be its most recent occurrence through position `j`, or zero if absent. Existing cuts `i` gain one middle-segment distinct value exactly for `i in [max(1,p), j-1]`, implemented as range add `[max(1,p), j)`.
-- **New candidate:** After extending existing candidates, insert first cut `i = j` with value `prefix_distinct[j] + 1`, because its middle segment is only `A[j+1]`. Then update `last[x]`.
-- **Data structure:** The segment tree supports range addition and global maximum. Its lazy tags are retained at nodes; parent recomputation uses `lazy[node] + max(children)`. Newly inserted positions have never belonged to an earlier update range, so their paths have no pending lazy tag.
-- **Complexity:** Prefix/suffix preprocessing is `O(N)`. There are `O(N)` range updates and point insertions, each `O(log N)`, for total `O(N log N)` time and `O(N)` memory.
-- **Validation:** The implementation yields `5` for sample 1 and `9` for sample 2.

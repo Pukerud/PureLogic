@@ -1,8 +1,0 @@
-[
-  {
-    "id": 1,
-    "desc": "Implement the solution: read input, precompute transitions for LCS row states, run DP for M steps, and output results.",
-    "status": "done",
-    "result": ""
-  }
-]

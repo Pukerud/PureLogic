@@ -1,8 +1,0 @@
-- **Fixed deletion value:** After deleting every occurrence of a value `x`, the remaining array is the concatenation of the original blocks between consecutive occurrences of `x`.
-- **Segment summary:** Each nonempty interval stores its total sum, maximum nonempty prefix sum, maximum nonempty suffix sum, and maximum nonempty subarray sum. It also stores its length so that the empty identity can be handled safely.
-- **Merge operation:** For adjacent summaries `A` and `B`, the combined prefix is `max(A.prefix, A.total + B.prefix)`, the suffix is `max(B.suffix, B.total + A.suffix)`, and the best subarray is the maximum of either internal best or a suffix of `A` joined to a prefix of `B`.
-- **Empty blocks:** Consecutive occurrences of the deleted value produce empty blocks. They contribute the identity summary and do not create a subarray.
-- **All-identical arrays:** If every element equals `x`, deleting `x` would leave an empty array, which is forbidden. Such values are skipped. The original array is always considered.
-- **Correctness:** Every valid subarray in the filtered array is a contiguous range of the concatenated blocks, and the segment summaries exactly compute the maximum subarray sum of that concatenation.
-- **Complexity:** Building the segment tree costs `O(n)`. For a value occurring `k` times, at most `k + 1` interval queries are performed, each in `O(log n)`. Across all values, the number of occurrences is `n`, so total complexity is `O(n log n)` with `O(n)` memory.
-- **Integer safety:** Python integers safely handle the maximum possible sums.

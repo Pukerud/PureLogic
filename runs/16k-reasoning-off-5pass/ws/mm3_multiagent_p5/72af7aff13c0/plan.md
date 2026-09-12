@@ -1,5 +1,0 @@
-1. Re-index cells (h,w) to a single index id = (h-1)*W + (w-1) for O(1) lookups.
-2. Precompute factorials and inverse factorials up to (H+W) modulo MOD = 998244353.
-3. For each cell, define its weight contribution to any path from (1,1) to (H,W) as the number of ways to go from (1,1) to that cell times the number of ways to go from that cell to (H,W). That count equals C(h-1 + w-1, h-1) * C((H-h) + (W-w), H-h) mod MOD. Multiply this by the cell value and sum to get the answer.
-4. For each update: change the current cell to the new value, update the global sum using the precomputed weight for that cell. The starting cell is at (sh, sw). Print the new sum after each update.
-5. Use fast modular multiplication with the precomputed binomial coefficients to handle the large number of cells efficiently.

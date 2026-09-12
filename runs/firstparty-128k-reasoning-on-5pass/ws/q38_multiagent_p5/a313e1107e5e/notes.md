@@ -1,7 +1,0 @@
-- **Approach:** Offline sweep over prefix length R. Sort queries by R, process A left to right, and answer all queries whose R equals the current index.
-- **Invariant:** tails[k] is the minimum possible ending value of a strictly increasing subsequence of length k+1 in the processed prefix. The list is strictly increasing.
-- **Update:** For each a, use bisect_left(tails, a) to maintain strict LIS tails: replace the first tail >= a, or append if a is larger than all tails.
-- **Query:** For threshold X, answer is bisect_right(tails, X). If a valid subsequence of length L exists, its last value is <= X, so tails[L-1] <= X. Conversely, tails[k] <= X witnesses a valid subsequence of length k+1.
-- **Complexity:** Sorting queries O(Q log Q), sweep O(N log N + Q log N), memory O(N + Q).
-- **Edge cases:** Duplicates are handled by bisect_left for updates; query uses bisect_right to include equal values. X need not appear in A. The guarantee X >= min prefix only ensures answer at least 1; code also works if answer were 0.
-- **Implementation:** Use sys.stdin.buffer.read().split() with map(int, ...) for fast input; store original query index to restore output order.

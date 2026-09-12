@@ -1,7 +1,0 @@
-- **Required cost:** For a fixed subarray `[left, right]`, the minimum target values that make it non-decreasing are its prefix maxima. The operation count is the sum of those prefix maxima minus the original sum.
-- **Next-greater blocks:** Starting at index `i`, `nums[i]` remains the prefix maximum until the first strictly greater element `ng[i]`. Its block cost is `nums[i] * (ng[i] - i) - sum(nums[i:ng[i]])`.
-- **Chain traversal:** Prefix-max blocks form a chain `i -> ng[i] -> ng[ng[i]] -> ...`. Binary lifting stores both the destination after `2^p` links and the accumulated cost of those links.
-- **Sentinel safety:** Index `n` is explicitly included in every jump and cost table. Its jump points to itself and its cost is zero, preventing the out-of-bounds access present in the broken version.
-- **Counting:** For a fixed right endpoint, required cost is non-increasing as the left endpoint moves right. Binary search finds the smallest valid left endpoint; every later start is also valid.
-- **Complexity:** Next-greater construction is `O(n)`. Each cost query is `O(log n)`, and each right endpoint uses an `O(log n)` binary search, giving `O(n log² n)` time and `O(n log n)` memory.
-- **Validation:** The implementation returns `17` for `[6, 3, 1, 2, 4, 4], k=7` and `12` for `[6, 3, 1, 3, 6], k=4`. It also handles singleton arrays, already non-decreasing arrays, strictly decreasing arrays, and cases where the full array exceeds the budget.

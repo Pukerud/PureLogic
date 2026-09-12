@@ -1,8 +1,0 @@
-- **Cost 1:** If an interval is `[1, N]`, choosing type 1 for that operation alone is optimal.
-- **Containment ordering:** Sort intervals by `(L ascending, R descending)`. For a current interval, every earlier interval with `R >= current_R` contains it, including same-left-endpoint cases.
-- **Containment witness reconstruction:** Compress right endpoints and reverse their ranks. A Fenwick tree stores the minimum original operation index among processed intervals at each reversed right rank. Querying its prefix finds the smallest original index among earlier intervals with `R >= current_R`.
-- **Mixed cost 2:** If `A ⊆ B`, choosing type 2 on `A` and type 1 on `B` covers all positions. The Fenwick witness selection makes sample 1 choose interval 1 as type 2 and interval 3 as type 1, yielding `2 0 1 0`.
-- **Two type-1 cost 2:** Choose an interval starting at 1 with maximum right endpoint and one ending at `N` with minimum left endpoint. They cover `[1, N]` iff those endpoints overlap.
-- **Two type-2 cost 2:** Complements of two intervals cover all positions iff the original intervals are disjoint. A left-endpoint sweep detects a previous maximum right endpoint strictly smaller than current left endpoint.
-- **Cost 3:** For `M >= 3`, choose type 2 for an interval with maximum `L` and one with minimum `R`, then choose type 1 for any distinct third interval. Their jointly missed intersection is contained in every interval. If the first two were identical, containment would already have yielded cost 2.
-- **Complexity:** Sorting and coordinate compression take `O(M log M)`. Fenwick operations take `O(M log M)`. Memory usage is `O(M)`.

@@ -1,7 +1,0 @@
-- **Definition:** Let \(S_k\) be the sum of \((A_i+A_j)/2^k\) over all unordered index pairs \(i\le j\) whose sum is divisible by \(2^k\).
-- **Exact valuation:** Pairs divisible by \(2^k\) but not \(2^{k+1}\) contribute \(S_k-2S_{k+1}\), because a pair counted in \(S_{k+1}\) has its normalized value at level \(k\) equal to twice its normalized value at level \(k+1\). Therefore the answer is \(\sum_k(S_k-2S_{k+1})\), with the final \(S\) equal to zero.
-- **Residue grouping:** For modulus \(m=2^k\), group values by residue \(r=A_i\bmod m\). A pair sum is divisible by \(m\) exactly when the residues are complementary: \(r+s\equiv0\pmod m\).
-- **Distinct complementary groups:** If \(r\ne -r\bmod m\), with group count/sum \((c_r,t_r)\) and complementary group \((c_s,t_s)\), all cross-group pairs are valid. Their total pair-sum is \(t_rc_s+t_sc_r\). Process only \(r\le s\) to avoid double counting.
-- **Self-complementary groups:** If \(r=-r\bmod m\), every pair within the group is valid, including diagonals. For a group of size \(c\) and element sum \(t\), the total over all \(i\le j\) is \((c+1)t\): each element appears \(c+1\) times when diagonal pairs count twice in their sum.
-- **Level zero:** For \(m=1\), the sole residue group is self-complementary, so the same \((c+1)t\) formula correctly includes every pair \(i\le j\).
-- **Complexity:** There are \(O(\log \max A_i)\) levels. Each level builds and scans a residue dictionary in \(O(N)\), giving \(O(N\log \max A_i)\) time and \(O(N)\) auxiliary space.

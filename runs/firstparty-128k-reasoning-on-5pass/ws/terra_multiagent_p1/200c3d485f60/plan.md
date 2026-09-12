@@ -1,1 +1,0 @@
-View the array as having `n - 1` adjacent transitions. Choose exactly `k` transitions where the value stays equal; every remaining transition must change to one of `m - 1` different values. Thus the answer is `m * C(n - 1, k) * (m - 1)^(n - 1 - k)` modulo `10^9 + 7`. Precompute factorials and inverse factorials up to `n - 1` to evaluate the binomial coefficient efficiently.

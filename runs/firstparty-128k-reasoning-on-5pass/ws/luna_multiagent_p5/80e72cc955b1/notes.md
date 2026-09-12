@@ -1,6 +1,0 @@
-- **Required reductions:** A value `x >= 1` needs `f(x) = floor(log_4(x)) + 1` reductions, because each reduction replaces it with `floor(x / 4)`.
-- **Constant intervals:** `f(x) = k` for `x` in `[4^(k-1), 4^k - 1]`. The prefix sum is computed by traversing these intervals, requiring only `O(log_4 n)` work.
-- **Query total:** For `[l, r]`, let `S = sum(f(x) for x in [l, r])`. Every operation performs two reductions, so at least `ceil(S/2)` operations are necessary.
-- **Tightness:** The required reductions can be paired between array elements. Since the query contains at least two consecutive values, the largest reduction count differs from the next largest by at most one; therefore no single element has more required reductions than all other elements combined, except possibly one final unmatched reduction. That final reduction can be paired with an already-zero element, so the lower bound is attainable.
-- **Boundary handling:** The intervals include exact powers of four correctly: `1` requires 1 reduction, `4` requires 2, `16` requires 3, and so on. Values immediately below a power remain in the preceding interval.
-- **Complexity:** Each query takes `O(log_4 r)` time and `O(1)` extra space. With `r <= 10^9`, there are fewer than 16 intervals per prefix computation.

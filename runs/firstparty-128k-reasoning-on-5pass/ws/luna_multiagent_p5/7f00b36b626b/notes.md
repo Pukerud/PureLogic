@@ -1,7 +1,0 @@
-- **Correctness:** Two values `a` and `b` have `lcm(a, b) <= threshold` exactly when they share a common multiple no greater than `threshold`. Their least common multiple itself is such a multiple.
-- **Multiple sweep:** For every input value `x <= threshold`, the algorithm visits all multiples of `x` up to `threshold`. Each multiple stores one previously encountered input value dividing it; every later value dividing that multiple is unioned with the stored representative.
-- **Connectivity preservation:** If several values divide the same multiple, each is directly connected to the representative because its LCM with the representative divides that multiple. Every valid original edge is discovered at its LCM, so all required unions are made.
-- **Values above the threshold:** A value greater than `threshold` cannot have an LCM at most `threshold` with any value, so it remains an isolated component.
-- **Examples:** The sweep yields four components for `[2, 4, 8, 3, 9]` with threshold `5`, and two components for `[2, 4, 8, 3, 9, 12]` with threshold `10`.
-- **Complexity:** The total multiple iterations are `O(threshold log threshold)` in the worst case. DSU operations are near-linear, and memory usage is `O(n + threshold)`.
-- **Counting:** Initially every value is its own component; the count decreases only after a successful DSU union.

@@ -1,7 +1,0 @@
-- **Algorithm:** Process values from `N` down to `1`. At reverse step `i`, assign value `i` to the `P_i`-th unassigned final array position from the left.
-- **Data structure:** Maintain unassigned positions as ones in a Fenwick tree. Initially every final position is available, so Fenwick entry initialization is `bit[i] = i & -i`.
-- **Selection:** Fenwick binary lifting finds the smallest index whose prefix sum is at least rank `P_i`, equivalently the `P_i`-th available position.
-- **Update:** After placing a value, subtract one at its selected position in the Fenwick tree, marking that position unavailable.
-- **Correctness intuition:** Reversing the insertion sequence removes values in decreasing order. Before insertion `i` in the forward process, value `i` was at rank `P_i`; in reverse reconstruction, all later values are already fixed, and the remaining free slots preserve exactly the rank structure of the earlier array.
-- **Complexity:** `O(N log N)` time and `O(N)` memory, suitable for `N <= 5 * 10^5`.
-- **Verification:** For `N=4`, positions `1 1 2 1`, reverse placement gives slots `(4,2,3,1)`. For positions `1 2 3 4 5`, each value is placed into its own final index.

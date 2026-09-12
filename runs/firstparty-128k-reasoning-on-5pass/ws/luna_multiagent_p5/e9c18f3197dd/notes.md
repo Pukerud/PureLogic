@@ -1,8 +1,0 @@
-- **State:** `dp[mask]` stores the minimum operations after processing a prefix of `nums`, where every target index represented in `mask` has a multiple in the processed numbers.
-- **Assignment:** A number assigned to subset `subset` is incremented to the next multiple of the LCM of the target values in that subset. Its cost is `(-value) % lcms[subset]`.
-- **Transitions:** Each number can be skipped or assigned to one nonempty target subset. A copied DP array ensures one number is used at most once per transition.
-- **LCM preprocessing:** Every subset LCM is built from a smaller subset using `lcm(a, b) = a // gcd(a, b) * b`.
-- **Correctness:** If a number reaches a multiple covering several targets, assigning it to exactly that covered subset has the same LCM and cost. Therefore, considering all subsets is sufficient.
-- **Complexity:** With `m = len(target) <= 4`, the time complexity is `O(len(nums) * 4^m)` and memory usage is `O(2^m)`.
-- **Verification:** The implementation returns `1` for `nums=[1,2,3], target=[4]`, `2` for `nums=[8,4], target=[10,5]`, and `0` for `nums=[7,9,10], target=[7]`.
-- **Additional edge cases:** It returns `0` when all targets are already covered, correctly handles one number covering multiple targets through an LCM, and supports duplicate or non-coprime target values.

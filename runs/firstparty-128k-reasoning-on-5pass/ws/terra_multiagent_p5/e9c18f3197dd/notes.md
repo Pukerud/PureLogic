@@ -1,8 +1,0 @@
-- **Verification:** The supplied implementation produces the expected sample outputs: `[1,2,3]`, `[4]` gives `1`; `[8,4]`, `[10,5]` gives `2`; `[7,9,10]`, `[7]` gives `0`.
-- **Approach:** Deduplicate `target`, since repeated target values do not impose separate requirements. Use a bitmask of at most four distinct target values.
-- **Subset LCM:** Precompute the LCM for each target subset. One incremented source number can cover every target in a subset by being changed to a multiple of that subset's LCM.
-- **Cost:** For source value `x` and subset LCM `L`, the least required increment is `ceil(x / L) * L - x`, computed as `((x + L - 1) // L) * L - x`.
-- **DP state:** `dp[mask]` is the minimum operation count after considering a prefix of `nums`, with target bits in `mask` covered. For each number, retain the existing state or use that number to cover a nonempty subset of currently uncovered targets.
-- **Subset restriction:** Only subsets of uncovered bits need consideration. Any overlap with already covered bits can be removed without increasing the required LCM or cost.
-- **Bounds:** Each target is at most `10^4`; an LCM of up to four values is at most their product, below `10^16`. Python integers safely handle this. `10^30` is safely above all possible DP costs.
-- **Complexity:** At most `3^4 = 81` subset transitions per number, so time is `O(len(nums) * 3^m)` and memory is `O(2^m)`, where `m <= 4`.

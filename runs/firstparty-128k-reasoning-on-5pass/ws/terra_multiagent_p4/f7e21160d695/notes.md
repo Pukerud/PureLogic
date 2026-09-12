@@ -1,9 +1,0 @@
-- **Algorithm:** Construct an MST implicitly with Kruskal's algorithm. For any vertices `x, y`, the minimax path value `f(x,y)` equals the maximum edge weight on the path between them in an MST.
-- **Component state:** Store one signed imbalance per DSU component: `balance = (# unmatched A occurrences) - (# unmatched B occurrences)`. Initially, add `+1` for every occurrence in sequence `A` and `-1` for every occurrence in sequence `B`. Duplicates are naturally handled.
-- **Merge cost:** When Kruskal joins components with imbalances `x` and `y` using an edge of weight `w`, newly available matches are exactly pairs of residual opposite signs. Their number is
-  `(|x| + |y| - |x+y|) / 2`.
-  Add this quantity times `w` to the answer, then store merged imbalance `x+y`.
-- **Correctness:** Before each merge, all pairs that can be matched within every current component have already been matched at the smallest possible threshold. A component's unmatched occurrences can only belong to one side after cancellation, represented by the sign of its imbalance. Joining two components enables precisely the opposite-side residual pairs across them; every such pair has minimax cost equal to the current Kruskal weight, and postponing it cannot reduce cost. Therefore greedily cancelling all possible cross-component pairs at every merge is optimal. Since the graph is connected and total initial imbalance is zero, all occurrences are matched by the end.
-- **Equal weights:** Processing equal-weight edges one at a time is valid. Any matches enabled through several edges of the same weight are all charged that same weight, independent of their order.
-- **Complexity:** Sorting edges costs `O(M log M)`. DSU operations cost `O(M alpha(N))`. Memory usage is `O(N + M)`.
-- **Implementation:** The answer may be as large as roughly `K * 10^9`, so Python integers are used.

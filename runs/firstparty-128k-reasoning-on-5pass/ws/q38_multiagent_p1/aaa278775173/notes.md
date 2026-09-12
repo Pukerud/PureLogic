@@ -1,9 +1,0 @@
-- **Sample tests:** The current solution was run on the four provided examples; verdict is PASSED.
-- **Actual outputs:** Sample 1 returned 5, Sample 2 returned 4, Sample 3 returned 5, Sample 4 returned 1.
-- **Expected outputs:** The expected values are 5, 4, 5, and 1, so all four match.
-- **Harness:** The code includes a small `__main__` harness that prints per-sample actual/expected values and an overall verdict; the `Solution` class remains the reusable implementation.
-- **Algorithm status:** The DP approach is unchanged: `dp0` stores longest straight valid segment ending at a cell for each diagonal direction, and `dp1` stores longest one-turn valid segment ending at a cell for the current outgoing direction.
-- **Turn handling:** A turn is created only from a straight segment of length at least 2 in the counterclockwise predecessor direction, then extended in the clockwise direction; this avoids treating a one-cell start as a real turn.
-- **Parity:** Only length parity is needed to determine the next required value, and the end cell value fixes parity, so keeping the longest length per state is safe.
-- **Complexity:** The implementation remains O(nm) time and O(nm) memory, with `array('H')` storage for lengths.
-- **Edge cases:** No `1` returns 0; a single `1` returns 1; one-row or one-column grids only produce single-cell valid segments because no diagonal predecessor exists.

@@ -1,7 +1,0 @@
-- **Consistency:** Every source character must map to one fixed target character. Conflicting pairs immediately make the transformation impossible.
-- **Base cost:** Each non-identity source-to-target mapping requires one operation.
-- **Cycles:** A directed cycle among non-identity mappings needs one additional operation using a temporary character.
-- **Cycle detection:** The mapping graph has outdegree at most one, so functional-graph traversal detects every cycle in constant alphabet-sized time.
-- **Temporary availability:** A temporary character is usable if it is absent from the original `S`, or if some non-cyclic mapped character can be moved to its target first, thereby freeing that character.
-- **Impossibility:** A cycle is impossible only when no temporary character is available. This occurs when every alphabet character appears in `S` and every non-identity mapped character belongs to a cycle.
-- **Complexity:** Building the mapping takes `O(N)` time; graph processing takes `O(26)` time and memory.

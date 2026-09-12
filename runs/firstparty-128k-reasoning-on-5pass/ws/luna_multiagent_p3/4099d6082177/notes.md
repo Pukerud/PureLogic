@@ -1,8 +1,0 @@
-- **Invariant:** For each rooted subtree, state `0` means it is completely decomposed into K-vertex paths. A positive state `x` means all but one path fragment are complete, and the remaining fragment is a path of `x` vertices whose endpoint is the subtree root and can connect to the parent.
-- **Leaf or no unfinished child:** The current vertex starts a fragment of length 1.
-- **One unfinished child:** The current vertex extends that fragment by one vertex. If its length becomes K, the path is complete and the state becomes `0`; otherwise the new length is propagated upward.
-- **Two unfinished children:** Both fragments must be joined through the current vertex, so their lengths must satisfy `a + b + 1 == K`. If so, the subtree becomes complete; otherwise it is impossible.
-- **More than two unfinished children:** Impossible, because a path can use the current vertex with at most two incident child-side fragments.
-- **Root condition:** The root cannot leave an unfinished fragment, so the final state must be `0`.
-- **K = 1:** Every individual vertex is already a valid path, so the answer is immediately `Yes`.
-- **Complexity:** The iterative rooting and postorder DP both take O(NK) time and O(NK) memory.

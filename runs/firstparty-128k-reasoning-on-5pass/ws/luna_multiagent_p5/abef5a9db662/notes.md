@@ -1,8 +1,0 @@
-- **Function representation:** Maintain `f(x)`, the rating after processed contests for every initial rating `x` from `1` to `500000`.
-- **Monotonicity:** `f` is nondecreasing. Therefore, the initial ratings whose current values lie in `[L, R]` form one contiguous interval.
-- **Segment tree:** Store the maximum current value in each node and support range addition with lazy propagation.
-- **Boundary searches:** Find the first index with `f(x) >= L` and the first index with `f(x) > R`. Their difference gives the affected half-open interval.
-- **Duplicate values:** The two searches deliberately use different comparisons, so equal-valued blocks are handled correctly.
-- **Initial construction:** Leaves are initialized to their indices; unused leaves beyond `500000` have negative-infinite values and are never updated.
-- **Final answers:** After all contests, propagate lazy values top-down once and directly read the leaf corresponding to each query.
-- **Complexity:** `O((N + Q) log M + M)` time and `O(M)` memory, where `M = 500000`.

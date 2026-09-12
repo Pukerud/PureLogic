@@ -1,6 +1,0 @@
-- **Approach:** Use dynamic programming over bitmasks of covered target elements. There are at most four targets, so at most 16 states.
-- **Subset cost:** A number assigned to a target subset must become divisible by the LCM of that subset. The required increments are `(lcm - number % lcm) % lcm`.
-- **Transitions:** For each number, either leave it unused or assign it to one nonempty subset of currently uncovered targets. A copied DP array ensures each number is used at most once.
-- **LCM computation:** Precompute every subset LCM incrementally using `lcm(a, b) = a // gcd(a, b) * b`. Duplicate target values are handled naturally.
-- **Correctness:** Any number covering several targets must be divisible by their LCM. Conversely, reaching a multiple of that LCM satisfies every target in the subset. Restricting assignments to uncovered targets is sufficient because assigning already-covered targets cannot improve the result.
-- **Complexity:** With `m = len(target) <= 4`, the runtime is `O(len(nums) * 3^m)` and the memory usage is `O(2^m)`.

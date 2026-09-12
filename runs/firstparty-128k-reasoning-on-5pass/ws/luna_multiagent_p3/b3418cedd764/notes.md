@@ -1,8 +1,0 @@
-- **Graph model:** Treat each constraint as an edge \(i \to A_i\). Every weak component of a functional graph contains one directed cycle, with directed trees feeding into its cycle.
-- **Cycle property:** Along a directed cycle, the inequalities imply every cycle vertex has the same value, because \(x_u \le x_v\) around the whole cycle.
-- **Tree DP:** For a vertex \(v\), `dp[v][t]` stores the number of assignments in all already processed subtrees attached to \(v\), assuming \(x_v=t\). Initially it is 1 for every value.
-- **Child transition:** If a child \(u\) is assigned values at most \(t\), its contribution is \(\sum_{s=1}^{t} dp[u][s]\). Therefore, while processing \(u\), compute its prefix sums and multiply them into `dp[A[u]]`.
-- **Peeling:** Start with vertices having zero incoming edges, repeatedly remove them, and decrement the incoming-edge count of their parent. This guarantees that every non-cycle child has been incorporated before its parent is processed.
-- **Cycle counting:** After peeling, vertices with positive remaining indegree are cycle vertices. For each cycle and each common value \(t\), multiply `dp[v][t]` over all cycle vertices, then sum over \(t=1,\dots,M\).
-- **Components:** Different functional-graph components are independent, so multiply their counts.
-- **Complexity:** The algorithm performs \(O(NM)\) modular operations and uses \(O(NM)\) memory.

@@ -1,8 +1,0 @@
-- **Verification:** The implementation was checked against a brute-force enumerator on randomized small arrays, summing `min(subarray) + max(subarray)` over every subarray of length at most `k`. All tested cases pass.
-- **Coverage:** Random tests included negative, zero, and positive values; repeated values and all-equal arrays; increasing and decreasing arrays; `k = 1`; `k = n`; and all intermediate valid `k` values.
-- **Contribution ownership:** Every maximum and minimum is assigned to its rightmost equal occurrence. This prevents duplicate extrema from being counted more than once.
-- **Maximum boundaries:** For index `i`, the previous boundary is the nearest strictly greater value and the next boundary is the nearest greater-or-equal value. Thus, subarrays crossing neither boundary have `nums[i]` as their owned maximum.
-- **Minimum boundaries:** For index `i`, the previous boundary is the nearest strictly smaller value and the next boundary is the nearest smaller-or-equal value.
-- **Length-limited count:** With `L = i - prev[i]`, `R = nxt[i] - i`, choose left/right endpoint counts `a in [1, L]`, `b in [1, R]`. The length condition is `a + b - 1 <= k`, equivalently `a + b <= k + 1`.
-- **Pair formula:** The count is computed in O(1) by splitting left choices into those allowing all `R` right choices and a remaining arithmetic progression.
-- **Complexity:** Four monotonic-stack scans plus two contribution sums take O(n) time and O(n) memory.

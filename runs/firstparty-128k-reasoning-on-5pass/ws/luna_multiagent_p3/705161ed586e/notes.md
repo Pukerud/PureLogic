@@ -1,7 +1,0 @@
-- **Dynamic programming state:** For each suffix position, character, and run maturity, store the minimum conversion cost. Maturity distinguishes run lengths 1, 2, and at least 3.
-- **Transitions:** A run can always continue with its current character. A new character may begin only after a mature run, ensuring every completed group has length at least 3.
-- **Character-switch optimization:** For each position, compute the cost of starting a run with every character. The smallest and second-smallest values allow finding the best switch excluding the current character in constant time.
-- **Initialization:** At the end of the string, only mature runs are valid. Strings of length below 3 are immediately impossible.
-- **Reconstruction:** Choose the smallest first character achieving the optimal total cost. At every later position, scan characters from `'a'` to `'z'` and select the first transition preserving the DP optimum.
-- **Correctness checks:** The transitions handle all run lengths, forbid premature switches, correctly account for alphabet-distance operations, and preserve lexicographic tie-breaking. Any string of length at least 3 is feasible by converting all positions to one character.
-- **Complexity:** The algorithm uses O(26n) time and O(26n) memory. With `n <= 5 * 10^4`, integer arrays keep memory usage practical.

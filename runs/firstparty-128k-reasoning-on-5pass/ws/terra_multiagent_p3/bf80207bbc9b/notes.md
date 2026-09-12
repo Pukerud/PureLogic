@@ -1,6 +1,0 @@
-- **Approach:** Compress rows into a frequency array indexed by their W-bit mask. For a fixed column-flip mask `m`, a row `r` contributes `min(popcount(r xor m), W - popcount(r xor m))`, since its own row flip can be selected independently.
-- **Convolution:** Define `g[x] = min(popcount(x), W-popcount(x))`. The total for every column mask is `F[m] = sum_r freq[r] * g[r xor m]`, an XOR convolution.
-- **Transform:** Compute the XOR convolution using Walsh-Hadamard transforms: transform `freq` and `g`, multiply pointwise, then transform again and divide each value by `2^W`.
-- **Complexity:** `O(W * 2^W + H)` time and `O(2^W)` memory. With `W <= 18`, this is feasible in Python.
-- **Correctness detail:** Parsing each binary row with `int(row, 2)` is valid because only XOR and popcount are used; bit ordering does not affect the result.
-- **Sample verification:** Sample 1 produces `2`; sample 2 produces `0`; sample 3 produces `13`.

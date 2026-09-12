@@ -1,5 +1,0 @@
-- **Enumeration choice:** Enumerate subsets of size `r = min(K, N-K)`. If `r = K`, their XOR is directly a candidate. Otherwise, enumerate the omitted `N-K` elements and use `total_xor ^ omitted_xor`.
-- **Incremental XOR:** Combinations are generated in lexicographic order. When advancing to the next combination, only the suffix beginning at the rightmost incrementable position changes, so the XOR is updated by removing each old value and adding each new value.
-- **Complexity:** Exactly `C(N, r) = C(N, K)` combinations are processed. The guarantee bounds this by `10^6`; suffix updates are efficient and avoid recomputing each combination XOR from scratch. Memory usage is `O(N)`.
-- **Edge cases:** For `r = 0`, the only selected or omitted set is empty. The answer is `total_xor` when `K=N`, and `0` when `K=0` (the latter is not required by the constraints but is handled).
-- **Duplicates:** Elements are represented by indices, so duplicate values are treated as distinct selectable elements automatically.

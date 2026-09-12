@@ -1,7 +1,0 @@
-- **State orientation:** After processing square `x`, bit `k` of the mask stores whether square `x-k` is reachable, for `0 <= k < B`.
-- **Safe transition:** The next square is reachable iff one of the previous squares at distances `A` through `B` is reachable. Therefore the new bit zero depends on old bits `A-1` through `B-1`; all other bits are shifted upward.
-- **Bad transition:** A bad square always contributes zero, so the mask is shifted left and bit zero is cleared. After at least `B` consecutive bad squares, the entire state is zero.
-- **Segment processing:** Safe segments are processed using powers of the deterministic safe transition. Each transformation is represented by one dependency bitmask per output bit, since every output is an OR of selected input bits.
-- **Transformation composition:** For an outer dependency row, compose by OR-ing the corresponding rows of the inner transformation for every selected input bit.
-- **Boundaries:** Initialize square `1` as reachable (`state = 1`). Process positions starting at square `2`, handling safe ranges before each bad interval, then the bad interval itself, and finally the safe suffix through square `N`.
-- **Complexity:** Precomputation costs `O(B^2 log N)`. Each bad interval requires `O(B log N)` time for its preceding safe segment, with `B <= 20` and `M <= 2 * 10^4`.

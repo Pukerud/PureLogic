@@ -1,1 +1,0 @@
-A brief strategy: transform sum over intervals to sum over pairs of prefix sums, expand (P_j - P_i)^K using binomial theorem, and compute efficiently using running sums of powers of prefix sums. O(N*K) time, O(K) memory.

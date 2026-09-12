@@ -1,5 +1,0 @@
-- **Characterization:** A valid number has the form \(p^{2a}q^{2b}=m^2\), where \(m\) has exactly two distinct prime factors. Conversely, squaring such an \(m\) makes every prime exponent even.
-- **Precomputation:** Since \(A\le 10^{12}\), it is sufficient to inspect bases \(m\le 10^6\).
-- **Factor counting:** The smallest-prime-factor sieve allows the distinct-prime-factor count to be computed by removing one smallest prime factor and checking whether it already occurs in the remaining quotient.
-- **Candidate ordering:** Bases are processed increasingly, so their squares are already sorted and can be searched with `bisect_right`.
-- **Complexity:** The sieve and preprocessing take approximately \(O(10^6\log\log 10^6)\) time and \(O(10^6)\) memory. Each query is answered in \(O(\log M)\), where \(M\) is the number of candidates.

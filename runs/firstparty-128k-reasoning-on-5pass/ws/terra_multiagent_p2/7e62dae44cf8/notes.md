@@ -1,7 +1,0 @@
-- **Algorithm:** Start from Takahashi's cell and maintain all currently adjacent, unabsorbed cells in a min-heap ordered by slime strength.
-- **Greedy correctness:** If the minimum-strength boundary slime cannot be absorbed, no other boundary slime can be absorbed because all others are at least as strong. If it can be absorbed, doing so only increases current strength and exposes more cells, so it cannot reduce future possibilities.
-- **Condition:** A slime with strength `v` is absorbable exactly when `v * X < current_strength`. The inequality is strict.
-- **Grid expansion:** Mark a cell visited when it is first added to the heap. This prevents duplicate heap entries when a cell is adjacent to multiple absorbed cells.
-- **Complexity:** Each cell is inserted and removed from the heap at most once, giving `O(HW log(HW))` time and `O(HW)` memory.
-- **Integer safety:** Python integers safely hold the total accumulated strength and the product `v * X`.
-- **Sample verification:** The implementation follows the stated heap process and produces the expected values 28, 5, and 1343 for the three provided samples.

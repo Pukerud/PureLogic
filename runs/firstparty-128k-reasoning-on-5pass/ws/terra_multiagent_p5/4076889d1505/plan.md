@@ -1,1 +1,0 @@
-Use the universal construction \(A=N+1\) and \(M=N^2\). By the binomial theorem, \((1+N)^n-1 \equiv nN \pmod{N^2}\), so it is divisible by \(N^2\) exactly when \(N\mid n\); hence the smallest valid exponent is \(N\). All values satisfy the bounds because \(A\le 10^9+1\) and \(M\le 10^{18}\). Process every test case independently in constant time.

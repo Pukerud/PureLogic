@@ -1,8 +1,0 @@
-- **State meaning:** A state `(u, v)` represents a palindrome path from `u` to `v`.
-- **Base states:** Every `(u, u)` has distance `0` because the empty string is a palindrome. Every existing edge `(u, v)` has distance `1` because a single character is a palindrome.
-- **Transition:** If `x -> u` and `v -> y` have the same label, any palindrome from `u` to `v` can be surrounded by these edges, producing a palindrome from `x` to `y` with length increased by `2`.
-- **Shortest-path algorithm:** Run multi-source Dijkstra on the `N²` pair states. All transitions cost `2`, though a heap is retained for direct and generated states.
-- **Efficient transitions:** For each vertex and character, incoming neighbors are stored explicitly. Outgoing neighbors are stored as bitmasks. For a popped state `(u, v)`, each compatible incoming vertex `x` is combined with the outgoing bitmask of `v`; bit operations avoid scanning all possible destination vertices repeatedly.
-- **Unique discovery optimization:** States are processed in nondecreasing distance order. Therefore, the first time an uninitialized pair is generated, its distance is optimal. `unassigned[x]` stores the still-undiscovered destination vertices for each source row, ensuring each pair is relaxed at most once.
-- **Complexity:** There are `N²` states. Transition bookkeeping is `O(N³)` bitmask/group operations, with at most `N²` successful state insertions. Memory usage is `O(N²)` aside from the input and adjacency structures.
-- **Direction correctness:** The left outer edge must enter the current left endpoint (`x -> u`), while the right outer edge must leave the current right endpoint (`v -> y`).

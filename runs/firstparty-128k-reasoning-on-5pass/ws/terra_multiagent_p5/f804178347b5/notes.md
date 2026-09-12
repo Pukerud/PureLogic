@@ -1,6 +1,0 @@
-- **DP state:** For every ternary-tree subtree, store the minimum number of leaf bit flips needed to force its resulting majority value to `0` and to `1`.
-- **Leaf initialization:** A leaf containing `0` has costs `(0, 1)`; a leaf containing `1` has costs `(1, 0)`.
-- **Transition:** To force an internal majority-of-three node to target bit `x`, at least two of its three children must produce `x`. If child forcing costs are `p, q, r`, the optimal cost is the sum of the two smallest values, equivalently `p + q + r - max(p, q, r)`.
-- **Root answer:** The original root value is exactly the target whose forcing cost is zero. Output the cost for the other target.
-- **Implementation:** Process level by level from leaves to root. `array('I')` stores costs compactly, avoiding large Python tuple/list overhead for up to `3^13 = 1,594,323` leaves.
-- **Complexity:** Time is `O(3^N)`. Peak memory is `O(3^N)` for the current and next DP levels.

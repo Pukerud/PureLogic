@@ -1,5 +1,0 @@
-1. Build a Minimum Spanning Tree (MST) using Kruskal's algorithm, sorting edges by weight.
-2. On the MST, f(x,y) equals the maximum edge weight on the unique x-y path (minimax path).
-3. Build a virtual tree (node set = A_i and B_i, size ≤ 2K) sorted by Euler tour order. For each edge in the virtual tree, the cost is the maximum weight on the original MST path between the two endpoints. This can be answered with binary lifting LCA.
-4. We now have a tree with K special nodes. The original problem reduces to pairing A nodes with B nodes on this virtual tree such that sum of distances is minimized. Since the virtual tree preserves the original minimax costs, we can DP on it.
-5. The DP is "min-cost perfect matching between left and right marked nodes on a tree": for each subtree, we can maintain a DP of unmatched A nodes passing upward. Use a multiset (sorted list) to match across children. Complexity O(K log K).

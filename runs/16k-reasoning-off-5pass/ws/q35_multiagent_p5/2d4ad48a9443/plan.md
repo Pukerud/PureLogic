@@ -1,6 +1,0 @@
-1. Use a two-pointer (sliding window) approach to efficiently count valid subarrays.
-2. For each right endpoint `r`, find the smallest left endpoint `l` such that the subarray `nums[l..r]` can be made non-decreasing with at most `k` operations.
-3. The cost to make `nums[l..r]` non-decreasing is the sum of `max(0, nums[i] - nums[i-1])` for all `i` from `l+1` to `r`, but we can increment elements. Actually, the minimal cost to make a subarray non-decreasing is computed by greedily fixing violations: for each `i` from `l+1` to `r`, if `nums[i] < nums[i-1]`, we need to raise `nums[i]` to at least `nums[i-1]`. The cost is `nums[i-1] - nums[i]`. We accumulate this cost.
-4. Maintain a window `[l, r]` and a current cost. Expand `r` and add the cost for the new element. If cost exceeds `k`, shrink `l` from the left, subtracting the cost contributed by the removed element's relationship with its new left neighbor.
-5. For each valid window `[l, r]`, all subarrays ending at `r` and starting from `l` to `r` are valid, contributing `r - l + 1` to the answer.
-6. To efficiently update the cost when shrinking from the left, note that the cost for index `i` (relative to `i-1`) is `max(0, nums[i-1] - nums[i])`. When we remove `l`, we remove the cost associated with `l+1` (if `l+1 <= r`), which is `max(0, nums[l] - nums[l+1])`.
