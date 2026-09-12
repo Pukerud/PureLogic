@@ -1,4 +1,4 @@
-# Credentials. Never tracked; see the note at the top of README.md.
+# Credentials. Never tracked (keep any .env / keys / credential files out of git).
 .env*
 *.key
 .credentials*

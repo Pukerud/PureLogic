@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Starts the GVS5H harness TUI (tui\gvs5h_tui.py) on Windows.
+    Starts the PureLogic agent TUI (tui\purelogic_tui.py) on Windows.
 
 .DESCRIPTION
     Finds a suitable Python 3 interpreter, makes sure `rich` is installed,
@@ -18,7 +18,7 @@
         .\start_tui.ps1 --run "<problem>" --spec code --json
 
 .PARAMETER TuiArgs
-    Arguments forwarded unchanged to gvs5h_tui.py.
+    Arguments forwarded unchanged to purelogic_tui.py.
 #>
 [CmdletBinding()]
 param(
@@ -32,9 +32,9 @@ $ErrorActionPreference = 'Stop'
 # change the working directory: the agent's artifacts go to a `Workspace`
 # subfolder of wherever the user ran this script.
 $RepoRoot = Split-Path -Parent $PSScriptRoot
-$TuiScript = Join-Path $PSScriptRoot 'gvs5h_tui.py'
+$TuiScript = Join-Path $PSScriptRoot 'purelogic_tui.py'
 if (-not (Test-Path $TuiScript)) {
-    Write-Error "Cannot find gvs5h_tui.py next to this script."
+    Write-Error "Cannot find purelogic_tui.py next to this script."
     exit 1
 }
 
@@ -90,7 +90,7 @@ if ($prevCodePage -ne '65001') {
     $null = chcp 65001 2>$null
 }
 
-Write-Host "GVS5H TUI - agent artifacts will be written to: $WorkspaceDir" -ForegroundColor DarkCyan
+Write-Host "PureLogic TUI - agent artifacts will be written to: $WorkspaceDir" -ForegroundColor DarkCyan
 
 # Launch the TUI in the foreground and pass its exit code back.
 & $pyExe @pyArgs $TuiScript @TuiArgs
