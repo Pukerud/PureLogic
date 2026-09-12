@@ -46,7 +46,9 @@ Interactive commands include `/mode`, `/spec`, `/stages`, `/cap`, `/temp`,
 
 ## Visual inspection
 
-Visual inspection is optional and does not affect text-only runs.
+Visual inspection is optional and does not affect text-only runs. Canvas-only pages are
+treated as valid visual artifacts; empty DOM text is not reported as a defect when a
+visible canvas is present.
 
 1. The worker writes the requested files, preferably with an `index.html` entrypoint.
 2. PureLogic launches a headless Chromium context with Playwright against a local
@@ -55,10 +57,12 @@ Visual inspection is optional and does not affect text-only runs.
    missing image alt text, console messages, page errors, failed requests, and a
    screenshot.
 4. The screenshot is sent to a configured vision endpoint through the same streaming
-   model abstraction. The browser evidence and optional vision findings are returned
-   to the manager as bounded worker feedback.
-5. A browser finding keeps the loop in `continue` state and supplies a concrete fix
-   task, so the next worker can repair and re-check the page.
+   model abstraction. Local vision calls disable hidden thinking so the model must return
+   visible review text, and the parser accepts response shapes used by local
+   OpenAI-compatible servers. Browser evidence and vision findings are returned to the
+   manager as bounded worker feedback.
+5. Browser findings or actionable vision findings keep the loop in `continue` state and
+   supply a concrete fix task, so the next worker can repair and re-check the page.
 
 Install the browser dependency when needed:
 

@@ -61,6 +61,13 @@ def _semantic_evidence(page: Any) -> dict[str, Any]:
             title: document.title,
             body_text: (document.body?.innerText || '').trim().slice(0, 2000),
             interactive, landmarks, images_without_alt: imagesWithoutAlt,
+            canvas: [...document.querySelectorAll('canvas')].slice(0, 20).map(el => {
+              const box = el.getBoundingClientRect();
+              const style = getComputedStyle(el);
+              return {width: el.width, height: el.height,
+                visible: box.width > 0 && box.height > 0 && style.visibility !== 'hidden',
+                css_width: Math.round(box.width), css_height: Math.round(box.height)};
+            }),
             h1_count: document.querySelectorAll('h1').length,
             visible_text_length: (document.body?.innerText || '').trim().length,
           };
@@ -71,9 +78,11 @@ def _semantic_evidence(page: Any) -> dict[str, Any]:
 def _findings(evidence: dict[str, Any], console: list[dict[str, str]],
               page_errors: list[str], request_failures: list[str]) -> list[str]:
     findings: list[str] = []
-    if not evidence.get("visible_text_length"):
+    has_visible_canvas = any(x.get("visible") for x in evidence.get("canvas", []))
+    if not evidence.get("visible_text_length") and not has_visible_canvas:
         findings.append("The page has no visible body text.")
-    if not evidence.get("interactive") and evidence.get("visible_text_length", 0) < 20:
+    if (not evidence.get("interactive") and evidence.get("visible_text_length", 0) < 20
+            and not has_visible_canvas):
         findings.append("No meaningful interactive or textual content was detected.")
     if evidence.get("images_without_alt"):
         findings.append(f"{len(evidence['images_without_alt'])} image(s) lack alt text.")

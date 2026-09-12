@@ -6,8 +6,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from tui.visual_inspector import concise_summary, inspect_visual_artifact
-from tui.purelogic_tui import Cfg, parse_args, resolve_spec
+from tui.visual_inspector import _findings, concise_summary, inspect_visual_artifact
+from tui.purelogic_tui import Cfg, _stream_one, _vision_review, parse_args, resolve_spec
 
 
 class _FakePage:
@@ -82,6 +82,59 @@ class _FakePlaywrightContext:
 
 
 class VisualInspectorTests(unittest.TestCase):
+    def test_stream_parser_accepts_final_message_content(self):
+        class _Response:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return None
+
+            def __iter__(self):
+                yield b'data: {"choices":[{"message":{"content":"canvas review"},"finish_reason":"stop"}]}\n'
+                yield b'data: [DONE]\n'
+
+        class _Live:
+            def note_delta(self, *_args):
+                return None
+
+        import tui.purelogic_tui as purelogic_tui
+        with patch.object(purelogic_tui.urllib.request, "urlopen",
+                          lambda *_args, **_kwargs: _Response()):
+            content, _tools, _usage, finish, _reasoning = _stream_one(
+                types.SimpleNamespace(base="http://local.test/v1"),
+                {"messages": []}, _Live(), base="http://local.test/v1")
+        self.assertEqual(content, "canvas review")
+        self.assertEqual(finish, "stop")
+
+    def test_canvas_only_page_is_not_reported_as_empty(self):
+        findings = _findings(
+            {"visible_text_length": 0, "interactive": [], "canvas": [{"visible": True}],
+             "images_without_alt": []}, [], [], [])
+        self.assertEqual(findings, [])
+
+    def test_vision_review_disables_thinking_and_requires_visible_answer(self):
+        cfg = types.SimpleNamespace(
+            vision_base="http://local.test/v1", vision_model="vision-model",
+            vision_cap=128, temp=0.7,
+        )
+        live = types.SimpleNamespace(
+            begin_call=lambda *_args: None, inflight=0, calls=0,
+            completion_tokens=0, prompt_tokens=0, last_finish_reason=None,
+            truncated_calls=0,
+        )
+        with patch(
+            "tui.purelogic_tui._stream_with_retry",
+            return_value=("A visible review", [], {"completion_tokens": 3,
+                          "prompt_tokens": 4}, "stop", ""),
+        ) as request:
+            answer = _vision_review(cfg, live, b"png", {"canvas": [{"visible": True}]})
+        self.assertEqual(answer, "A visible review")
+        self.assertEqual(
+            request.call_args.kwargs["extra"],
+            {"chat_template_kwargs": {"enable_thinking": False}},
+        )
+
     def test_vision_defaults_to_local_endpoint_and_model(self):
         with patch.dict(
             "os.environ",

@@ -437,15 +437,22 @@ def _stream_one(cfg, body, live, base=None):
             if chunk.get("usage"):
                 usage = chunk["usage"]
             for c in chunk.get("choices") or []:
-                d = c.get("delta") or {}
-                rd = d.get("reasoning_content")
+                # Most servers stream delta objects. Some local runtimes put the
+                # final message in ``message`` or return structured content.
+                d = c.get("delta") or c.get("message") or {}
+                rd = d.get("reasoning_content") or d.get("reasoning")
                 if rd:
-                    reasoning_parts.append(rd)
-                    live.note_delta("reasoning", rd)
+                    reasoning_parts.append(str(rd))
+                    live.note_delta("reasoning", str(rd))
                 cd = d.get("content")
+                if isinstance(cd, list):
+                    cd = "".join(
+                        str(part.get("text", "")) if isinstance(part, dict) else str(part)
+                        for part in cd
+                    )
                 if cd:
-                    content_parts.append(cd)
-                    live.note_delta("content", cd)
+                    content_parts.append(str(cd))
+                    live.note_delta("content", str(cd))
                 for tc in d.get("tool_calls") or []:
                     i = tc.get("index", 0)
                     t = tool_calls.setdefault(i, {"id": None, "name": None})
@@ -712,10 +719,18 @@ def install_model_layer(cfg, live, multiagent):
                 raise RuntimeError(feedback)
             if cfg.vision == "required" and not (inspection.get("vision") or {}).get("ok"):
                 raise RuntimeError(feedback)
-            if inspection.get("available") and (inspection.get("findings") or not inspection.get("ok")):
+            vision = inspection.get("vision") or {}
+            vision_text = (vision.get("findings") or "").strip().lower()
+            vision_has_issues = bool(vision_text) and not re.search(
+                r"\bno\s+(?:obvious\s+)?visual\s+issues?\s+found\b|\bno\s+issues?\s+found\b",
+                vision_text,
+            )
+            if inspection.get("available") and (
+                    inspection.get("findings") or not inspection.get("ok") or vision_has_issues):
                 status = "continue"
                 nexts = nexts or [
-                    "Fix every browser inspection finding in the generated visual artifact, then re-check it."
+                    "Fix every browser and vision inspection finding in the generated visual "
+                    "artifact, then re-check it."
                 ]
         return status, nexts, summary, wrote
 
@@ -734,9 +749,14 @@ def _vision_review(cfg, live, screenshot, evidence):
     image = base64.b64encode(screenshot).decode("ascii")
     messages = [
         {"role": "system", "content": (
-            "You are reviewing a generated web page screenshot. Identify concrete visual "
-            "or usability defects that should be fixed. Be concise and return either "
-            "'No visual issues found.' or a short bullet list."
+            "You are the final visual QA reviewer for a generated web artifact. Inspect "
+            "the pixels in the screenshot, including content drawn entirely on canvas. "
+            "The DOM may contain no text when canvas is intentional; do not report that "
+            "as a visual defect. Identify concrete visual or usability defects that an "
+            "implementer can fix: alignment, clipping, proportions, contrast, layering, "
+            "spacing, grounding, responsiveness, or missing visible content. Return only "
+            "a concise final assessment: exactly 'No visual issues found.' or a short "
+            "bullet list with actionable fixes. Do not return hidden reasoning."
         )},
         {"role": "user", "content": [
             {"type": "text", "text": "Review this screenshot using the DOM evidence below:\n" +
@@ -747,8 +767,9 @@ def _vision_review(cfg, live, screenshot, evidence):
     live.begin_call("vision")
     live.inflight += 1
     try:
-        content, _tcs, _usage, _finish, _reasoning = _stream_with_retry(
-            cfg, messages, None, cfg.temp, live, cap=cfg.vision_cap,
+        content, _tcs, _usage, _finish, reasoning = _stream_with_retry(
+            cfg, messages, None, min(cfg.temp, 0.2), live, cap=cfg.vision_cap,
+            extra={"chat_template_kwargs": {"enable_thinking": False}},
             base=cfg.vision_base, model=cfg.vision_model)
         live.calls += 1
         live.completion_tokens += _usage.get("completion_tokens") or 0
@@ -756,7 +777,15 @@ def _vision_review(cfg, live, screenshot, evidence):
         live.last_finish_reason = _finish
         if _finish == "length":
             live.truncated_calls += 1
-        return content.strip()
+        answer = content.strip()
+        if not answer:
+            detail = "vision model returned no visible answer"
+            if reasoning.strip():
+                detail += " (hidden reasoning was returned instead)"
+            if _finish:
+                detail += f"; finish_reason={_finish}"
+            raise RuntimeError(detail)
+        return answer
     finally:
         live.inflight = max(0, live.inflight - 1)
 
