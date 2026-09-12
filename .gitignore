@@ -18,8 +18,11 @@ iclr2027/
 
 # TUI harness: per-prompt agent workspaces (artifacts + transcripts)
 tui_workspaces/
-# ...except the small tracked in-TUI evidence transcript (README §0).
+# TUI agent runs: <cwd>/Workspace/<md5(prompt)>/ artifacts (README §0)
+Workspace/
+# ...except the small tracked in-TUI evidence transcripts (README §0).
 !tui/evidence/tui_evidence_harness/transcript.jsonl
+!tui/evidence/tui_evidence_live156/transcript.jsonl
 
 # Python
 __pycache__/

@@ -1,20 +1,26 @@
 [
   {
     "id": 1,
-    "desc": "Compute 12 \u00d7 13 using standard multiplication.",
+    "desc": "Extract the operands from the expression.",
     "status": "done",
     "result": ""
   },
   {
     "id": 2,
-    "desc": "Verify the result with an independent check.",
+    "desc": "Compute the product of the two integers.",
     "status": "done",
     "result": ""
   },
   {
     "id": 3,
-    "desc": "Format the final output as only the integer result.",
-    "status": "pending",
+    "desc": "Verify the multiplication result.",
+    "status": "done",
+    "result": ""
+  },
+  {
+    "id": 4,
+    "desc": "Format the answer as a single final integer.",
+    "status": "done",
     "result": ""
   }
 ]

@@ -1,1 +1,1 @@
-Treat the problem as a direct multiplication of two small integers. Verify the arithmetic using a standard multiplication method. Cross-check with an alternative decomposition to avoid error. Prepare the final answer as a single integer.
+Treat the problem as a direct arithmetic evaluation. Assign a worker to identify the two integer operands. Have the worker compute their product using standard multiplication. Verify the result by a second method or sanity check. Ensure the final output is only the integer, with no extra text.

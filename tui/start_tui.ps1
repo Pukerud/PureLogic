@@ -5,13 +5,16 @@
 .DESCRIPTION
     Finds a suitable Python 3 interpreter, makes sure `rich` is installed,
     switches the console to UTF-8 so the TUI's box-drawing and progress
-    glyphs render, then launches the TUI from the repository root.
+    glyphs render, then launches the TUI. The agent writes its artifacts to a
+    `Workspace` subfolder of the directory you run the script from (override
+    with the GVS5H_WS_DIR environment variable).
     All extra arguments are passed straight through to the TUI.
 
     Examples:
-        .\start_tui.ps1                               # interactive (chat mode)
-        .\start_tui.ps1 --mode harness --iters 4      # interactive, harness
-        .\start_tui.ps1 --run "Say hi"                # one prompt, then exit
+        .\start_tui.ps1                               # interactive agent (harness)
+        .\start_tui.ps1 --mode chat                   # interactive, quick chat
+        .\start_tui.ps1 --run "<problem>"             # one harness run, then exit
+        .\start_tui.ps1 --run "Say hi" --mode chat    # one quick chat, then exit
         .\start_tui.ps1 --run "<problem>" --spec code --json
 
 .PARAMETER TuiArgs
@@ -25,13 +28,19 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-# Run from the repo root no matter where the script is invoked from.
+# Locate the TUI relative to this script (so it works from any CWD), but do NOT
+# change the working directory: the agent's artifacts go to a `Workspace`
+# subfolder of wherever the user ran this script.
 $RepoRoot = Split-Path -Parent $PSScriptRoot
-if (-not (Test-Path (Join-Path $RepoRoot 'tui\gvs5h_tui.py'))) {
-    Write-Error "Cannot find tui\gvs5h_tui.py under '$RepoRoot'."
+$TuiScript = Join-Path $PSScriptRoot 'gvs5h_tui.py'
+if (-not (Test-Path $TuiScript)) {
+    Write-Error "Cannot find gvs5h_tui.py next to this script."
     exit 1
 }
-Set-Location $RepoRoot
+
+# Working path for agent artifacts: <where the script was run>\Workspace.
+$WorkspaceDir = Join-Path (Get-Location).Path 'Workspace'
+$env:GVS5H_WS_DIR = $WorkspaceDir
 
 # Pick a Python 3 interpreter: python -> py -3 -> python3.
 $python = $null
@@ -81,8 +90,10 @@ if ($prevCodePage -ne '65001') {
     $null = chcp 65001 2>$null
 }
 
+Write-Host "GVS5H TUI - agent artifacts will be written to: $WorkspaceDir" -ForegroundColor DarkCyan
+
 # Launch the TUI in the foreground and pass its exit code back.
-& $pyExe @pyArgs (Join-Path $RepoRoot 'tui\gvs5h_tui.py') @TuiArgs
+& $pyExe @pyArgs $TuiScript @TuiArgs
 $code = $LASTEXITCODE
 
 if ($prevCodePage -and $prevCodePage -ne '65001') {
